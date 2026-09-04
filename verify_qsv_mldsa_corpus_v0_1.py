@@ -19,6 +19,10 @@ EXPECTED_FILES = {
     "runners/qsv-mldsa-runner-interface-v0.1.json",
     "manifest/qsv-mldsa-corpus-v0.1-manifest.json",
     "manifest/qsv-mldsa-corpus-v0.1-manifest.json.sha256",
+    "lineage/bindings/qsv-mldsa-implementation-source-lineage-v0.1.json",
+    "lineage/bindings/qsv-mldsa-implementation-source-lineage-v0.1.json.sha256",
+    "verify_qsv_mldsa_source_lineage_v0_1.py",
+    "verify_qsv_mldsa_source_lineage_v0_1.py.sha256",
     "verify_qsv_mldsa_corpus_v0_1.py",
     "verify_qsv_mldsa_corpus_v0_1.py.sha256",
 }
@@ -1090,6 +1094,400 @@ check(
     "README does not claim formal certification",
     "formal certification claimed: yes"
     not in readme.lower(),
+)
+
+
+
+source_binding = load(
+    "lineage/bindings/qsv-mldsa-implementation-source-lineage-v0.1.json"
+)
+
+check(
+    "source binding schema",
+    source_binding["schema"]
+    == "qsv.mldsa.implementation-source-lineage-binding.v0.1",
+)
+
+check(
+    "source binding version",
+    source_binding["version"] == "0.1",
+)
+
+check(
+    "source binding status",
+    source_binding["status"]
+    == "source_lineage_bound_fixture_execution_pending",
+)
+
+check(
+    "source binding role",
+    source_binding["role"]
+    == "append_only_implementation_source_lineage_evidence",
+)
+
+source_base = source_binding[
+    "base_corpus_authority"
+]
+
+check(
+    "source binding base repository",
+    source_base["repository"]
+    == "mokkunsuzuki-code/qsv-mldsa-interoperability-corpus",
+)
+
+check(
+    "source binding base commit",
+    source_base["commit"]
+    == "5c43415a2570ec0e1e3e8211b589f7a9916108a1",
+)
+
+check(
+    "source binding base tree",
+    source_base["tree"]
+    == "67fd0ecdf14f49523dd94f95fbfee908b39312a3",
+)
+
+source_norm = source_binding[
+    "normative_reference"
+]
+
+check(
+    "source binding QSV repository",
+    source_norm["repository"]
+    == "mokkunsuzuki-code/qsv-reference-model",
+)
+
+check(
+    "source binding QSV tag",
+    source_norm["tag"] == "v1.0",
+)
+
+check(
+    "source binding QSV target",
+    source_norm["target_commit"]
+    == "a900f9c19aae2b165472290dbd4ccc83137433f9",
+)
+
+source_hist = source_binding[
+    "historical_evidence_source"
+]
+
+check(
+    "source binding Stage393 repository",
+    source_hist["repository"]
+    == "mokkunsuzuki-code/stage393",
+)
+
+check(
+    "source binding Stage393 commit",
+    source_hist["commit"]
+    == "61809515b6db87123ea60b404d6db4e6751bcac2",
+)
+
+check(
+    "source binding Stage393 tree",
+    source_hist["tree"]
+    == "1ddb9e5d54b4de5e91a3e1b75c635b82213c0d17",
+)
+
+source_openssl = source_binding[
+    "implementations"
+][
+    "openssl"
+]
+
+check(
+    "source OpenSSL id",
+    source_openssl["implementation_id"]
+    == "openssl",
+)
+
+check(
+    "source OpenSSL runtime version",
+    source_openssl["observed_runtime"]["version"]
+    == "OpenSSL 3.6.3 9 Jun 2026 (Library: OpenSSL 3.6.3 9 Jun 2026)",
+)
+
+check(
+    "source OpenSSL binary",
+    source_openssl["observed_runtime"]["binary"]
+    == "/opt/homebrew/Cellar/openssl@3/3.6.3/bin/openssl",
+)
+
+check(
+    "source OpenSSL binary hash",
+    source_openssl["observed_runtime"]["binary_sha256"]
+    == "5d8f84484b7317ec5639ce68ccecc1d6f565ca6df483c8ae731e25265d83466d",
+)
+
+source_openssl_upstream = source_openssl[
+    "upstream_release"
+]
+
+check(
+    "source OpenSSL upstream repository",
+    source_openssl_upstream["repository"]
+    == "https://github.com/openssl/openssl.git",
+)
+
+check(
+    "source OpenSSL release tag",
+    source_openssl_upstream["tag"]
+    == "openssl-3.6.3",
+)
+
+check(
+    "source OpenSSL tag object",
+    source_openssl_upstream["tag_object"]
+    == "e5c234b0c471a676ae6141d2f157df61eb293477",
+)
+
+check(
+    "source OpenSSL commit",
+    source_openssl_upstream["source_commit"]
+    == "aae016bfd52fcad2bc9657c2c782cfdf73b1ed5f",
+)
+
+check(
+    "source OpenSSL tree",
+    source_openssl_upstream["source_tree"]
+    == "a8a306c000bc2426afd3264b2c41bc7223728475",
+)
+
+check(
+    "source OpenSSL VERSION.dat hash",
+    source_openssl_upstream["version_dat_sha256"]
+    == "13996b257fa122047907c75bb6605cf9b18859099e555d8091dfc95df6344470",
+)
+
+check(
+    "source OpenSSL VERSION.dat blob",
+    source_openssl_upstream["version_dat_git_blob"]
+    == "1926982f6388b752f19dde368a04b4b09e6a66a6",
+)
+
+source_brew = source_openssl[
+    "homebrew_observation"
+]
+
+check(
+    "source Homebrew formula",
+    source_brew["formula"]
+    == "openssl@3",
+)
+
+check(
+    "source Homebrew stable observed",
+    source_brew["stable_version_observed"]
+    == "3.6.4",
+)
+
+check(
+    "source Homebrew installed observed",
+    source_brew["installed_version_observed"]
+    == "3.6.3",
+)
+
+check(
+    "source Homebrew metadata hash",
+    source_brew["metadata_sha256"]
+    == "312f2abccd4297078aa7c4f11d2906a5f8e2b820c39b4c78ecf47d5857bdf1fd",
+)
+
+source_build = source_openssl[
+    "build_provenance"
+]
+
+check(
+    "source OpenSSL commit not proven for binary",
+    source_build["local_binary_source_commit_proven"]
+    is False,
+)
+
+check(
+    "source OpenSSL build provenance incomplete",
+    source_build["complete"]
+    is False,
+)
+
+check(
+    "source OpenSSL provenance status",
+    source_build["status"]
+    == "incomplete",
+)
+
+check(
+    "source OpenSSL provenance reason exact",
+    source_build["reason"]
+    == 'runtime_version_and_upstream_tag_are_verified_but_source_to_local_binary_build_chain_is_not_yet_cryptographically_established',
+)
+
+check(
+    "source implementation set exact",
+    set(
+        source_binding["implementations"].keys()
+    )
+    == {
+        "openssl",
+        "cloudflare_circl",
+    },
+)
+
+source_circl = source_binding[
+    "implementations"
+][
+    "cloudflare_circl"
+]
+
+check(
+    "source CIRCL id",
+    source_circl["implementation_id"]
+    == "cloudflare-circl",
+)
+
+check(
+    "source CIRCL repository",
+    source_circl["repository"]
+    == "https://github.com/cloudflare/circl.git",
+)
+
+check(
+    "source CIRCL commit",
+    source_circl["source_commit"]
+    == "cfa7c70defd831ffb0792ab2af560bfef43d60ca",
+)
+
+check(
+    "source CIRCL tree",
+    source_circl["source_tree"]
+    == "b3a50c3f1b7a5f8cfac0cce655ae7ea7900e9139",
+)
+
+check(
+    "source CIRCL go.mod hash",
+    source_circl["go_mod_sha256"]
+    == "79b9daccc7f033377bcbc70524418d999a1677849924d7b5e488e646c4cf00d7",
+)
+
+check(
+    "source CIRCL go.sum hash",
+    source_circl["go_sum_sha256"]
+    == "3d75d69d3b553e9aa69e1278de681b8dc55c28c6e4233bb398c5b7373c3abd0a",
+)
+
+check(
+    "source CIRCL go.mod blob",
+    source_circl["go_mod_git_blob"]
+    == "f4ab94067d62a67bb50733fab6e41eab38434146",
+)
+
+check(
+    "source CIRCL go.sum blob",
+    source_circl["go_sum_git_blob"]
+    == "c6d3ed6c6bc51c566570ee9c19b4187f094fca49",
+)
+
+check(
+    "source CIRCL upstream commit match",
+    source_circl["upstream_commit_match"]
+    is True,
+)
+
+check(
+    "source CIRCL upstream tree match",
+    source_circl["upstream_tree_match"]
+    is True,
+)
+
+check(
+    "source CIRCL fixture execution pending",
+    source_circl[
+        "fixture_execution_from_pinned_source_performed"
+    ] is False,
+)
+
+source_truth = source_binding[
+    "truth_boundaries"
+]
+
+check(
+    "source agreement not correctness",
+    source_truth["agreement_implies_correctness"]
+    is False,
+)
+
+check(
+    "source hash not build provenance",
+    source_truth["hash_alone_implies_build_provenance"]
+    is False,
+)
+
+check(
+    "source version not build provenance",
+    source_truth["version_string_implies_build_provenance"]
+    is False,
+)
+
+source_execution = source_binding[
+    "execution_state"
+]
+
+check(
+    "source fixture generation pending",
+    source_execution[
+        "cryptographic_fixture_generation_performed"
+    ] is False,
+)
+
+check(
+    "source fixture execution pending",
+    source_execution[
+        "cryptographic_fixture_execution_performed"
+    ] is False,
+)
+
+check(
+    "source results unpublished",
+    source_execution[
+        "fixture_results_published"
+    ] is False,
+)
+
+check(
+    "source implementation independence unverified",
+    source_execution[
+        "two_independent_implementations_verified"
+    ] is False,
+)
+
+source_binding_sidecar = (
+    ROOT
+    / "lineage/bindings/qsv-mldsa-implementation-source-lineage-v0.1.json.sha256"
+)
+
+check(
+    "source binding sidecar hash",
+    source_binding_sidecar.read_text(
+        encoding="utf-8"
+    ).split()[0]
+    == sha256(
+        "lineage/bindings/qsv-mldsa-implementation-source-lineage-v0.1.json"
+    ),
+)
+
+source_verifier_sidecar = (
+    ROOT
+    / "verify_qsv_mldsa_source_lineage_v0_1.py.sha256"
+)
+
+check(
+    "source binding verifier sidecar hash",
+    source_verifier_sidecar.read_text(
+        encoding="utf-8"
+    ).split()[0]
+    == sha256(
+        "verify_qsv_mldsa_source_lineage_v0_1.py"
+    ),
 )
 
 

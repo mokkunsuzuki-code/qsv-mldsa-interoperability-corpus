@@ -1,0 +1,76 @@
+{
+  "schema": "qsv.mldsa.implementation-source-lineage-binding.v0.1",
+  "version": "0.1",
+  "status": "source_lineage_bound_fixture_execution_pending",
+  "role": "append_only_implementation_source_lineage_evidence",
+  "base_corpus_authority": {
+    "repository": "mokkunsuzuki-code/qsv-mldsa-interoperability-corpus",
+    "commit": "5c43415a2570ec0e1e3e8211b589f7a9916108a1",
+    "tree": "67fd0ecdf14f49523dd94f95fbfee908b39312a3"
+  },
+  "normative_reference": {
+    "repository": "mokkunsuzuki-code/qsv-reference-model",
+    "tag": "v1.0",
+    "target_commit": "a900f9c19aae2b165472290dbd4ccc83137433f9"
+  },
+  "historical_evidence_source": {
+    "repository": "mokkunsuzuki-code/stage393",
+    "commit": "61809515b6db87123ea60b404d6db4e6751bcac2",
+    "tree": "1ddb9e5d54b4de5e91a3e1b75c635b82213c0d17"
+  },
+  "implementations": {
+    "openssl": {
+      "implementation_id": "openssl",
+      "observed_runtime": {
+        "version": "OpenSSL 3.6.3 9 Jun 2026 (Library: OpenSSL 3.6.3 9 Jun 2026)",
+        "binary": "/opt/homebrew/Cellar/openssl@3/3.6.3/bin/openssl",
+        "binary_sha256": "5d8f84484b7317ec5639ce68ccecc1d6f565ca6df483c8ae731e25265d83466d"
+      },
+      "upstream_release": {
+        "repository": "https://github.com/openssl/openssl.git",
+        "tag": "openssl-3.6.3",
+        "tag_object": "e5c234b0c471a676ae6141d2f157df61eb293477",
+        "source_commit": "aae016bfd52fcad2bc9657c2c782cfdf73b1ed5f",
+        "source_tree": "a8a306c000bc2426afd3264b2c41bc7223728475",
+        "version_dat_sha256": "13996b257fa122047907c75bb6605cf9b18859099e555d8091dfc95df6344470",
+        "version_dat_git_blob": "1926982f6388b752f19dde368a04b4b09e6a66a6"
+      },
+      "homebrew_observation": {
+        "formula": "openssl@3",
+        "stable_version_observed": "3.6.4",
+        "installed_version_observed": "3.6.3",
+        "metadata_sha256": "312f2abccd4297078aa7c4f11d2906a5f8e2b820c39b4c78ecf47d5857bdf1fd"
+      },
+      "build_provenance": {
+        "local_binary_source_commit_proven": false,
+        "complete": false,
+        "status": "incomplete",
+        "reason": "runtime_version_and_upstream_tag_are_verified_but_source_to_local_binary_build_chain_is_not_yet_cryptographically_established"
+      }
+    },
+    "cloudflare_circl": {
+      "implementation_id": "cloudflare-circl",
+      "repository": "https://github.com/cloudflare/circl.git",
+      "source_commit": "cfa7c70defd831ffb0792ab2af560bfef43d60ca",
+      "source_tree": "b3a50c3f1b7a5f8cfac0cce655ae7ea7900e9139",
+      "go_mod_sha256": "79b9daccc7f033377bcbc70524418d999a1677849924d7b5e488e646c4cf00d7",
+      "go_sum_sha256": "3d75d69d3b553e9aa69e1278de681b8dc55c28c6e4233bb398c5b7373c3abd0a",
+      "go_mod_git_blob": "f4ab94067d62a67bb50733fab6e41eab38434146",
+      "go_sum_git_blob": "c6d3ed6c6bc51c566570ee9c19b4187f094fca49",
+      "upstream_commit_match": true,
+      "upstream_tree_match": true,
+      "fixture_execution_from_pinned_source_performed": false
+    }
+  },
+  "truth_boundaries": {
+    "agreement_implies_correctness": false,
+    "hash_alone_implies_build_provenance": false,
+    "version_string_implies_build_provenance": false
+  },
+  "execution_state": {
+    "cryptographic_fixture_generation_performed": false,
+    "cryptographic_fixture_execution_performed": false,
+    "fixture_results_published": false,
+    "two_independent_implementations_verified": false
+  }
+}
