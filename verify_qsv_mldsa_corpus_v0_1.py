@@ -23,6 +23,10 @@ EXPECTED_FILES = {
     "lineage/bindings/qsv-mldsa-implementation-source-lineage-v0.1.json.sha256",
     "verify_qsv_mldsa_source_lineage_v0_1.py",
     "verify_qsv_mldsa_source_lineage_v0_1.py.sha256",
+    "vectors/bindings/qsv-mldsa-nist-acvp-vector-source-v0.1.json",
+    "vectors/bindings/qsv-mldsa-nist-acvp-vector-source-v0.1.json.sha256",
+    "verify_qsv_mldsa_nist_acvp_vector_source_v0_1.py",
+    "verify_qsv_mldsa_nist_acvp_vector_source_v0_1.py.sha256",
     "verify_qsv_mldsa_corpus_v0_1.py",
     "verify_qsv_mldsa_corpus_v0_1.py.sha256",
 }
@@ -1487,6 +1491,226 @@ check(
     ).split()[0]
     == sha256(
         "verify_qsv_mldsa_source_lineage_v0_1.py"
+    ),
+)
+
+
+
+nist_vector_binding = load(
+    "vectors/bindings/qsv-mldsa-nist-acvp-vector-source-v0.1.json"
+)
+
+check(
+    "NIST vector binding identity exact",
+    (
+        nist_vector_binding["schema"]
+        == "qsv.mldsa.nist-acvp-vector-source-binding.v0.1"
+        and nist_vector_binding["version"] == "0.1"
+        and nist_vector_binding["status"]
+        == "authoritative_vector_source_bound_execution_pending"
+        and nist_vector_binding["role"]
+        == "append_only_known_answer_vector_source_authority"
+    ),
+)
+
+check(
+    "NIST vector base corpus authority exact",
+    nist_vector_binding["base_corpus_authority"]
+    == {
+        "repository":
+            "mokkunsuzuki-code/qsv-mldsa-interoperability-corpus",
+        "commit":
+            "27967c03620f099793a1edb3aa1c07487487c736",
+        "tree":
+            "a9bd9e3dff66a2267cf66ed26ace8be0ed8c1078",
+    },
+)
+
+nist_source = nist_vector_binding["source_authority"]
+
+check(
+    "NIST selected source revision exact",
+    (
+        nist_source["organization"] == "NIST"
+        and nist_source["repository"]
+        == "https://github.com/usnistgov/ACVP-Server.git"
+        and nist_source["selected_tag"] == "v1.1.0.43"
+        and nist_source["selected_commit"]
+        == "975de31eb83d87039ec88934fdc47d8c312b892d"
+        and nist_source["selected_tree"]
+        == "a6b81add7faf8a8b647afcdc54268615decde9b5"
+        and nist_source["prior_tag"] == "v1.1.0.42"
+        and nist_source["prior_commit"]
+        == "15c0f3deeefbfa8cb6cd32a99e1ca3b738c66bf0"
+        and nist_source["prior_tree"]
+        == "757c230c95b7b90c9f0f0def5ea5b813347bf8f2"
+    ),
+)
+
+check(
+    "NIST release observation exact",
+    (
+        nist_source["master_equal_selected_at_discovery"] is True
+        and nist_source["selected_release_metadata_sha256"]
+        == "89db9445342a74034e463257e6023fd81921751927ea99d5bb03c18f06fa23a9"
+        and nist_source["prior_release_metadata_sha256"]
+        == "4e7d0b005c5dc67362182721496fe8199a8b846609481235bdcfaff0d15a3e3d"
+        and nist_source["selected_github_release_immutable"] is False
+        and nist_source["selected_release_published_at"]
+        == "2026-08-12T19:32:51Z"
+        and nist_source["selected_release_updated_at"]
+        == "2026-08-20T17:48:32Z"
+    ),
+)
+
+nist_surface = nist_vector_binding[
+    "selected_vector_surface"
+]
+
+check(
+    "NIST vector counts exact",
+    (
+        nist_surface["base_fips204_file_count"] == 15
+        and nist_surface["fips204_tr1_siggen_file_count"] == 5
+        and nist_surface["total_file_count"] == 20
+        and nist_surface["prior_revision_tr1_siggen_file_count"] == 0
+        and nist_surface["selected_revision_tr1_siggen_file_count"] == 5
+    ),
+)
+
+check(
+    "NIST parameter sets exact",
+    nist_surface["parameter_sets"]
+    == [
+        "ML-DSA-44",
+        "ML-DSA-65",
+        "ML-DSA-87",
+    ],
+)
+
+check(
+    "NIST discovery binding set digest exact",
+    nist_surface["discovery_binding_set_sha256"]
+    == "5ecee116974b667aada74e91823d987174f500605a13f13b70db379844c9b2df",
+)
+
+check(
+    "NIST exact vector record count",
+    len(nist_surface["files"]) == 20,
+)
+
+check(
+    "NIST exact vector path set",
+    [item["path"] for item in nist_surface["files"]]
+    == [
+        "gen-val/json-files/ML-DSA-keyGen-FIPS204/expectedResults.json",
+        "gen-val/json-files/ML-DSA-keyGen-FIPS204/internalProjection.json",
+        "gen-val/json-files/ML-DSA-keyGen-FIPS204/prompt.json",
+        "gen-val/json-files/ML-DSA-keyGen-FIPS204/registration.json",
+        "gen-val/json-files/ML-DSA-keyGen-FIPS204/validation.json",
+        "gen-val/json-files/ML-DSA-sigGen-FIPS204/expectedResults.json",
+        "gen-val/json-files/ML-DSA-sigGen-FIPS204/internalProjection.json",
+        "gen-val/json-files/ML-DSA-sigGen-FIPS204/prompt.json",
+        "gen-val/json-files/ML-DSA-sigGen-FIPS204/registration.json",
+        "gen-val/json-files/ML-DSA-sigGen-FIPS204/validation.json",
+        "gen-val/json-files/ML-DSA-sigVer-FIPS204/expectedResults.json",
+        "gen-val/json-files/ML-DSA-sigVer-FIPS204/internalProjection.json",
+        "gen-val/json-files/ML-DSA-sigVer-FIPS204/prompt.json",
+        "gen-val/json-files/ML-DSA-sigVer-FIPS204/registration.json",
+        "gen-val/json-files/ML-DSA-sigVer-FIPS204/validation.json",
+        "gen-val/json-files/ML-DSA-sigGen-FIPS204-tr1/expectedResults.json",
+        "gen-val/json-files/ML-DSA-sigGen-FIPS204-tr1/internalProjection.json",
+        "gen-val/json-files/ML-DSA-sigGen-FIPS204-tr1/prompt.json",
+        "gen-val/json-files/ML-DSA-sigGen-FIPS204-tr1/registration.json",
+        "gen-val/json-files/ML-DSA-sigGen-FIPS204-tr1/validation.json",
+    ],
+)
+
+import hashlib as _qsv_nist_hashlib
+import json as _qsv_nist_json
+
+nist_vector_record_metadata_canonical = (
+    _qsv_nist_json.dumps(
+        nist_surface["files"],
+        sort_keys=True,
+        separators=(",", ":"),
+        ensure_ascii=False,
+    ).encode("utf-8")
+)
+
+check(
+    "NIST exact vector record metadata digest",
+    _qsv_nist_hashlib.sha256(
+        nist_vector_record_metadata_canonical
+    ).hexdigest()
+    == "ee30d4a27f64bfcbf3b01b0865cc964ad41ac1f4cde8afc0ee47cbd62b3f1dfe",
+)
+
+
+check(
+    "NIST selection evidence exact",
+    nist_vector_binding["selection_evidence"]
+    == {
+        "selected_release_declares_mldsa_fips204_tr1": True,
+        "selected_release_declares_externalmu_fix": True,
+        "selected_release_declares_modifyz_fix": True,
+        "selected_release_declares_tr1_prod_enablement": True,
+        "stable_to_selected_base15_changed_file_count": 9,
+        "selected_to_master_base15_changed_file_count_at_discovery": 0,
+    },
+)
+
+check(
+    "NIST truth boundaries exact",
+    nist_vector_binding["truth_boundaries"]
+    == {
+        "source_snapshot_implies_cryptographic_correctness": False,
+        "vector_presence_implies_implementation_conformance": False,
+        "nist_source_binding_implies_nist_validation_of_qsv": False,
+        "selected_revision_implies_all_implementations_support_all_vector_semantics": False,
+    },
+)
+
+check(
+    "NIST vector execution state exact",
+    nist_vector_binding["execution_state"]
+    == {
+        "nist_vector_payload_copied_to_corpus": False,
+        "public_test_secret_material_copied_to_corpus": False,
+        "public_test_secret_material_authorized": False,
+        "cryptographic_fixture_generation_performed": False,
+        "cryptographic_fixture_execution_performed": False,
+        "fixture_results_published": False,
+    },
+)
+
+nist_binding_sidecar = (
+    ROOT
+    / "vectors/bindings/qsv-mldsa-nist-acvp-vector-source-v0.1.json.sha256"
+)
+
+check(
+    "NIST vector binding sidecar hash",
+    nist_binding_sidecar.read_text(
+        encoding="utf-8"
+    ).split()[0]
+    == sha256(
+        "vectors/bindings/qsv-mldsa-nist-acvp-vector-source-v0.1.json"
+    ),
+)
+
+nist_verifier_sidecar = (
+    ROOT
+    / "verify_qsv_mldsa_nist_acvp_vector_source_v0_1.py.sha256"
+)
+
+check(
+    "NIST vector verifier sidecar hash",
+    nist_verifier_sidecar.read_text(
+        encoding="utf-8"
+    ).split()[0]
+    == sha256(
+        "verify_qsv_mldsa_nist_acvp_vector_source_v0_1.py"
     ),
 )
 
