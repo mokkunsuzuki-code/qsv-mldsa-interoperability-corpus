@@ -1,0 +1,46 @@
+{
+  "asset_reuse_policy": {
+    "copying_existing_logic_requires_new_hash_binding": true,
+    "historical_stage393_result_must_not_be_rewritten": true,
+    "new_corpus_execution_must_emit_new_evidence": true,
+    "stage393_is_not_a_runtime_dependency": true
+  },
+  "design_environment": {
+    "architecture": "arm64",
+    "go": {
+      "binary": "/opt/homebrew/bin/go",
+      "version": "go version go1.26.5 darwin/arm64"
+    },
+    "openssl": {
+      "binary": "/opt/homebrew/bin/openssl",
+      "version": "OpenSSL 3.6.3 9 Jun 2026 (Library: OpenSSL 3.6.3 9 Jun 2026)"
+    },
+    "operating_system": "Darwin"
+  },
+  "historical_design_input": {
+    "commit": "61809515b6db87123ea60b404d6db4e6751bcac2",
+    "concrete_example_sha256": "ae3d1a8c2a6dd593ea0dc8765280fdde36f018fb58cf76126081f351d929e899",
+    "repository": "mokkunsuzuki-code/stage393",
+    "role": "historical_design_provenance_not_normative_runtime_dependency",
+    "tree": "1ddb9e5d54b4de5e91a3e1b75c635b82213c0d17"
+  },
+  "normative_reference": {
+    "reference_model_sha256": "3b89f760aec367060e6f3c801b63b9bc92d468c00cbb958645ef0b12b766df3a",
+    "repository": "mokkunsuzuki-code/qsv-reference-model",
+    "tag_object_sha": "c73f2e5696d2b453fde2decf2cc012e1cbf645be",
+    "target_commit": "a900f9c19aae2b165472290dbd4ccc83137433f9",
+    "target_tree": "8c900bd600cb44dcc9ea2195075424a1bc7fb1f1",
+    "version_tag": "v1.0"
+  },
+  "schema": "qsv.mldsa-interoperability-corpus.provenance.v0.1",
+  "stage393_reusable_source_assets": {
+    "generate_stage393_circl_external_mu_overlay.py": "cb57f79ab1059cda2fcf4471eee9f8b3cd88c31f384680ad7c21d9bffb6ed169",
+    "run_stage393_deterministic_fixedrnd.py": "b4b9fcbb66ae00b3564031bb2ade88c3cb7b686bbc702abe8f2422513d94d23b",
+    "run_stage393_full_dual_implementation.py": "1b9baf39bd35a91ad86b165507a2f6b4a5789a56bb272cdc0cca8f953ece536e",
+    "stage393_circl_fixedrnd_harness_test.go": "4becc8d265d0eb11d70f2cdb52b1f4c84e70f80bc71c1c4d6fe90894f1b0f734",
+    "stage393_circl_full_harness.go": "60eb0cf69888ffe8244a90affc3400717d67c0fc49c182291d53902026955e80",
+    "stage393_openssl_full_harness.py": "a1e694858be45521290c00043386dafae4ecd00434e406746ee4fc18e494fa14",
+    "stage393_openssl_full_probe.c": "1b4ccc7aade8a75ba4e286967f1bc6045edc9eb6d94a9402961298869fce4a58"
+  },
+  "version": "0.1"
+}

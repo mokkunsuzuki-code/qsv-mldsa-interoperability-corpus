@@ -1,0 +1,89 @@
+{
+  "algorithm": "ML-DSA",
+  "claim_record_required_fields": [
+    "claim_id",
+    "fixture_id",
+    "implementation",
+    "implementation_lineage",
+    "exact_command",
+    "inputs",
+    "output",
+    "exit_status",
+    "artifact_hashes",
+    "environment"
+  ],
+  "completed_release_must_be_independently_runnable": true,
+  "evidence_dimensions": [
+    "known_answer_conformance",
+    "cross_implementation_interoperability",
+    "negative_behavior",
+    "reproduction_integrity"
+  ],
+  "execution_state": {
+    "cryptographic_fixture_execution_performed": false,
+    "cryptographic_fixture_generation_performed": false,
+    "fixture_results_published": false
+  },
+  "historical_design_input": {
+    "commit": "61809515b6db87123ea60b404d6db4e6751bcac2",
+    "concrete_example_sha256": "ae3d1a8c2a6dd593ea0dc8765280fdde36f018fb58cf76126081f351d929e899",
+    "repository": "mokkunsuzuki-code/stage393",
+    "role": "historical_design_provenance_not_normative_runtime_dependency",
+    "tree": "1ddb9e5d54b4de5e91a3e1b75c635b82213c0d17"
+  },
+  "initial_implementations": [
+    "OpenSSL",
+    "Cloudflare CIRCL"
+  ],
+  "name": "QSV ML-DSA Interoperability Corpus",
+  "non_claims": [
+    "formal_certification",
+    "universal_mldsa_correctness",
+    "security_vulnerability_absence",
+    "implementation_bug_absence",
+    "package_wide_pqc_readiness",
+    "hardware_wide_pqc_readiness",
+    "system_wide_quantum_safety",
+    "pqca_endorsement",
+    "open_quantum_safe_endorsement"
+  ],
+  "normative_reference": {
+    "reference_model_sha256": "3b89f760aec367060e6f3c801b63b9bc92d468c00cbb958645ef0b12b766df3a",
+    "repository": "mokkunsuzuki-code/qsv-reference-model",
+    "tag_object_sha": "c73f2e5696d2b453fde2decf2cc012e1cbf645be",
+    "target_commit": "a900f9c19aae2b165472290dbd4ccc83137433f9",
+    "target_tree": "8c900bd600cb44dcc9ea2195075424a1bc7fb1f1",
+    "version_tag": "v1.0"
+  },
+  "parameter_sets": [
+    "ML-DSA-44",
+    "ML-DSA-65",
+    "ML-DSA-87"
+  ],
+  "publication_boundary": {
+    "production_private_keys_allowed": false,
+    "public_test_secret_material_authorized": false,
+    "test_secret_material_policy": "explicit_approval_required_before_publication"
+  },
+  "role": "qsv_v1_implementation_artifact",
+  "schema": "qsv.mldsa-interoperability-corpus.contract.v0.1",
+  "stage393_required_at_runtime": false,
+  "status": "design_ready_execution_pending",
+  "tool_level_result_states": [
+    "pass",
+    "expected_reject",
+    "unexpected_accept",
+    "unexpected_reject",
+    "unsupported",
+    "error",
+    "blocked"
+  ],
+  "truth_boundaries": {
+    "agreement_implies_correctness": false,
+    "randomized_signature_requires_byte_equality": false,
+    "timestamp_implies_cryptographic_correctness": false,
+    "unknown_or_pending_implies_verified": false,
+    "wrapper_diversity_implies_implementation_independence": false
+  },
+  "version": "0.1"
+}

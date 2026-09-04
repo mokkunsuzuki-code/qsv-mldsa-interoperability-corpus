@@ -1,0 +1,29 @@
+{
+  "artifacts": {
+    "private_test_key": null,
+    "public_key": null,
+    "signature": null
+  },
+  "consumer": null,
+  "context": {
+    "case": "empty",
+    "encoding": "hex",
+    "value": ""
+  },
+  "dimension": "cross_implementation_interoperability",
+  "execution_state": "pending",
+  "expected_outcome": "accept",
+  "fixture_id": "UNASSIGNED",
+  "message": {
+    "encoding": "hex",
+    "value": ""
+  },
+  "mutation": null,
+  "operation": "verify",
+  "parameter_set": "ML-DSA-65",
+  "producer": null,
+  "provenance": {},
+  "publication_classification": "not_authorized_for_publication",
+  "randomness_mode": "not_applicable",
+  "schema": "qsv.mldsa.fixture.v0.1"
+}

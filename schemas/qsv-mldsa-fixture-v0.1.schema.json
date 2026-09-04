@@ -1,0 +1,132 @@
+{
+  "$id": "urn:qsv:mldsa:fixture:0.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifacts": {
+      "properties": {
+        "private_test_key": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "public_key": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "signature": {
+          "type": [
+            "object",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "consumer": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "context": {
+      "required": [
+        "case",
+        "encoding",
+        "value"
+      ],
+      "type": "object"
+    },
+    "dimension": {
+      "enum": [
+        "known_answer_conformance",
+        "cross_implementation_interoperability",
+        "negative_behavior"
+      ]
+    },
+    "expected_outcome": {
+      "enum": [
+        "accept",
+        "reject"
+      ]
+    },
+    "fixture_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "message": {
+      "required": [
+        "encoding",
+        "value"
+      ],
+      "type": "object"
+    },
+    "mutation": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "operation": {
+      "enum": [
+        "key_generation",
+        "sign",
+        "verify"
+      ]
+    },
+    "parameter_set": {
+      "enum": [
+        "ML-DSA-44",
+        "ML-DSA-65",
+        "ML-DSA-87"
+      ]
+    },
+    "producer": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "provenance": {
+      "type": "object"
+    },
+    "publication_classification": {
+      "enum": [
+        "public_non_secret",
+        "public_test_only_material",
+        "not_authorized_for_publication"
+      ]
+    },
+    "randomness_mode": {
+      "enum": [
+        "deterministic",
+        "hedged_or_randomized",
+        "not_applicable"
+      ]
+    },
+    "schema": {
+      "const": "qsv.mldsa.fixture.v0.1"
+    }
+  },
+  "required": [
+    "schema",
+    "fixture_id",
+    "dimension",
+    "parameter_set",
+    "operation",
+    "producer",
+    "consumer",
+    "message",
+    "context",
+    "randomness_mode",
+    "expected_outcome",
+    "artifacts",
+    "provenance",
+    "publication_classification"
+  ],
+  "title": "QSV ML-DSA interoperability fixture v0.1",
+  "type": "object"
+}

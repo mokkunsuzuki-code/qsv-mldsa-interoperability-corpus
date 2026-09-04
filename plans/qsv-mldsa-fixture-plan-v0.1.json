@@ -1,0 +1,72 @@
+{
+  "context_cases": [
+    "empty",
+    "maximum_permitted_where_supported",
+    "mismatched"
+  ],
+  "cross_implementation_interoperability": {
+    "all_parameter_sets_required": true,
+    "directions": [
+      "OpenSSL_generate_or_sign__CIRCL_verify",
+      "CIRCL_generate_or_sign__OpenSSL_verify"
+    ],
+    "randomized_signatures_compared_by_byte_equality": false,
+    "successful_cross_verification_required": true
+  },
+  "fixture_material_state": {
+    "contexts_generated": false,
+    "keys_generated": false,
+    "messages_generated": false,
+    "negative_mutations_generated": false,
+    "signatures_generated": false
+  },
+  "known_answer_conformance": {
+    "authoritative_source_required": true,
+    "operations": [
+      "key_generation",
+      "sign",
+      "verify"
+    ],
+    "signing_modes_where_supported": [
+      "deterministic",
+      "hedged_or_randomized"
+    ],
+    "source_identity_and_revision_must_be_pinned": true
+  },
+  "negative_behavior": {
+    "expected_behavior": "reject",
+    "targets": [
+      "public_key",
+      "message",
+      "context",
+      "signature_hint",
+      "challenge",
+      "length_fields",
+      "truncated_encoding",
+      "extended_encoding",
+      "non_canonical_values"
+    ]
+  },
+  "parameter_sets": [
+    "ML-DSA-44",
+    "ML-DSA-65",
+    "ML-DSA-87"
+  ],
+  "reproduction_integrity": {
+    "artifact_hashes_required": true,
+    "exact_command_required": true,
+    "exit_status_required": true,
+    "required_environment_fields": [
+      "source_commit",
+      "compiler_or_toolchain",
+      "build_flags",
+      "cpu_architecture",
+      "dependencies",
+      "test_vector_revision",
+      "container_or_base_image_digest_when_used"
+    ]
+  },
+  "schema": "qsv.mldsa-interoperability-corpus.fixture-plan.v0.1",
+  "status": "planned_not_executed",
+  "version": "0.1"
+}

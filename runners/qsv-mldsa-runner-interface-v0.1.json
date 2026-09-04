@@ -1,0 +1,54 @@
+{
+  "exit_codes": {
+    "0": "execution_completed_result_recorded",
+    "2": "unsupported",
+    "3": "execution_error",
+    "4": "malformed_fixture",
+    "5": "integrity_violation",
+    "6": "blocked_by_policy"
+  },
+  "fail_closed": {
+    "execution_error_is_verified": false,
+    "missing_hash_is_verified": false,
+    "missing_lineage_is_verified": false,
+    "unknown_result_is_success": false,
+    "unsupported_is_verified": false
+  },
+  "input": {
+    "fixture_schema": "urn:qsv:mldsa:fixture:0.1",
+    "format": "JSON",
+    "required_runtime_arguments": [
+      "fixture",
+      "implementation",
+      "operation"
+    ]
+  },
+  "output": {
+    "format": "JSON",
+    "required_fields": [
+      "fixture_id",
+      "implementation",
+      "operation",
+      "result_state",
+      "observed_acceptance",
+      "exact_command",
+      "inputs",
+      "output",
+      "exit_status",
+      "artifact_hashes",
+      "environment"
+    ]
+  },
+  "result_states": [
+    "pass",
+    "expected_reject",
+    "unexpected_accept",
+    "unexpected_reject",
+    "unsupported",
+    "error",
+    "blocked"
+  ],
+  "schema": "qsv.mldsa-interoperability-corpus.runner-interface.v0.1",
+  "status": "interface_defined_implementation_pending",
+  "version": "0.1"
+}

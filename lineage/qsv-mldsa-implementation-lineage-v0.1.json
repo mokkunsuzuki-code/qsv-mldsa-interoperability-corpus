@@ -1,0 +1,27 @@
+{
+  "implementations": [
+    {
+      "display_name": "OpenSSL",
+      "implementation_id": "openssl",
+      "implementation_source_commit": "must_be_pinned_before_fixture_execution",
+      "observed_runtime_version": "OpenSSL 3.6.3 9 Jun 2026 (Library: OpenSSL 3.6.3 9 Jun 2026)",
+      "underlying_native_implementation": "OpenSSL",
+      "wrapper_identity_is_not_independence_proof": true
+    },
+    {
+      "display_name": "Cloudflare CIRCL",
+      "implementation_id": "cloudflare-circl",
+      "implementation_source_commit": "must_be_pinned_before_fixture_execution",
+      "observed_go_runtime": "go version go1.26.5 darwin/arm64",
+      "underlying_native_implementation": "Cloudflare CIRCL",
+      "wrapper_identity_is_not_independence_proof": true
+    }
+  ],
+  "independence_claim": {
+    "reason": "separate implementation lineage must be pinned and independently reviewed before execution claims",
+    "two_independent_implementations_verified": false
+  },
+  "same_underlying_code_must_be_disclosed": true,
+  "schema": "qsv.mldsa-interoperability-corpus.implementation-lineage.v0.1",
+  "version": "0.1"
+}

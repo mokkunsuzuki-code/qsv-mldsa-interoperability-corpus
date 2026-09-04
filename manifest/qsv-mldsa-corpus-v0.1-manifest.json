@@ -1,0 +1,50 @@
+{
+  "artifact_count": 10,
+  "artifacts": [
+    {
+      "path": "LICENSE",
+      "sha256": "a19e43c45dbca1d785a44d23699682cb72cae0aff110898eef5d9bb4a4043c90"
+    },
+    {
+      "path": "README.md",
+      "sha256": "8b7c23e59d08f79e3c9ee7051c8298762df40e7100c4813488cb21de448e9752"
+    },
+    {
+      "path": "VERSION",
+      "sha256": "a6311009c6c322ca8ac2e620cff5204f0c3af23115d403293a0cb5be36796688"
+    },
+    {
+      "path": "contracts/qsv-mldsa-interoperability-corpus-v0.1.json",
+      "sha256": "7f2e9903cee09136d1db497aa5bbeb205a0ba014dd5e761916d2d2c9c6a7f09c"
+    },
+    {
+      "path": "schemas/qsv-mldsa-fixture-v0.1.schema.json",
+      "sha256": "d4bd741ab7960445e3e3f16cbf5605a47f52ad223edbd2f21b3dcc42b219c2cd"
+    },
+    {
+      "path": "templates/qsv-mldsa-fixture-template.json",
+      "sha256": "bae6d921c7ce5bdecce4ba3228baa3c141d6b638a9d09fa1e0e3c0dabc5697b6"
+    },
+    {
+      "path": "provenance/qsv-mldsa-provenance-v0.1.json",
+      "sha256": "ef5937f626a44beba9520a7635d3eac166d40b6f798e6f47746eab644214ac48"
+    },
+    {
+      "path": "plans/qsv-mldsa-fixture-plan-v0.1.json",
+      "sha256": "1cc2606f2550cfce4fdec0953fd8c40fcdc81b0357da3074dc45d89392429ce4"
+    },
+    {
+      "path": "lineage/qsv-mldsa-implementation-lineage-v0.1.json",
+      "sha256": "c93064925f59131570fae5e1609fe09bba089ca556de04939f4c61e151835747"
+    },
+    {
+      "path": "runners/qsv-mldsa-runner-interface-v0.1.json",
+      "sha256": "4a9334ed4ded02ed15a65129da18ac3c8daab8db137cbef78b8e0fcdf8dea0b8"
+    }
+  ],
+  "cryptographic_fixture_execution_performed": false,
+  "schema": "qsv.mldsa-interoperability-corpus.manifest.v0.1",
+  "status": "design_manifest_pre_execution",
+  "test_secret_material_published": false,
+  "version": "0.1"
+}
