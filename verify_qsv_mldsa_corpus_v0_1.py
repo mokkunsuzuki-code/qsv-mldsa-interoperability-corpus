@@ -31,6 +31,16 @@ EXPECTED_FILES = {
     "profiles/qsv-mldsa-nist-acvp-minimal-sigver-kat-profile-v0.1.json.sha256",
     "verify_qsv_mldsa_minimal_sigver_kat_profile_v0_1.py",
     "verify_qsv_mldsa_minimal_sigver_kat_profile_v0_1.py.sha256",
+    "runtime/qsv_mldsa_sixcase_extractor_v0_1.py",
+    "runtime/qsv_mldsa_sixcase_extractor_v0_1.py.sha256",
+    "runtime/qsv_mldsa_sixcase_metadata_v0_1.json",
+    "runtime/qsv_mldsa_sixcase_metadata_v0_1.json.sha256",
+    "runtime/qsv_mldsa_openssl_sigver_harness_v0_1.c",
+    "runtime/qsv_mldsa_openssl_sigver_harness_v0_1.c.sha256",
+    "runtime/qsv_mldsa_circl_sigver_harness_v0_1.go",
+    "runtime/qsv_mldsa_circl_sigver_harness_v0_1.go.sha256",
+    "runtime/qsv_mldsa_runtime_harness_contract_v0_1.json",
+    "runtime/qsv_mldsa_runtime_harness_contract_v0_1.json.sha256",
     "verify_qsv_mldsa_corpus_v0_1.py",
     "verify_qsv_mldsa_corpus_v0_1.py.sha256",
 }
@@ -2093,6 +2103,584 @@ check(
         + "  "
         + "verify_qsv_mldsa_minimal_sigver_kat_profile_v0_1.py"
         + "\n"
+    ),
+)
+
+
+
+# Byte-frozen minimal KAT runtime execution authority.
+#
+# These artifacts define how the six pinned public sigVer
+# cases may be extracted and passed to OpenSSL / CIRCL.
+# They do not themselves prove that cryptographic execution
+# has occurred.
+
+runtime_artifact_hashes = {
+    "runtime/qsv_mldsa_sixcase_extractor_v0_1.py":
+        "0bdad8db61b008ce50e6c53a472d3e56d36cf8169318cb50474672d62e566679",
+
+    "runtime/qsv_mldsa_sixcase_metadata_v0_1.json":
+        "27104ea68cb2c47c10c0265ca8772b2c4af792ea7b2d5d34925511aefc2592d6",
+
+    "runtime/qsv_mldsa_openssl_sigver_harness_v0_1.c":
+        "0d5c2030409425115680d3140429918210fbc63c5f18bb0c08257314bd6e6240",
+
+    "runtime/qsv_mldsa_circl_sigver_harness_v0_1.go":
+        "f3c551821f4c31b8f7fd7242e66002c4aa1cc3dd0abb0c56710f3d0a91fc0fed",
+
+    "runtime/qsv_mldsa_runtime_harness_contract_v0_1.json":
+        "6e3c5161c978ec4a045ad1c72ed491967ae66c1501d83aab660ffcde7cca307e",
+}
+
+
+for rel, digest in runtime_artifact_hashes.items():
+
+    check(
+        "runtime artifact hash: " + rel,
+        (
+            (ROOT / rel).is_file()
+            and sha256(rel) == digest
+        ),
+    )
+
+    sidecar_rel = rel + ".sha256"
+
+    check(
+        "runtime sidecar exact declaration: " + rel,
+        (
+            (ROOT / sidecar_rel).is_file()
+            and (
+                ROOT
+                / sidecar_rel
+            ).read_text(
+                encoding="utf-8"
+            )
+            == (
+                digest
+                + "  "
+                + rel
+                + "\n"
+            )
+        ),
+    )
+
+
+runtime_contract = load(
+    "runtime/qsv_mldsa_runtime_harness_contract_v0_1.json"
+)
+
+
+check(
+    "runtime contract identity exact",
+    (
+        runtime_contract["schema"]
+        == "qsv.mldsa.minimal-kat-runtime-harness-contract.v0.1"
+        and runtime_contract["role"]
+        == "static_runtime_execution_authority"
+    ),
+)
+
+
+check(
+    "runtime QSV profile authority exact",
+    runtime_contract["qsv_profile_authority"]
+    == {
+        "commit":
+            "81382cc1765a24dbf02e44ac691fd04fe8bbab22",
+        "tree":
+            "5d9e36fdabeba921152f070b909592d0db24c787",
+    },
+)
+
+
+check(
+    "runtime NIST vector authority exact",
+    runtime_contract["nist_vector_authority"]
+    == {
+        "commit":
+            "975de31eb83d87039ec88934fdc47d8c312b892d",
+        "tree":
+            "a6b81add7faf8a8b647afcdc54268615decde9b5",
+        "prompt_sha256":
+            "e2cba4589389756fa0bea1a7e6837138bf0a81f9d14234c9ee8f6d33caa1654e",
+        "expected_results_sha256":
+            "e1d84ef1b2f35196278ab0b0ed6a46ec62cc03d2dfa92c564199e1999bfb8ea6",
+    },
+)
+
+
+check(
+    "runtime CIRCL source authority exact",
+    runtime_contract["circl_source_authority"]
+    == {
+        "commit":
+            "cfa7c70defd831ffb0792ab2af560bfef43d60ca",
+        "tree":
+            "b3a50c3f1b7a5f8cfac0cce655ae7ea7900e9139",
+    },
+)
+
+
+check(
+    "runtime OpenSSL requirement exact",
+    runtime_contract["openssl_runtime_requirement"]
+    == {
+        "version":
+            "3.6.3",
+        "local_binary_source_commit_proven":
+            False,
+        "local_binary_build_provenance_complete":
+            False,
+    },
+)
+
+
+check(
+    "runtime selected cases exact",
+    runtime_contract["selected_cases"]
+    == [
+        {
+            "parameter_set":
+                "ML-DSA-44",
+            "tg_id":
+                1,
+            "tc_id":
+                1,
+            "expected_valid":
+                False,
+        },
+        {
+            "parameter_set":
+                "ML-DSA-44",
+            "tg_id":
+                1,
+            "tc_id":
+                3,
+            "expected_valid":
+                True,
+        },
+        {
+            "parameter_set":
+                "ML-DSA-65",
+            "tg_id":
+                3,
+            "tc_id":
+                31,
+            "expected_valid":
+                False,
+        },
+        {
+            "parameter_set":
+                "ML-DSA-65",
+            "tg_id":
+                3,
+            "tc_id":
+                33,
+            "expected_valid":
+                True,
+        },
+        {
+            "parameter_set":
+                "ML-DSA-87",
+            "tg_id":
+                5,
+            "tc_id":
+                61,
+            "expected_valid":
+                False,
+        },
+        {
+            "parameter_set":
+                "ML-DSA-87",
+            "tg_id":
+                5,
+            "tc_id":
+                63,
+            "expected_valid":
+                True,
+        },
+    ],
+)
+
+
+check(
+    "runtime input surface exact",
+    runtime_contract["runtime_input_surface"]
+    == {
+        "operation":
+            "sigVer",
+        "revision":
+            "FIPS204",
+        "signature_interface":
+            "external",
+        "pre_hash":
+            "pure",
+        "fields": [
+            "pk",
+            "message",
+            "context",
+            "signature",
+        ],
+        "context_max_bytes":
+            255,
+        "payload_storage_policy":
+            "ephemeral_tmp_only",
+    },
+)
+
+
+check(
+    "runtime execution gate exact",
+    runtime_contract["execution_gate"]
+    == {
+        "environment_variable":
+            "QSV_EXECUTE_CRYPTO",
+        "required_value":
+            "YES",
+        "extractor_payload_emission_requires_gate":
+            True,
+        "openssl_crypto_operation_requires_gate":
+            True,
+        "circl_crypto_operation_requires_gate":
+            True,
+    },
+)
+
+
+check(
+    "runtime OpenSSL adapter exact",
+    runtime_contract["openssl_adapter"]
+    == {
+        "public_key_import":
+            "EVP_PKEY_fromdata(OSSL_PKEY_PARAM_PUB_KEY)",
+        "verify_init":
+            "EVP_PKEY_verify_message_init",
+        "verify_operation":
+            "EVP_PKEY_verify",
+        "context_parameter":
+            "OSSL_SIGNATURE_PARAM_CONTEXT_STRING",
+        "return_1_semantics":
+            "valid_signature",
+        "return_0_semantics":
+            "invalid_signature",
+        "negative_return_semantics":
+            "operational_error_fail_closed",
+    },
+)
+
+
+check(
+    "runtime CIRCL adapter exact",
+    runtime_contract["circl_adapter"]
+    == {
+        "public_key_import":
+            "PublicKey.UnmarshalBinary",
+        "verification_api":
+            "Verify(pk,msg,ctx,sig)",
+    },
+)
+
+
+check(
+    "runtime artifact hashes exact",
+    runtime_contract["artifact_hashes"]
+    == {
+        "extractor_sha256":
+            "0bdad8db61b008ce50e6c53a472d3e56d36cf8169318cb50474672d62e566679",
+        "metadata_manifest_sha256":
+            "27104ea68cb2c47c10c0265ca8772b2c4af792ea7b2d5d34925511aefc2592d6",
+        "openssl_harness_source_sha256":
+            "0d5c2030409425115680d3140429918210fbc63c5f18bb0c08257314bd6e6240",
+        "circl_harness_source_sha256":
+            "f3c551821f4c31b8f7fd7242e66002c4aa1cc3dd0abb0c56710f3d0a91fc0fed",
+    },
+)
+
+
+check(
+    "runtime contract nonclaims exact",
+    runtime_contract["non_claims"]
+    == {
+        "this_contract_proves_cryptographic_execution":
+            False,
+        "this_contract_proves_cross_implementation_agreement":
+            False,
+        "this_contract_is_nist_validation":
+            False,
+        "this_contract_is_fips_204_certification":
+            False,
+        "this_contract_proves_complete_fips_204_conformance":
+            False,
+        "this_contract_proves_complete_sigver_coverage":
+            False,
+    },
+)
+
+
+check(
+    "runtime contract mutable state absent",
+    all(
+        key not in runtime_contract
+        for key in [
+            "status",
+            "execution_state",
+            "publication_state",
+            "results_state",
+        ]
+    ),
+)
+
+
+runtime_metadata = load(
+    "runtime/qsv_mldsa_sixcase_metadata_v0_1.json"
+)
+
+
+check(
+    "runtime metadata identity exact",
+    (
+        runtime_metadata["schema"]
+        == "qsv.mldsa.runtime-sixcase-metadata.v0.1"
+        and runtime_metadata["payload_embedded"] is False
+        and runtime_metadata["runtime_payload_emitted"] is False
+        and runtime_metadata["case_count"] == 6
+    ),
+)
+
+
+runtime_case_projection = [
+    {
+        "parameter_set":
+            item["parameter_set"],
+        "tg_id":
+            item["tg_id"],
+        "tc_id":
+            item["tc_id"],
+        "expected_valid":
+            item["expected_valid"],
+        "pk_size_bytes":
+            item["pk_size_bytes"],
+        "message_size_bytes":
+            item["message_size_bytes"],
+        "context_size_bytes":
+            item["context_size_bytes"],
+        "signature_size_bytes":
+            item["signature_size_bytes"],
+    }
+    for item in runtime_metadata["cases"]
+]
+
+
+check(
+    "runtime metadata six case projection exact",
+    runtime_case_projection
+    == [
+        {
+            "parameter_set":
+                "ML-DSA-44",
+            "tg_id":
+                1,
+            "tc_id":
+                1,
+            "expected_valid":
+                False,
+            "pk_size_bytes":
+                1312,
+            "message_size_bytes":
+                7318,
+            "context_size_bytes":
+                171,
+            "signature_size_bytes":
+                2420,
+        },
+        {
+            "parameter_set":
+                "ML-DSA-44",
+            "tg_id":
+                1,
+            "tc_id":
+                3,
+            "expected_valid":
+                True,
+            "pk_size_bytes":
+                1312,
+            "message_size_bytes":
+                2473,
+            "context_size_bytes":
+                31,
+            "signature_size_bytes":
+                2420,
+        },
+        {
+            "parameter_set":
+                "ML-DSA-65",
+            "tg_id":
+                3,
+            "tc_id":
+                31,
+            "expected_valid":
+                False,
+            "pk_size_bytes":
+                1952,
+            "message_size_bytes":
+                3468,
+            "context_size_bytes":
+                13,
+            "signature_size_bytes":
+                3309,
+        },
+        {
+            "parameter_set":
+                "ML-DSA-65",
+            "tg_id":
+                3,
+            "tc_id":
+                33,
+            "expected_valid":
+                True,
+            "pk_size_bytes":
+                1952,
+            "message_size_bytes":
+                1481,
+            "context_size_bytes":
+                142,
+            "signature_size_bytes":
+                3309,
+        },
+        {
+            "parameter_set":
+                "ML-DSA-87",
+            "tg_id":
+                5,
+            "tc_id":
+                61,
+            "expected_valid":
+                False,
+            "pk_size_bytes":
+                2592,
+            "message_size_bytes":
+                3155,
+            "context_size_bytes":
+                76,
+            "signature_size_bytes":
+                4627,
+        },
+        {
+            "parameter_set":
+                "ML-DSA-87",
+            "tg_id":
+                5,
+            "tc_id":
+                63,
+            "expected_valid":
+                True,
+            "pk_size_bytes":
+                2592,
+            "message_size_bytes":
+                7147,
+            "context_size_bytes":
+                93,
+            "signature_size_bytes":
+                4627,
+        },
+    ],
+)
+
+
+runtime_metadata_case_keys = {
+    "parameter_set",
+    "tg_id",
+    "tc_id",
+    "expected_valid",
+    "pk_size_bytes",
+    "message_size_bytes",
+    "context_size_bytes",
+    "signature_size_bytes",
+    "pk_sha256",
+    "message_sha256",
+    "context_sha256",
+    "signature_sha256",
+}
+
+
+check(
+    "runtime metadata case keys exact",
+    all(
+        set(item.keys())
+        == runtime_metadata_case_keys
+        for item in runtime_metadata["cases"]
+    ),
+)
+
+
+runtime_extractor_text = (
+    ROOT
+    / "runtime/qsv_mldsa_sixcase_extractor_v0_1.py"
+).read_text(
+    encoding="utf-8"
+)
+
+
+check(
+    "runtime extractor static gate exact",
+    all(
+        token in runtime_extractor_text
+        for token in [
+            "QSV_EXECUTE_CRYPTO",
+            "before runtime payload emission",
+            "runtime_root.mkdir",
+            "exist_ok=False",
+            "signature.bin",
+        ]
+    ),
+)
+
+
+runtime_openssl_text = (
+    ROOT
+    / "runtime/qsv_mldsa_openssl_sigver_harness_v0_1.c"
+).read_text(
+    encoding="utf-8"
+)
+
+
+check(
+    "runtime OpenSSL static API gate exact",
+    all(
+        token in runtime_openssl_text
+        for token in [
+            "QSV_EXECUTE_CRYPTO",
+            "EVP_PKEY_fromdata",
+            "OSSL_PKEY_PARAM_PUB_KEY",
+            "EVP_PKEY_verify_message_init",
+            "EVP_PKEY_verify(",
+            "OSSL_SIGNATURE_PARAM_CONTEXT_STRING",
+            "OPENSSL_OPERATIONAL_ERROR=YES",
+        ]
+    ),
+)
+
+
+runtime_circl_text = (
+    ROOT
+    / "runtime/qsv_mldsa_circl_sigver_harness_v0_1.go"
+).read_text(
+    encoding="utf-8"
+)
+
+
+check(
+    "runtime CIRCL static API gate exact",
+    all(
+        token in runtime_circl_text
+        for token in [
+            "QSV_EXECUTE_CRYPTO",
+            "UnmarshalBinary",
+            "mldsa44.Verify(",
+            "mldsa65.Verify(",
+            "mldsa87.Verify(",
+            "CIRCL_OPERATIONAL_ERROR=YES",
+        ]
     ),
 )
 

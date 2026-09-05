@@ -1,0 +1,92 @@
+{
+  "case_count": 6,
+  "cases": [
+    {
+      "context_sha256": "ebab6d72b1669f2840aa3919bcb16f189c0850ec6dbef8135bb32c2fa9b2ece6",
+      "context_size_bytes": 171,
+      "expected_valid": false,
+      "message_sha256": "afd067d46533aa803cd54768159356ed10c52c5ca8ee3b3864fcfad42da5a068",
+      "message_size_bytes": 7318,
+      "parameter_set": "ML-DSA-44",
+      "pk_sha256": "d873bf71ad16f2df7d0bc25c98bbd6790db4dad8aa07f17dc039ff53b17fc1b6",
+      "pk_size_bytes": 1312,
+      "signature_sha256": "ce4d0b3f2ff67765209ddfc8e9de3a4e95ea68d6cc39047778b68814d5f6cd00",
+      "signature_size_bytes": 2420,
+      "tc_id": 1,
+      "tg_id": 1
+    },
+    {
+      "context_sha256": "3f412935571e40893fec33dca6b6476e2b8018fdf7680b47f08a1c29bcfb10f7",
+      "context_size_bytes": 31,
+      "expected_valid": true,
+      "message_sha256": "2fa292fde315d83f31cfde322018b3f1afc96a96f4bc61e3e438eb496e8d072e",
+      "message_size_bytes": 2473,
+      "parameter_set": "ML-DSA-44",
+      "pk_sha256": "e42bfc3507777aee7aa0d317d78e15bd3763dc183945b35022b2ab1e6fe1c83b",
+      "pk_size_bytes": 1312,
+      "signature_sha256": "7bcf860a958531a93fe18417ba9d50665ce6c0b6297f67d573ca08899919bc8e",
+      "signature_size_bytes": 2420,
+      "tc_id": 3,
+      "tg_id": 1
+    },
+    {
+      "context_sha256": "6d3691bf6aed51fd7966cad29768eac16ac51734b2cd11da4f3c8b98238abd7e",
+      "context_size_bytes": 13,
+      "expected_valid": false,
+      "message_sha256": "0a5e13852a9376b1c83297e502c09664c35a4d1a13c7fd0f0feef90ae98834ed",
+      "message_size_bytes": 3468,
+      "parameter_set": "ML-DSA-65",
+      "pk_sha256": "abb1fcf6f209eba69f6a2ce2d5510a6487584a36ca543783df5f338bd386c725",
+      "pk_size_bytes": 1952,
+      "signature_sha256": "532646784cd450f22ad9c7a0f89f4651ac95eaaa9348b2812e6d6ba076d27df5",
+      "signature_size_bytes": 3309,
+      "tc_id": 31,
+      "tg_id": 3
+    },
+    {
+      "context_sha256": "a9ce73821e80cdf934513ee95d4002924d5c06173ef1766b5e9672acf72330ba",
+      "context_size_bytes": 142,
+      "expected_valid": true,
+      "message_sha256": "6923837e5fe3d3d73e22d92f0b244c1ff836abf21a2e9fc95610ece693f72664",
+      "message_size_bytes": 1481,
+      "parameter_set": "ML-DSA-65",
+      "pk_sha256": "d190a6a6d0d8438b195f4d32e6ed1d236d10709ed6fbca47306efb5ada1468e1",
+      "pk_size_bytes": 1952,
+      "signature_sha256": "57d8384ce083b170a117b13172b9b712cbd944ba349a1598ac5e69526786f9e8",
+      "signature_size_bytes": 3309,
+      "tc_id": 33,
+      "tg_id": 3
+    },
+    {
+      "context_sha256": "bab8e7896a9a572f0fade3259129c46175e9597ee2b3118b7d828a1ae8276102",
+      "context_size_bytes": 76,
+      "expected_valid": false,
+      "message_sha256": "1efb0f11075c0f8ff304c971798aecb267a736a15888d724022016322e468690",
+      "message_size_bytes": 3155,
+      "parameter_set": "ML-DSA-87",
+      "pk_sha256": "49737f398d16e6d8deeb883ab18b16af438c8422caef4e6438078340b82ba7c1",
+      "pk_size_bytes": 2592,
+      "signature_sha256": "67c69ccfce57dd2ad5f282d7635d3ca2cc414c009011161e98c29faad62bb60d",
+      "signature_size_bytes": 4627,
+      "tc_id": 61,
+      "tg_id": 5
+    },
+    {
+      "context_sha256": "7cd43bb067957379cfc885f868a790a1ea8a4bbdffd618f936efb8ba45d06f58",
+      "context_size_bytes": 93,
+      "expected_valid": true,
+      "message_sha256": "c5901466c7cdb54de386119722f02fbc28d05fce6954c32c4aa5cb3bab29c82d",
+      "message_size_bytes": 7147,
+      "parameter_set": "ML-DSA-87",
+      "pk_sha256": "e28f1de67cda68b593cf8e1eccb6daf42de204121c76b500d4dca13cde67cc27",
+      "pk_size_bytes": 2592,
+      "signature_sha256": "36470abfed8e6e135f5af9aa2c8e8c7b4f5f49b2d964cdb3e29c16eddb650df0",
+      "signature_size_bytes": 4627,
+      "tc_id": 63,
+      "tg_id": 5
+    }
+  ],
+  "payload_embedded": false,
+  "runtime_payload_emitted": false,
+  "schema": "qsv.mldsa.runtime-sixcase-metadata.v0.1"
+}

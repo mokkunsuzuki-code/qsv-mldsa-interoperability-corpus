@@ -1,0 +1,109 @@
+{
+  "artifact_hashes": {
+    "circl_harness_source_sha256": "f3c551821f4c31b8f7fd7242e66002c4aa1cc3dd0abb0c56710f3d0a91fc0fed",
+    "extractor_sha256": "0bdad8db61b008ce50e6c53a472d3e56d36cf8169318cb50474672d62e566679",
+    "metadata_manifest_sha256": "27104ea68cb2c47c10c0265ca8772b2c4af792ea7b2d5d34925511aefc2592d6",
+    "openssl_harness_source_sha256": "0d5c2030409425115680d3140429918210fbc63c5f18bb0c08257314bd6e6240"
+  },
+  "circl_adapter": {
+    "public_key_import": "PublicKey.UnmarshalBinary",
+    "verification_api": "Verify(pk,msg,ctx,sig)"
+  },
+  "circl_source_authority": {
+    "commit": "cfa7c70defd831ffb0792ab2af560bfef43d60ca",
+    "tree": "b3a50c3f1b7a5f8cfac0cce655ae7ea7900e9139"
+  },
+  "execution_gate": {
+    "circl_crypto_operation_requires_gate": true,
+    "environment_variable": "QSV_EXECUTE_CRYPTO",
+    "extractor_payload_emission_requires_gate": true,
+    "openssl_crypto_operation_requires_gate": true,
+    "required_value": "YES"
+  },
+  "nist_vector_authority": {
+    "commit": "975de31eb83d87039ec88934fdc47d8c312b892d",
+    "expected_results_sha256": "e1d84ef1b2f35196278ab0b0ed6a46ec62cc03d2dfa92c564199e1999bfb8ea6",
+    "prompt_sha256": "e2cba4589389756fa0bea1a7e6837138bf0a81f9d14234c9ee8f6d33caa1654e",
+    "tree": "a6b81add7faf8a8b647afcdc54268615decde9b5"
+  },
+  "non_claims": {
+    "this_contract_is_fips_204_certification": false,
+    "this_contract_is_nist_validation": false,
+    "this_contract_proves_complete_fips_204_conformance": false,
+    "this_contract_proves_complete_sigver_coverage": false,
+    "this_contract_proves_cross_implementation_agreement": false,
+    "this_contract_proves_cryptographic_execution": false
+  },
+  "openssl_adapter": {
+    "context_parameter": "OSSL_SIGNATURE_PARAM_CONTEXT_STRING",
+    "negative_return_semantics": "operational_error_fail_closed",
+    "public_key_import": "EVP_PKEY_fromdata(OSSL_PKEY_PARAM_PUB_KEY)",
+    "return_0_semantics": "invalid_signature",
+    "return_1_semantics": "valid_signature",
+    "verify_init": "EVP_PKEY_verify_message_init",
+    "verify_operation": "EVP_PKEY_verify"
+  },
+  "openssl_runtime_requirement": {
+    "local_binary_build_provenance_complete": false,
+    "local_binary_source_commit_proven": false,
+    "version": "3.6.3"
+  },
+  "qsv_profile_authority": {
+    "commit": "81382cc1765a24dbf02e44ac691fd04fe8bbab22",
+    "tree": "5d9e36fdabeba921152f070b909592d0db24c787"
+  },
+  "role": "static_runtime_execution_authority",
+  "runtime_input_surface": {
+    "context_max_bytes": 255,
+    "fields": [
+      "pk",
+      "message",
+      "context",
+      "signature"
+    ],
+    "operation": "sigVer",
+    "payload_storage_policy": "ephemeral_tmp_only",
+    "pre_hash": "pure",
+    "revision": "FIPS204",
+    "signature_interface": "external"
+  },
+  "schema": "qsv.mldsa.minimal-kat-runtime-harness-contract.v0.1",
+  "selected_cases": [
+    {
+      "expected_valid": false,
+      "parameter_set": "ML-DSA-44",
+      "tc_id": 1,
+      "tg_id": 1
+    },
+    {
+      "expected_valid": true,
+      "parameter_set": "ML-DSA-44",
+      "tc_id": 3,
+      "tg_id": 1
+    },
+    {
+      "expected_valid": false,
+      "parameter_set": "ML-DSA-65",
+      "tc_id": 31,
+      "tg_id": 3
+    },
+    {
+      "expected_valid": true,
+      "parameter_set": "ML-DSA-65",
+      "tc_id": 33,
+      "tg_id": 3
+    },
+    {
+      "expected_valid": false,
+      "parameter_set": "ML-DSA-87",
+      "tc_id": 61,
+      "tg_id": 5
+    },
+    {
+      "expected_valid": true,
+      "parameter_set": "ML-DSA-87",
+      "tc_id": 63,
+      "tg_id": 5
+    }
+  ]
+}
