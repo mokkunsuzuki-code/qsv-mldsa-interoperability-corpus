@@ -41,6 +41,10 @@ EXPECTED_FILES = {
     "runtime/qsv_mldsa_circl_sigver_harness_v0_1.go.sha256",
     "runtime/qsv_mldsa_runtime_harness_contract_v0_1.json",
     "runtime/qsv_mldsa_runtime_harness_contract_v0_1.json.sha256",
+    "results/qsv_mldsa_minimal_sixcase_execution_result_evidence_v0_1.json",
+    "results/qsv_mldsa_minimal_sixcase_execution_result_evidence_v0_1.json.sha256",
+    "verify_qsv_mldsa_minimal_sixcase_execution_result_evidence_v0_1.py",
+    "verify_qsv_mldsa_minimal_sixcase_execution_result_evidence_v0_1.py.sha256",
     "verify_qsv_mldsa_corpus_v0_1.py",
     "verify_qsv_mldsa_corpus_v0_1.py.sha256",
 }
@@ -2681,6 +2685,447 @@ check(
             "mldsa87.Verify(",
             "CIRCL_OPERATIONAL_ERROR=YES",
         ]
+    ),
+)
+
+
+
+# Static minimal six-case ML-DSA execution result evidence.
+#
+# This artifact records the previously performed six-case
+# sigVer execution. It does not trigger or repeat cryptographic
+# execution. Publication/execution mutable state is intentionally
+# absent from the static evidence artifact.
+
+static_result_evidence_hashes = {
+    "results/qsv_mldsa_minimal_sixcase_execution_result_evidence_v0_1.json":
+        "1f73e8d2570063811bb065ae6fbabb34deae12d10d1778dcdee67a8245d1058c",
+
+    "results/qsv_mldsa_minimal_sixcase_execution_result_evidence_v0_1.json.sha256":
+        "c30295f7e48cf984eae5ad5af7bbe2ca81dcd51ddf4417e1df7ede8101f2a840",
+
+    "verify_qsv_mldsa_minimal_sixcase_execution_result_evidence_v0_1.py":
+        "97961fedf922808b4e45eb409237edb23f548426eee89a7425cce27fc4acd947",
+
+    "verify_qsv_mldsa_minimal_sixcase_execution_result_evidence_v0_1.py.sha256":
+        "819052417122f253ee828df61d7dab445e06185ad53f85e48f40b4af183eea94",
+}
+
+
+for rel, digest in static_result_evidence_hashes.items():
+
+    check(
+        "static result evidence file hash: " + rel,
+        (
+            (ROOT / rel).is_file()
+            and sha256(rel) == digest
+        ),
+    )
+
+
+check(
+    "static result evidence sidecar exact declaration",
+    (
+        (
+            ROOT
+            / "results/qsv_mldsa_minimal_sixcase_execution_result_evidence_v0_1.json.sha256"
+        ).read_text(
+            encoding="utf-8"
+        )
+        == (
+            "1f73e8d2570063811bb065ae6fbabb34deae12d10d1778dcdee67a8245d1058c"
+            "  "
+            "results/qsv_mldsa_minimal_sixcase_execution_result_evidence_v0_1.json"
+            "\n"
+        )
+    ),
+)
+
+
+check(
+    "static result evidence verifier sidecar exact declaration",
+    (
+        (
+            ROOT
+            / "verify_qsv_mldsa_minimal_sixcase_execution_result_evidence_v0_1.py.sha256"
+        ).read_text(
+            encoding="utf-8"
+        )
+        == (
+            "97961fedf922808b4e45eb409237edb23f548426eee89a7425cce27fc4acd947"
+            "  "
+            "verify_qsv_mldsa_minimal_sixcase_execution_result_evidence_v0_1.py"
+            "\n"
+        )
+    ),
+)
+
+
+static_result_evidence = load(
+    "results/qsv_mldsa_minimal_sixcase_execution_result_evidence_v0_1.json"
+)
+
+
+check(
+    "static result evidence schema exact",
+    static_result_evidence[
+        "schema"
+    ]
+    == "qsv.mldsa.minimal-sixcase-execution-result-evidence.v0.1",
+)
+
+
+check(
+    "static result source candidate provenance exact",
+    static_result_evidence[
+        "source_execution_candidate_provenance"
+    ]
+    == {
+        "schema":
+            "qsv.mldsa.minimal-sixcase-execution-result-candidate.v0.1",
+
+        "sha256":
+            "06696a961958601f8310bd84e247997c00460726bac6b7a1baa812d5c991e756",
+
+        "sidecar_file_sha256":
+            "3cb98dff6c136498d99d1e4e6573ca4875b33a66454d1b1921347a7c26f8c838",
+
+        "fail_closed_audit": {
+            "semantic_mutation_count":
+                28,
+
+            "sidecar_mutation_count":
+                4,
+
+            "unexpected_file_mutation_count":
+                1,
+
+            "total_mutation_count":
+                33,
+
+            "total_rejected_count":
+                33,
+
+            "unexpected_accept_count":
+                0,
+        },
+    },
+)
+
+
+check(
+    "static result runtime authority exact",
+    static_result_evidence[
+        "runtime_authority"
+    ]
+    == {
+        "commit":
+            "fd892bd79478fb5250a4e4dfa53705dd58d8b173",
+
+        "tree":
+            "37e27a32534381fc43affdeae7bcf9050ee990a2",
+    },
+)
+
+
+check(
+    "static result NIST authority exact",
+    static_result_evidence[
+        "nist_vector_authority"
+    ]
+    == {
+        "commit":
+            "975de31eb83d87039ec88934fdc47d8c312b892d",
+
+        "tree":
+            "a6b81add7faf8a8b647afcdc54268615decde9b5",
+
+        "prompt_sha256":
+            "e2cba4589389756fa0bea1a7e6837138bf0a81f9d14234c9ee8f6d33caa1654e",
+
+        "expected_results_sha256":
+            "e1d84ef1b2f35196278ab0b0ed6a46ec62cc03d2dfa92c564199e1999bfb8ea6",
+    },
+)
+
+
+check(
+    "static result OpenSSL provenance exact",
+    static_result_evidence[
+        "implementation_provenance"
+    ][
+        "openssl"
+    ]
+    == {
+        "runtime_version":
+            "OpenSSL 3.6.3 9 Jun 2026 (Library: OpenSSL 3.6.3 9 Jun 2026)",
+
+        "ephemeral_harness_binary_sha256":
+            "477abe732f3f843b1b44d8b489345c91ab8130cb937609b0f157e2bad2248883",
+
+        "local_binary_source_commit_proven":
+            False,
+
+        "local_binary_build_provenance_complete":
+            False,
+    },
+)
+
+
+check(
+    "static result CIRCL provenance exact",
+    static_result_evidence[
+        "implementation_provenance"
+    ][
+        "circl"
+    ]
+    == {
+        "source_commit":
+            "cfa7c70defd831ffb0792ab2af560bfef43d60ca",
+
+        "source_tree":
+            "b3a50c3f1b7a5f8cfac0cce655ae7ea7900e9139",
+
+        "ephemeral_harness_binary_sha256":
+            "46aee7c438f8dc4bc9835b2b994ef8d69e25914288449a474e069d92cf5dea91",
+
+        "go_version":
+            "go version go1.26.5 darwin/arm64",
+    },
+)
+
+
+check(
+    "static result execution scope exact",
+    static_result_evidence[
+        "execution_scope"
+    ]
+    == {
+        "operation":
+            "sigVer",
+
+        "revision":
+            "FIPS204",
+
+        "selected_case_count":
+            6,
+
+        "positive_case_count":
+            3,
+
+        "negative_case_count":
+            3,
+
+        "implementation_count":
+            2,
+
+        "implementation_execution_count":
+            12,
+    },
+)
+
+
+expected_static_result_cases = [
+    ("ML-DSA-44", 1, 1, False),
+    ("ML-DSA-44", 1, 3, True),
+    ("ML-DSA-65", 3, 31, False),
+    ("ML-DSA-65", 3, 33, True),
+    ("ML-DSA-87", 5, 61, False),
+    ("ML-DSA-87", 5, 63, True),
+]
+
+
+static_case_projection = [
+    (
+        item["parameter_set"],
+        item["tg_id"],
+        item["tc_id"],
+        item["expected_valid"],
+    )
+    for item in static_result_evidence[
+        "results"
+    ]
+]
+
+
+check(
+    "static result selected six cases exact",
+    static_case_projection
+    == expected_static_result_cases,
+)
+
+
+check(
+    "static result implementation outcomes exact",
+    all(
+        (
+            item["openssl"]["return_code"] == 0
+            and item["openssl"]["actual_valid"]
+                is item["expected_valid"]
+            and item["openssl"]["expectation_match"] is True
+            and item["openssl"]["status"] == "pass"
+            and item["circl"]["return_code"] == 0
+            and item["circl"]["actual_valid"]
+                is item["expected_valid"]
+            and item["circl"]["expectation_match"] is True
+            and item["circl"]["status"] == "pass"
+            and item["cross_implementation_agreement"] is True
+        )
+        for item in static_result_evidence[
+            "results"
+        ]
+    ),
+)
+
+
+check(
+    "static result summary exact",
+    static_result_evidence[
+        "summary"
+    ]
+    == {
+        "openssl_result_count":
+            6,
+
+        "circl_result_count":
+            6,
+
+        "openssl_expectation_match_count":
+            6,
+
+        "circl_expectation_match_count":
+            6,
+
+        "cross_implementation_agreement_count":
+            6,
+
+        "operational_error_count":
+            0,
+
+        "expectation_mismatch_count":
+            0,
+
+        "execution_error_count":
+            0,
+
+        "decision":
+            "minimal_six_case_sigver_execution_pass",
+    },
+)
+
+
+check(
+    "static result material boundary exact",
+    static_result_evidence[
+        "material_boundary"
+    ]
+    == {
+        "raw_runtime_payload_persisted":
+            False,
+
+        "raw_runtime_payload_deleted_before_candidate_creation":
+            True,
+
+        "nist_source_worktree_persisted":
+            False,
+
+        "private_key_material_required":
+            False,
+
+        "secret_key_material_required":
+            False,
+    },
+)
+
+
+check(
+    "static result truth boundaries exact",
+    static_result_evidence[
+        "truth_boundaries"
+    ]
+    == {
+        "result_implies_nist_validation":
+            False,
+
+        "result_implies_fips_204_certification":
+            False,
+
+        "result_implies_complete_fips_204_conformance":
+            False,
+
+        "result_implies_complete_sigver_coverage":
+            False,
+
+        "cross_implementation_agreement_implies_correctness":
+            False,
+
+        "six_case_result_is_only_a_minimal_known_answer_gate":
+            True,
+    },
+)
+
+
+check(
+    "static result mutable state absent",
+    all(
+        key not in static_result_evidence
+        for key in [
+            "role",
+            "candidate_is_authority",
+            "candidate_published",
+            "publication_state",
+            "execution_state",
+            "results_state",
+        ]
+    ),
+)
+
+
+static_result_forbidden_raw_keys = {
+    "pk",
+    "message",
+    "context",
+    "signature",
+    "private_key",
+    "secret_key",
+    "seed",
+    "raw_payload",
+}
+
+
+def static_result_has_forbidden_raw_key(value):
+
+    if isinstance(value, dict):
+
+        if (
+            static_result_forbidden_raw_keys
+            & set(value.keys())
+        ):
+            return True
+
+        return any(
+            static_result_has_forbidden_raw_key(
+                child
+            )
+            for child in value.values()
+        )
+
+    if isinstance(value, list):
+
+        return any(
+            static_result_has_forbidden_raw_key(
+                child
+            )
+            for child in value
+        )
+
+    return False
+
+
+check(
+    "static result raw vector fields absent",
+    not static_result_has_forbidden_raw_key(
+        static_result_evidence
     ),
 )
 

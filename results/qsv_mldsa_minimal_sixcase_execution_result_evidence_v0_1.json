@@ -1,0 +1,203 @@
+{
+  "execution_scope": {
+    "implementation_count": 2,
+    "implementation_execution_count": 12,
+    "negative_case_count": 3,
+    "operation": "sigVer",
+    "positive_case_count": 3,
+    "revision": "FIPS204",
+    "selected_case_count": 6
+  },
+  "implementation_provenance": {
+    "circl": {
+      "ephemeral_harness_binary_sha256": "46aee7c438f8dc4bc9835b2b994ef8d69e25914288449a474e069d92cf5dea91",
+      "go_version": "go version go1.26.5 darwin/arm64",
+      "source_commit": "cfa7c70defd831ffb0792ab2af560bfef43d60ca",
+      "source_tree": "b3a50c3f1b7a5f8cfac0cce655ae7ea7900e9139"
+    },
+    "openssl": {
+      "ephemeral_harness_binary_sha256": "477abe732f3f843b1b44d8b489345c91ab8130cb937609b0f157e2bad2248883",
+      "local_binary_build_provenance_complete": false,
+      "local_binary_source_commit_proven": false,
+      "runtime_version": "OpenSSL 3.6.3 9 Jun 2026 (Library: OpenSSL 3.6.3 9 Jun 2026)"
+    }
+  },
+  "material_boundary": {
+    "nist_source_worktree_persisted": false,
+    "private_key_material_required": false,
+    "raw_runtime_payload_deleted_before_candidate_creation": true,
+    "raw_runtime_payload_persisted": false,
+    "secret_key_material_required": false
+  },
+  "nist_vector_authority": {
+    "commit": "975de31eb83d87039ec88934fdc47d8c312b892d",
+    "expected_results_sha256": "e1d84ef1b2f35196278ab0b0ed6a46ec62cc03d2dfa92c564199e1999bfb8ea6",
+    "prompt_sha256": "e2cba4589389756fa0bea1a7e6837138bf0a81f9d14234c9ee8f6d33caa1654e",
+    "tree": "a6b81add7faf8a8b647afcdc54268615decde9b5"
+  },
+  "results": [
+    {
+      "circl": {
+        "actual_valid": false,
+        "expectation_match": true,
+        "output_sha256": "7e77dcedccf9345f1450abc4ce81e2da8e503f3aa621f4d9b140d19e4e4e4e1c",
+        "return_code": 0,
+        "status": "pass"
+      },
+      "cross_implementation_agreement": true,
+      "expected_valid": false,
+      "openssl": {
+        "actual_valid": false,
+        "expectation_match": true,
+        "output_sha256": "93638cf7e41fc39b66c86776ea58a41733c4a3fe8dbedad1d2c4d31f5ea71958",
+        "return_code": 0,
+        "status": "pass"
+      },
+      "parameter_set": "ML-DSA-44",
+      "tc_id": 1,
+      "tg_id": 1
+    },
+    {
+      "circl": {
+        "actual_valid": true,
+        "expectation_match": true,
+        "output_sha256": "df6946ff61eab547f9f321df034c290e2814e2a8bf28ef3c286e30a3afec2318",
+        "return_code": 0,
+        "status": "pass"
+      },
+      "cross_implementation_agreement": true,
+      "expected_valid": true,
+      "openssl": {
+        "actual_valid": true,
+        "expectation_match": true,
+        "output_sha256": "c59e06a59e328821d93694c9f9d4fabca54623af8da767d54b2bb4e31ab9b13b",
+        "return_code": 0,
+        "status": "pass"
+      },
+      "parameter_set": "ML-DSA-44",
+      "tc_id": 3,
+      "tg_id": 1
+    },
+    {
+      "circl": {
+        "actual_valid": false,
+        "expectation_match": true,
+        "output_sha256": "7e77dcedccf9345f1450abc4ce81e2da8e503f3aa621f4d9b140d19e4e4e4e1c",
+        "return_code": 0,
+        "status": "pass"
+      },
+      "cross_implementation_agreement": true,
+      "expected_valid": false,
+      "openssl": {
+        "actual_valid": false,
+        "expectation_match": true,
+        "output_sha256": "93638cf7e41fc39b66c86776ea58a41733c4a3fe8dbedad1d2c4d31f5ea71958",
+        "return_code": 0,
+        "status": "pass"
+      },
+      "parameter_set": "ML-DSA-65",
+      "tc_id": 31,
+      "tg_id": 3
+    },
+    {
+      "circl": {
+        "actual_valid": true,
+        "expectation_match": true,
+        "output_sha256": "df6946ff61eab547f9f321df034c290e2814e2a8bf28ef3c286e30a3afec2318",
+        "return_code": 0,
+        "status": "pass"
+      },
+      "cross_implementation_agreement": true,
+      "expected_valid": true,
+      "openssl": {
+        "actual_valid": true,
+        "expectation_match": true,
+        "output_sha256": "c59e06a59e328821d93694c9f9d4fabca54623af8da767d54b2bb4e31ab9b13b",
+        "return_code": 0,
+        "status": "pass"
+      },
+      "parameter_set": "ML-DSA-65",
+      "tc_id": 33,
+      "tg_id": 3
+    },
+    {
+      "circl": {
+        "actual_valid": false,
+        "expectation_match": true,
+        "output_sha256": "7e77dcedccf9345f1450abc4ce81e2da8e503f3aa621f4d9b140d19e4e4e4e1c",
+        "return_code": 0,
+        "status": "pass"
+      },
+      "cross_implementation_agreement": true,
+      "expected_valid": false,
+      "openssl": {
+        "actual_valid": false,
+        "expectation_match": true,
+        "output_sha256": "93638cf7e41fc39b66c86776ea58a41733c4a3fe8dbedad1d2c4d31f5ea71958",
+        "return_code": 0,
+        "status": "pass"
+      },
+      "parameter_set": "ML-DSA-87",
+      "tc_id": 61,
+      "tg_id": 5
+    },
+    {
+      "circl": {
+        "actual_valid": true,
+        "expectation_match": true,
+        "output_sha256": "df6946ff61eab547f9f321df034c290e2814e2a8bf28ef3c286e30a3afec2318",
+        "return_code": 0,
+        "status": "pass"
+      },
+      "cross_implementation_agreement": true,
+      "expected_valid": true,
+      "openssl": {
+        "actual_valid": true,
+        "expectation_match": true,
+        "output_sha256": "c59e06a59e328821d93694c9f9d4fabca54623af8da767d54b2bb4e31ab9b13b",
+        "return_code": 0,
+        "status": "pass"
+      },
+      "parameter_set": "ML-DSA-87",
+      "tc_id": 63,
+      "tg_id": 5
+    }
+  ],
+  "runtime_authority": {
+    "commit": "fd892bd79478fb5250a4e4dfa53705dd58d8b173",
+    "tree": "37e27a32534381fc43affdeae7bcf9050ee990a2"
+  },
+  "schema": "qsv.mldsa.minimal-sixcase-execution-result-evidence.v0.1",
+  "source_execution_candidate_provenance": {
+    "fail_closed_audit": {
+      "semantic_mutation_count": 28,
+      "sidecar_mutation_count": 4,
+      "total_mutation_count": 33,
+      "total_rejected_count": 33,
+      "unexpected_accept_count": 0,
+      "unexpected_file_mutation_count": 1
+    },
+    "schema": "qsv.mldsa.minimal-sixcase-execution-result-candidate.v0.1",
+    "sha256": "06696a961958601f8310bd84e247997c00460726bac6b7a1baa812d5c991e756",
+    "sidecar_file_sha256": "3cb98dff6c136498d99d1e4e6573ca4875b33a66454d1b1921347a7c26f8c838"
+  },
+  "summary": {
+    "circl_expectation_match_count": 6,
+    "circl_result_count": 6,
+    "cross_implementation_agreement_count": 6,
+    "decision": "minimal_six_case_sigver_execution_pass",
+    "execution_error_count": 0,
+    "expectation_mismatch_count": 0,
+    "openssl_expectation_match_count": 6,
+    "openssl_result_count": 6,
+    "operational_error_count": 0
+  },
+  "truth_boundaries": {
+    "cross_implementation_agreement_implies_correctness": false,
+    "result_implies_complete_fips_204_conformance": false,
+    "result_implies_complete_sigver_coverage": false,
+    "result_implies_fips_204_certification": false,
+    "result_implies_nist_validation": false,
+    "six_case_result_is_only_a_minimal_known_answer_gate": true
+  }
+}
