@@ -27,6 +27,10 @@ EXPECTED_FILES = {
     "vectors/bindings/qsv-mldsa-nist-acvp-vector-source-v0.1.json.sha256",
     "verify_qsv_mldsa_nist_acvp_vector_source_v0_1.py",
     "verify_qsv_mldsa_nist_acvp_vector_source_v0_1.py.sha256",
+    "profiles/qsv-mldsa-nist-acvp-minimal-sigver-kat-profile-v0.1.json",
+    "profiles/qsv-mldsa-nist-acvp-minimal-sigver-kat-profile-v0.1.json.sha256",
+    "verify_qsv_mldsa_minimal_sigver_kat_profile_v0_1.py",
+    "verify_qsv_mldsa_minimal_sigver_kat_profile_v0_1.py.sha256",
     "verify_qsv_mldsa_corpus_v0_1.py",
     "verify_qsv_mldsa_corpus_v0_1.py.sha256",
 }
@@ -1714,6 +1718,383 @@ check(
     ),
 )
 
+
+
+minimal_kat_profile = load(
+    "profiles/qsv-mldsa-nist-acvp-minimal-sigver-kat-profile-v0.1.json"
+)
+
+check(
+    "minimal KAT profile identity exact",
+    (
+        minimal_kat_profile["schema"]
+        == "qsv.mldsa.nist-acvp-known-answer-execution-profile.v0.1"
+        and minimal_kat_profile["version"] == "0.1"
+        and minimal_kat_profile["status"]
+        == "profile_candidate_defined_execution_not_performed"
+        and minimal_kat_profile["role"]
+        == "minimal_public_sigver_known_answer_execution_precondition"
+    ),
+)
+
+check(
+    "minimal KAT QSV source authority exact",
+    minimal_kat_profile["qsv_source_authority"]
+    == {
+        "repository":
+            "mokkunsuzuki-code/qsv-mldsa-interoperability-corpus",
+        "commit":
+            "b29e9dd057a892084a1f2c88eec92cc81de560d5",
+        "tree":
+            "eff50217e3eaa437ae530af6e5ae4fa28b67f257",
+    },
+)
+
+check(
+    "minimal KAT NIST source authority exact",
+    minimal_kat_profile["nist_source_authority"]
+    == {
+        "repository":
+            "https://github.com/usnistgov/ACVP-Server.git",
+        "tag_label":
+            "v1.1.0.43",
+        "tag_label_is_authority":
+            False,
+        "exact_commit":
+            "975de31eb83d87039ec88934fdc47d8c312b892d",
+        "exact_tree":
+            "a6b81add7faf8a8b647afcdc54268615decde9b5",
+    },
+)
+
+check(
+    "minimal KAT source inputs exact",
+    minimal_kat_profile["source_inputs"]
+    == [
+        {
+            "path":
+                "gen-val/json-files/ML-DSA-sigVer-FIPS204/prompt.json",
+            "sha256":
+                "e2cba4589389756fa0bea1a7e6837138bf0a81f9d14234c9ee8f6d33caa1654e",
+        },
+        {
+            "path":
+                "gen-val/json-files/ML-DSA-sigVer-FIPS204/expectedResults.json",
+            "sha256":
+                "e1d84ef1b2f35196278ab0b0ed6a46ec62cc03d2dfa92c564199e1999bfb8ea6",
+        },
+    ],
+)
+
+check(
+    "minimal KAT execution surface exact",
+    minimal_kat_profile["execution_surface"]
+    == {
+        "algorithm":
+            "ML-DSA",
+        "mode":
+            "sigVer",
+        "revision":
+            "FIPS204",
+        "test_type":
+            "AFT",
+        "signature_interface":
+            "external",
+        "pre_hash":
+            "pure",
+        "parameter_sets": [
+            "ML-DSA-44",
+            "ML-DSA-65",
+            "ML-DSA-87",
+        ],
+        "selected_case_count":
+            6,
+        "positive_case_count":
+            3,
+        "negative_case_count":
+            3,
+    },
+)
+
+check(
+    "minimal KAT selected cases exact",
+    minimal_kat_profile["selected_cases"]
+    == [
+        {
+            "parameter_set":
+                "ML-DSA-44",
+            "tg_id":
+                1,
+            "tc_id":
+                1,
+            "expected_valid":
+                False,
+            "case_role":
+                "negative",
+        },
+        {
+            "parameter_set":
+                "ML-DSA-44",
+            "tg_id":
+                1,
+            "tc_id":
+                3,
+            "expected_valid":
+                True,
+            "case_role":
+                "positive",
+        },
+        {
+            "parameter_set":
+                "ML-DSA-65",
+            "tg_id":
+                3,
+            "tc_id":
+                31,
+            "expected_valid":
+                False,
+            "case_role":
+                "negative",
+        },
+        {
+            "parameter_set":
+                "ML-DSA-65",
+            "tg_id":
+                3,
+            "tc_id":
+                33,
+            "expected_valid":
+                True,
+            "case_role":
+                "positive",
+        },
+        {
+            "parameter_set":
+                "ML-DSA-87",
+            "tg_id":
+                5,
+            "tc_id":
+                61,
+            "expected_valid":
+                False,
+            "case_role":
+                "negative",
+        },
+        {
+            "parameter_set":
+                "ML-DSA-87",
+            "tg_id":
+                5,
+            "tc_id":
+                63,
+            "expected_valid":
+                True,
+            "case_role":
+                "positive",
+        },
+    ],
+)
+
+check(
+    "minimal KAT selected prompt fields exact",
+    minimal_kat_profile["selected_prompt_field_names"]
+    == {
+        "tg1-tc1": [
+            "context",
+            "message",
+            "pk",
+            "signature",
+        ],
+        "tg1-tc3": [
+            "context",
+            "message",
+            "pk",
+            "signature",
+        ],
+        "tg3-tc31": [
+            "context",
+            "message",
+            "pk",
+            "signature",
+        ],
+        "tg3-tc33": [
+            "context",
+            "message",
+            "pk",
+            "signature",
+        ],
+        "tg5-tc61": [
+            "context",
+            "message",
+            "pk",
+            "signature",
+        ],
+        "tg5-tc63": [
+            "context",
+            "message",
+            "pk",
+            "signature",
+        ],
+    },
+)
+
+check(
+    "minimal KAT material boundary exact",
+    minimal_kat_profile["material_boundary"]
+    == {
+        "private_key_required":
+            False,
+        "seed_required":
+            False,
+        "secret_key_required":
+            False,
+        "siggen_private_material_required":
+            False,
+        "vector_payload_persisted_in_corpus":
+            False,
+        "selected_runtime_data_ephemeral_only":
+            True,
+    },
+)
+
+check(
+    "minimal KAT execution policy exact",
+    minimal_kat_profile["execution_policy"]
+    == {
+        "fetch_exact_nist_commit_at_runtime":
+            True,
+        "verify_source_sha256_before_case_extraction":
+            True,
+        "extract_only_selected_six_cases":
+            True,
+        "run_each_case_against_openssl":
+            True,
+        "run_each_case_against_circl":
+            True,
+        "require_each_implementation_to_match_expected_validity":
+            True,
+        "require_cross_implementation_agreement":
+            True,
+        "unexpected_accept_is_failure":
+            True,
+        "unexpected_reject_is_failure":
+            True,
+        "unsupported_selected_case_is_failure":
+            True,
+        "partial_execution_is_failure":
+            True,
+        "fail_closed":
+            True,
+    },
+)
+
+check(
+    "minimal KAT excluded surface exact",
+    minimal_kat_profile["excluded_from_v0_1"]
+    == {
+        "key_gen":
+            True,
+        "sig_gen":
+            True,
+        "pre_hash_sigver":
+            True,
+        "internal_interface_sigver":
+            True,
+        "external_mu_sigver":
+            True,
+        "full_acvp_vector_execution":
+            True,
+    },
+)
+
+check(
+    "minimal KAT truth boundaries exact",
+    minimal_kat_profile["truth_boundaries"]
+    == {
+        "profile_pass_implies_nist_validation":
+            False,
+        "profile_pass_implies_fips_204_certification":
+            False,
+        "profile_pass_implies_complete_fips_204_conformance":
+            False,
+        "profile_pass_implies_complete_sigver_coverage":
+            False,
+        "cross_implementation_agreement_implies_correctness":
+            False,
+        "six_case_execution_is_only_a_minimal_known_answer_gate":
+            True,
+        "known_external_vector_coverage_limitations_may_exist":
+            True,
+    },
+)
+
+check(
+    "minimal KAT execution state exact",
+    minimal_kat_profile["execution_state"]
+    == {
+        "cryptographic_fixture_generation_performed":
+            False,
+        "cryptographic_fixture_execution_performed":
+            False,
+        "fixture_results_published":
+            False,
+    },
+)
+
+minimal_kat_profile_canonical = json.dumps(
+    minimal_kat_profile,
+    sort_keys=True,
+    separators=(",", ":"),
+    ensure_ascii=False,
+).encode("utf-8")
+
+check(
+    "minimal KAT canonical digest exact",
+    hashlib.sha256(
+        minimal_kat_profile_canonical
+    ).hexdigest()
+    == "acb84ee1b8dafd1ed84273f4820349ab2e40f3f5c1bd2e0cd0f5e482b78a2646",
+)
+
+minimal_kat_profile_sidecar = (
+    ROOT
+    / "profiles/qsv-mldsa-nist-acvp-minimal-sigver-kat-profile-v0.1.json.sha256"
+)
+
+check(
+    "minimal KAT profile sidecar exact declaration",
+    minimal_kat_profile_sidecar.read_text(
+        encoding="utf-8"
+    )
+    == (
+        sha256(
+            "profiles/qsv-mldsa-nist-acvp-minimal-sigver-kat-profile-v0.1.json"
+        )
+        + "  "
+        + "profiles/qsv-mldsa-nist-acvp-minimal-sigver-kat-profile-v0.1.json"
+        + "\n"
+    ),
+)
+
+minimal_kat_verifier_sidecar = (
+    ROOT
+    / "verify_qsv_mldsa_minimal_sigver_kat_profile_v0_1.py.sha256"
+)
+
+check(
+    "minimal KAT verifier sidecar exact declaration",
+    minimal_kat_verifier_sidecar.read_text(
+        encoding="utf-8"
+    )
+    == (
+        sha256(
+            "verify_qsv_mldsa_minimal_sigver_kat_profile_v0_1.py"
+        )
+        + "  "
+        + "verify_qsv_mldsa_minimal_sigver_kat_profile_v0_1.py"
+        + "\n"
+    ),
+)
 
 print(
     "qsv_mldsa_corpus_check_count="

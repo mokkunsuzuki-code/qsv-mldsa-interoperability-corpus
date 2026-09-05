@@ -1,0 +1,170 @@
+{
+  "excluded_from_v0_1": {
+    "external_mu_sigver": true,
+    "full_acvp_vector_execution": true,
+    "internal_interface_sigver": true,
+    "key_gen": true,
+    "pre_hash_sigver": true,
+    "sig_gen": true
+  },
+  "execution_policy": {
+    "extract_only_selected_six_cases": true,
+    "fail_closed": true,
+    "fetch_exact_nist_commit_at_runtime": true,
+    "partial_execution_is_failure": true,
+    "require_cross_implementation_agreement": true,
+    "require_each_implementation_to_match_expected_validity": true,
+    "run_each_case_against_circl": true,
+    "run_each_case_against_openssl": true,
+    "unexpected_accept_is_failure": true,
+    "unexpected_reject_is_failure": true,
+    "unsupported_selected_case_is_failure": true,
+    "verify_source_sha256_before_case_extraction": true
+  },
+  "execution_state": {
+    "cryptographic_fixture_execution_performed": false,
+    "cryptographic_fixture_generation_performed": false,
+    "fixture_results_published": false
+  },
+  "execution_surface": {
+    "algorithm": "ML-DSA",
+    "mode": "sigVer",
+    "negative_case_count": 3,
+    "parameter_sets": [
+      "ML-DSA-44",
+      "ML-DSA-65",
+      "ML-DSA-87"
+    ],
+    "positive_case_count": 3,
+    "pre_hash": "pure",
+    "revision": "FIPS204",
+    "selected_case_count": 6,
+    "signature_interface": "external",
+    "test_type": "AFT"
+  },
+  "material_boundary": {
+    "private_key_required": false,
+    "secret_key_required": false,
+    "seed_required": false,
+    "selected_runtime_data_ephemeral_only": true,
+    "siggen_private_material_required": false,
+    "vector_payload_persisted_in_corpus": false
+  },
+  "nist_source_authority": {
+    "exact_commit": "975de31eb83d87039ec88934fdc47d8c312b892d",
+    "exact_tree": "a6b81add7faf8a8b647afcdc54268615decde9b5",
+    "repository": "https://github.com/usnistgov/ACVP-Server.git",
+    "tag_label": "v1.1.0.43",
+    "tag_label_is_authority": false
+  },
+  "qsv_source_authority": {
+    "commit": "b29e9dd057a892084a1f2c88eec92cc81de560d5",
+    "repository": "mokkunsuzuki-code/qsv-mldsa-interoperability-corpus",
+    "tree": "eff50217e3eaa437ae530af6e5ae4fa28b67f257"
+  },
+  "role": "minimal_public_sigver_known_answer_execution_precondition",
+  "schema": "qsv.mldsa.nist-acvp-known-answer-execution-profile.v0.1",
+  "selected_cases": [
+    {
+      "case_role": "negative",
+      "expected_valid": false,
+      "parameter_set": "ML-DSA-44",
+      "tc_id": 1,
+      "tg_id": 1
+    },
+    {
+      "case_role": "positive",
+      "expected_valid": true,
+      "parameter_set": "ML-DSA-44",
+      "tc_id": 3,
+      "tg_id": 1
+    },
+    {
+      "case_role": "negative",
+      "expected_valid": false,
+      "parameter_set": "ML-DSA-65",
+      "tc_id": 31,
+      "tg_id": 3
+    },
+    {
+      "case_role": "positive",
+      "expected_valid": true,
+      "parameter_set": "ML-DSA-65",
+      "tc_id": 33,
+      "tg_id": 3
+    },
+    {
+      "case_role": "negative",
+      "expected_valid": false,
+      "parameter_set": "ML-DSA-87",
+      "tc_id": 61,
+      "tg_id": 5
+    },
+    {
+      "case_role": "positive",
+      "expected_valid": true,
+      "parameter_set": "ML-DSA-87",
+      "tc_id": 63,
+      "tg_id": 5
+    }
+  ],
+  "selected_prompt_field_names": {
+    "tg1-tc1": [
+      "context",
+      "message",
+      "pk",
+      "signature"
+    ],
+    "tg1-tc3": [
+      "context",
+      "message",
+      "pk",
+      "signature"
+    ],
+    "tg3-tc31": [
+      "context",
+      "message",
+      "pk",
+      "signature"
+    ],
+    "tg3-tc33": [
+      "context",
+      "message",
+      "pk",
+      "signature"
+    ],
+    "tg5-tc61": [
+      "context",
+      "message",
+      "pk",
+      "signature"
+    ],
+    "tg5-tc63": [
+      "context",
+      "message",
+      "pk",
+      "signature"
+    ]
+  },
+  "source_inputs": [
+    {
+      "path": "gen-val/json-files/ML-DSA-sigVer-FIPS204/prompt.json",
+      "sha256": "e2cba4589389756fa0bea1a7e6837138bf0a81f9d14234c9ee8f6d33caa1654e"
+    },
+    {
+      "path": "gen-val/json-files/ML-DSA-sigVer-FIPS204/expectedResults.json",
+      "sha256": "e1d84ef1b2f35196278ab0b0ed6a46ec62cc03d2dfa92c564199e1999bfb8ea6"
+    }
+  ],
+  "status": "profile_candidate_defined_execution_not_performed",
+  "truth_boundaries": {
+    "cross_implementation_agreement_implies_correctness": false,
+    "known_external_vector_coverage_limitations_may_exist": true,
+    "profile_pass_implies_complete_fips_204_conformance": false,
+    "profile_pass_implies_complete_sigver_coverage": false,
+    "profile_pass_implies_fips_204_certification": false,
+    "profile_pass_implies_nist_validation": false,
+    "six_case_execution_is_only_a_minimal_known_answer_gate": true
+  },
+  "version": "0.1"
+}
