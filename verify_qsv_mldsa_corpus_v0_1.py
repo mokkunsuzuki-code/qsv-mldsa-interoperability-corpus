@@ -45,6 +45,14 @@ EXPECTED_FILES = {
     "results/qsv_mldsa_minimal_sixcase_execution_result_evidence_v0_1.json.sha256",
     "verify_qsv_mldsa_minimal_sixcase_execution_result_evidence_v0_1.py",
     "verify_qsv_mldsa_minimal_sixcase_execution_result_evidence_v0_1.py.sha256",
+    "cross-platform/qsv_mldsa_cross_platform_clean_environment_reproduction_contract_v0_1.json",
+    "cross-platform/qsv_mldsa_cross_platform_clean_environment_reproduction_contract_v0_1.json.sha256",
+    "verify_qsv_mldsa_cross_platform_clean_environment_reproduction_contract_v0_1.py",
+    "verify_qsv_mldsa_cross_platform_clean_environment_reproduction_contract_v0_1.py.sha256",
+    ".github/workflows/qsv-mldsa-cross-platform-clean-environment-precheck-v0_1.yml",
+    ".github/workflows/qsv-mldsa-cross-platform-clean-environment-precheck-v0_1.yml.sha256",
+    "verify_qsv_mldsa_cross_platform_precheck_workflow_candidate_v0_1.py",
+    "verify_qsv_mldsa_cross_platform_precheck_workflow_candidate_v0_1.py.sha256",
     "verify_qsv_mldsa_corpus_v0_1.py",
     "verify_qsv_mldsa_corpus_v0_1.py.sha256",
 }
@@ -3126,6 +3134,603 @@ check(
     "static result raw vector fields absent",
     not static_result_has_forbidden_raw_key(
         static_result_evidence
+    ),
+)
+
+
+
+# Cross-platform clean-environment reproduction authority
+# and no-crypto GitHub Actions precheck workflow.
+#
+# These files define and validate a future Linux reproduction
+# operation. The workflow itself is not executed by this verifier
+# and contains no QSV_EXECUTE_CRYPTO=YES execution path.
+
+cross_platform_reproduction_hashes = {
+    "cross-platform/qsv_mldsa_cross_platform_clean_environment_reproduction_contract_v0_1.json":
+        "9f78c559fdcb564efe4320803ce55caa5fe26f379ec2627936fac3912aca2f71",
+
+    "cross-platform/qsv_mldsa_cross_platform_clean_environment_reproduction_contract_v0_1.json.sha256":
+        "ea0bfcc69ceb26c92a4a417c03c615a6da6f4a947fb8e34afeca8ad5ce4f0597",
+
+    "verify_qsv_mldsa_cross_platform_clean_environment_reproduction_contract_v0_1.py":
+        "fbbdb8ab12531fd80d34bddf6e58d92bbc961bf7c03e00580773cfeedfa8039b",
+
+    "verify_qsv_mldsa_cross_platform_clean_environment_reproduction_contract_v0_1.py.sha256":
+        "7de2ab4315346cecfd288b06f5c5176a614fa745b32bf09019763324ed3777f3",
+
+    ".github/workflows/qsv-mldsa-cross-platform-clean-environment-precheck-v0_1.yml":
+        "3b488f00990c11a796faa7638d39b5aa12874c3e21c9459aa264c77d6315ea16",
+
+    ".github/workflows/qsv-mldsa-cross-platform-clean-environment-precheck-v0_1.yml.sha256":
+        "59aa85f6714da88735a7907c30024d40193973db07e3f9bd4dbcbd9ae4715ddc",
+
+    "verify_qsv_mldsa_cross_platform_precheck_workflow_candidate_v0_1.py":
+        "67ebfa5817cdeface9381aa40bdec4fb5ce5e73e86d6dcd5288ffafaa01ce301",
+
+    "verify_qsv_mldsa_cross_platform_precheck_workflow_candidate_v0_1.py.sha256":
+        "d545ab0703fffdc36be1c6805f50a700700f6a67ab8e1a0e4d576f78c644c812",
+}
+
+
+for rel, digest in cross_platform_reproduction_hashes.items():
+
+    check(
+        "cross-platform reproduction file hash: " + rel,
+        (
+            (ROOT / rel).is_file()
+            and sha256(rel) == digest
+        ),
+    )
+
+
+check(
+    "cross-platform contract sidecar exact declaration",
+    (
+        (
+            ROOT
+            / "cross-platform/qsv_mldsa_cross_platform_clean_environment_reproduction_contract_v0_1.json.sha256"
+        ).read_text(
+            encoding="utf-8"
+        )
+        == (
+            "9f78c559fdcb564efe4320803ce55caa5fe26f379ec2627936fac3912aca2f71"
+            "  "
+            "cross-platform/qsv_mldsa_cross_platform_clean_environment_reproduction_contract_v0_1.json"
+            "\n"
+        )
+    ),
+)
+
+
+check(
+    "cross-platform contract verifier sidecar exact declaration",
+    (
+        (
+            ROOT
+            / "verify_qsv_mldsa_cross_platform_clean_environment_reproduction_contract_v0_1.py.sha256"
+        ).read_text(
+            encoding="utf-8"
+        )
+        == (
+            "fbbdb8ab12531fd80d34bddf6e58d92bbc961bf7c03e00580773cfeedfa8039b"
+            "  "
+            "verify_qsv_mldsa_cross_platform_clean_environment_reproduction_contract_v0_1.py"
+            "\n"
+        )
+    ),
+)
+
+
+check(
+    "cross-platform workflow sidecar exact declaration",
+    (
+        (
+            ROOT
+            / ".github/workflows/qsv-mldsa-cross-platform-clean-environment-precheck-v0_1.yml.sha256"
+        ).read_text(
+            encoding="utf-8"
+        )
+        == (
+            "3b488f00990c11a796faa7638d39b5aa12874c3e21c9459aa264c77d6315ea16"
+            "  "
+            ".github/workflows/qsv-mldsa-cross-platform-clean-environment-precheck-v0_1.yml"
+            "\n"
+        )
+    ),
+)
+
+
+check(
+    "cross-platform workflow verifier sidecar exact declaration",
+    (
+        (
+            ROOT
+            / "verify_qsv_mldsa_cross_platform_precheck_workflow_candidate_v0_1.py.sha256"
+        ).read_text(
+            encoding="utf-8"
+        )
+        == (
+            "67ebfa5817cdeface9381aa40bdec4fb5ce5e73e86d6dcd5288ffafaa01ce301"
+            "  "
+            "verify_qsv_mldsa_cross_platform_precheck_workflow_candidate_v0_1.py"
+            "\n"
+        )
+    ),
+)
+
+
+cross_platform_contract = load(
+    "cross-platform/qsv_mldsa_cross_platform_clean_environment_reproduction_contract_v0_1.json"
+)
+
+
+check(
+    "cross-platform contract schema exact",
+    cross_platform_contract[
+        "schema"
+    ]
+    == (
+        "qsv.mldsa.cross-platform-clean-environment-reproduction-contract.v0.1"
+    ),
+)
+
+
+check(
+    "cross-platform contract classification exact",
+    cross_platform_contract[
+        "classification"
+    ]
+    == "cross_platform_clean_environment_reproduction",
+)
+
+
+mac_baseline = cross_platform_contract[
+    "immutable_mac_baseline"
+]
+
+
+check(
+    "cross-platform immutable Mac baseline exact",
+    (
+        mac_baseline["published_commit"]
+        == "717337adbbcc493ed3de328411b287328b9290dd"
+        and mac_baseline["published_tree"]
+        == "854ed1fdc516c49420474d42c0660b07368d2aca"
+        and mac_baseline["static_result_evidence_sha256"]
+        == "1f73e8d2570063811bb065ae6fbabb34deae12d10d1778dcdee67a8245d1058c"
+        and mac_baseline["platform"] == "macos-arm64"
+        and mac_baseline["selected_case_count"] == 6
+        and mac_baseline["openssl_expectation_match_count"] == 6
+        and mac_baseline["circl_expectation_match_count"] == 6
+        and mac_baseline["cross_implementation_agreement_count"] == 6
+        and mac_baseline["operational_error_count"] == 0
+        and mac_baseline["decision"]
+        == "minimal_six_case_sigver_execution_pass"
+    ),
+)
+
+
+authorities = cross_platform_contract[
+    "source_authorities"
+]
+
+
+check(
+    "cross-platform source authorities exact",
+    (
+        authorities["qsv_runtime_authority"]
+        == {
+            "commit":
+                "fd892bd79478fb5250a4e4dfa53705dd58d8b173",
+
+            "tree":
+                "37e27a32534381fc43affdeae7bcf9050ee990a2",
+        }
+
+        and authorities["nist_acvp"]
+        == {
+            "commit":
+                "975de31eb83d87039ec88934fdc47d8c312b892d",
+
+            "tree":
+                "a6b81add7faf8a8b647afcdc54268615decde9b5",
+
+            "prompt_sha256":
+                "e2cba4589389756fa0bea1a7e6837138bf0a81f9d14234c9ee8f6d33caa1654e",
+
+            "expected_results_sha256":
+                "e1d84ef1b2f35196278ab0b0ed6a46ec62cc03d2dfa92c564199e1999bfb8ea6",
+        }
+
+        and authorities["circl"]
+        == {
+            "commit":
+                "cfa7c70defd831ffb0792ab2af560bfef43d60ca",
+
+            "tree":
+                "b3a50c3f1b7a5f8cfac0cce655ae7ea7900e9139",
+        }
+
+        and authorities["openssl"]
+        == {
+            "version":
+                "3.6.3",
+
+            "commit":
+                "aae016bfd52fcad2bc9657c2c782cfdf73b1ed5f",
+
+            "tree":
+                "a8a306c000bc2426afd3264b2c41bc7223728475",
+        }
+    ),
+)
+
+
+target_environment = cross_platform_contract[
+    "target_execution_environment"
+]
+
+
+check(
+    "cross-platform target clean environment exact",
+    (
+        target_environment["provider"] == "github_actions"
+        and target_environment["runner_label"] == "ubuntu-24.04"
+        and target_environment["expected_os_family"] == "linux"
+        and target_environment["expected_architecture"] == "x86_64"
+        and target_environment["clean_ephemeral_environment_required"] is True
+        and target_environment["third_party_independent_reproduction"] is False
+    ),
+)
+
+
+scope = cross_platform_contract[
+    "execution_scope"
+]
+
+
+expected_reproduction_cases = [
+    ("ML-DSA-44", 1, 1, False),
+    ("ML-DSA-44", 1, 3, True),
+    ("ML-DSA-65", 3, 31, False),
+    ("ML-DSA-65", 3, 33, True),
+    ("ML-DSA-87", 5, 61, False),
+    ("ML-DSA-87", 5, 63, True),
+]
+
+
+actual_reproduction_cases = [
+    (
+        item["parameter_set"],
+        item["tg_id"],
+        item["tc_id"],
+        item["expected_valid"],
+    )
+    for item in scope["cases"]
+]
+
+
+check(
+    "cross-platform execution scope exact",
+    (
+        scope["operation"] == "sigVer"
+        and scope["revision"] == "FIPS204"
+        and scope["selected_case_count"] == 6
+        and scope["positive_case_count"] == 3
+        and scope["negative_case_count"] == 3
+        and scope["parameter_sets"]
+        == [
+            "ML-DSA-44",
+            "ML-DSA-65",
+            "ML-DSA-87",
+        ]
+        and actual_reproduction_cases
+        == expected_reproduction_cases
+    ),
+)
+
+
+openssl_policy = cross_platform_contract[
+    "openssl_linux_build_policy"
+]
+
+
+check(
+    "cross-platform OpenSSL Linux build policy exact",
+    (
+        openssl_policy["exact_source_commit_required"] is True
+        and openssl_policy["exact_source_tree_required"] is True
+        and openssl_policy["detached_checkout_required"] is True
+        and openssl_policy["configure_target"] == "linux-x86_64"
+        and openssl_policy["configure_options"] == ["no-shared"]
+        and openssl_policy["fresh_build_directory_required"] is True
+        and openssl_policy["runtime_version_must_equal"] == "3.6.3"
+        and openssl_policy["source_and_build_recipe_provenance_required"] is True
+        and openssl_policy[
+            "absolute_build_provenance_complete_claim_allowed"
+        ] is False
+    ),
+)
+
+
+circl_policy = cross_platform_contract[
+    "circl_linux_build_policy"
+]
+
+
+check(
+    "cross-platform CIRCL Linux build policy exact",
+    (
+        circl_policy["exact_source_commit_required"] is True
+        and circl_policy["exact_source_tree_required"] is True
+        and circl_policy["detached_checkout_required"] is True
+        and circl_policy["existing_upstream_go_mod_required"] is True
+        and circl_policy["go_mod_init_allowed"] is False
+        and circl_policy["go_mod_sum_mutation_allowed"] is False
+        and circl_policy["go_version_must_be_recorded"] is True
+        and circl_policy["built_binary_sha256_must_be_recorded"] is True
+    ),
+)
+
+
+reproduction_gate = cross_platform_contract[
+    "execution_gate"
+]
+
+
+check(
+    "cross-platform reproduction execution gate exact",
+    (
+        reproduction_gate[
+            "qsv_execute_crypto_parent_environment_allowed"
+        ] is False
+
+        and reproduction_gate[
+            "qsv_execute_crypto_yes_allowed_only_in_isolated_execution_subprocesses"
+        ] is True
+
+        and reproduction_gate[
+            "raw_vector_payload_location"
+        ] == "ephemeral_tmp_only"
+
+        and reproduction_gate[
+            "raw_vector_payload_persistence_allowed"
+        ] is False
+
+        and reproduction_gate[
+            "openssl_linux_result_count_required"
+        ] == 6
+
+        and reproduction_gate[
+            "circl_linux_result_count_required"
+        ] == 6
+
+        and reproduction_gate[
+            "openssl_linux_expectation_match_count_required"
+        ] == 6
+
+        and reproduction_gate[
+            "circl_linux_expectation_match_count_required"
+        ] == 6
+
+        and reproduction_gate[
+            "linux_cross_implementation_agreement_count_required"
+        ] == 6
+
+        and reproduction_gate[
+            "mac_linux_openssl_behavior_agreement_count_required"
+        ] == 6
+
+        and reproduction_gate[
+            "mac_linux_circl_behavior_agreement_count_required"
+        ] == 6
+
+        and reproduction_gate[
+            "operational_error_count_required"
+        ] == 0
+
+        and reproduction_gate[
+            "expectation_mismatch_count_required"
+        ] == 0
+
+        and reproduction_gate[
+            "execution_error_count_required"
+        ] == 0
+
+        and reproduction_gate[
+            "pass_decision"
+        ] == "cross_platform_clean_environment_reproduction_pass"
+    ),
+)
+
+
+reproduction_truth = cross_platform_contract[
+    "truth_boundaries"
+]
+
+
+check(
+    "cross-platform reproduction truth boundaries exact",
+    (
+        reproduction_truth["reproduction_implies_nist_validation"] is False
+        and reproduction_truth["reproduction_implies_fips_204_certification"] is False
+        and reproduction_truth["reproduction_implies_complete_fips_204_conformance"] is False
+        and reproduction_truth["reproduction_implies_complete_sigver_coverage"] is False
+        and reproduction_truth["cross_platform_agreement_implies_correctness"] is False
+        and reproduction_truth[
+            "github_hosted_execution_is_third_party_independent_verification"
+        ] is False
+        and reproduction_truth[
+            "github_runner_is_immutable_build_environment"
+        ] is False
+        and reproduction_truth[
+            "openssl_build_provenance_complete_before_execution_evidence"
+        ] is False
+        and reproduction_truth[
+            "current_six_case_mac_baseline_may_be_rewritten"
+        ] is False
+    ),
+)
+
+
+workflow_text = (
+    ROOT
+    / ".github/workflows/qsv-mldsa-cross-platform-clean-environment-precheck-v0_1.yml"
+).read_text(
+    encoding="utf-8"
+)
+
+
+check(
+    "cross-platform workflow manual trigger only",
+    (
+        workflow_text.count("workflow_dispatch:") == 1
+        and "\n  push:" not in workflow_text
+        and "\n  pull_request:" not in workflow_text
+        and "\n  schedule:" not in workflow_text
+    ),
+)
+
+
+check(
+    "cross-platform workflow Ubuntu 24.04 x64 target",
+    (
+        workflow_text.count("runs-on: ubuntu-24.04") == 1
+        and 'test "${RUNNER_OS}" = "Linux"' in workflow_text
+        and 'test "${RUNNER_ARCH}" = "X64"' in workflow_text
+        and 'test "$(uname -m)" = "x86_64"' in workflow_text
+    ),
+)
+
+
+check(
+    "cross-platform workflow read-only repository surface",
+    (
+        "permissions:\n  contents: read\n"
+        in workflow_text
+
+        and "contents: write" not in workflow_text
+        and "id-token: write" not in workflow_text
+
+        and "git push" not in workflow_text
+        and "uses:" not in workflow_text
+
+        and "upload-artifact" not in workflow_text
+        and "download-artifact" not in workflow_text
+    ),
+)
+
+
+check(
+    "cross-platform workflow exact authority binding",
+    (
+        "DESIGN_CONTRACT_SHA256: 9f78c559fdcb564efe4320803ce55caa5fe26f379ec2627936fac3912aca2f71"
+        in workflow_text
+
+        and "QSV_COMMIT: 717337adbbcc493ed3de328411b287328b9290dd"
+        in workflow_text
+
+        and "QSV_TREE: 854ed1fdc516c49420474d42c0660b07368d2aca"
+        in workflow_text
+
+        and "NIST_COMMIT: 975de31eb83d87039ec88934fdc47d8c312b892d"
+        in workflow_text
+
+        and "CIRCL_COMMIT: cfa7c70defd831ffb0792ab2af560bfef43d60ca"
+        in workflow_text
+
+        and "OPENSSL_COMMIT: aae016bfd52fcad2bc9657c2c782cfdf73b1ed5f"
+        in workflow_text
+    ),
+)
+
+
+check(
+    "cross-platform workflow build policy exact",
+    (
+        "GO_VERSION_REQUIRED: 1.26.5"
+        in workflow_text
+
+        and 'GO_ROOT="${RUNNER_TOOL_CACHE}/go/${GO_VERSION_REQUIRED}/x64"'
+        in workflow_text
+
+        and "linux-x86_64 \\"
+        in workflow_text
+
+        and "no-shared \\"
+        in workflow_text
+
+        and "-mod=readonly \\"
+        in workflow_text
+
+        and "-trimpath \\"
+        in workflow_text
+    ),
+)
+
+
+check(
+    "cross-platform workflow no cryptographic enable",
+    (
+        "QSV_EXECUTE_CRYPTO=YES"
+        not in workflow_text
+
+        and workflow_text.count(
+            "env QSV_EXECUTE_CRYPTO="
+        ) == 3
+
+        and workflow_text.count(
+            "env -u QSV_EXECUTE_CRYPTO"
+        ) == 3
+    ),
+)
+
+
+check(
+    "cross-platform workflow fail-closed gate plan exact",
+    (
+        "EXTRACTOR_GATE_REJECTED_COUNT=3"
+        in workflow_text
+
+        and "OPENSSL_GATE_REJECTED_COUNT=3"
+        in workflow_text
+
+        and "CIRCL_GATE_REJECTED_COUNT=3"
+        in workflow_text
+
+        and "ALL_EXECUTION_GATES_FAIL_CLOSED=PASS"
+        in workflow_text
+    ),
+)
+
+
+check(
+    "cross-platform workflow no-crypto final boundary exact",
+    (
+        "QSV_MLDSA_GITHUB_ACTIONS_CROSS_PLATFORM_PRECHECK=PASS"
+        in workflow_text
+
+        and "CRYPTOGRAPHIC_EXECUTION_PERFORMED=NO"
+        in workflow_text
+
+        and "CRYPTOGRAPHIC_SIGNATURE_VERIFICATION_PERFORMED=NO"
+        in workflow_text
+
+        and "RAW_RUNTIME_VECTOR_PAYLOAD_EMITTED=NO"
+        in workflow_text
+
+        and "THIRD_PARTY_INDEPENDENT_REPRODUCTION=false"
+        in workflow_text
+
+        and "GITHUB_RUNNER_IMMUTABLE_BUILD_ENVIRONMENT=false"
+        in workflow_text
+
+        and "ABSOLUTE_OPENSSL_BUILD_PROVENANCE_COMPLETE_CLAIM_ALLOWED=false"
+        in workflow_text
+
+        and "READY_FOR_EXPLICIT_GITHUB_ACTIONS_SIX_CASE_EXECUTION=YES"
+        in workflow_text
     ),
 )
 

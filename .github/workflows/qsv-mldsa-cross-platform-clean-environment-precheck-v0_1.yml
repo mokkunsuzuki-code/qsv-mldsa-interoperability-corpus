@@ -1,0 +1,716 @@
+name: QSV ML-DSA Cross-Platform Clean-Environment Precheck v0.1
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: qsv-mldsa-cross-platform-precheck-v0-1
+  cancel-in-progress: false
+
+jobs:
+  precheck:
+    name: Ubuntu 24.04 x64 no-crypto precheck
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+
+    env:
+      DESIGN_CONTRACT_SHA256: 9f78c559fdcb564efe4320803ce55caa5fe26f379ec2627936fac3912aca2f71
+
+      QSV_REMOTE: https://github.com/mokkunsuzuki-code/qsv-mldsa-interoperability-corpus.git
+      QSV_COMMIT: 717337adbbcc493ed3de328411b287328b9290dd
+      QSV_TREE: 854ed1fdc516c49420474d42c0660b07368d2aca
+
+      RUNTIME_AUTHORITY_COMMIT: fd892bd79478fb5250a4e4dfa53705dd58d8b173
+      RUNTIME_AUTHORITY_TREE: 37e27a32534381fc43affdeae7bcf9050ee990a2
+
+      NIST_REMOTE: https://github.com/usnistgov/ACVP-Server.git
+      NIST_COMMIT: 975de31eb83d87039ec88934fdc47d8c312b892d
+      NIST_TREE: a6b81add7faf8a8b647afcdc54268615decde9b5
+      NIST_PROMPT_SHA256: e2cba4589389756fa0bea1a7e6837138bf0a81f9d14234c9ee8f6d33caa1654e
+      NIST_EXPECTED_RESULTS_SHA256: e1d84ef1b2f35196278ab0b0ed6a46ec62cc03d2dfa92c564199e1999bfb8ea6
+
+      CIRCL_REMOTE: https://github.com/cloudflare/circl.git
+      CIRCL_COMMIT: cfa7c70defd831ffb0792ab2af560bfef43d60ca
+      CIRCL_TREE: b3a50c3f1b7a5f8cfac0cce655ae7ea7900e9139
+
+      OPENSSL_REMOTE: https://github.com/openssl/openssl.git
+      OPENSSL_VERSION_REQUIRED: 3.6.3
+      OPENSSL_COMMIT: aae016bfd52fcad2bc9657c2c782cfdf73b1ed5f
+      OPENSSL_TREE: a8a306c000bc2426afd3264b2c41bc7223728475
+
+      GO_VERSION_REQUIRED: 1.26.5
+
+    steps:
+      - name: Record runner environment and enforce parent gate
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          unset QSV_EXECUTE_CRYPTO 2>/dev/null || true
+
+          test -z "${QSV_EXECUTE_CRYPTO+x}"
+
+          test "${RUNNER_OS}" = "Linux"
+          test "${RUNNER_ARCH}" = "X64"
+          test "$(uname -m)" = "x86_64"
+
+          echo "RUNNER_OS=${RUNNER_OS}"
+          echo "RUNNER_ARCH=${RUNNER_ARCH}"
+          echo "RUNNER_IMAGE_OS=${ImageOS:-UNSET}"
+          echo "RUNNER_IMAGE_VERSION=${ImageVersion:-UNSET}"
+          echo "UNAME=$(uname -a)"
+
+          echo "CC_VERSION=$(cc --version | head -n 1)"
+          echo "GCC_VERSION=$(gcc --version | head -n 1)"
+          echo "MAKE_VERSION=$(make --version | head -n 1)"
+          echo "PERL_VERSION=$(perl -e 'print $^V')"
+          echo "PYTHON_VERSION=$(python3 --version)"
+
+          echo "DESIGN_CONTRACT_SHA256=${DESIGN_CONTRACT_SHA256}"
+
+          echo "QSV_EXECUTE_CRYPTO_PARENT_ENVIRONMENT=ABSENT"
+          echo "RUNNER_ENVIRONMENT_CAPTURE=PASS"
+
+      - name: Fetch exact published QSV baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          unset QSV_EXECUTE_CRYPTO 2>/dev/null || true
+          test -z "${QSV_EXECUTE_CRYPTO+x}"
+
+          WORK="${RUNNER_TEMP}/qsv-cross-platform-precheck"
+
+          rm -rf "${WORK}"
+          mkdir -p "${WORK}/qsv-repo" "${WORK}/qsv-snapshot"
+
+          git -C "${WORK}/qsv-repo" init --quiet
+
+          git -C "${WORK}/qsv-repo" \
+            fetch \
+            --quiet \
+            --depth=2 \
+            "${QSV_REMOTE}" \
+            "${QSV_COMMIT}"
+
+          test "$(
+            git -C "${WORK}/qsv-repo" rev-parse FETCH_HEAD
+          )" = "${QSV_COMMIT}"
+
+          test "$(
+            git -C "${WORK}/qsv-repo" rev-parse FETCH_HEAD^{tree}
+          )" = "${QSV_TREE}"
+
+          test "$(
+            git -C "${WORK}/qsv-repo" rev-parse FETCH_HEAD^
+          )" = "${RUNTIME_AUTHORITY_COMMIT}"
+
+          test "$(
+            git -C "${WORK}/qsv-repo" rev-parse "${RUNTIME_AUTHORITY_COMMIT}^{tree}"
+          )" = "${RUNTIME_AUTHORITY_TREE}"
+
+          git -C "${WORK}/qsv-repo" \
+            archive \
+            --format=tar \
+            "${QSV_COMMIT}" |
+          tar \
+            -xf - \
+            -C "${WORK}/qsv-snapshot"
+
+          test "$(
+            find "${WORK}/qsv-snapshot" -type f | wc -l
+          )" -eq 40
+
+          test "$(
+            sha256sum \
+              "${WORK}/qsv-snapshot/results/qsv_mldsa_minimal_sixcase_execution_result_evidence_v0_1.json" |
+            awk '{print $1}'
+          )" = "1f73e8d2570063811bb065ae6fbabb34deae12d10d1778dcdee67a8245d1058c"
+
+          test "$(
+            sha256sum \
+              "${WORK}/qsv-snapshot/runtime/qsv_mldsa_sixcase_extractor_v0_1.py" |
+            awk '{print $1}'
+          )" = "0bdad8db61b008ce50e6c53a472d3e56d36cf8169318cb50474672d62e566679"
+
+          test "$(
+            sha256sum \
+              "${WORK}/qsv-snapshot/runtime/qsv_mldsa_openssl_sigver_harness_v0_1.c" |
+            awk '{print $1}'
+          )" = "0d5c2030409425115680d3140429918210fbc63c5f18bb0c08257314bd6e6240"
+
+          test "$(
+            sha256sum \
+              "${WORK}/qsv-snapshot/runtime/qsv_mldsa_circl_sigver_harness_v0_1.go" |
+            awk '{print $1}'
+          )" = "f3c551821f4c31b8f7fd7242e66002c4aa1cc3dd0abb0c56710f3d0a91fc0fed"
+
+          (
+            cd "${WORK}/qsv-snapshot"
+
+            PYTHONDONTWRITEBYTECODE=1 \
+            python3 \
+              verify_qsv_mldsa_minimal_sixcase_execution_result_evidence_v0_1.py \
+              .
+          ) | tee "${WORK}/qsv-dedicated.out"
+
+          grep \
+            -Fx \
+            'QSV_MLDSA_STATIC_RESULT_EVIDENCE_VERIFICATION=PASS' \
+            "${WORK}/qsv-dedicated.out"
+
+          (
+            cd "${WORK}/qsv-snapshot"
+
+            PYTHONDONTWRITEBYTECODE=1 \
+            python3 \
+              verify_qsv_mldsa_minimal_sigver_kat_profile_v0_1.py
+          ) | tee "${WORK}/qsv-profile.out"
+
+          grep \
+            -Fx \
+            'qsv_mldsa_minimal_kat_profile_check_count=18' \
+            "${WORK}/qsv-profile.out"
+
+          grep \
+            -Fx \
+            'qsv_mldsa_minimal_kat_profile_failure_count=0' \
+            "${WORK}/qsv-profile.out"
+
+          (
+            cd "${WORK}/qsv-snapshot"
+
+            PYTHONDONTWRITEBYTECODE=1 \
+            python3 \
+              verify_qsv_mldsa_corpus_v0_1.py
+          ) | tee "${WORK}/qsv-root.out"
+
+          grep \
+            -Fx \
+            'qsv_mldsa_corpus_check_count=388' \
+            "${WORK}/qsv-root.out"
+
+          grep \
+            -Fx \
+            'qsv_mldsa_corpus_failure_count=0' \
+            "${WORK}/qsv-root.out"
+
+          echo "EXACT_PUBLISHED_QSV_BASELINE=PASS"
+          echo "PUBLISHED_DEDICATED_18_AND_388=PASS"
+
+      - name: Fetch exact NIST ACVP sigVer authority
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          unset QSV_EXECUTE_CRYPTO 2>/dev/null || true
+          test -z "${QSV_EXECUTE_CRYPTO+x}"
+
+          WORK="${RUNNER_TEMP}/qsv-cross-platform-precheck"
+          NIST="${WORK}/nist"
+
+          mkdir -p "${NIST}"
+
+          git -C "${NIST}" init --quiet
+
+          git -C "${NIST}" \
+            fetch \
+            --quiet \
+            --depth=1 \
+            "${NIST_REMOTE}" \
+            "${NIST_COMMIT}"
+
+          test "$(
+            git -C "${NIST}" rev-parse FETCH_HEAD
+          )" = "${NIST_COMMIT}"
+
+          test "$(
+            git -C "${NIST}" rev-parse FETCH_HEAD^{tree}
+          )" = "${NIST_TREE}"
+
+          git -C "${NIST}" \
+            show \
+            "${NIST_COMMIT}:gen-val/json-files/ML-DSA-sigVer-FIPS204/prompt.json" \
+            > "${WORK}/prompt.json"
+
+          git -C "${NIST}" \
+            show \
+            "${NIST_COMMIT}:gen-val/json-files/ML-DSA-sigVer-FIPS204/expectedResults.json" \
+            > "${WORK}/expectedResults.json"
+
+          test "$(
+            sha256sum "${WORK}/prompt.json" |
+            awk '{print $1}'
+          )" = "${NIST_PROMPT_SHA256}"
+
+          test "$(
+            sha256sum "${WORK}/expectedResults.json" |
+            awk '{print $1}'
+          )" = "${NIST_EXPECTED_RESULTS_SHA256}"
+
+          echo "EXACT_NIST_SIGVER_AUTHORITY=PASS"
+
+      - name: Fetch and build exact OpenSSL source
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          unset QSV_EXECUTE_CRYPTO 2>/dev/null || true
+          test -z "${QSV_EXECUTE_CRYPTO+x}"
+
+          WORK="${RUNNER_TEMP}/qsv-cross-platform-precheck"
+
+          OPENSSL_SRC="${WORK}/openssl-src"
+          OPENSSL_INSTALL="${WORK}/openssl-install"
+          QSV_SNAPSHOT="${WORK}/qsv-snapshot"
+          OPENSSL_HARNESS_BIN="${WORK}/qsv-openssl-harness"
+
+          mkdir -p "${OPENSSL_SRC}"
+
+          git -C "${OPENSSL_SRC}" init --quiet
+
+          git -C "${OPENSSL_SRC}" \
+            fetch \
+            --quiet \
+            --depth=1 \
+            "${OPENSSL_REMOTE}" \
+            "${OPENSSL_COMMIT}"
+
+          git -C "${OPENSSL_SRC}" \
+            checkout \
+            --quiet \
+            --detach \
+            "${OPENSSL_COMMIT}"
+
+          test "$(
+            git -C "${OPENSSL_SRC}" rev-parse HEAD
+          )" = "${OPENSSL_COMMIT}"
+
+          test "$(
+            git -C "${OPENSSL_SRC}" rev-parse HEAD^{tree}
+          )" = "${OPENSSL_TREE}"
+
+          echo "OPENSSL_SOURCE_COMMIT=${OPENSSL_COMMIT}"
+          echo "OPENSSL_SOURCE_TREE=${OPENSSL_TREE}"
+
+          echo "OPENSSL_CONFIGURE_COMMAND=./Configure linux-x86_64 no-shared --prefix=<ephemeral> --openssldir=<ephemeral>/ssl"
+
+          (
+            cd "${OPENSSL_SRC}"
+
+            ./Configure \
+              linux-x86_64 \
+              no-shared \
+              --prefix="${OPENSSL_INSTALL}" \
+              --openssldir="${OPENSSL_INSTALL}/ssl"
+
+            make -j2
+
+            make install_sw
+          )
+
+          test -x "${OPENSSL_INSTALL}/bin/openssl"
+
+          OPENSSL_VERSION="$(
+            "${OPENSSL_INSTALL}/bin/openssl" version |
+            awk '{print $2}'
+          )"
+
+          echo "OPENSSL_BUILT_RUNTIME_VERSION=${OPENSSL_VERSION}"
+
+          test "${OPENSSL_VERSION}" = "${OPENSSL_VERSION_REQUIRED}"
+
+          "${OPENSSL_INSTALL}/bin/openssl" version -a
+
+          OPENSSL_BINARY_SHA="$(
+            sha256sum "${OPENSSL_INSTALL}/bin/openssl" |
+            awk '{print $1}'
+          )"
+
+          LIBCRYPTO="$(
+            find "${OPENSSL_INSTALL}" \
+              -type f \
+              -name libcrypto.a \
+              -print \
+              -quit
+          )"
+
+          test -n "${LIBCRYPTO}"
+          test -f "${LIBCRYPTO}"
+
+          LIBCRYPTO_SHA="$(
+            sha256sum "${LIBCRYPTO}" |
+            awk '{print $1}'
+          )"
+
+          cc \
+            -std=c11 \
+            -Wall \
+            -Wextra \
+            -Werror \
+            -I"${OPENSSL_INSTALL}/include" \
+            "${QSV_SNAPSHOT}/runtime/qsv_mldsa_openssl_sigver_harness_v0_1.c" \
+            "${LIBCRYPTO}" \
+            -ldl \
+            -pthread \
+            -o "${OPENSSL_HARNESS_BIN}"
+
+          test -x "${OPENSSL_HARNESS_BIN}"
+
+          OPENSSL_HARNESS_BINARY_SHA="$(
+            sha256sum "${OPENSSL_HARNESS_BIN}" |
+            awk '{print $1}'
+          )"
+
+          echo "OPENSSL_BUILT_BINARY_SHA256=${OPENSSL_BINARY_SHA}"
+          echo "OPENSSL_BUILT_LIBCRYPTO_SHA256=${LIBCRYPTO_SHA}"
+          echo "OPENSSL_HARNESS_BINARY_SHA256=${OPENSSL_HARNESS_BINARY_SHA}"
+
+          echo "OPENSSL_EXACT_SOURCE_BUILD=PASS"
+          echo "OPENSSL_HARNESS_COMPILED_FROM_PUBLISHED_BYTES=PASS"
+
+      - name: Select exact cached Go and build exact CIRCL source
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          unset QSV_EXECUTE_CRYPTO 2>/dev/null || true
+          test -z "${QSV_EXECUTE_CRYPTO+x}"
+
+          WORK="${RUNNER_TEMP}/qsv-cross-platform-precheck"
+
+          CIRCL_SRC="${WORK}/circl-src"
+          QSV_SNAPSHOT="${WORK}/qsv-snapshot"
+          CIRCL_HARNESS_BIN="${WORK}/qsv-circl-harness"
+
+          GO_ROOT="${RUNNER_TOOL_CACHE}/go/${GO_VERSION_REQUIRED}/x64"
+
+          test -x "${GO_ROOT}/bin/go"
+
+          export PATH="${GO_ROOT}/bin:${PATH}"
+          export GOROOT="${GO_ROOT}"
+          export GOCACHE="${WORK}/go-cache"
+          export GOMODCACHE="${WORK}/go-mod-cache"
+          export GOPATH="${WORK}/go-path"
+          export GOWORK=off
+          export GOTOOLCHAIN=local
+
+          GO_VERSION="$(go version)"
+
+          echo "GO_VERSION=${GO_VERSION}"
+
+          test "${GO_VERSION}" = "go version go1.26.5 linux/amd64"
+
+          mkdir -p "${CIRCL_SRC}"
+
+          git -C "${CIRCL_SRC}" init --quiet
+
+          git -C "${CIRCL_SRC}" \
+            fetch \
+            --quiet \
+            --depth=1 \
+            "${CIRCL_REMOTE}" \
+            "${CIRCL_COMMIT}"
+
+          git -C "${CIRCL_SRC}" \
+            checkout \
+            --quiet \
+            --detach \
+            "${CIRCL_COMMIT}"
+
+          test "$(
+            git -C "${CIRCL_SRC}" rev-parse HEAD
+          )" = "${CIRCL_COMMIT}"
+
+          test "$(
+            git -C "${CIRCL_SRC}" rev-parse HEAD^{tree}
+          )" = "${CIRCL_TREE}"
+
+          grep \
+            -Fx \
+            'module github.com/cloudflare/circl' \
+            "${CIRCL_SRC}/go.mod"
+
+          grep \
+            -Fx \
+            'go 1.25.0' \
+            "${CIRCL_SRC}/go.mod"
+
+          GO_MOD_SHA_BEFORE="$(
+            sha256sum "${CIRCL_SRC}/go.mod" |
+            awk '{print $1}'
+          )"
+
+          GO_SUM_SHA_BEFORE="$(
+            sha256sum "${CIRCL_SRC}/go.sum" |
+            awk '{print $1}'
+          )"
+
+          mkdir -p \
+            "${CIRCL_SRC}/cmd/qsv_mldsa_sixcase_harness"
+
+          cp \
+            "${QSV_SNAPSHOT}/runtime/qsv_mldsa_circl_sigver_harness_v0_1.go" \
+            "${CIRCL_SRC}/cmd/qsv_mldsa_sixcase_harness/main.go"
+
+          cmp \
+            "${QSV_SNAPSHOT}/runtime/qsv_mldsa_circl_sigver_harness_v0_1.go" \
+            "${CIRCL_SRC}/cmd/qsv_mldsa_sixcase_harness/main.go"
+
+          (
+            cd "${CIRCL_SRC}"
+
+            go build \
+              -mod=readonly \
+              -trimpath \
+              -o "${CIRCL_HARNESS_BIN}" \
+              ./cmd/qsv_mldsa_sixcase_harness
+          )
+
+          test -x "${CIRCL_HARNESS_BIN}"
+
+          test "$(
+            sha256sum "${CIRCL_SRC}/go.mod" |
+            awk '{print $1}'
+          )" = "${GO_MOD_SHA_BEFORE}"
+
+          test "$(
+            sha256sum "${CIRCL_SRC}/go.sum" |
+            awk '{print $1}'
+          )" = "${GO_SUM_SHA_BEFORE}"
+
+          CIRCL_HARNESS_BINARY_SHA="$(
+            sha256sum "${CIRCL_HARNESS_BIN}" |
+            awk '{print $1}'
+          )"
+
+          echo "CIRCL_SOURCE_COMMIT=${CIRCL_COMMIT}"
+          echo "CIRCL_SOURCE_TREE=${CIRCL_TREE}"
+          echo "CIRCL_HARNESS_BINARY_SHA256=${CIRCL_HARNESS_BINARY_SHA}"
+
+          echo "CIRCL_GO_MOD_SUM_UNCHANGED=PASS"
+          echo "CIRCL_HARNESS_COMPILED_FROM_PUBLISHED_BYTES=PASS"
+
+      - name: Verify all execution gates fail closed without crypto
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          unset QSV_EXECUTE_CRYPTO 2>/dev/null || true
+          test -z "${QSV_EXECUTE_CRYPTO+x}"
+
+          WORK="${RUNNER_TEMP}/qsv-cross-platform-precheck"
+          QSV_SNAPSHOT="${WORK}/qsv-snapshot"
+
+          EXTRACTOR="${QSV_SNAPSHOT}/runtime/qsv_mldsa_sixcase_extractor_v0_1.py"
+          PROFILE="${QSV_SNAPSHOT}/profiles/qsv-mldsa-nist-acvp-minimal-sigver-kat-profile-v0.1.json"
+
+          OPENSSL_HARNESS="${WORK}/qsv-openssl-harness"
+          CIRCL_HARNESS="${WORK}/qsv-circl-harness"
+
+          EXTRACTOR_REJECTED=0
+
+          run_extractor_gate() {
+            MODE="$1"
+            VALUE="${2:-}"
+
+            PAYLOAD="${WORK}/runtime-payload-${MODE}"
+            MANIFEST="${WORK}/runtime-manifest-${MODE}.json"
+
+            rm -rf "${PAYLOAD}" "${MANIFEST}"
+
+            set +e
+
+            if [ "${MODE}" = "unset" ]; then
+              env -u QSV_EXECUTE_CRYPTO \
+                PYTHONDONTWRITEBYTECODE=1 \
+                python3 \
+                  "${EXTRACTOR}" \
+                  --profile "${PROFILE}" \
+                  --prompt "${WORK}/prompt.json" \
+                  --expected "${WORK}/expectedResults.json" \
+                  --manifest "${MANIFEST}" \
+                  --runtime-dir "${PAYLOAD}" \
+                  > "${WORK}/extractor-${MODE}.out" \
+                  2>&1
+            else
+              env QSV_EXECUTE_CRYPTO="${VALUE}" \
+                PYTHONDONTWRITEBYTECODE=1 \
+                python3 \
+                  "${EXTRACTOR}" \
+                  --profile "${PROFILE}" \
+                  --prompt "${WORK}/prompt.json" \
+                  --expected "${WORK}/expectedResults.json" \
+                  --manifest "${MANIFEST}" \
+                  --runtime-dir "${PAYLOAD}" \
+                  > "${WORK}/extractor-${MODE}.out" \
+                  2>&1
+            fi
+
+            RC=$?
+
+            set -e
+
+            cat "${WORK}/extractor-${MODE}.out"
+
+            test "${RC}" -eq 1
+            test ! -e "${PAYLOAD}"
+            test ! -e "${MANIFEST}"
+
+            EXTRACTOR_REJECTED=$((EXTRACTOR_REJECTED + 1))
+          }
+
+          run_extractor_gate unset
+          run_extractor_gate upper-no NO
+          run_extractor_gate lower-yes yes
+
+          test "${EXTRACTOR_REJECTED}" -eq 3
+
+          OPENSSL_REJECTED=0
+
+          run_openssl_gate() {
+            MODE="$1"
+            VALUE="${2:-}"
+
+            set +e
+
+            if [ "${MODE}" = "unset" ]; then
+              env -u QSV_EXECUTE_CRYPTO \
+                "${OPENSSL_HARNESS}" \
+                ML-DSA-44 \
+                /nonexistent/pk \
+                /nonexistent/message \
+                /nonexistent/context \
+                /nonexistent/signature \
+                false \
+                > "${WORK}/openssl-gate-${MODE}.out" \
+                2>&1
+            else
+              env QSV_EXECUTE_CRYPTO="${VALUE}" \
+                "${OPENSSL_HARNESS}" \
+                ML-DSA-44 \
+                /nonexistent/pk \
+                /nonexistent/message \
+                /nonexistent/context \
+                /nonexistent/signature \
+                false \
+                > "${WORK}/openssl-gate-${MODE}.out" \
+                2>&1
+            fi
+
+            RC=$?
+
+            set -e
+
+            cat "${WORK}/openssl-gate-${MODE}.out"
+
+            test "${RC}" -eq 78
+
+            OPENSSL_REJECTED=$((OPENSSL_REJECTED + 1))
+          }
+
+          run_openssl_gate unset
+          run_openssl_gate upper-no NO
+          run_openssl_gate lower-yes yes
+
+          test "${OPENSSL_REJECTED}" -eq 3
+
+          CIRCL_REJECTED=0
+
+          run_circl_gate() {
+            MODE="$1"
+            VALUE="${2:-}"
+
+            set +e
+
+            if [ "${MODE}" = "unset" ]; then
+              env -u QSV_EXECUTE_CRYPTO \
+                "${CIRCL_HARNESS}" \
+                ML-DSA-44 \
+                /nonexistent/pk \
+                /nonexistent/message \
+                /nonexistent/context \
+                /nonexistent/signature \
+                false \
+                > "${WORK}/circl-gate-${MODE}.out" \
+                2>&1
+            else
+              env QSV_EXECUTE_CRYPTO="${VALUE}" \
+                "${CIRCL_HARNESS}" \
+                ML-DSA-44 \
+                /nonexistent/pk \
+                /nonexistent/message \
+                /nonexistent/context \
+                /nonexistent/signature \
+                false \
+                > "${WORK}/circl-gate-${MODE}.out" \
+                2>&1
+            fi
+
+            RC=$?
+
+            set -e
+
+            cat "${WORK}/circl-gate-${MODE}.out"
+
+            test "${RC}" -eq 78
+
+            CIRCL_REJECTED=$((CIRCL_REJECTED + 1))
+          }
+
+          run_circl_gate unset
+          run_circl_gate upper-no NO
+          run_circl_gate lower-yes yes
+
+          test "${CIRCL_REJECTED}" -eq 3
+
+          test -z "${QSV_EXECUTE_CRYPTO+x}"
+
+          echo "EXTRACTOR_GATE_REJECTED_COUNT=3"
+          echo "OPENSSL_GATE_REJECTED_COUNT=3"
+          echo "CIRCL_GATE_REJECTED_COUNT=3"
+
+          echo "QSV_EXECUTE_CRYPTO_YES_SET_IN_PRECHECK=NO"
+          echo "EXTRACTED_RUNTIME_VECTOR_PAYLOAD_EMITTED=NO"
+          echo "OPENSSL_EVP_PKEY_VERIFY_EXECUTED=NO"
+          echo "CIRCL_VERIFY_EXECUTED=NO"
+          echo "CRYPTOGRAPHIC_SIGNATURE_VERIFICATION_PERFORMED=NO"
+
+          echo "ALL_EXECUTION_GATES_FAIL_CLOSED=PASS"
+
+      - name: Final no-crypto precheck decision
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          unset QSV_EXECUTE_CRYPTO 2>/dev/null || true
+
+          test -z "${QSV_EXECUTE_CRYPTO+x}"
+
+          echo "QSV_MLDSA_GITHUB_ACTIONS_CROSS_PLATFORM_PRECHECK=PASS"
+
+          echo "TARGET_RUNNER=ubuntu-24.04"
+          echo "TARGET_ARCHITECTURE=x86_64"
+
+          echo "OPENSSL_SOURCE_BUILD_FROM_EXACT_COMMIT=YES"
+          echo "CIRCL_BUILD_FROM_EXACT_COMMIT=YES"
+
+          echo "SELECTED_CASE_COUNT=6"
+
+          echo "CRYPTOGRAPHIC_EXECUTION_PERFORMED=NO"
+          echo "CRYPTOGRAPHIC_SIGNATURE_VERIFICATION_PERFORMED=NO"
+          echo "RAW_RUNTIME_VECTOR_PAYLOAD_EMITTED=NO"
+
+          echo "THIRD_PARTY_INDEPENDENT_REPRODUCTION=false"
+          echo "GITHUB_RUNNER_IMMUTABLE_BUILD_ENVIRONMENT=false"
+          echo "ABSOLUTE_OPENSSL_BUILD_PROVENANCE_COMPLETE_CLAIM_ALLOWED=false"
+
+          echo "NIST_VALIDATION_CLAIM_ALLOWED=false"
+          echo "FIPS_204_CERTIFICATION_CLAIM_ALLOWED=false"
+          echo "COMPLETE_FIPS_204_CONFORMANCE_CLAIM_ALLOWED=false"
+          echo "COMPLETE_SIGVER_COVERAGE_CLAIM_ALLOWED=false"
+
+          echo "READY_FOR_EXPLICIT_GITHUB_ACTIONS_SIX_CASE_EXECUTION=YES"

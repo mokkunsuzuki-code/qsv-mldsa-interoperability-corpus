@@ -1,0 +1,181 @@
+{
+  "circl_linux_build_policy": {
+    "built_binary_sha256_must_be_recorded": true,
+    "detached_checkout_required": true,
+    "exact_source_commit_required": true,
+    "exact_source_tree_required": true,
+    "existing_upstream_go_mod_required": true,
+    "go_mod_init_allowed": false,
+    "go_mod_sum_mutation_allowed": false,
+    "go_version_must_be_recorded": true
+  },
+  "classification": "cross_platform_clean_environment_reproduction",
+  "execution_gate": {
+    "circl_linux_expectation_match_count_required": 6,
+    "circl_linux_result_count_required": 6,
+    "execution_error_count_required": 0,
+    "expectation_mismatch_count_required": 0,
+    "linux_cross_implementation_agreement_count_required": 6,
+    "mac_linux_circl_behavior_agreement_count_required": 6,
+    "mac_linux_openssl_behavior_agreement_count_required": 6,
+    "openssl_linux_expectation_match_count_required": 6,
+    "openssl_linux_result_count_required": 6,
+    "operational_error_count_required": 0,
+    "pass_decision": "cross_platform_clean_environment_reproduction_pass",
+    "qsv_execute_crypto_parent_environment_allowed": false,
+    "qsv_execute_crypto_yes_allowed_only_in_isolated_execution_subprocesses": true,
+    "raw_vector_payload_location": "ephemeral_tmp_only",
+    "raw_vector_payload_persistence_allowed": false,
+    "result_metadata_may_persist": true
+  },
+  "execution_scope": {
+    "cases": [
+      {
+        "expected_valid": false,
+        "parameter_set": "ML-DSA-44",
+        "tc_id": 1,
+        "tg_id": 1
+      },
+      {
+        "expected_valid": true,
+        "parameter_set": "ML-DSA-44",
+        "tc_id": 3,
+        "tg_id": 1
+      },
+      {
+        "expected_valid": false,
+        "parameter_set": "ML-DSA-65",
+        "tc_id": 31,
+        "tg_id": 3
+      },
+      {
+        "expected_valid": true,
+        "parameter_set": "ML-DSA-65",
+        "tc_id": 33,
+        "tg_id": 3
+      },
+      {
+        "expected_valid": false,
+        "parameter_set": "ML-DSA-87",
+        "tc_id": 61,
+        "tg_id": 5
+      },
+      {
+        "expected_valid": true,
+        "parameter_set": "ML-DSA-87",
+        "tc_id": 63,
+        "tg_id": 5
+      }
+    ],
+    "negative_case_count": 3,
+    "operation": "sigVer",
+    "parameter_sets": [
+      "ML-DSA-44",
+      "ML-DSA-65",
+      "ML-DSA-87"
+    ],
+    "positive_case_count": 3,
+    "revision": "FIPS204",
+    "selected_case_count": 6
+  },
+  "immutable_mac_baseline": {
+    "circl_expectation_match_count": 6,
+    "cross_implementation_agreement_count": 6,
+    "decision": "minimal_six_case_sigver_execution_pass",
+    "openssl_expectation_match_count": 6,
+    "operational_error_count": 0,
+    "platform": "macos-arm64",
+    "published_commit": "717337adbbcc493ed3de328411b287328b9290dd",
+    "published_tree": "854ed1fdc516c49420474d42c0660b07368d2aca",
+    "selected_case_count": 6,
+    "static_result_evidence_sha256": "1f73e8d2570063811bb065ae6fbabb34deae12d10d1778dcdee67a8245d1058c"
+  },
+  "openssl_linux_build_policy": {
+    "absolute_build_provenance_complete_claim_allowed": false,
+    "build_environment_must_be_recorded": true,
+    "built_binary_sha256_must_be_recorded": true,
+    "compiler_version_must_be_recorded": true,
+    "configure_command_must_be_recorded": true,
+    "configure_options": [
+      "no-shared"
+    ],
+    "configure_target": "linux-x86_64",
+    "detached_checkout_required": true,
+    "exact_source_commit_required": true,
+    "exact_source_tree_required": true,
+    "fresh_build_directory_required": true,
+    "runtime_version_must_equal": "3.6.3",
+    "source_and_build_recipe_provenance_required": true,
+    "source_commit_match_must_be_recorded": true,
+    "source_tree_match_must_be_recorded": true
+  },
+  "required_result_evidence": {
+    "bind_circl_commit_tree": true,
+    "bind_mac_baseline_commit": true,
+    "bind_mac_baseline_tree": true,
+    "bind_mac_static_result_evidence_sha256": true,
+    "bind_nist_commit_tree_and_file_hashes": true,
+    "bind_openssl_commit_tree": true,
+    "bind_runtime_authority_commit_tree": true,
+    "capture_circl_built_binary_sha256": true,
+    "capture_linux_environment": true,
+    "capture_openssl_build_recipe": true,
+    "capture_openssl_built_binary_sha256": true,
+    "capture_per_case_cross_implementation_agreement": true,
+    "capture_per_case_expected_and_actual_results": true,
+    "capture_per_case_mac_linux_behavior_agreement": true,
+    "raw_vector_payload_fields_allowed": false
+  },
+  "schema": "qsv.mldsa.cross-platform-clean-environment-reproduction-contract.v0.1",
+  "source_authorities": {
+    "circl": {
+      "commit": "cfa7c70defd831ffb0792ab2af560bfef43d60ca",
+      "tree": "b3a50c3f1b7a5f8cfac0cce655ae7ea7900e9139"
+    },
+    "nist_acvp": {
+      "commit": "975de31eb83d87039ec88934fdc47d8c312b892d",
+      "expected_results_sha256": "e1d84ef1b2f35196278ab0b0ed6a46ec62cc03d2dfa92c564199e1999bfb8ea6",
+      "prompt_sha256": "e2cba4589389756fa0bea1a7e6837138bf0a81f9d14234c9ee8f6d33caa1654e",
+      "tree": "a6b81add7faf8a8b647afcdc54268615decde9b5"
+    },
+    "openssl": {
+      "commit": "aae016bfd52fcad2bc9657c2c782cfdf73b1ed5f",
+      "tree": "a8a306c000bc2426afd3264b2c41bc7223728475",
+      "version": "3.6.3"
+    },
+    "qsv_runtime_authority": {
+      "commit": "fd892bd79478fb5250a4e4dfa53705dd58d8b173",
+      "tree": "37e27a32534381fc43affdeae7bcf9050ee990a2"
+    }
+  },
+  "target_execution_environment": {
+    "clean_ephemeral_environment_required": true,
+    "environment_metadata_required": [
+      "runner_os",
+      "runner_arch",
+      "runner_image_os",
+      "runner_image_version",
+      "uname",
+      "compiler_version",
+      "make_version",
+      "perl_version",
+      "go_version"
+    ],
+    "expected_architecture": "x86_64",
+    "expected_os_family": "linux",
+    "provider": "github_actions",
+    "runner_label": "ubuntu-24.04",
+    "third_party_independent_reproduction": false
+  },
+  "truth_boundaries": {
+    "cross_platform_agreement_implies_correctness": false,
+    "current_six_case_mac_baseline_may_be_rewritten": false,
+    "github_hosted_execution_is_third_party_independent_verification": false,
+    "github_runner_is_immutable_build_environment": false,
+    "openssl_build_provenance_complete_before_execution_evidence": false,
+    "reproduction_implies_complete_fips_204_conformance": false,
+    "reproduction_implies_complete_sigver_coverage": false,
+    "reproduction_implies_fips_204_certification": false,
+    "reproduction_implies_nist_validation": false
+  }
+}
