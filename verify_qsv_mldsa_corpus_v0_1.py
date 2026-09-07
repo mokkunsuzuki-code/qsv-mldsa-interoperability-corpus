@@ -53,6 +53,10 @@ EXPECTED_FILES = {
     ".github/workflows/qsv-mldsa-cross-platform-clean-environment-precheck-v0_1.yml.sha256",
     "verify_qsv_mldsa_cross_platform_precheck_workflow_candidate_v0_1.py",
     "verify_qsv_mldsa_cross_platform_precheck_workflow_candidate_v0_1.py.sha256",
+    ".github/workflows/qsv-mldsa-cross-platform-clean-environment-precheck-v0_2.yml",
+    ".github/workflows/qsv-mldsa-cross-platform-clean-environment-precheck-v0_2.yml.sha256",
+    "verify_qsv_mldsa_cross_platform_precheck_workflow_candidate_v0_2.py",
+    "verify_qsv_mldsa_cross_platform_precheck_workflow_candidate_v0_2.py.sha256",
     "verify_qsv_mldsa_corpus_v0_1.py",
     "verify_qsv_mldsa_corpus_v0_1.py.sha256",
 }
@@ -3733,6 +3737,436 @@ check(
         in workflow_text
     ),
 )
+
+
+#
+# Corrected GitHub Actions no-crypto precheck workflow v0.2.
+#
+v02_workflow_rel = (
+    ".github/workflows/"
+    "qsv-mldsa-cross-platform-clean-environment-precheck-v0_2.yml"
+)
+
+v02_workflow_sidecar_rel = (
+    v02_workflow_rel
+    + ".sha256"
+)
+
+v02_verifier_rel = (
+    "verify_qsv_mldsa_cross_platform_precheck_workflow_candidate_v0_2.py"
+)
+
+v02_verifier_sidecar_rel = (
+    v02_verifier_rel
+    + ".sha256"
+)
+
+
+check(
+    "v0.2 workflow hash",
+    sha256(v02_workflow_rel)
+    == "0351a06ab03e2ff27669f00e30e5e7647bcd54af20c6e905ba2e607233e035b9",
+)
+
+check(
+    "v0.2 workflow sidecar file hash",
+    sha256(v02_workflow_sidecar_rel)
+    == "8f7c07b069f486c75876de9eda7ace947a64ec22084204b1485179b79ca3ce9b",
+)
+
+check(
+    "v0.2 verifier hash",
+    sha256(v02_verifier_rel)
+    == "6788d28d8e1566e31553766d11aa99ec062735604ce8ef72896eecf06c32315a",
+)
+
+check(
+    "v0.2 verifier sidecar file hash",
+    sha256(v02_verifier_sidecar_rel)
+    == "a2e0f788fb4414e71ad6bb4648f6d4b952700c7d314a76885327b8cc306a5a2b",
+)
+
+
+check(
+    "v0.2 workflow sidecar declaration",
+    (
+        ROOT
+        / v02_workflow_sidecar_rel
+    ).read_text(
+        encoding="utf-8"
+    )
+    == (
+        "0351a06ab03e2ff27669f00e30e5e7647bcd54af20c6e905ba2e607233e035b9"
+        "  "
+        + v02_workflow_rel
+        + "\n"
+    ),
+)
+
+check(
+    "v0.2 verifier sidecar declaration",
+    (
+        ROOT
+        / v02_verifier_sidecar_rel
+    ).read_text(
+        encoding="utf-8"
+    )
+    == (
+        "6788d28d8e1566e31553766d11aa99ec062735604ce8ef72896eecf06c32315a"
+        "  "
+        + v02_verifier_rel
+        + "\n"
+    ),
+)
+
+
+v02_workflow = (
+    ROOT
+    / v02_workflow_rel
+).read_text(
+    encoding="utf-8"
+)
+
+
+check(
+    "v0.2 workflow version",
+    (
+        "name: QSV ML-DSA Cross-Platform "
+        "Clean-Environment Precheck v0.2"
+    )
+    in v02_workflow,
+)
+
+check(
+    "v0.2 manual dispatch count",
+    v02_workflow.count(
+        "workflow_dispatch:"
+    ) == 1,
+)
+
+check(
+    "v0.2 no push trigger",
+    "\n  push:"
+    not in v02_workflow,
+)
+
+check(
+    "v0.2 no pull-request trigger",
+    "\n  pull_request:"
+    not in v02_workflow,
+)
+
+check(
+    "v0.2 no schedule trigger",
+    "\n  schedule:"
+    not in v02_workflow,
+)
+
+check(
+    "v0.2 exact runner",
+    "runs-on: ubuntu-24.04"
+    in v02_workflow,
+)
+
+check(
+    "v0.2 contents read",
+    (
+        "permissions:\n"
+        "  contents: read\n"
+    )
+    in v02_workflow,
+)
+
+check(
+    "v0.2 contents write absent",
+    "contents: write"
+    not in v02_workflow,
+)
+
+check(
+    "v0.2 id-token write absent",
+    "id-token: write"
+    not in v02_workflow,
+)
+
+check(
+    "v0.2 external actions absent",
+    "uses:"
+    not in v02_workflow,
+)
+
+check(
+    "v0.2 git push absent",
+    "git push"
+    not in v02_workflow,
+)
+
+check(
+    "v0.2 artifact upload absent",
+    "upload-artifact"
+    not in v02_workflow,
+)
+
+check(
+    "v0.2 artifact download absent",
+    "download-artifact"
+    not in v02_workflow,
+)
+
+
+check(
+    "v0.2 design contract authority",
+    (
+        "DESIGN_CONTRACT_SHA256: "
+        "9f78c559fdcb564efe4320803ce55caa5fe26f379ec2627936fac3912aca2f71"
+    )
+    in v02_workflow,
+)
+
+check(
+    "v0.2 QSV baseline commit",
+    (
+        "QSV_COMMIT: "
+        "717337adbbcc493ed3de328411b287328b9290dd"
+    )
+    in v02_workflow,
+)
+
+check(
+    "v0.2 QSV baseline tree",
+    (
+        "QSV_TREE: "
+        "854ed1fdc516c49420474d42c0660b07368d2aca"
+    )
+    in v02_workflow,
+)
+
+check(
+    "v0.2 NIST authority",
+    (
+        "NIST_COMMIT: "
+        "975de31eb83d87039ec88934fdc47d8c312b892d"
+    )
+    in v02_workflow,
+)
+
+check(
+    "v0.2 CIRCL authority",
+    (
+        "CIRCL_COMMIT: "
+        "cfa7c70defd831ffb0792ab2af560bfef43d60ca"
+    )
+    in v02_workflow,
+)
+
+check(
+    "v0.2 OpenSSL authority",
+    (
+        "OPENSSL_COMMIT: "
+        "aae016bfd52fcad2bc9657c2c782cfdf73b1ed5f"
+    )
+    in v02_workflow,
+)
+
+
+check(
+    "v0.2 Go version",
+    "GO_VERSION_REQUIRED: 1.26.5"
+    in v02_workflow,
+)
+
+check(
+    "v0.2 Go archive",
+    (
+        "GO_LINUX_AMD64_ARCHIVE: "
+        "go1.26.5.linux-amd64.tar.gz"
+    )
+    in v02_workflow,
+)
+
+check(
+    "v0.2 Go URL",
+    (
+        "GO_LINUX_AMD64_URL: "
+        "https://go.dev/dl/go1.26.5.linux-amd64.tar.gz"
+    )
+    in v02_workflow,
+)
+
+check(
+    "v0.2 Go archive hash",
+    (
+        "GO_LINUX_AMD64_SHA256: "
+        "5c2c3b16caefa1d968a94c1daca04a7ca301a496d9b086e17ad77bb81393f053"
+    )
+    in v02_workflow,
+)
+
+check(
+    "v0.2 failed run id",
+    (
+        'PREVIOUS_FAILED_PRECHECK_RUN_ID: "'
+        "34079303462"
+        '"'
+    )
+    in v02_workflow,
+)
+
+check(
+    "v0.2 failed run log hash",
+    (
+        "PREVIOUS_FAILED_PRECHECK_RUN_LOG_SHA256: "
+        "97a3a09aff3a9e42cf57e8776b6a62b90e39c1ed4e695b9e4f39728f210e8d80"
+    )
+    in v02_workflow,
+)
+
+
+check(
+    "v0.2 runner toolcache dependency absent",
+    "RUNNER_TOOL_CACHE"
+    not in v02_workflow,
+)
+
+check(
+    "v0.2 Go archive SHA verification",
+    'sha256sum "${GO_ARCHIVE_PATH}"'
+    in v02_workflow,
+)
+
+check(
+    "v0.2 Go extraction root",
+    'GO_EXTRACT_ROOT="${WORK}/go-toolchain"'
+    in v02_workflow,
+)
+
+check(
+    "v0.2 WORK under RUNNER_TEMP",
+    (
+        'WORK="${RUNNER_TEMP}/'
+        'qsv-cross-platform-precheck"'
+    )
+    in v02_workflow,
+)
+
+check(
+    "v0.2 extraction containment",
+    (
+        'case "${GO_ROOT}" in'
+        in v02_workflow
+        and
+        '"${RUNNER_TEMP}"/*)'
+        in v02_workflow
+    ),
+)
+
+check(
+    "v0.2 archive deletion",
+    (
+        'rm -f "${GO_ARCHIVE_PATH}"'
+        in v02_workflow
+        and
+        'test ! -e "${GO_ARCHIVE_PATH}"'
+        in v02_workflow
+    ),
+)
+
+check(
+    "v0.2 local toolchain mode",
+    "export GOTOOLCHAIN=local"
+    in v02_workflow,
+)
+
+check(
+    "v0.2 exact Go runtime verification",
+    (
+        'test "${GO_VERSION}" = '
+        '"go version go1.26.5 linux/amd64"'
+    )
+    in v02_workflow,
+)
+
+
+v02_sha_index = v02_workflow.find(
+    'sha256sum "${GO_ARCHIVE_PATH}"'
+)
+
+v02_extract_index = v02_workflow.find(
+    '-xzf "${GO_ARCHIVE_PATH}"'
+)
+
+check(
+    "v0.2 hash before extraction",
+    (
+        v02_sha_index >= 0
+        and
+        v02_extract_index >= 0
+        and
+        v02_sha_index
+        < v02_extract_index
+    ),
+)
+
+
+check(
+    "v0.2 extractor negative gates",
+    "EXTRACTOR_GATE_REJECTED_COUNT=3"
+    in v02_workflow,
+)
+
+check(
+    "v0.2 OpenSSL negative gates",
+    "OPENSSL_GATE_REJECTED_COUNT=3"
+    in v02_workflow,
+)
+
+check(
+    "v0.2 CIRCL negative gates",
+    "CIRCL_GATE_REJECTED_COUNT=3"
+    in v02_workflow,
+)
+
+check(
+    "v0.2 all gates fail closed",
+    "ALL_EXECUTION_GATES_FAIL_CLOSED=PASS"
+    in v02_workflow,
+)
+
+
+check(
+    "v0.2 crypto enable absent",
+    "QSV_EXECUTE_CRYPTO=YES"
+    not in v02_workflow,
+)
+
+check(
+    "v0.2 crypto execution false",
+    "CRYPTOGRAPHIC_EXECUTION_PERFORMED=NO"
+    in v02_workflow,
+)
+
+check(
+    "v0.2 signature verification false",
+    (
+        "CRYPTOGRAPHIC_SIGNATURE_VERIFICATION_PERFORMED=NO"
+        in v02_workflow
+    ),
+)
+
+check(
+    "v0.2 raw payload false",
+    "RAW_RUNTIME_VECTOR_PAYLOAD_EMITTED=NO"
+    in v02_workflow,
+)
+
+check(
+    "v0.2 explicit next execution marker",
+    (
+        "READY_FOR_EXPLICIT_GITHUB_ACTIONS_SIX_CASE_EXECUTION=YES"
+        in v02_workflow
+    ),
+)
+
 
 print(
     "qsv_mldsa_corpus_check_count="
