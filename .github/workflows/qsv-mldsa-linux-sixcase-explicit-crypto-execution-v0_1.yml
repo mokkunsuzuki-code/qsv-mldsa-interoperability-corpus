@@ -1,0 +1,1369 @@
+name: QSV ML-DSA Linux six-case explicit cryptographic reproduction v0.1
+
+"on":
+  "workflow_dispatch": {}
+
+permissions:
+  contents: read
+
+jobs:
+  explicit-six-case-crypto:
+    runs-on: ubuntu-24.04
+
+    env:
+      QSV_REMOTE: https://github.com/mokkunsuzuki-code/qsv-mldsa-interoperability-corpus.git
+
+      PUBLISHED_BASE_COMMIT: "9147de5e27a2764a95d7ef296b24b8c5bf235286"
+      PUBLISHED_BASE_TREE: "ee64d8091cbe9b0b811b5310b1f58788142da70d"
+      PUBLISHED_BASE_ROOT_SHA256: "323485b7d41ba631d04e577bb9666f4779db63eb9094bfdcee084fc7e873ba26"
+
+      AUTHORITY_DESIGN_DIAGNOSTIC_SHA256: "ec0efd2f1c2b175b223a44f0c5b9fd9af4170c241def47aab4da5b88e6843bc4"
+      EXACT_RUNTIME_INTERFACE_CLOSURE_SHA256: "2b0597aff36b603b22e3fd9f59bebb71a1f6920337ec488d76a00ef1626f0beb"
+
+      ATTEMPT_1_FAILURE_DIAGNOSTIC_SHA256: "0647b5c4350be4edb8ee1983e576008ae11a3fd7cb6f5d4c8e75f2b9aad8b068"
+      ATTEMPT_1_FAILURE_DIAGNOSTIC_SIDECAR_FILE_SHA256: "e1c8c85290bd9a2136d067161aca96c9ec200aa53634dab389d5dcc44d6d04e5"
+
+      NO_CRYPTO_PRECHECK_WORKFLOW_ID: "351986290"
+      NO_CRYPTO_PRECHECK_RUN_ID: "34083609487"
+      NO_CRYPTO_PRECHECK_JOB_ID: "101623392974"
+
+      NO_CRYPTO_EVIDENCE_SHA256: "bbc7f498231b96726e7bb7d4412269088d74e75cc7f15208974c937bbda2d31f"
+      NO_CRYPTO_VERIFIER_SHA256: "d37f60d22b172ed28655938dfe6afb02b3fe6a5f597fa3b04d721f5a3e547e1c"
+
+      PROFILE_SHA256: "0807afb1b87b73d556ba43a07943f62313edb623d74c13024b83c7dfa132e98d"
+      EXTRACTOR_SHA256: "0bdad8db61b008ce50e6c53a472d3e56d36cf8169318cb50474672d62e566679"
+      METADATA_SHA256: "27104ea68cb2c47c10c0265ca8772b2c4af792ea7b2d5d34925511aefc2592d6"
+      OPENSSL_HARNESS_SOURCE_SHA256: "0d5c2030409425115680d3140429918210fbc63c5f18bb0c08257314bd6e6240"
+      CIRCL_HARNESS_SOURCE_SHA256: "f3c551821f4c31b8f7fd7242e66002c4aa1cc3dd0abb0c56710f3d0a91fc0fed"
+      RUNTIME_CONTRACT_SHA256: "6e3c5161c978ec4a045ad1c72ed491967ae66c1501d83aab660ffcde7cca307e"
+
+      NIST_REMOTE: https://github.com/usnistgov/ACVP-Server.git
+      NIST_COMMIT: "975de31eb83d87039ec88934fdc47d8c312b892d"
+      NIST_TREE: "a6b81add7faf8a8b647afcdc54268615decde9b5"
+      NIST_PROMPT_SHA256: "e2cba4589389756fa0bea1a7e6837138bf0a81f9d14234c9ee8f6d33caa1654e"
+      NIST_EXPECTED_RESULTS_SHA256: "e1d84ef1b2f35196278ab0b0ed6a46ec62cc03d2dfa92c564199e1999bfb8ea6"
+
+      OPENSSL_REMOTE: https://github.com/openssl/openssl.git
+      OPENSSL_VERSION_REQUIRED: "3.6.3"
+      OPENSSL_COMMIT: "aae016bfd52fcad2bc9657c2c782cfdf73b1ed5f"
+      OPENSSL_TREE: "a8a306c000bc2426afd3264b2c41bc7223728475"
+
+      CIRCL_REMOTE: https://github.com/cloudflare/circl.git
+      CIRCL_COMMIT: "cfa7c70defd831ffb0792ab2af560bfef43d60ca"
+      CIRCL_TREE: "b3a50c3f1b7a5f8cfac0cce655ae7ea7900e9139"
+
+      GO_VERSION_REQUIRED: "1.26.5"
+      GO_LINUX_AMD64_ARCHIVE: go1.26.5.linux-amd64.tar.gz
+      GO_LINUX_AMD64_URL: https://go.dev/dl/go1.26.5.linux-amd64.tar.gz
+      GO_LINUX_AMD64_SHA256: "5c2c3b16caefa1d968a94c1daca04a7ca301a496d9b086e17ad77bb81393f053"
+
+      EXPECTED_TOTAL_CASE_COUNT: "6"
+      EXPECTED_VALID_CASE_COUNT: "3"
+      EXPECTED_INVALID_CASE_COUNT: "3"
+
+    steps:
+      - name: Validate execution authority and parent gate
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          unset QSV_EXECUTE_CRYPTO 2>/dev/null || true
+          test -z "${QSV_EXECUTE_CRYPTO+x}"
+
+          test "${PUBLISHED_BASE_COMMIT}" = "9147de5e27a2764a95d7ef296b24b8c5bf235286"
+          test "${PUBLISHED_BASE_TREE}" = "ee64d8091cbe9b0b811b5310b1f58788142da70d"
+
+          test "${AUTHORITY_DESIGN_DIAGNOSTIC_SHA256}" = "ec0efd2f1c2b175b223a44f0c5b9fd9af4170c241def47aab4da5b88e6843bc4"
+          test "${EXACT_RUNTIME_INTERFACE_CLOSURE_SHA256}" = "2b0597aff36b603b22e3fd9f59bebb71a1f6920337ec488d76a00ef1626f0beb"
+
+          test "${ATTEMPT_1_FAILURE_DIAGNOSTIC_SHA256}" = "0647b5c4350be4edb8ee1983e576008ae11a3fd7cb6f5d4c8e75f2b9aad8b068"
+          test "${ATTEMPT_1_FAILURE_DIAGNOSTIC_SIDECAR_FILE_SHA256}" = "e1c8c85290bd9a2136d067161aca96c9ec200aa53634dab389d5dcc44d6d04e5"
+
+          test "${EXPECTED_TOTAL_CASE_COUNT}" = "6"
+          test "${EXPECTED_VALID_CASE_COUNT}" = "3"
+          test "${EXPECTED_INVALID_CASE_COUNT}" = "3"
+
+          echo "ATTEMPT_1_YAML_FAILURE_LINEAGE_BOUND=PASS"
+          echo "EXPLICIT_CRYPTO_AUTHORITY_ENVIRONMENT_BINDING=PASS"
+          echo "QSV_EXECUTE_CRYPTO_PARENT_ENVIRONMENT=ABSENT"
+
+      - name: Record runner environment
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          unset QSV_EXECUTE_CRYPTO 2>/dev/null || true
+          test -z "${QSV_EXECUTE_CRYPTO+x}"
+
+          test "${RUNNER_OS}" = "Linux"
+          test "${RUNNER_ARCH}" = "X64"
+          test "$(uname -m)" = "x86_64"
+
+          echo "RUNNER_OS=${RUNNER_OS}"
+          echo "RUNNER_ARCH=${RUNNER_ARCH}"
+          echo "RUNNER_IMAGE_OS=${ImageOS:-UNSET}"
+          echo "RUNNER_IMAGE_VERSION=${ImageVersion:-UNSET}"
+          echo "UNAME=$(uname -a)"
+          echo "CC_VERSION=$(cc --version | head -n 1)"
+          echo "GCC_VERSION=$(gcc --version | head -n 1)"
+          echo "MAKE_VERSION=$(make --version | head -n 1)"
+          echo "PERL_VERSION=$(perl -e 'print $^V')"
+          echo "PYTHON_VERSION=$(python3 --version)"
+
+          echo "QSV_EXECUTE_CRYPTO_PARENT_ENVIRONMENT=ABSENT"
+          echo "RUNNER_ENVIRONMENT_CAPTURE=PASS"
+
+      - name: Fetch exact published QSV and no-crypto evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          unset QSV_EXECUTE_CRYPTO 2>/dev/null || true
+          test -z "${QSV_EXECUTE_CRYPTO+x}"
+
+          WORK="${RUNNER_TEMP}/qsv-linux-sixcase-explicit"
+          QSV_REPO="${WORK}/qsv-repo"
+          QSV_SNAPSHOT="${WORK}/qsv-snapshot"
+          FOUR="${WORK}/no-crypto-four"
+
+          rm -rf "${WORK}"
+          mkdir -p "${QSV_REPO}" "${QSV_SNAPSHOT}" "${FOUR}"
+
+          git -C "${QSV_REPO}" init --quiet
+
+          git -C "${QSV_REPO}" fetch \
+            --quiet \
+            --depth=1 \
+            "${QSV_REMOTE}" \
+            "${PUBLISHED_BASE_COMMIT}"
+
+          git -C "${QSV_REPO}" checkout \
+            --quiet \
+            --detach \
+            "${PUBLISHED_BASE_COMMIT}"
+
+          test "$(
+            git -C "${QSV_REPO}" rev-parse HEAD
+          )" = "${PUBLISHED_BASE_COMMIT}"
+
+          test "$(
+            git -C "${QSV_REPO}" rev-parse HEAD^{tree}
+          )" = "${PUBLISHED_BASE_TREE}"
+
+          git -C "${QSV_REPO}" archive HEAD |
+            tar -x -C "${QSV_SNAPSHOT}"
+
+          test "$(
+            find "${QSV_SNAPSHOT}" -type f |
+            wc -l |
+            tr -d ' '
+          )" = "60"
+
+          test "$(
+            sha256sum "${QSV_SNAPSHOT}/verify_qsv_mldsa_corpus_v0_1.py" |
+            awk '{print $1}'
+          )" = "${PUBLISHED_BASE_ROOT_SHA256}"
+
+          test "$(
+            sha256sum "${QSV_SNAPSHOT}/profiles/qsv-mldsa-nist-acvp-minimal-sigver-kat-profile-v0.1.json" |
+            awk '{print $1}'
+          )" = "${PROFILE_SHA256}"
+
+          test "$(
+            sha256sum "${QSV_SNAPSHOT}/runtime/qsv_mldsa_sixcase_extractor_v0_1.py" |
+            awk '{print $1}'
+          )" = "${EXTRACTOR_SHA256}"
+
+          test "$(
+            sha256sum "${QSV_SNAPSHOT}/runtime/qsv_mldsa_sixcase_metadata_v0_1.json" |
+            awk '{print $1}'
+          )" = "${METADATA_SHA256}"
+
+          test "$(
+            sha256sum "${QSV_SNAPSHOT}/runtime/qsv_mldsa_openssl_sigver_harness_v0_1.c" |
+            awk '{print $1}'
+          )" = "${OPENSSL_HARNESS_SOURCE_SHA256}"
+
+          test "$(
+            sha256sum "${QSV_SNAPSHOT}/runtime/qsv_mldsa_circl_sigver_harness_v0_1.go" |
+            awk '{print $1}'
+          )" = "${CIRCL_HARNESS_SOURCE_SHA256}"
+
+          test "$(
+            sha256sum "${QSV_SNAPSHOT}/runtime/qsv_mldsa_runtime_harness_contract_v0_1.json" |
+            awk '{print $1}'
+          )" = "${RUNTIME_CONTRACT_SHA256}"
+
+          test "$(
+            sha256sum "${QSV_SNAPSHOT}/qsv_mldsa_v0_3_no_crypto_precheck_run_evidence_v0_1.json" |
+            awk '{print $1}'
+          )" = "${NO_CRYPTO_EVIDENCE_SHA256}"
+
+          test "$(
+            sha256sum "${QSV_SNAPSHOT}/verify_qsv_mldsa_v0_3_no_crypto_precheck_run_evidence_v0_1.py" |
+            awk '{print $1}'
+          )" = "${NO_CRYPTO_VERIFIER_SHA256}"
+
+          (
+            cd "${QSV_SNAPSHOT}"
+
+            PYTHONDONTWRITEBYTECODE=1 \
+            python3 verify_qsv_mldsa_corpus_v0_1.py
+          ) > "${WORK}/qsv-root.out"
+
+          cat "${WORK}/qsv-root.out"
+
+          grep -Fx \
+            'qsv_mldsa_corpus_check_count=573' \
+            "${WORK}/qsv-root.out"
+
+          grep -Fx \
+            'qsv_mldsa_corpus_pass_count=573' \
+            "${WORK}/qsv-root.out"
+
+          grep -Fx \
+            'qsv_mldsa_corpus_failure_count=0' \
+            "${WORK}/qsv-root.out"
+
+          cp \
+            "${QSV_SNAPSHOT}/qsv_mldsa_v0_3_no_crypto_precheck_run_evidence_v0_1.json" \
+            "${QSV_SNAPSHOT}/qsv_mldsa_v0_3_no_crypto_precheck_run_evidence_v0_1.json.sha256" \
+            "${QSV_SNAPSHOT}/verify_qsv_mldsa_v0_3_no_crypto_precheck_run_evidence_v0_1.py" \
+            "${QSV_SNAPSHOT}/verify_qsv_mldsa_v0_3_no_crypto_precheck_run_evidence_v0_1.py.sha256" \
+            "${FOUR}/"
+
+          PYTHONDONTWRITEBYTECODE=1 \
+          python3 \
+            "${FOUR}/verify_qsv_mldsa_v0_3_no_crypto_precheck_run_evidence_v0_1.py" \
+            "${FOUR}" \
+            > "${WORK}/no-crypto-evidence.out"
+
+          cat "${WORK}/no-crypto-evidence.out"
+
+          grep -Fx \
+            'QSV_MLDSA_V0_3_NO_CRYPTO_RUN_EVIDENCE_VERIFICATION=PASS' \
+            "${WORK}/no-crypto-evidence.out"
+
+          grep -Fx \
+            'TOTAL_NEGATIVE_GATE_REJECTED_COUNT=9' \
+            "${WORK}/no-crypto-evidence.out"
+
+          grep -Fx \
+            'CRYPTOGRAPHIC_EXECUTION_PERFORMED=NO' \
+            "${WORK}/no-crypto-evidence.out"
+
+          echo "EXACT_PUBLISHED_QSV_BASELINE=PASS"
+          echo "PUBLISHED_NO_CRYPTO_PRECHECK_EVIDENCE_REVERIFIED=PASS"
+
+      - name: Fetch exact NIST ACVP six-case authority
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          unset QSV_EXECUTE_CRYPTO 2>/dev/null || true
+          test -z "${QSV_EXECUTE_CRYPTO+x}"
+
+          WORK="${RUNNER_TEMP}/qsv-linux-sixcase-explicit"
+          NIST="${WORK}/nist"
+
+          mkdir -p "${NIST}"
+
+          git -C "${NIST}" init --quiet
+
+          git -C "${NIST}" fetch \
+            --quiet \
+            --depth=1 \
+            "${NIST_REMOTE}" \
+            "${NIST_COMMIT}"
+
+          git -C "${NIST}" checkout \
+            --quiet \
+            --detach \
+            "${NIST_COMMIT}"
+
+          test "$(
+            git -C "${NIST}" rev-parse HEAD
+          )" = "${NIST_COMMIT}"
+
+          test "$(
+            git -C "${NIST}" rev-parse HEAD^{tree}
+          )" = "${NIST_TREE}"
+
+          cp \
+            "${NIST}/gen-val/json-files/ML-DSA-sigVer-FIPS204/prompt.json" \
+            "${WORK}/prompt.json"
+
+          cp \
+            "${NIST}/gen-val/json-files/ML-DSA-sigVer-FIPS204/expectedResults.json" \
+            "${WORK}/expectedResults.json"
+
+          test "$(
+            sha256sum "${WORK}/prompt.json" |
+            awk '{print $1}'
+          )" = "${NIST_PROMPT_SHA256}"
+
+          test "$(
+            sha256sum "${WORK}/expectedResults.json" |
+            awk '{print $1}'
+          )" = "${NIST_EXPECTED_RESULTS_SHA256}"
+
+          echo "NIST_SOURCE_COMMIT=${NIST_COMMIT}"
+          echo "NIST_SOURCE_TREE=${NIST_TREE}"
+          echo "EXACT_NIST_SIX_CASE_SOURCE_AUTHORITY=PASS"
+
+      - name: Build exact OpenSSL 3.6.3 source and harness
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          unset QSV_EXECUTE_CRYPTO 2>/dev/null || true
+          test -z "${QSV_EXECUTE_CRYPTO+x}"
+
+          WORK="${RUNNER_TEMP}/qsv-linux-sixcase-explicit"
+          QSV_SNAPSHOT="${WORK}/qsv-snapshot"
+
+          OPENSSL_SRC="${WORK}/openssl-src"
+          OPENSSL_INSTALL="${WORK}/openssl-install"
+          OPENSSL_HARNESS_BIN="${WORK}/qsv-openssl-harness"
+
+          mkdir -p "${OPENSSL_SRC}"
+
+          git -C "${OPENSSL_SRC}" init --quiet
+
+          git -C "${OPENSSL_SRC}" fetch \
+            --quiet \
+            --depth=1 \
+            "${OPENSSL_REMOTE}" \
+            "${OPENSSL_COMMIT}"
+
+          git -C "${OPENSSL_SRC}" checkout \
+            --quiet \
+            --detach \
+            "${OPENSSL_COMMIT}"
+
+          test "$(
+            git -C "${OPENSSL_SRC}" rev-parse HEAD
+          )" = "${OPENSSL_COMMIT}"
+
+          test "$(
+            git -C "${OPENSSL_SRC}" rev-parse HEAD^{tree}
+          )" = "${OPENSSL_TREE}"
+
+          (
+            cd "${OPENSSL_SRC}"
+
+            ./Configure \
+              linux-x86_64 \
+              no-shared \
+              --prefix="${OPENSSL_INSTALL}" \
+              --openssldir="${OPENSSL_INSTALL}/ssl"
+
+            make -j2
+            make install_sw
+          )
+
+          OPENSSL_VERSION="$(
+            "${OPENSSL_INSTALL}/bin/openssl" version |
+            awk '{print $2}'
+          )"
+
+          test "${OPENSSL_VERSION}" = "${OPENSSL_VERSION_REQUIRED}"
+
+          LIBCRYPTO="$(
+            find "${OPENSSL_INSTALL}" \
+              -type f \
+              -name libcrypto.a \
+              -print \
+              -quit
+          )"
+
+          test -n "${LIBCRYPTO}"
+          test -f "${LIBCRYPTO}"
+
+          cc \
+            -std=c11 \
+            -Wall \
+            -Wextra \
+            -Werror \
+            -I"${OPENSSL_INSTALL}/include" \
+            "${QSV_SNAPSHOT}/runtime/qsv_mldsa_openssl_sigver_harness_v0_1.c" \
+            "${LIBCRYPTO}" \
+            -ldl \
+            -pthread \
+            -o "${OPENSSL_HARNESS_BIN}"
+
+          test -x "${OPENSSL_HARNESS_BIN}"
+
+          OPENSSL_BINARY_SHA="$(
+            sha256sum "${OPENSSL_INSTALL}/bin/openssl" |
+            awk '{print $1}'
+          )"
+
+          LIBCRYPTO_SHA="$(
+            sha256sum "${LIBCRYPTO}" |
+            awk '{print $1}'
+          )"
+
+          OPENSSL_HARNESS_BINARY_SHA="$(
+            sha256sum "${OPENSSL_HARNESS_BIN}" |
+            awk '{print $1}'
+          )"
+
+          printf '%s\n' \
+            "OPENSSL_BUILT_BINARY_SHA256=${OPENSSL_BINARY_SHA}" \
+            "OPENSSL_BUILT_LIBCRYPTO_SHA256=${LIBCRYPTO_SHA}" \
+            "OPENSSL_HARNESS_BINARY_SHA256=${OPENSSL_HARNESS_BINARY_SHA}" \
+            > "${WORK}/openssl-build.env"
+
+          echo "OPENSSL_SOURCE_COMMIT=${OPENSSL_COMMIT}"
+          echo "OPENSSL_SOURCE_TREE=${OPENSSL_TREE}"
+          echo "OPENSSL_BUILT_RUNTIME_VERSION=${OPENSSL_VERSION}"
+          echo "OPENSSL_BUILT_BINARY_SHA256=${OPENSSL_BINARY_SHA}"
+          echo "OPENSSL_BUILT_LIBCRYPTO_SHA256=${LIBCRYPTO_SHA}"
+          echo "OPENSSL_HARNESS_BINARY_SHA256=${OPENSSL_HARNESS_BINARY_SHA}"
+
+          echo "OPENSSL_EXACT_SOURCE_BUILD=PASS"
+          echo "OPENSSL_HARNESS_COMPILED_FROM_PUBLISHED_BYTES=PASS"
+          echo "OPENSSL_BUILD_ENV_WRITTEN_WITH_INDENTATION_SAFE_PRINTF=PASS"
+
+      - name: Fetch exact official Go archive and build exact CIRCL source
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          unset QSV_EXECUTE_CRYPTO 2>/dev/null || true
+          test -z "${QSV_EXECUTE_CRYPTO+x}"
+
+          WORK="${RUNNER_TEMP}/qsv-linux-sixcase-explicit"
+          QSV_SNAPSHOT="${WORK}/qsv-snapshot"
+
+          CIRCL_SRC="${WORK}/circl-src"
+          CIRCL_HARNESS_BIN="${WORK}/qsv-circl-harness"
+
+          GO_ARCHIVE_PATH="${WORK}/${GO_LINUX_AMD64_ARCHIVE}"
+          GO_EXTRACT_ROOT="${WORK}/go-toolchain"
+
+          curl \
+            --fail \
+            --location \
+            --proto '=https' \
+            --tlsv1.2 \
+            "${GO_LINUX_AMD64_URL}" \
+            --output "${GO_ARCHIVE_PATH}"
+
+          test "$(
+            sha256sum "${GO_ARCHIVE_PATH}" |
+            awk '{print $1}'
+          )" = "${GO_LINUX_AMD64_SHA256}"
+
+          mkdir -p "${GO_EXTRACT_ROOT}"
+
+          tar \
+            -C "${GO_EXTRACT_ROOT}" \
+            -xzf "${GO_ARCHIVE_PATH}"
+
+          export PATH="${GO_EXTRACT_ROOT}/go/bin:${PATH}"
+          export GOTOOLCHAIN=local
+
+          GO_VERSION="$(go version)"
+
+          test "${GO_VERSION}" = "go version go1.26.5 linux/amd64"
+
+          rm -f "${GO_ARCHIVE_PATH}"
+          test ! -e "${GO_ARCHIVE_PATH}"
+
+          mkdir -p "${CIRCL_SRC}"
+
+          git -C "${CIRCL_SRC}" init --quiet
+
+          git -C "${CIRCL_SRC}" fetch \
+            --quiet \
+            --depth=1 \
+            "${CIRCL_REMOTE}" \
+            "${CIRCL_COMMIT}"
+
+          git -C "${CIRCL_SRC}" checkout \
+            --quiet \
+            --detach \
+            "${CIRCL_COMMIT}"
+
+          test "$(
+            git -C "${CIRCL_SRC}" rev-parse HEAD
+          )" = "${CIRCL_COMMIT}"
+
+          test "$(
+            git -C "${CIRCL_SRC}" rev-parse HEAD^{tree}
+          )" = "${CIRCL_TREE}"
+
+          grep -Fx \
+            'module github.com/cloudflare/circl' \
+            "${CIRCL_SRC}/go.mod"
+
+          grep -Fx \
+            'go 1.25.0' \
+            "${CIRCL_SRC}/go.mod"
+
+          GO_MOD_SHA_BEFORE="$(
+            sha256sum "${CIRCL_SRC}/go.mod" |
+            awk '{print $1}'
+          )"
+
+          GO_SUM_SHA_BEFORE="$(
+            sha256sum "${CIRCL_SRC}/go.sum" |
+            awk '{print $1}'
+          )"
+
+          mkdir -p \
+            "${CIRCL_SRC}/cmd/qsv_mldsa_sixcase_harness"
+
+          cp \
+            "${QSV_SNAPSHOT}/runtime/qsv_mldsa_circl_sigver_harness_v0_1.go" \
+            "${CIRCL_SRC}/cmd/qsv_mldsa_sixcase_harness/main.go"
+
+          (
+            cd "${CIRCL_SRC}"
+
+            go build \
+              -mod=readonly \
+              -trimpath \
+              -o "${CIRCL_HARNESS_BIN}" \
+              ./cmd/qsv_mldsa_sixcase_harness
+          )
+
+          test "$(
+            sha256sum "${CIRCL_SRC}/go.mod" |
+            awk '{print $1}'
+          )" = "${GO_MOD_SHA_BEFORE}"
+
+          test "$(
+            sha256sum "${CIRCL_SRC}/go.sum" |
+            awk '{print $1}'
+          )" = "${GO_SUM_SHA_BEFORE}"
+
+          CIRCL_HARNESS_BINARY_SHA="$(
+            sha256sum "${CIRCL_HARNESS_BIN}" |
+            awk '{print $1}'
+          )"
+
+          printf '%s\n' \
+            "CIRCL_HARNESS_BINARY_SHA256=${CIRCL_HARNESS_BINARY_SHA}" \
+            > "${WORK}/circl-build.env"
+
+          echo "GO_VERSION=${GO_VERSION}"
+          echo "GO_OFFICIAL_ARCHIVE_SHA256_VERIFICATION=PASS"
+          echo "GO_ARCHIVE_REMOVED_AFTER_EXTRACTION=PASS"
+
+          echo "CIRCL_SOURCE_COMMIT=${CIRCL_COMMIT}"
+          echo "CIRCL_SOURCE_TREE=${CIRCL_TREE}"
+          echo "CIRCL_HARNESS_BINARY_SHA256=${CIRCL_HARNESS_BINARY_SHA}"
+
+          echo "CIRCL_GO_MOD_SUM_UNCHANGED=PASS"
+          echo "CIRCL_HARNESS_COMPILED_FROM_PUBLISHED_BYTES=PASS"
+          echo "CIRCL_BUILD_ENV_WRITTEN_WITH_INDENTATION_SAFE_PRINTF=PASS"
+
+      - name: Reconfirm fail-closed gates before explicit crypto
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          unset QSV_EXECUTE_CRYPTO 2>/dev/null || true
+          test -z "${QSV_EXECUTE_CRYPTO+x}"
+
+          WORK="${RUNNER_TEMP}/qsv-linux-sixcase-explicit"
+          QSV_SNAPSHOT="${WORK}/qsv-snapshot"
+
+          EXTRACTOR="${QSV_SNAPSHOT}/runtime/qsv_mldsa_sixcase_extractor_v0_1.py"
+          PROFILE="${QSV_SNAPSHOT}/profiles/qsv-mldsa-nist-acvp-minimal-sigver-kat-profile-v0.1.json"
+
+          OPENSSL_HARNESS="${WORK}/qsv-openssl-harness"
+          CIRCL_HARNESS="${WORK}/qsv-circl-harness"
+
+          EXTRACTOR_REJECTED=0
+
+          run_extractor_gate() {
+            MODE="$1"
+            VALUE="${2:-}"
+
+            PAYLOAD="${WORK}/negative-extractor-${MODE}"
+            MANIFEST="${WORK}/negative-extractor-${MODE}.json"
+
+            rm -rf "${PAYLOAD}" "${MANIFEST}"
+
+            set +e
+
+            if [ "${MODE}" = "unset" ]; then
+              env -u QSV_EXECUTE_CRYPTO \
+                PYTHONDONTWRITEBYTECODE=1 \
+                python3 \
+                  "${EXTRACTOR}" \
+                  --profile "${PROFILE}" \
+                  --prompt "${WORK}/prompt.json" \
+                  --expected "${WORK}/expectedResults.json" \
+                  --manifest "${MANIFEST}" \
+                  --runtime-dir "${PAYLOAD}" \
+                  > "${WORK}/negative-extractor-${MODE}.out" \
+                  2>&1
+            else
+              env QSV_EXECUTE_CRYPTO="${VALUE}" \
+                PYTHONDONTWRITEBYTECODE=1 \
+                python3 \
+                  "${EXTRACTOR}" \
+                  --profile "${PROFILE}" \
+                  --prompt "${WORK}/prompt.json" \
+                  --expected "${WORK}/expectedResults.json" \
+                  --manifest "${MANIFEST}" \
+                  --runtime-dir "${PAYLOAD}" \
+                  > "${WORK}/negative-extractor-${MODE}.out" \
+                  2>&1
+            fi
+
+            RC=$?
+            set -e
+
+            test "${RC}" -ne 0
+            test ! -e "${PAYLOAD}"
+
+            EXTRACTOR_REJECTED=$((EXTRACTOR_REJECTED + 1))
+          }
+
+          run_extractor_gate unset
+          run_extractor_gate upper-no NO
+          run_extractor_gate lower-yes yes
+
+          test "${EXTRACTOR_REJECTED}" -eq 3
+
+          OPENSSL_REJECTED=0
+
+          run_openssl_gate() {
+            MODE="$1"
+            VALUE="${2:-}"
+
+            set +e
+
+            if [ "${MODE}" = "unset" ]; then
+              env -u QSV_EXECUTE_CRYPTO \
+                "${OPENSSL_HARNESS}" \
+                ML-DSA-44 \
+                /nonexistent/pk \
+                /nonexistent/message \
+                /nonexistent/context \
+                /nonexistent/signature \
+                false \
+                > "${WORK}/negative-openssl-${MODE}.out" \
+                2>&1
+            else
+              env QSV_EXECUTE_CRYPTO="${VALUE}" \
+                "${OPENSSL_HARNESS}" \
+                ML-DSA-44 \
+                /nonexistent/pk \
+                /nonexistent/message \
+                /nonexistent/context \
+                /nonexistent/signature \
+                false \
+                > "${WORK}/negative-openssl-${MODE}.out" \
+                2>&1
+            fi
+
+            RC=$?
+            set -e
+
+            test "${RC}" -eq 78
+
+            OPENSSL_REJECTED=$((OPENSSL_REJECTED + 1))
+          }
+
+          run_openssl_gate unset
+          run_openssl_gate upper-no NO
+          run_openssl_gate lower-yes yes
+
+          test "${OPENSSL_REJECTED}" -eq 3
+
+          CIRCL_REJECTED=0
+
+          run_circl_gate() {
+            MODE="$1"
+            VALUE="${2:-}"
+
+            set +e
+
+            if [ "${MODE}" = "unset" ]; then
+              env -u QSV_EXECUTE_CRYPTO \
+                "${CIRCL_HARNESS}" \
+                ML-DSA-44 \
+                /nonexistent/pk \
+                /nonexistent/message \
+                /nonexistent/context \
+                /nonexistent/signature \
+                false \
+                > "${WORK}/negative-circl-${MODE}.out" \
+                2>&1
+            else
+              env QSV_EXECUTE_CRYPTO="${VALUE}" \
+                "${CIRCL_HARNESS}" \
+                ML-DSA-44 \
+                /nonexistent/pk \
+                /nonexistent/message \
+                /nonexistent/context \
+                /nonexistent/signature \
+                false \
+                > "${WORK}/negative-circl-${MODE}.out" \
+                2>&1
+            fi
+
+            RC=$?
+            set -e
+
+            test "${RC}" -eq 78
+
+            CIRCL_REJECTED=$((CIRCL_REJECTED + 1))
+          }
+
+          run_circl_gate unset
+          run_circl_gate upper-no NO
+          run_circl_gate lower-yes yes
+
+          test "${CIRCL_REJECTED}" -eq 3
+
+          test -z "${QSV_EXECUTE_CRYPTO+x}"
+
+          echo "EXTRACTOR_NEGATIVE_GATE_REJECTED_COUNT=3"
+          echo "OPENSSL_NEGATIVE_GATE_REJECTED_COUNT=3"
+          echo "CIRCL_NEGATIVE_GATE_REJECTED_COUNT=3"
+          echo "TOTAL_NEGATIVE_GATE_REJECTED_COUNT=9"
+          echo "PRE_CRYPTO_FAIL_CLOSED_GATE_RECONFIRMATION=PASS"
+
+      - name: Execute explicit six-case cryptographic verification
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          unset QSV_EXECUTE_CRYPTO 2>/dev/null || true
+          test -z "${QSV_EXECUTE_CRYPTO+x}"
+
+          WORK="${RUNNER_TEMP}/qsv-linux-sixcase-explicit"
+          QSV_SNAPSHOT="${WORK}/qsv-snapshot"
+
+          PROFILE="${QSV_SNAPSHOT}/profiles/qsv-mldsa-nist-acvp-minimal-sigver-kat-profile-v0.1.json"
+          EXTRACTOR="${QSV_SNAPSHOT}/runtime/qsv_mldsa_sixcase_extractor_v0_1.py"
+
+          OPENSSL_HARNESS="${WORK}/qsv-openssl-harness"
+          CIRCL_HARNESS="${WORK}/qsv-circl-harness"
+
+          PAYLOAD="${WORK}/runtime-sixcase-payload"
+          MANIFEST="${WORK}/runtime-sixcase-manifest.json"
+          CASES_TSV="${WORK}/runtime-sixcase-cases.tsv"
+          RESULTS_TSV="${WORK}/runtime-sixcase-results.tsv"
+          RESULT_JSON="${WORK}/linux-sixcase-result-evidence.json"
+
+          rm -rf \
+            "${PAYLOAD}" \
+            "${MANIFEST}" \
+            "${CASES_TSV}" \
+            "${RESULTS_TSV}" \
+            "${RESULT_JSON}"
+
+          env QSV_EXECUTE_CRYPTO=YES \
+            PYTHONDONTWRITEBYTECODE=1 \
+            python3 \
+              "${EXTRACTOR}" \
+              --profile "${PROFILE}" \
+              --prompt "${WORK}/prompt.json" \
+              --expected "${WORK}/expectedResults.json" \
+              --manifest "${MANIFEST}" \
+              --runtime-dir "${PAYLOAD}" \
+              > "${WORK}/extractor-explicit.out" \
+              2>&1
+
+          cat "${WORK}/extractor-explicit.out"
+
+          grep -Fx \
+            'QSV_MLDSA_SIXCASE_METADATA_EXTRACTION=PASS' \
+            "${WORK}/extractor-explicit.out"
+
+          grep -Fx \
+            'SELECTED_CASE_COUNT=6' \
+            "${WORK}/extractor-explicit.out"
+
+          grep -Fx \
+            'RAW_PAYLOAD_WRITTEN=YES' \
+            "${WORK}/extractor-explicit.out"
+
+          test -z "${QSV_EXECUTE_CRYPTO+x}"
+
+          PYTHONDONTWRITEBYTECODE=1 \
+          python3 - \
+            "${MANIFEST}" \
+            "${PAYLOAD}" \
+            "${CASES_TSV}" <<'PYCASES'
+          import hashlib
+          import json
+          import sys
+          from pathlib import Path
+
+          manifest_path = Path(sys.argv[1])
+          payload = Path(sys.argv[2])
+          output = Path(sys.argv[3])
+
+          manifest = json.loads(
+              manifest_path.read_text(
+                  encoding="utf-8"
+              )
+          )
+
+          expected = [
+              ("ML-DSA-44", 1, 1, False),
+              ("ML-DSA-44", 1, 3, True),
+              ("ML-DSA-65", 3, 31, False),
+              ("ML-DSA-65", 3, 33, True),
+              ("ML-DSA-87", 5, 61, False),
+              ("ML-DSA-87", 5, 63, True),
+          ]
+
+          assert manifest["schema"] == (
+              "qsv.mldsa.runtime-sixcase-metadata.v0.1"
+          )
+
+          assert manifest["payload_embedded"] is False
+          assert manifest["runtime_payload_emitted"] is True
+          assert manifest["case_count"] == 6
+
+          observed = [
+              (
+                  case["parameter_set"],
+                  case["tg_id"],
+                  case["tc_id"],
+                  case["expected_valid"],
+              )
+              for case in manifest["cases"]
+          ]
+
+          assert observed == expected
+
+          mapping = {
+              "pk": "pk.bin",
+              "message": "message.bin",
+              "context": "context.bin",
+              "signature": "signature.bin",
+          }
+
+          rows = []
+
+          for case in manifest["cases"]:
+              alg = case["parameter_set"]
+              tg = case["tg_id"]
+              tc = case["tc_id"]
+              expected_valid = case["expected_valid"]
+
+              case_dir = (
+                  payload
+                  / f"{alg}-tg{tg}-tc{tc}"
+              )
+
+              assert case_dir.is_dir()
+
+              case_json = json.loads(
+                  (
+                      case_dir / "case.json"
+                  ).read_text(
+                      encoding="utf-8"
+                  )
+              )
+
+              assert case_json == {
+                  "expected_valid": expected_valid,
+                  "parameter_set": alg,
+                  "tc_id": tc,
+                  "tg_id": tg,
+              }
+
+              for field, filename in mapping.items():
+                  data = (
+                      case_dir / filename
+                  ).read_bytes()
+
+                  assert len(data) == case[
+                      field + "_size_bytes"
+                  ]
+
+                  assert hashlib.sha256(
+                      data
+                  ).hexdigest() == case[
+                      field + "_sha256"
+                  ]
+
+              rows.append(
+                  "\t".join(
+                      [
+                          alg,
+                          str(tg),
+                          str(tc),
+                          (
+                              "true"
+                              if expected_valid
+                              else "false"
+                          ),
+                      ]
+                  )
+              )
+
+          output.write_text(
+              "\n".join(rows)
+              + "\n",
+              encoding="utf-8",
+          )
+
+          print(
+              "RUNTIME_PAYLOAD_EXACT_SIX_CASE_HASH_VALIDATION=PASS"
+          )
+          PYCASES
+
+          OPENSSL_COUNT=0
+          CIRCL_COUNT=0
+          CROSS_COUNT=0
+          VALID_COUNT=0
+          INVALID_COUNT=0
+          OPERATIONAL_ERROR_COUNT=0
+
+          : > "${RESULTS_TSV}"
+
+          while IFS=$'\t' read -r ALG TG TC EXPECTED; do
+            CASE_DIR="${PAYLOAD}/${ALG}-tg${TG}-tc${TC}"
+
+            if [ "${EXPECTED}" = "true" ]; then
+              VALID_COUNT=$((VALID_COUNT + 1))
+            else
+              INVALID_COUNT=$((INVALID_COUNT + 1))
+            fi
+
+            OPENSSL_OUT="${WORK}/openssl-${ALG}-tg${TG}-tc${TC}.out"
+
+            set +e
+
+            env QSV_EXECUTE_CRYPTO=YES \
+              "${OPENSSL_HARNESS}" \
+              "${ALG}" \
+              "${CASE_DIR}/pk.bin" \
+              "${CASE_DIR}/message.bin" \
+              "${CASE_DIR}/context.bin" \
+              "${CASE_DIR}/signature.bin" \
+              "${EXPECTED}" \
+              > "${OPENSSL_OUT}" \
+              2>&1
+
+            OPENSSL_RC=$?
+
+            set -e
+
+            cat "${OPENSSL_OUT}"
+
+            test "${OPENSSL_RC}" -eq 0
+
+            if grep -Fq 'OPENSSL_OPERATIONAL_ERROR=YES' "${OPENSSL_OUT}"; then
+              OPERATIONAL_ERROR_COUNT=$((OPERATIONAL_ERROR_COUNT + 1))
+              exit 1
+            fi
+
+            grep -Fx \
+              "OPENSSL_EXPECTED_VALID=${EXPECTED}" \
+              "${OPENSSL_OUT}"
+
+            grep -Fx \
+              'OPENSSL_EXPECTATION_MATCH=YES' \
+              "${OPENSSL_OUT}"
+
+            OPENSSL_ACTUAL="$(
+              awk -F= \
+                '/^OPENSSL_ACTUAL_VALID=/{print $2}' \
+                "${OPENSSL_OUT}"
+            )"
+
+            test "${OPENSSL_ACTUAL}" = "${EXPECTED}"
+
+            OPENSSL_COUNT=$((OPENSSL_COUNT + 1))
+
+            CIRCL_OUT="${WORK}/circl-${ALG}-tg${TG}-tc${TC}.out"
+
+            set +e
+
+            env QSV_EXECUTE_CRYPTO=YES \
+              "${CIRCL_HARNESS}" \
+              "${ALG}" \
+              "${CASE_DIR}/pk.bin" \
+              "${CASE_DIR}/message.bin" \
+              "${CASE_DIR}/context.bin" \
+              "${CASE_DIR}/signature.bin" \
+              "${EXPECTED}" \
+              > "${CIRCL_OUT}" \
+              2>&1
+
+            CIRCL_RC=$?
+
+            set -e
+
+            cat "${CIRCL_OUT}"
+
+            test "${CIRCL_RC}" -eq 0
+
+            if grep -Fq 'CIRCL_OPERATIONAL_ERROR=YES' "${CIRCL_OUT}"; then
+              OPERATIONAL_ERROR_COUNT=$((OPERATIONAL_ERROR_COUNT + 1))
+              exit 1
+            fi
+
+            grep -Fx \
+              "CIRCL_EXPECTED_VALID=${EXPECTED}" \
+              "${CIRCL_OUT}"
+
+            grep -Fx \
+              'CIRCL_EXPECTATION_MATCH=YES' \
+              "${CIRCL_OUT}"
+
+            CIRCL_ACTUAL="$(
+              awk -F= \
+                '/^CIRCL_ACTUAL_VALID=/{print $2}' \
+                "${CIRCL_OUT}"
+            )"
+
+            test "${CIRCL_ACTUAL}" = "${EXPECTED}"
+            test "${OPENSSL_ACTUAL}" = "${CIRCL_ACTUAL}"
+
+            CIRCL_COUNT=$((CIRCL_COUNT + 1))
+            CROSS_COUNT=$((CROSS_COUNT + 1))
+
+            printf '%s\t%s\t%s\t%s\t%s\t%s\n' \
+              "${ALG}" \
+              "${TG}" \
+              "${TC}" \
+              "${EXPECTED}" \
+              "${OPENSSL_ACTUAL}" \
+              "${CIRCL_ACTUAL}" \
+              >> "${RESULTS_TSV}"
+
+          done < "${CASES_TSV}"
+
+          test "${OPENSSL_COUNT}" -eq 6
+          test "${CIRCL_COUNT}" -eq 6
+          test "${CROSS_COUNT}" -eq 6
+
+          test "${VALID_COUNT}" -eq 3
+          test "${INVALID_COUNT}" -eq 3
+
+          test "${OPERATIONAL_ERROR_COUNT}" -eq 0
+
+          test "$(
+            wc -l < "${RESULTS_TSV}" |
+            tr -d ' '
+          )" = "6"
+
+          rm -rf "${PAYLOAD}"
+          test ! -e "${PAYLOAD}"
+
+          echo "RAW_PAYLOAD_DELETION_BEFORE_RESULT_EVIDENCE=PASS"
+
+          source "${WORK}/openssl-build.env"
+          source "${WORK}/circl-build.env"
+
+          PYTHONDONTWRITEBYTECODE=1 \
+          python3 - \
+            "${RESULTS_TSV}" \
+            "${RESULT_JSON}" \
+            "${OPENSSL_BUILT_BINARY_SHA256}" \
+            "${OPENSSL_BUILT_LIBCRYPTO_SHA256}" \
+            "${OPENSSL_HARNESS_BINARY_SHA256}" \
+            "${CIRCL_HARNESS_BINARY_SHA256}" <<'PYRESULT'
+          import json
+          import sys
+          from pathlib import Path
+
+          results_path = Path(sys.argv[1])
+          result_path = Path(sys.argv[2])
+
+          rows = []
+
+          for line in results_path.read_text(
+              encoding="utf-8"
+          ).splitlines():
+
+              alg, tg, tc, expected, openssl_actual, circl_actual = (
+                  line.split("\t")
+              )
+
+              rows.append(
+                  {
+                      "parameter_set": alg,
+                      "tg_id": int(tg),
+                      "tc_id": int(tc),
+                      "expected_valid": expected == "true",
+                      "openssl_actual_valid":
+                          openssl_actual == "true",
+                      "circl_actual_valid":
+                          circl_actual == "true",
+                  }
+              )
+
+          assert len(rows) == 6
+
+          result = {
+              "schema":
+                  "qsv.mldsa.linux-sixcase-explicit-crypto-result.v0.1",
+
+              "decision":
+                  "linux_six_case_crypto_execution_pass",
+
+              "published_base_commit":
+                  "9147de5e27a2764a95d7ef296b24b8c5bf235286",
+
+              "published_base_tree":
+                  "ee64d8091cbe9b0b811b5310b1f58788142da70d",
+
+              "nist_source_commit":
+                  "975de31eb83d87039ec88934fdc47d8c312b892d",
+
+              "nist_source_tree":
+                  "a6b81add7faf8a8b647afcdc54268615decde9b5",
+
+              "openssl_source_commit":
+                  "aae016bfd52fcad2bc9657c2c782cfdf73b1ed5f",
+
+              "openssl_source_tree":
+                  "a8a306c000bc2426afd3264b2c41bc7223728475",
+
+              "circl_source_commit":
+                  "cfa7c70defd831ffb0792ab2af560bfef43d60ca",
+
+              "circl_source_tree":
+                  "b3a50c3f1b7a5f8cfac0cce655ae7ea7900e9139",
+
+              "openssl_built_binary_sha256":
+                  sys.argv[3],
+
+              "openssl_built_libcrypto_sha256":
+                  sys.argv[4],
+
+              "openssl_harness_binary_sha256":
+                  sys.argv[5],
+
+              "circl_harness_binary_sha256":
+                  sys.argv[6],
+
+              "selected_case_count": 6,
+              "valid_case_count": 3,
+              "invalid_case_count": 3,
+
+              "openssl_verified_case_count": 6,
+              "circl_verified_case_count": 6,
+              "cross_implementation_agreement_count": 6,
+
+              "operational_error_count": 0,
+              "expected_outcome_mismatch_count": 0,
+              "implementation_disagreement_count": 0,
+
+              "cryptographic_execution_performed": True,
+              "cryptographic_signature_verification_performed": True,
+
+              "runtime_payload_emitted_during_execution": True,
+              "runtime_payload_present_at_finalization": False,
+              "raw_payload_published": False,
+
+              "qsv_execute_crypto_parent_environment_present":
+                  False,
+
+              "third_party_independent_reproduction":
+                  False,
+
+              "github_runner_immutable_build_environment":
+                  False,
+
+              "absolute_openssl_build_provenance_complete_claim_allowed":
+                  False,
+
+              "nist_validation_claim_allowed":
+                  False,
+
+              "fips_204_certification_claim_allowed":
+                  False,
+
+              "complete_fips_204_conformance_claim_allowed":
+                  False,
+
+              "complete_sigver_coverage_claim_allowed":
+                  False,
+
+              "cases":
+                  rows,
+          }
+
+          result_path.write_text(
+              json.dumps(
+                  result,
+                  sort_keys=True,
+                  indent=2,
+              )
+              + "\n",
+              encoding="utf-8",
+          )
+
+          print(
+              "STATIC_RUNTIME_RESULT_EVIDENCE_GENERATION=PASS"
+          )
+          PYRESULT
+
+          test ! -e "${PAYLOAD}"
+          test -f "${RESULT_JSON}"
+
+          RESULT_SHA="$(
+            sha256sum "${RESULT_JSON}" |
+            awk '{print $1}'
+          )"
+
+          echo "LINUX_SIXCASE_RESULT_EVIDENCE_SHA256=${RESULT_SHA}"
+
+          echo "OPENSSL_CRYPTOGRAPHIC_CASE_COUNT=${OPENSSL_COUNT}"
+          echo "CIRCL_CRYPTOGRAPHIC_CASE_COUNT=${CIRCL_COUNT}"
+          echo "CROSS_IMPLEMENTATION_AGREEMENT_COUNT=${CROSS_COUNT}"
+
+          echo "EXPECTED_VALID_CASE_COUNT=${VALID_COUNT}"
+          echo "EXPECTED_INVALID_CASE_COUNT=${INVALID_COUNT}"
+
+          echo "CRYPTO_OPERATIONAL_ERROR_COUNT=${OPERATIONAL_ERROR_COUNT}"
+
+          echo "RAW_RUNTIME_VECTOR_PAYLOAD_EMITTED_DURING_EXECUTION=YES"
+          echo "RAW_RUNTIME_VECTOR_PAYLOAD_PRESENT_AT_FINALIZATION=NO"
+          echo "RAW_RUNTIME_VECTOR_PAYLOAD_PUBLISHED=NO"
+
+          test -z "${QSV_EXECUTE_CRYPTO+x}"
+
+          echo "QSV_EXECUTE_CRYPTO_PARENT_ENVIRONMENT=ABSENT"
+          echo "QSV_EXECUTE_CRYPTO_YES_SCOPED_TO_CHILD_PROCESS=YES"
+
+          echo "QSV_MLDSA_LINUX_SIX_CASE_CRYPTO_EXECUTION=PASS"
+
+      - name: Final explicit crypto reproduction decision
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          unset QSV_EXECUTE_CRYPTO 2>/dev/null || true
+          test -z "${QSV_EXECUTE_CRYPTO+x}"
+
+          WORK="${RUNNER_TEMP}/qsv-linux-sixcase-explicit"
+          PAYLOAD="${WORK}/runtime-sixcase-payload"
+          RESULT_JSON="${WORK}/linux-sixcase-result-evidence.json"
+
+          test ! -e "${PAYLOAD}"
+          test -f "${RESULT_JSON}"
+
+          PYTHONDONTWRITEBYTECODE=1 \
+          python3 - "${RESULT_JSON}" <<'PYFINAL'
+          import json
+          import sys
+          from pathlib import Path
+
+          result = json.loads(
+              Path(sys.argv[1]).read_text(
+                  encoding="utf-8"
+              )
+          )
+
+          assert result["decision"] == (
+              "linux_six_case_crypto_execution_pass"
+          )
+
+          assert result["selected_case_count"] == 6
+          assert result["valid_case_count"] == 3
+          assert result["invalid_case_count"] == 3
+
+          assert result["openssl_verified_case_count"] == 6
+          assert result["circl_verified_case_count"] == 6
+
+          assert result[
+              "cross_implementation_agreement_count"
+          ] == 6
+
+          assert result["operational_error_count"] == 0
+          assert result["expected_outcome_mismatch_count"] == 0
+          assert result["implementation_disagreement_count"] == 0
+
+          assert result[
+              "cryptographic_execution_performed"
+          ] is True
+
+          assert result[
+              "cryptographic_signature_verification_performed"
+          ] is True
+
+          assert result[
+              "runtime_payload_emitted_during_execution"
+          ] is True
+
+          assert result[
+              "runtime_payload_present_at_finalization"
+          ] is False
+
+          assert result[
+              "raw_payload_published"
+          ] is False
+
+          assert result[
+              "qsv_execute_crypto_parent_environment_present"
+          ] is False
+
+          assert result[
+              "third_party_independent_reproduction"
+          ] is False
+
+          assert result[
+              "github_runner_immutable_build_environment"
+          ] is False
+
+          assert result[
+              "absolute_openssl_build_provenance_complete_claim_allowed"
+          ] is False
+
+          assert result[
+              "nist_validation_claim_allowed"
+          ] is False
+
+          assert result[
+              "fips_204_certification_claim_allowed"
+          ] is False
+
+          assert result[
+              "complete_fips_204_conformance_claim_allowed"
+          ] is False
+
+          assert result[
+              "complete_sigver_coverage_claim_allowed"
+          ] is False
+
+          print(
+              "FINAL_RESULT_EVIDENCE_FAIL_CLOSED_VALIDATION=PASS"
+          )
+          PYFINAL
+
+          echo "QSV_MLDSA_LINUX_SIX_CASE_EXPLICIT_CRYPTO_REPRODUCTION=PASS"
+
+          echo "TARGET_RUNNER=ubuntu-24.04"
+          echo "TARGET_ARCHITECTURE=x86_64"
+
+          echo "SELECTED_CASE_COUNT=6"
+          echo "OPENSSL_VERIFIED_CASE_COUNT=6"
+          echo "CIRCL_VERIFIED_CASE_COUNT=6"
+          echo "CROSS_IMPLEMENTATION_AGREEMENT_COUNT=6"
+
+          echo "CRYPTOGRAPHIC_EXECUTION_PERFORMED=YES"
+          echo "CRYPTOGRAPHIC_SIGNATURE_VERIFICATION_PERFORMED=YES"
+
+          echo "RAW_RUNTIME_VECTOR_PAYLOAD_EMITTED_DURING_EXECUTION=YES"
+          echo "RAW_RUNTIME_VECTOR_PAYLOAD_PRESENT_AT_FINALIZATION=NO"
+          echo "RAW_RUNTIME_VECTOR_PAYLOAD_PUBLISHED=NO"
+
+          echo "THIRD_PARTY_INDEPENDENT_REPRODUCTION=false"
+          echo "GITHUB_RUNNER_IMMUTABLE_BUILD_ENVIRONMENT=false"
+          echo "ABSOLUTE_OPENSSL_BUILD_PROVENANCE_COMPLETE_CLAIM_ALLOWED=false"
+
+          echo "NIST_VALIDATION_CLAIM_ALLOWED=false"
+          echo "FIPS_204_CERTIFICATION_CLAIM_ALLOWED=false"
+          echo "COMPLETE_FIPS_204_CONFORMANCE_CLAIM_ALLOWED=false"
+          echo "COMPLETE_SIGVER_COVERAGE_CLAIM_ALLOWED=false"
+
+          echo "QSV_EXECUTE_CRYPTO_PARENT_ENVIRONMENT=ABSENT"

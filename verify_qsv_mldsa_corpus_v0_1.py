@@ -4,6 +4,7 @@ import hashlib
 import json
 import shutil
 import subprocess
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -67,6 +68,10 @@ EXPECTED_FILES = {
     "qsv_mldsa_v0_3_no_crypto_precheck_run_evidence_v0_1.json.sha256",
     "verify_qsv_mldsa_v0_3_no_crypto_precheck_run_evidence_v0_1.py",
     "verify_qsv_mldsa_v0_3_no_crypto_precheck_run_evidence_v0_1.py.sha256",
+    ".github/workflows/qsv-mldsa-linux-sixcase-explicit-crypto-execution-v0_1.yml",
+    ".github/workflows/qsv-mldsa-linux-sixcase-explicit-crypto-execution-v0_1.yml.sha256",
+    "verify_qsv_mldsa_linux_sixcase_crypto_workflow_candidate_v0_1.py",
+    "verify_qsv_mldsa_linux_sixcase_crypto_workflow_candidate_v0_1.py.sha256",
     "verify_qsv_mldsa_corpus_v0_1.py",
     "verify_qsv_mldsa_corpus_v0_1.py.sha256",
 }
@@ -5099,6 +5104,250 @@ print(
 print(
     "qsv_mldsa_corpus_failure_count="
     + str(len(failures))
+)
+
+
+
+
+#
+# Linux six-case explicit cryptographic reproduction workflow
+# candidate authority v0.1.
+#
+linux_sixcase_workflow_rel = (
+    ".github/workflows/qsv-mldsa-linux-sixcase-explicit-crypto-execution-v0_1.yml"
+)
+
+linux_sixcase_workflow_sidecar_rel = (
+    ".github/workflows/qsv-mldsa-linux-sixcase-explicit-crypto-execution-v0_1.yml.sha256"
+)
+
+linux_sixcase_verifier_rel = (
+    "verify_qsv_mldsa_linux_sixcase_crypto_workflow_candidate_v0_1.py"
+)
+
+linux_sixcase_verifier_sidecar_rel = (
+    "verify_qsv_mldsa_linux_sixcase_crypto_workflow_candidate_v0_1.py.sha256"
+)
+
+
+check(
+    "linux six-case workflow hash",
+    sha256(
+        linux_sixcase_workflow_rel
+    )
+    == "123d31afd0e2eaa6deba5ab42a90b040c452d08f72eb61e23db4b3dc1c7c8c52",
+)
+
+check(
+    "linux six-case workflow sidecar file hash",
+    sha256(
+        linux_sixcase_workflow_sidecar_rel
+    )
+    == "1b639eb1c35a6c67f66b3c3ab0e6641cd7d35f2d2994ba0563884b6d349c0eae",
+)
+
+check(
+    "linux six-case verifier hash",
+    sha256(
+        linux_sixcase_verifier_rel
+    )
+    == "347b878dee465b14727cbdd7a08dac81a806669c31c14c2c4a62ae7b1003d6d2",
+)
+
+check(
+    "linux six-case verifier sidecar file hash",
+    sha256(
+        linux_sixcase_verifier_sidecar_rel
+    )
+    == "9cbe4318fe79a84c5f3929a99b367bb1c69f82cbf80183f1d504ef60f84febf7",
+)
+
+
+linux_sixcase_workflow_sidecar_text = (
+    ROOT
+    / linux_sixcase_workflow_sidecar_rel
+).read_text(
+    encoding="utf-8"
+)
+
+check(
+    "linux six-case workflow sidecar declaration",
+    linux_sixcase_workflow_sidecar_text
+    == (
+        "123d31afd0e2eaa6deba5ab42a90b040c452d08f72eb61e23db4b3dc1c7c8c52"
+        + "  "
+        + linux_sixcase_workflow_rel
+        + "\n"
+    ),
+)
+
+
+linux_sixcase_verifier_sidecar_text = (
+    ROOT
+    / linux_sixcase_verifier_sidecar_rel
+).read_text(
+    encoding="utf-8"
+)
+
+check(
+    "linux six-case verifier sidecar declaration",
+    linux_sixcase_verifier_sidecar_text
+    == (
+        "347b878dee465b14727cbdd7a08dac81a806669c31c14c2c4a62ae7b1003d6d2"
+        + "  "
+        + linux_sixcase_verifier_rel
+        + "\n"
+    ),
+)
+
+
+linux_sixcase_python = shutil.which(
+    "python3"
+)
+
+check(
+    "python3 available for linux six-case dedicated verifier",
+    linux_sixcase_python is not None,
+)
+
+
+linux_sixcase_dedicated_verifier_ok = False
+
+linux_sixcase_dedicated_verifier_output = ""
+
+if linux_sixcase_python is not None:
+
+    with tempfile.TemporaryDirectory(
+        prefix="qsv-mldsa-linux-sixcase-root-"
+    ) as linux_sixcase_temp:
+
+        linux_sixcase_isolated_root = Path(
+            linux_sixcase_temp
+        )
+
+        for linux_sixcase_rel in (
+            linux_sixcase_workflow_rel,
+            linux_sixcase_workflow_sidecar_rel,
+            linux_sixcase_verifier_rel,
+            linux_sixcase_verifier_sidecar_rel,
+        ):
+
+            linux_sixcase_source = (
+                ROOT
+                / linux_sixcase_rel
+            )
+
+            linux_sixcase_destination = (
+                linux_sixcase_isolated_root
+                / linux_sixcase_rel
+            )
+
+            linux_sixcase_destination.parent.mkdir(
+                parents=True,
+                exist_ok=True,
+            )
+
+            shutil.copy2(
+                linux_sixcase_source,
+                linux_sixcase_destination,
+            )
+
+
+        linux_sixcase_proc = subprocess.run(
+            [
+                linux_sixcase_python,
+                "-B",
+                str(
+                    linux_sixcase_isolated_root
+                    / linux_sixcase_verifier_rel
+                ),
+                str(
+                    linux_sixcase_isolated_root
+                ),
+            ],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
+
+        linux_sixcase_dedicated_verifier_output = (
+            linux_sixcase_proc.stdout
+            + linux_sixcase_proc.stderr
+        )
+
+        linux_sixcase_dedicated_verifier_ok = (
+            linux_sixcase_proc.returncode == 0
+            and (
+                "QSV_MLDSA_LINUX_SIX_CASE_CRYPTO_WORKFLOW_"
+                "CANDIDATE_VERIFICATION=PASS"
+                in linux_sixcase_dedicated_verifier_output
+            )
+            and (
+                "PSYCH_YAML_STRUCTURE=PASS"
+                in linux_sixcase_dedicated_verifier_output
+            )
+            and (
+                "WORKFLOW_DISPATCH_ONLY=YES"
+                in linux_sixcase_dedicated_verifier_output
+            )
+            and (
+                "CONTENTS_PERMISSION_READ_ONLY=YES"
+                in linux_sixcase_dedicated_verifier_output
+            )
+            and (
+                "EXTERNAL_ACTIONS_USED=NO"
+                in linux_sixcase_dedicated_verifier_output
+            )
+            and (
+                "QSV_EXECUTE_CRYPTO_GLOBAL_ENV_PRESENT=NO"
+                in linux_sixcase_dedicated_verifier_output
+            )
+            and (
+                "QSV_EXECUTE_CRYPTO_JOB_ENV_PRESENT=NO"
+                in linux_sixcase_dedicated_verifier_output
+            )
+            and (
+                "QSV_EXECUTE_CRYPTO_GITHUB_ENV_PERSISTENCE_PRESENT=NO"
+                in linux_sixcase_dedicated_verifier_output
+            )
+            and (
+                "POSITIVE_GATE_ASSIGNMENT_LITERAL_COUNT=3"
+                in linux_sixcase_dedicated_verifier_output
+            )
+            and (
+                "POSITIVE_GATE_ASSIGNMENTS_ONLY_IN_EXPLICIT_CRYPTO_STEP=YES"
+                in linux_sixcase_dedicated_verifier_output
+            )
+            and (
+                "EXPECTED_RUNTIME_OPENSSL_CRYPTO_CASE_COUNT=6"
+                in linux_sixcase_dedicated_verifier_output
+            )
+            and (
+                "EXPECTED_RUNTIME_CIRCL_CRYPTO_CASE_COUNT=6"
+                in linux_sixcase_dedicated_verifier_output
+            )
+            and (
+                "EXPECTED_RUNTIME_CROSS_IMPLEMENTATION_CASE_COUNT=6"
+                in linux_sixcase_dedicated_verifier_output
+            )
+            and (
+                "RAW_PAYLOAD_DELETION_BEFORE_RESULT_EVIDENCE=YES"
+                in linux_sixcase_dedicated_verifier_output
+            )
+            and (
+                "RESULT_NONCLAIM_BOUNDARIES_PRESENT=YES"
+                in linux_sixcase_dedicated_verifier_output
+            )
+            and (
+                "VERIFIER_SIDECAR_SELF_INTEGRITY_CHECK=PASS"
+                in linux_sixcase_dedicated_verifier_output
+            )
+        )
+
+
+check(
+    "linux six-case dedicated verifier isolated exact4",
+    linux_sixcase_dedicated_verifier_ok,
 )
 
 if failures:
