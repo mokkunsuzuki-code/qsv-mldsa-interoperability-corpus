@@ -2,6 +2,8 @@
 
 import hashlib
 import json
+import shutil
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -57,6 +59,10 @@ EXPECTED_FILES = {
     ".github/workflows/qsv-mldsa-cross-platform-clean-environment-precheck-v0_2.yml.sha256",
     "verify_qsv_mldsa_cross_platform_precheck_workflow_candidate_v0_2.py",
     "verify_qsv_mldsa_cross_platform_precheck_workflow_candidate_v0_2.py.sha256",
+    ".github/workflows/qsv-mldsa-cross-platform-clean-environment-precheck-v0_3.yml",
+    ".github/workflows/qsv-mldsa-cross-platform-clean-environment-precheck-v0_3.yml.sha256",
+    "verify_qsv_mldsa_cross_platform_precheck_workflow_candidate_v0_3.py",
+    "verify_qsv_mldsa_cross_platform_precheck_workflow_candidate_v0_3.py.sha256",
     "verify_qsv_mldsa_corpus_v0_1.py",
     "verify_qsv_mldsa_corpus_v0_1.py.sha256",
 }
@@ -4164,6 +4170,767 @@ check(
     (
         "READY_FOR_EXPLICIT_GITHUB_ACTIONS_SIX_CASE_EXECUTION=YES"
         in v02_workflow
+    ),
+)
+
+
+
+#
+# Corrected GitHub Actions no-crypto precheck workflow v0.3.
+#
+# v0.3 preserves the immutable published v0.2 defect history and
+# adds actual YAML parser/object-structure validation.
+#
+v03_workflow_rel = (
+    ".github/workflows/"
+    "qsv-mldsa-cross-platform-clean-environment-precheck-v0_3.yml"
+)
+
+v03_workflow_sidecar_rel = (
+    v03_workflow_rel
+    + ".sha256"
+)
+
+v03_verifier_rel = (
+    "verify_qsv_mldsa_cross_platform_precheck_workflow_candidate_v0_3.py"
+)
+
+v03_verifier_sidecar_rel = (
+    v03_verifier_rel
+    + ".sha256"
+)
+
+
+check(
+    "v0.3 workflow hash",
+    sha256(v03_workflow_rel)
+    == "f4197f42e2ed6a76c66b12d9f10c069b2d1ef5d7f3653d46a3b80858c858cdc0",
+)
+
+check(
+    "v0.3 workflow sidecar file hash",
+    sha256(v03_workflow_sidecar_rel)
+    == "596ed58fcf00c1a4c2f9d0424027fb4c210acc95e7f59a62ec7d62ee0c59057c",
+)
+
+check(
+    "v0.3 verifier hash",
+    sha256(v03_verifier_rel)
+    == "8c628a36cb0ae548d4f3a1a3da4033ceccd02fe6b60683b1183bd36dc58b3f18",
+)
+
+check(
+    "v0.3 verifier sidecar file hash",
+    sha256(v03_verifier_sidecar_rel)
+    == "d46df9192158facf25c43af9d8bd75d5c0963b8426138a5cac29a4fcc5a2d95c",
+)
+
+
+check(
+    "v0.3 workflow sidecar declaration",
+    (
+        ROOT
+        / v03_workflow_sidecar_rel
+    ).read_text(
+        encoding="utf-8"
+    )
+    == (
+        "f4197f42e2ed6a76c66b12d9f10c069b2d1ef5d7f3653d46a3b80858c858cdc0"
+        "  "
+        + v03_workflow_rel
+        + "\n"
+    ),
+)
+
+check(
+    "v0.3 verifier sidecar declaration",
+    (
+        ROOT
+        / v03_verifier_sidecar_rel
+    ).read_text(
+        encoding="utf-8"
+    )
+    == (
+        "8c628a36cb0ae548d4f3a1a3da4033ceccd02fe6b60683b1183bd36dc58b3f18"
+        "  "
+        + v03_verifier_rel
+        + "\n"
+    ),
+)
+
+
+v03_workflow = (
+    ROOT
+    / v03_workflow_rel
+).read_text(
+    encoding="utf-8"
+)
+
+
+check(
+    "v0.3 workflow version",
+    (
+        "name: QSV ML-DSA Cross-Platform "
+        "Clean-Environment Precheck v0.3"
+    )
+    in v03_workflow,
+)
+
+check(
+    "v0.3 manual dispatch count",
+    v03_workflow.count(
+        "workflow_dispatch:"
+    ) == 1,
+)
+
+check(
+    "v0.3 no push trigger",
+    "\n  push:"
+    not in v03_workflow,
+)
+
+check(
+    "v0.3 no pull-request trigger",
+    "\n  pull_request:"
+    not in v03_workflow,
+)
+
+check(
+    "v0.3 no schedule trigger",
+    "\n  schedule:"
+    not in v03_workflow,
+)
+
+check(
+    "v0.3 exact runner",
+    "runs-on: ubuntu-24.04"
+    in v03_workflow,
+)
+
+check(
+    "v0.3 read-only repository permission",
+    (
+        "permissions:\n"
+        "  contents: read\n"
+    )
+    in v03_workflow,
+)
+
+check(
+    "v0.3 contents write absent",
+    "contents: write"
+    not in v03_workflow,
+)
+
+check(
+    "v0.3 id-token write absent",
+    "id-token: write"
+    not in v03_workflow,
+)
+
+check(
+    "v0.3 external Actions absent",
+    "uses:"
+    not in v03_workflow,
+)
+
+check(
+    "v0.3 git push absent",
+    "git push"
+    not in v03_workflow,
+)
+
+check(
+    "v0.3 artifact upload absent",
+    "upload-artifact"
+    not in v03_workflow,
+)
+
+check(
+    "v0.3 artifact download absent",
+    "download-artifact"
+    not in v03_workflow,
+)
+
+check(
+    "v0.3 crypto enable absent",
+    "QSV_EXECUTE_CRYPTO=YES"
+    not in v03_workflow,
+)
+
+check(
+    "v0.3 runner toolcache dependency absent",
+    "RUNNER_TOOL_CACHE"
+    not in v03_workflow,
+)
+
+
+check(
+    "v0.3 NIST authority",
+    (
+        "NIST_COMMIT: "
+        "975de31eb83d87039ec88934fdc47d8c312b892d"
+    )
+    in v03_workflow,
+)
+
+check(
+    "v0.3 CIRCL authority",
+    (
+        "CIRCL_COMMIT: "
+        "cfa7c70defd831ffb0792ab2af560bfef43d60ca"
+    )
+    in v03_workflow,
+)
+
+check(
+    "v0.3 OpenSSL authority",
+    (
+        "OPENSSL_COMMIT: "
+        "aae016bfd52fcad2bc9657c2c782cfdf73b1ed5f"
+    )
+    in v03_workflow,
+)
+
+
+v03_required_env = {
+    "GO_VERSION_REQUIRED":
+        "1.26.5",
+
+    "GO_LINUX_AMD64_ARCHIVE":
+        "go1.26.5.linux-amd64.tar.gz",
+
+    "GO_LINUX_AMD64_URL":
+        "https://go.dev/dl/go1.26.5.linux-amd64.tar.gz",
+
+    "GO_LINUX_AMD64_SHA256":
+        "5c2c3b16caefa1d968a94c1daca04a7ca301a496d9b086e17ad77bb81393f053",
+
+    "PREVIOUS_FAILED_PRECHECK_RUN_ID":
+        "34079303462",
+
+    "PREVIOUS_FAILED_PRECHECK_RUN_LOG_SHA256":
+        "97a3a09aff3a9e42cf57e8776b6a62b90e39c1ed4e695b9e4f39728f210e8d80",
+
+    "PREVIOUS_V0_2_PUBLISHED_COMMIT":
+        "970bf929f32a25ca0648fb01f5378bdbfa8eba55",
+
+    "PREVIOUS_V0_2_PUBLISHED_TREE":
+        "5aba74bf8f0efdaa351cf84c44097d0fa3602937",
+
+    "PREVIOUS_V0_2_WORKFLOW_SHA256":
+        "0351a06ab03e2ff27669f00e30e5e7647bcd54af20c6e905ba2e607233e035b9",
+
+    "PREVIOUS_V0_2_ENV_STRUCTURE_VALID":
+        "NO",
+
+    "PREVIOUS_V0_2_MISINDENTED_ADDED_ENV_KEY_COUNT":
+        "5",
+
+    "PREVIOUS_V0_2_PSYCH_SYNTAX_PARSE_RESULT":
+        "REJECT",
+
+    "V0_3_YAML_STRUCTURE_VALIDATION_REQUIRED":
+        "YES",
+}
+
+
+v03_lines = v03_workflow.splitlines()
+
+v03_env_occurrences_exact = True
+v03_env_indentation_exact = True
+
+
+for key in v03_required_env:
+
+    prefix = key + ":"
+
+    matches = [
+        line
+        for line in v03_lines
+        if line.lstrip().startswith(prefix)
+    ]
+
+    if len(matches) != 1:
+        v03_env_occurrences_exact = False
+        v03_env_indentation_exact = False
+        continue
+
+    line = matches[0]
+
+    indent = (
+        len(line)
+        - len(line.lstrip(" "))
+    )
+
+    if indent != 6:
+        v03_env_indentation_exact = False
+
+
+check(
+    "v0.3 required env occurrence count exact",
+    v03_env_occurrences_exact,
+)
+
+check(
+    "v0.3 required env indentation exact",
+    v03_env_indentation_exact,
+)
+
+
+#
+# Preserve and independently prove the published v0.2 structural defect.
+#
+def qsv_env_indent(workflow, key):
+
+    prefix = key + ":"
+
+    matches = [
+        line
+        for line in workflow.splitlines()
+        if line.lstrip().startswith(prefix)
+    ]
+
+    if len(matches) != 1:
+        return None
+
+    line = matches[0]
+
+    return (
+        len(line)
+        - len(line.lstrip(" "))
+    )
+
+
+v02_defect_keys = [
+    "GO_LINUX_AMD64_ARCHIVE",
+    "GO_LINUX_AMD64_URL",
+    "GO_LINUX_AMD64_SHA256",
+    "PREVIOUS_FAILED_PRECHECK_RUN_ID",
+    "PREVIOUS_FAILED_PRECHECK_RUN_LOG_SHA256",
+]
+
+
+check(
+    "v0.2 published Go version indentation preserved",
+    qsv_env_indent(
+        v02_workflow,
+        "GO_VERSION_REQUIRED",
+    ) == 6,
+)
+
+check(
+    "v0.2 published five-key indentation defect preserved",
+    all(
+        qsv_env_indent(
+            v02_workflow,
+            key,
+        ) == 2
+        for key in v02_defect_keys
+    ),
+)
+
+
+#
+# Actual YAML parse and parsed-object validation with Ruby Psych.
+#
+v03_ruby = shutil.which(
+    "ruby"
+)
+
+
+check(
+    "Ruby available for YAML structure validation",
+    v03_ruby is not None,
+)
+
+
+v03_psych_ok = False
+v03_parsed_env = {}
+v03_step_names = []
+
+
+if v03_ruby is not None:
+
+    v03_ruby_script = r"""
+require "psych"
+require "json"
+
+data = Psych.load(
+  File.read(ARGV[0])
+)
+
+raise "root" unless data.is_a?(Hash)
+
+jobs = data.fetch("jobs")
+raise "jobs" unless jobs.is_a?(Hash)
+
+precheck = jobs.fetch("precheck")
+raise "precheck" unless precheck.is_a?(Hash)
+
+env = precheck.fetch("env")
+raise "env" unless env.is_a?(Hash)
+
+steps = precheck.fetch("steps")
+raise "steps" unless steps.is_a?(Array)
+
+out = {
+  "env" => env.transform_values { |v| v.to_s },
+  "step_names" => steps.map {
+    |step|
+    step.is_a?(Hash) ? step["name"].to_s : ""
+  },
+}
+
+puts JSON.generate(out)
+"""
+
+    v03_proc = subprocess.run(
+        [
+            v03_ruby,
+            "-rpsych",
+            "-rjson",
+            "-e",
+            v03_ruby_script,
+            str(
+                ROOT
+                / v03_workflow_rel
+            ),
+        ],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+    )
+
+    if v03_proc.returncode == 0:
+        try:
+            v03_parsed = json.loads(
+                v03_proc.stdout.strip()
+            )
+
+            v03_parsed_env = (
+                v03_parsed.get(
+                    "env",
+                    {},
+                )
+            )
+
+            v03_step_names = (
+                v03_parsed.get(
+                    "step_names",
+                    [],
+                )
+            )
+
+            v03_psych_ok = (
+                isinstance(
+                    v03_parsed_env,
+                    dict,
+                )
+                and isinstance(
+                    v03_step_names,
+                    list,
+                )
+            )
+
+        except Exception:
+            v03_psych_ok = False
+
+
+check(
+    "v0.3 Psych syntax and object structure parse",
+    v03_psych_ok,
+)
+
+check(
+    "v0.3 parsed env bindings exact",
+    (
+        v03_psych_ok
+        and all(
+            v03_parsed_env.get(key)
+            == expected
+            for key, expected
+            in v03_required_env.items()
+        )
+    ),
+)
+
+check(
+    "v0.3 parsed runtime structure gate present",
+    (
+        v03_psych_ok
+        and
+        "Validate corrected v0.3 environment binding"
+        in v03_step_names
+    ),
+)
+
+
+#
+# The immutable v0.2 workflow must still be rejected by Psych.
+#
+v02_psych_rejected = False
+
+
+if v03_ruby is not None:
+
+    v02_proc = subprocess.run(
+        [
+            v03_ruby,
+            "-rpsych",
+            "-e",
+            (
+                "Psych.parse_stream("
+                "File.read(ARGV[0]))"
+            ),
+            str(
+                ROOT
+                / v02_workflow_rel
+            ),
+        ],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+    )
+
+    v02_psych_rejected = (
+        v02_proc.returncode != 0
+    )
+
+
+check(
+    "v0.2 published Psych syntax rejection preserved",
+    v02_psych_rejected,
+)
+
+
+check(
+    "v0.3 binds published v0.2 commit",
+    (
+        "PREVIOUS_V0_2_PUBLISHED_COMMIT: "
+        "970bf929f32a25ca0648fb01f5378bdbfa8eba55"
+    )
+    in v03_workflow,
+)
+
+check(
+    "v0.3 binds published v0.2 tree",
+    (
+        "PREVIOUS_V0_2_PUBLISHED_TREE: "
+        "5aba74bf8f0efdaa351cf84c44097d0fa3602937"
+    )
+    in v03_workflow,
+)
+
+check(
+    "v0.3 binds published v0.2 workflow hash",
+    (
+        "PREVIOUS_V0_2_WORKFLOW_SHA256: "
+        "0351a06ab03e2ff27669f00e30e5e7647bcd54af20c6e905ba2e607233e035b9"
+    )
+    in v03_workflow,
+)
+
+check(
+    "v0.3 binds v0.2 invalid structure result",
+    (
+        'PREVIOUS_V0_2_ENV_STRUCTURE_VALID: "NO"'
+        in v03_workflow
+    ),
+)
+
+check(
+    "v0.3 binds v0.2 defect count",
+    (
+        'PREVIOUS_V0_2_MISINDENTED_ADDED_ENV_KEY_COUNT: "5"'
+        in v03_workflow
+    ),
+)
+
+check(
+    "v0.3 binds v0.2 Psych rejection",
+    (
+        'PREVIOUS_V0_2_PSYCH_SYNTAX_PARSE_RESULT: "REJECT"'
+        in v03_workflow
+    ),
+)
+
+check(
+    "v0.3 structure validation required",
+    (
+        'V0_3_YAML_STRUCTURE_VALIDATION_REQUIRED: "YES"'
+        in v03_workflow
+    ),
+)
+
+
+check(
+    "v0.3 failed run1 id binding",
+    (
+        'PREVIOUS_FAILED_PRECHECK_RUN_ID: "34079303462"'
+        in v03_workflow
+    ),
+)
+
+check(
+    "v0.3 failed run1 log binding",
+    (
+        "PREVIOUS_FAILED_PRECHECK_RUN_LOG_SHA256: "
+        "97a3a09aff3a9e42cf57e8776b6a62b90e39c1ed4e695b9e4f39728f210e8d80"
+    )
+    in v03_workflow,
+)
+
+
+check(
+    "v0.3 official Go archive",
+    (
+        "GO_LINUX_AMD64_ARCHIVE: "
+        "go1.26.5.linux-amd64.tar.gz"
+    )
+    in v03_workflow,
+)
+
+check(
+    "v0.3 official Go URL",
+    (
+        "GO_LINUX_AMD64_URL: "
+        "https://go.dev/dl/go1.26.5.linux-amd64.tar.gz"
+    )
+    in v03_workflow,
+)
+
+check(
+    "v0.3 exact Go archive hash",
+    (
+        "GO_LINUX_AMD64_SHA256: "
+        "5c2c3b16caefa1d968a94c1daca04a7ca301a496d9b086e17ad77bb81393f053"
+    )
+    in v03_workflow,
+)
+
+check(
+    "v0.3 archive SHA verification",
+    'sha256sum "${GO_ARCHIVE_PATH}"'
+    in v03_workflow,
+)
+
+check(
+    "v0.3 Go extraction under WORK",
+    'GO_EXTRACT_ROOT="${WORK}/go-toolchain"'
+    in v03_workflow,
+)
+
+check(
+    "v0.3 WORK under RUNNER_TEMP",
+    (
+        'WORK="${RUNNER_TEMP}/'
+        'qsv-cross-platform-precheck"'
+    )
+    in v03_workflow,
+)
+
+check(
+    "v0.3 local Go toolchain",
+    "export GOTOOLCHAIN=local"
+    in v03_workflow,
+)
+
+check(
+    "v0.3 exact Go runtime check",
+    (
+        'test "${GO_VERSION}" = '
+        '"go version go1.26.5 linux/amd64"'
+    )
+    in v03_workflow,
+)
+
+
+v03_sha_index = v03_workflow.find(
+    'sha256sum "${GO_ARCHIVE_PATH}"'
+)
+
+v03_extract_index = v03_workflow.find(
+    '-xzf "${GO_ARCHIVE_PATH}"'
+)
+
+
+check(
+    "v0.3 hash verification before extraction",
+    (
+        v03_sha_index >= 0
+        and
+        v03_extract_index >= 0
+        and
+        v03_sha_index
+        < v03_extract_index
+    ),
+)
+
+
+check(
+    "v0.3 runtime corrected-env gate",
+    "V0_3_CORRECTED_ENV_BINDING_RUNTIME=PASS"
+    in v03_workflow,
+)
+
+check(
+    "v0.3 runtime v0.2 defect binding gate",
+    "V0_3_PREVIOUS_V0_2_DEFECT_BINDING=PASS"
+    in v03_workflow,
+)
+
+
+check(
+    "v0.3 extractor negative gates",
+    "EXTRACTOR_GATE_REJECTED_COUNT=3"
+    in v03_workflow,
+)
+
+check(
+    "v0.3 OpenSSL negative gates",
+    "OPENSSL_GATE_REJECTED_COUNT=3"
+    in v03_workflow,
+)
+
+check(
+    "v0.3 CIRCL negative gates",
+    "CIRCL_GATE_REJECTED_COUNT=3"
+    in v03_workflow,
+)
+
+check(
+    "v0.3 all execution gates fail closed",
+    "ALL_EXECUTION_GATES_FAIL_CLOSED=PASS"
+    in v03_workflow,
+)
+
+
+check(
+    "v0.3 crypto execution false",
+    "CRYPTOGRAPHIC_EXECUTION_PERFORMED=NO"
+    in v03_workflow,
+)
+
+check(
+    "v0.3 signature verification false",
+    (
+        "CRYPTOGRAPHIC_SIGNATURE_VERIFICATION_PERFORMED=NO"
+        in v03_workflow
+    ),
+)
+
+check(
+    "v0.3 raw payload false",
+    "RAW_RUNTIME_VECTOR_PAYLOAD_EMITTED=NO"
+    in v03_workflow,
+)
+
+check(
+    "v0.3 explicit future execution readiness marker",
+    (
+        "READY_FOR_EXPLICIT_GITHUB_ACTIONS_SIX_CASE_EXECUTION=YES"
+        in v03_workflow
     ),
 )
 
