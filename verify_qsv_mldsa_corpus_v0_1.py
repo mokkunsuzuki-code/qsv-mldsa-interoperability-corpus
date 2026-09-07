@@ -63,6 +63,10 @@ EXPECTED_FILES = {
     ".github/workflows/qsv-mldsa-cross-platform-clean-environment-precheck-v0_3.yml.sha256",
     "verify_qsv_mldsa_cross_platform_precheck_workflow_candidate_v0_3.py",
     "verify_qsv_mldsa_cross_platform_precheck_workflow_candidate_v0_3.py.sha256",
+    "qsv_mldsa_v0_3_no_crypto_precheck_run_evidence_v0_1.json",
+    "qsv_mldsa_v0_3_no_crypto_precheck_run_evidence_v0_1.json.sha256",
+    "verify_qsv_mldsa_v0_3_no_crypto_precheck_run_evidence_v0_1.py",
+    "verify_qsv_mldsa_v0_3_no_crypto_precheck_run_evidence_v0_1.py.sha256",
     "verify_qsv_mldsa_corpus_v0_1.py",
     "verify_qsv_mldsa_corpus_v0_1.py.sha256",
 }
@@ -4931,6 +4935,151 @@ check(
     (
         "READY_FOR_EXPLICIT_GITHUB_ACTIONS_SIX_CASE_EXECUTION=YES"
         in v03_workflow
+    ),
+)
+
+
+
+#
+# v0.3 no-crypto GitHub Actions precheck run evidence.
+#
+v03_no_crypto_run_evidence_rel = (
+    "qsv_mldsa_v0_3_no_crypto_precheck_run_evidence_v0_1.json"
+)
+
+v03_no_crypto_run_evidence_sidecar_rel = (
+    "qsv_mldsa_v0_3_no_crypto_precheck_run_evidence_v0_1.json.sha256"
+)
+
+v03_no_crypto_run_verifier_rel = (
+    "verify_qsv_mldsa_v0_3_no_crypto_precheck_run_evidence_v0_1.py"
+)
+
+v03_no_crypto_run_verifier_sidecar_rel = (
+    "verify_qsv_mldsa_v0_3_no_crypto_precheck_run_evidence_v0_1.py.sha256"
+)
+
+
+check(
+    "v0.3 no-crypto run evidence hash",
+    sha256(v03_no_crypto_run_evidence_rel)
+    == "bbc7f498231b96726e7bb7d4412269088d74e75cc7f15208974c937bbda2d31f",
+)
+
+check(
+    "v0.3 no-crypto run evidence sidecar file hash",
+    sha256(v03_no_crypto_run_evidence_sidecar_rel)
+    == "f78b230b8a7f516fd14a59d023c2207e0faa2393985e898b651ec386ba0e33d3",
+)
+
+check(
+    "v0.3 no-crypto run evidence verifier hash",
+    sha256(v03_no_crypto_run_verifier_rel)
+    == "d37f60d22b172ed28655938dfe6afb02b3fe6a5f597fa3b04d721f5a3e547e1c",
+)
+
+check(
+    "v0.3 no-crypto run evidence verifier sidecar file hash",
+    sha256(v03_no_crypto_run_verifier_sidecar_rel)
+    == "f63e5bb37542dc4f41330e017ec2b8ba29800b1dc161bbfc4f346106c6ff8869",
+)
+
+
+import os as _qsv_v03_run_os
+import shutil as _qsv_v03_run_shutil
+import subprocess as _qsv_v03_run_subprocess
+import sys as _qsv_v03_run_sys
+import tempfile as _qsv_v03_run_tempfile
+from pathlib import Path as _QSVV03RunPath
+
+
+_qsv_v03_run_root = (
+    _QSVV03RunPath(__file__).resolve().parent
+)
+
+with _qsv_v03_run_tempfile.TemporaryDirectory(
+    prefix="qsv-v03-no-crypto-run-evidence-"
+) as _qsv_v03_run_tmp:
+
+    _qsv_v03_run_tmp_path = (
+        _QSVV03RunPath(
+            _qsv_v03_run_tmp
+        )
+    )
+
+    for _qsv_v03_run_rel in [
+        v03_no_crypto_run_evidence_rel,
+        v03_no_crypto_run_evidence_sidecar_rel,
+        v03_no_crypto_run_verifier_rel,
+        v03_no_crypto_run_verifier_sidecar_rel,
+    ]:
+        _qsv_v03_run_source = (
+            _qsv_v03_run_root
+            / _qsv_v03_run_rel
+        )
+
+        _qsv_v03_run_destination = (
+            _qsv_v03_run_tmp_path
+            / _QSVV03RunPath(
+                _qsv_v03_run_rel
+            ).name
+        )
+
+        _qsv_v03_run_shutil.copy2(
+            _qsv_v03_run_source,
+            _qsv_v03_run_destination,
+        )
+
+    _qsv_v03_run_env = dict(
+        _qsv_v03_run_os.environ
+    )
+
+    _qsv_v03_run_env.pop(
+        "QSV_EXECUTE_CRYPTO",
+        None,
+    )
+
+    _qsv_v03_run_env[
+        "PYTHONDONTWRITEBYTECODE"
+    ] = "1"
+
+    _qsv_v03_run_verifier_path = (
+        _qsv_v03_run_tmp_path
+        / _QSVV03RunPath(
+            v03_no_crypto_run_verifier_rel
+        ).name
+    )
+
+    _qsv_v03_run_result = (
+        _qsv_v03_run_subprocess.run(
+            [
+                _qsv_v03_run_sys.executable,
+                str(
+                    _qsv_v03_run_verifier_path
+                ),
+                str(
+                    _qsv_v03_run_tmp_path
+                ),
+            ],
+            cwd=str(
+                _qsv_v03_run_tmp_path
+            ),
+            stdout=_qsv_v03_run_subprocess.PIPE,
+            stderr=_qsv_v03_run_subprocess.STDOUT,
+            text=True,
+            env=_qsv_v03_run_env,
+        )
+    )
+
+
+check(
+    "v0.3 no-crypto run evidence dedicated verifier",
+    (
+        _qsv_v03_run_result.returncode
+        == 0
+        and
+        "QSV_MLDSA_V0_3_NO_CRYPTO_RUN_EVIDENCE_VERIFICATION=PASS"
+        in _qsv_v03_run_result.stdout.splitlines()
     ),
 )
 
