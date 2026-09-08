@@ -1,0 +1,102 @@
+{
+  "authority_bindings": {
+    "dynamic_runner_build_observation_sha256": "8bffdb0aeca3a75175c62b7d293e2e472bae3192358a22ff34b4c2881ca0a047",
+    "postrun_audit_harness_failure_diagnostic_sha256": "1a1c22cc46bb0ca9df2795497dd31d73cdbae8148a0a42ddea802450d0eee69a",
+    "postrun_recovery_audit_sha256": "567a6c6ca06a74c0dac3dcc377c6cec7ed3360eda730b1113cc39384b9da4674",
+    "run_log_sha256": "270147c9d5d9a2536eae56f35653ecf161a36d580bc9fef44e57587ec7a590c3"
+  },
+  "cryptographic_execution_summary": {
+    "circl_cryptographic_case_count": 6,
+    "cross_implementation_agreement_count": 6,
+    "crypto_operational_error_count": 0,
+    "cryptographic_execution_performed": true,
+    "cryptographic_signature_verification_performed": true,
+    "expected_invalid_case_count": 3,
+    "expected_valid_case_count": 3,
+    "openssl_cryptographic_case_count": 6,
+    "result_evidence_sha256": "fec2b8063286a59988e3079a73e55a98868cc647e96c60634f94db3ac59ddf26",
+    "selected_case_count": 6
+  },
+  "decision": "linux_sixcase_explicit_crypto_reproduction_observed_pass",
+  "evidence_class": "metadata_only_public_run_evidence",
+  "github_actions_run": {
+    "actions_artifact_count": 0,
+    "additional_dispatch_performed": false,
+    "conclusion": "success",
+    "head_branch": "main",
+    "head_commit_sha": "018148be719cd912dfbe7238dbd0642ed30e244c",
+    "head_tree_sha": "ab8d59086d2a70df4e5be6258bfeb5bea0da5036",
+    "job_count": 1,
+    "job_id": 101927914418,
+    "required_successful_step_count": 9,
+    "rerun_performed": false,
+    "run_attempt": 1,
+    "run_id": 34183766166,
+    "status": "completed"
+  },
+  "nonclaims": {
+    "absolute_openssl_build_provenance_complete_claim_allowed": false,
+    "complete_fips_204_conformance_claim_allowed": false,
+    "complete_sigver_coverage_claim_allowed": false,
+    "fips_204_certification_claim_allowed": false,
+    "github_runner_immutable_build_environment": false,
+    "nist_validation_claim_allowed": false,
+    "result_equals_complete_fips_204_conformance": false,
+    "result_equals_complete_sigver_coverage": false,
+    "result_equals_fips_204_certification": false,
+    "result_equals_nist_validation": false,
+    "third_party_independent_reproduction": false
+  },
+  "postrun_audit_recovery": {
+    "crypto_run_completed_successfully_before_harness_failure": true,
+    "failure_class": "post_run_audit_harness_unbound_variable",
+    "intended_defined_variable": "KNOWN_V02_REL",
+    "original_failed_stage": 17,
+    "recovery_required_crypto_rerun": false,
+    "recovery_step_cryptographic_execution_performed": false,
+    "undefined_variable_reference": "V02_REL"
+  },
+  "publication_boundary": {
+    "contains_actions_artifacts": false,
+    "contains_private_key_material": false,
+    "contains_raw_runtime_vector_payload": false,
+    "contains_runtime_binaries": false,
+    "contains_secret_key_material": false,
+    "contains_seed_material": false,
+    "metadata_only": true
+  },
+  "repository": "mokkunsuzuki-code/qsv-mldsa-interoperability-corpus",
+  "runner_and_build_observations": {
+    "cc_version": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+    "circl_harness_binary_sha256": "b53ca61dd665f628770a2d2326e3b335ea35bc2a18f5dbfd2a23374064c230c0",
+    "gcc_version": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+    "go_version": "go version go1.26.5 linux/amd64",
+    "make_version": "GNU Make 4.3",
+    "openssl_built_binary_sha256": "92649280aacaeb7a35687b3ad9201ed3efe3d25b7aea49e083cc68437007afc3",
+    "openssl_built_libcrypto_sha256": "8d3757590081d550ebf3e2dfc614f413ab1e2f584471b3c4d21ef5560e563ec3",
+    "openssl_built_runtime_version": "3.6.3",
+    "openssl_harness_binary_sha256": "07978755211bffcfe57f28ce6354292245a3a0af08d247c617c3f36378aa6b93",
+    "perl_version": "v5.38.2",
+    "python_version": "Python 3.12.3",
+    "runner_arch": "X64",
+    "runner_image_os": "ubuntu24",
+    "runner_image_version": "20260831.293.1",
+    "runner_os": "Linux",
+    "uname": "Linux runnervmejwal 6.17.0-1022-azure #22-Ubuntu SMP Mon Jul 27 17:24:03 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux"
+  },
+  "runtime_payload_boundary": {
+    "private_key_material_included_in_this_evidence": false,
+    "raw_runtime_vector_payload_emitted_during_execution": true,
+    "raw_runtime_vector_payload_included_in_this_evidence": false,
+    "raw_runtime_vector_payload_present_at_finalization": false,
+    "raw_runtime_vector_payload_published": false,
+    "secret_key_material_included_in_this_evidence": false,
+    "seed_material_included_in_this_evidence": false
+  },
+  "schema": "qsv.mldsa.linux-sixcase-metadata-only-public-run-evidence.v0.1",
+  "workflow": {
+    "event": "workflow_dispatch",
+    "workflow_id": 352761983,
+    "workflow_path": ".github/workflows/qsv-mldsa-linux-sixcase-explicit-crypto-execution-v0_1.yml"
+  }
+}
