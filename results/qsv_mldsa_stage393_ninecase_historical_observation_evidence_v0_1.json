@@ -1,0 +1,628 @@
+{
+  "schema": "qsv.mldsa.stage393-ninecase-historical-observation-evidence.v0.1",
+  "version": "0.1",
+  "status": "historical_observations_bound_no_new_qsv_execution",
+  "role": "implementation_specific_historical_observations_for_neutral_qsv_cases",
+  "source_bindings": {
+    "neutral_profile": {
+      "path": "profiles/qsv-mldsa-wycheproof-stage393-ninecase-negative-sign-profile-v0.1.json",
+      "sha256": "7ce3fffa2284ddd3076cfbeaf5d7e009fa3b02b4064738ecf1d8b1d0d4e49fbe"
+    },
+    "wycheproof_source": {
+      "path": "vectors/bindings/qsv-mldsa-wycheproof-vector-source-v0.1.json",
+      "sha256": "7e15181e7bce4b6b3b8748bcc4d53d8c9a6277a3ba6104f19adfe4b08aec2295"
+    },
+    "stage393_triage_provenance": {
+      "path": "provenance/bindings/qsv-mldsa-stage393-triage-provenance-v0.1.json",
+      "sha256": "1375d4927dc3b2d9dbe3befb745c9c10191a45be09fb6be5169bcd03f7241c9a"
+    },
+    "triage_difference_index": {
+      "external_read_only_path": "triage/stage393_mldsa_difference_index.json",
+      "sha256": "1ef96837de0cdca3a2e22d6d28c81a9107907725d1857026ff3f7c7aa82e3d71"
+    }
+  },
+  "execution_boundary": {
+    "historical_stage393_observation": true,
+    "new_qsv_cryptographic_execution": false,
+    "stage393_reexecution": false,
+    "qsv_execute_crypto_required_for_this_artifact": false,
+    "raw_vector_payload_persisted": false
+  },
+  "cases": [
+    {
+      "case_id": "QSV-MLDSA-WYCHEPROOF-44-0052",
+      "source_difference_id": "STAGE393-MLDSA-DIFF-001",
+      "parameter_set": "ML-DSA-44",
+      "operation": "sign",
+      "source_operation": "sign_noseed",
+      "expected_result": "reject",
+      "vector_identity": {
+        "repository": "C2SP/wycheproof",
+        "commit": "dac1dd4729fd1f8dd9e1e9f3dce51d783da6c166",
+        "path": "testvectors_v1/mldsa_44_sign_noseed_test.json",
+        "sha256": "ee55e18b1944db496b2539d3884dfacc04a96db21bcec239063df5e4cd1ee6cb",
+        "group_index": 3,
+        "tc_id": 52
+      },
+      "classification": "semantic_difference",
+      "stage393_classification": "full_length_private_key_semantic_range_validation_difference",
+      "root_cause": "unknown",
+      "observations": {
+        "circl": {
+          "implementation": "circl",
+          "observed_result": "accept",
+          "expected_result": "reject",
+          "expectation_match": false,
+          "normalized_result_state": "unexpected_accept",
+          "observed_details": {
+            "matched": false,
+            "operation_succeeded": true,
+            "generated_signature_valid": true,
+            "public_key_binding_ok": true,
+            "runtime_error": false,
+            "reason": "signing unexpectedly succeeded for invalid vector"
+          },
+          "historical_result_provenance": {
+            "result_file": "results/mldsa_44_sign_noseed_test.json.circl.json",
+            "result_sha256": "cb2d1605cdcd69a238ad7eea30b88aa7719217cf84befc28eb69dc108b737b62"
+          },
+          "new_qsv_execution": false
+        },
+        "openssl": {
+          "implementation": "openssl",
+          "observed_result": "reject",
+          "expected_result": "reject",
+          "expectation_match": true,
+          "normalized_result_state": "expected_reject",
+          "observed_details": {
+            "matched": true,
+            "key_setup_accepted": false,
+            "sign_success": false,
+            "generated_verify": false,
+            "reason": "invalid signing vector rejected"
+          },
+          "historical_result_provenance": {
+            "result_file": "results/mldsa_44_sign_noseed_test.json.openssl.json",
+            "result_sha256": "a78478f253e5a78d839b0235804c8563c137e290d3d19187121857899478d241"
+          },
+          "new_qsv_execution": false
+        }
+      },
+      "confirmed_fips204_nonconformance": false,
+      "confirmed_implementation_bug": false,
+      "confirmed_security_vulnerability": false
+    },
+    {
+      "case_id": "QSV-MLDSA-WYCHEPROOF-44-0053",
+      "source_difference_id": "STAGE393-MLDSA-DIFF-002",
+      "parameter_set": "ML-DSA-44",
+      "operation": "sign",
+      "source_operation": "sign_noseed",
+      "expected_result": "reject",
+      "vector_identity": {
+        "repository": "C2SP/wycheproof",
+        "commit": "dac1dd4729fd1f8dd9e1e9f3dce51d783da6c166",
+        "path": "testvectors_v1/mldsa_44_sign_noseed_test.json",
+        "sha256": "ee55e18b1944db496b2539d3884dfacc04a96db21bcec239063df5e4cd1ee6cb",
+        "group_index": 4,
+        "tc_id": 53
+      },
+      "classification": "semantic_difference",
+      "stage393_classification": "full_length_private_key_semantic_range_validation_difference",
+      "root_cause": "unknown",
+      "observations": {
+        "circl": {
+          "implementation": "circl",
+          "observed_result": "accept",
+          "expected_result": "reject",
+          "expectation_match": false,
+          "normalized_result_state": "unexpected_accept",
+          "observed_details": {
+            "matched": false,
+            "operation_succeeded": true,
+            "generated_signature_valid": true,
+            "public_key_binding_ok": true,
+            "runtime_error": false,
+            "reason": "signing unexpectedly succeeded for invalid vector"
+          },
+          "historical_result_provenance": {
+            "result_file": "results/mldsa_44_sign_noseed_test.json.circl.json",
+            "result_sha256": "cb2d1605cdcd69a238ad7eea30b88aa7719217cf84befc28eb69dc108b737b62"
+          },
+          "new_qsv_execution": false
+        },
+        "openssl": {
+          "implementation": "openssl",
+          "observed_result": "reject",
+          "expected_result": "reject",
+          "expectation_match": true,
+          "normalized_result_state": "expected_reject",
+          "observed_details": {
+            "matched": true,
+            "key_setup_accepted": false,
+            "sign_success": false,
+            "generated_verify": false,
+            "reason": "invalid signing vector rejected"
+          },
+          "historical_result_provenance": {
+            "result_file": "results/mldsa_44_sign_noseed_test.json.openssl.json",
+            "result_sha256": "a78478f253e5a78d839b0235804c8563c137e290d3d19187121857899478d241"
+          },
+          "new_qsv_execution": false
+        }
+      },
+      "confirmed_fips204_nonconformance": false,
+      "confirmed_implementation_bug": false,
+      "confirmed_security_vulnerability": false
+    },
+    {
+      "case_id": "QSV-MLDSA-WYCHEPROOF-44-0084",
+      "source_difference_id": "STAGE393-MLDSA-DIFF-003",
+      "parameter_set": "ML-DSA-44",
+      "operation": "sign",
+      "source_operation": "sign_seed",
+      "expected_result": "reject",
+      "vector_identity": {
+        "repository": "C2SP/wycheproof",
+        "commit": "dac1dd4729fd1f8dd9e1e9f3dce51d783da6c166",
+        "path": "testvectors_v1/mldsa_44_sign_seed_test.json",
+        "sha256": "b29b0dcca2e52c988e1b9c06f8b521889ffbaadfc6a9dbf52f0f0f8f4c5b6b92",
+        "group_index": 21,
+        "tc_id": 84
+      },
+      "classification": "semantic_difference",
+      "stage393_classification": "zero_length_private_seed_handling_difference",
+      "root_cause": "unknown",
+      "observations": {
+        "circl": {
+          "implementation": "circl",
+          "observed_result": "reject",
+          "expected_result": "reject",
+          "expectation_match": true,
+          "normalized_result_state": "expected_reject",
+          "observed_details": {
+            "matched": true,
+            "operation_succeeded": false,
+            "generated_signature_valid": false,
+            "public_key_binding_ok": false,
+            "runtime_error": false,
+            "reason": "seed length 0, want 32"
+          },
+          "historical_result_provenance": {
+            "result_file": "results/mldsa_44_sign_seed_test.json.circl.json",
+            "result_sha256": "47acb726df5d3a82cf7f8c1d6d867bc1c2db33410f79a70815cd5a41972146b3"
+          },
+          "new_qsv_execution": false
+        },
+        "openssl": {
+          "implementation": "openssl",
+          "observed_result": "accept",
+          "expected_result": "reject",
+          "expectation_match": false,
+          "normalized_result_state": "unexpected_accept",
+          "observed_details": {
+            "matched": false,
+            "key_setup_accepted": true,
+            "public_derivation_success": true,
+            "derived_public_match_vector": false,
+            "sign_success": true,
+            "generated_verify": true,
+            "verify_accepted": false,
+            "reason": "signing unexpectedly succeeded for invalid vector"
+          },
+          "historical_result_provenance": {
+            "result_file": "results/mldsa_44_sign_seed_test.json.openssl.json",
+            "result_sha256": "6816dec1b6cab818c45d69d8095ed4e20cd79122f29b2bd3fac3c66dd7a10fc6"
+          },
+          "new_qsv_execution": false
+        }
+      },
+      "confirmed_fips204_nonconformance": false,
+      "confirmed_implementation_bug": false,
+      "confirmed_security_vulnerability": false
+    },
+    {
+      "case_id": "QSV-MLDSA-WYCHEPROOF-65-0056",
+      "source_difference_id": "STAGE393-MLDSA-DIFF-004",
+      "parameter_set": "ML-DSA-65",
+      "operation": "sign",
+      "source_operation": "sign_noseed",
+      "expected_result": "reject",
+      "vector_identity": {
+        "repository": "C2SP/wycheproof",
+        "commit": "dac1dd4729fd1f8dd9e1e9f3dce51d783da6c166",
+        "path": "testvectors_v1/mldsa_65_sign_noseed_test.json",
+        "sha256": "8587a53e7e3ca20b006b661316b89c762acdecf3fa902746b01cbc09fe14130d",
+        "group_index": 3,
+        "tc_id": 56
+      },
+      "classification": "semantic_difference",
+      "stage393_classification": "full_length_private_key_semantic_range_validation_difference",
+      "root_cause": "unknown",
+      "observations": {
+        "circl": {
+          "implementation": "circl",
+          "observed_result": "accept",
+          "expected_result": "reject",
+          "expectation_match": false,
+          "normalized_result_state": "unexpected_accept",
+          "observed_details": {
+            "matched": false,
+            "operation_succeeded": true,
+            "generated_signature_valid": true,
+            "public_key_binding_ok": true,
+            "runtime_error": false,
+            "reason": "signing unexpectedly succeeded for invalid vector"
+          },
+          "historical_result_provenance": {
+            "result_file": "results/mldsa_65_sign_noseed_test.json.circl.json",
+            "result_sha256": "dbe6f4dd39ac1bf9fc8c47710cce66c037fafe66573f3fc2d3f56f8ba61705d3"
+          },
+          "new_qsv_execution": false
+        },
+        "openssl": {
+          "implementation": "openssl",
+          "observed_result": "reject",
+          "expected_result": "reject",
+          "expectation_match": true,
+          "normalized_result_state": "expected_reject",
+          "observed_details": {
+            "matched": true,
+            "key_setup_accepted": false,
+            "sign_success": false,
+            "generated_verify": false,
+            "reason": "invalid signing vector rejected"
+          },
+          "historical_result_provenance": {
+            "result_file": "results/mldsa_65_sign_noseed_test.json.openssl.json",
+            "result_sha256": "3dd7206c4ddd3d11dbcfe0493efb809d26837af04bee5d4e74819fc6b7ef29cd"
+          },
+          "new_qsv_execution": false
+        }
+      },
+      "confirmed_fips204_nonconformance": false,
+      "confirmed_implementation_bug": false,
+      "confirmed_security_vulnerability": false
+    },
+    {
+      "case_id": "QSV-MLDSA-WYCHEPROOF-65-0057",
+      "source_difference_id": "STAGE393-MLDSA-DIFF-005",
+      "parameter_set": "ML-DSA-65",
+      "operation": "sign",
+      "source_operation": "sign_noseed",
+      "expected_result": "reject",
+      "vector_identity": {
+        "repository": "C2SP/wycheproof",
+        "commit": "dac1dd4729fd1f8dd9e1e9f3dce51d783da6c166",
+        "path": "testvectors_v1/mldsa_65_sign_noseed_test.json",
+        "sha256": "8587a53e7e3ca20b006b661316b89c762acdecf3fa902746b01cbc09fe14130d",
+        "group_index": 4,
+        "tc_id": 57
+      },
+      "classification": "semantic_difference",
+      "stage393_classification": "full_length_private_key_semantic_range_validation_difference",
+      "root_cause": "unknown",
+      "observations": {
+        "circl": {
+          "implementation": "circl",
+          "observed_result": "accept",
+          "expected_result": "reject",
+          "expectation_match": false,
+          "normalized_result_state": "unexpected_accept",
+          "observed_details": {
+            "matched": false,
+            "operation_succeeded": true,
+            "generated_signature_valid": true,
+            "public_key_binding_ok": true,
+            "runtime_error": false,
+            "reason": "signing unexpectedly succeeded for invalid vector"
+          },
+          "historical_result_provenance": {
+            "result_file": "results/mldsa_65_sign_noseed_test.json.circl.json",
+            "result_sha256": "dbe6f4dd39ac1bf9fc8c47710cce66c037fafe66573f3fc2d3f56f8ba61705d3"
+          },
+          "new_qsv_execution": false
+        },
+        "openssl": {
+          "implementation": "openssl",
+          "observed_result": "reject",
+          "expected_result": "reject",
+          "expectation_match": true,
+          "normalized_result_state": "expected_reject",
+          "observed_details": {
+            "matched": true,
+            "key_setup_accepted": false,
+            "sign_success": false,
+            "generated_verify": false,
+            "reason": "invalid signing vector rejected"
+          },
+          "historical_result_provenance": {
+            "result_file": "results/mldsa_65_sign_noseed_test.json.openssl.json",
+            "result_sha256": "3dd7206c4ddd3d11dbcfe0493efb809d26837af04bee5d4e74819fc6b7ef29cd"
+          },
+          "new_qsv_execution": false
+        }
+      },
+      "confirmed_fips204_nonconformance": false,
+      "confirmed_implementation_bug": false,
+      "confirmed_security_vulnerability": false
+    },
+    {
+      "case_id": "QSV-MLDSA-WYCHEPROOF-65-0091",
+      "source_difference_id": "STAGE393-MLDSA-DIFF-006",
+      "parameter_set": "ML-DSA-65",
+      "operation": "sign",
+      "source_operation": "sign_seed",
+      "expected_result": "reject",
+      "vector_identity": {
+        "repository": "C2SP/wycheproof",
+        "commit": "dac1dd4729fd1f8dd9e1e9f3dce51d783da6c166",
+        "path": "testvectors_v1/mldsa_65_sign_seed_test.json",
+        "sha256": "d72e9c2f514c9f7490c33785ae0027d942ba2c45a9b8ebfc8fb1802b4913bf38",
+        "group_index": 23,
+        "tc_id": 91
+      },
+      "classification": "semantic_difference",
+      "stage393_classification": "zero_length_private_seed_handling_difference",
+      "root_cause": "unknown",
+      "observations": {
+        "circl": {
+          "implementation": "circl",
+          "observed_result": "reject",
+          "expected_result": "reject",
+          "expectation_match": true,
+          "normalized_result_state": "expected_reject",
+          "observed_details": {
+            "matched": true,
+            "operation_succeeded": false,
+            "generated_signature_valid": false,
+            "public_key_binding_ok": false,
+            "runtime_error": false,
+            "reason": "seed length 0, want 32"
+          },
+          "historical_result_provenance": {
+            "result_file": "results/mldsa_65_sign_seed_test.json.circl.json",
+            "result_sha256": "7e19896b9c3c844846c9f75d93773634692d5fcd5e71d35fe29fc6cf326db2d7"
+          },
+          "new_qsv_execution": false
+        },
+        "openssl": {
+          "implementation": "openssl",
+          "observed_result": "accept",
+          "expected_result": "reject",
+          "expectation_match": false,
+          "normalized_result_state": "unexpected_accept",
+          "observed_details": {
+            "matched": false,
+            "key_setup_accepted": true,
+            "public_derivation_success": true,
+            "derived_public_match_vector": false,
+            "sign_success": true,
+            "generated_verify": true,
+            "verify_accepted": false,
+            "reason": "signing unexpectedly succeeded for invalid vector"
+          },
+          "historical_result_provenance": {
+            "result_file": "results/mldsa_65_sign_seed_test.json.openssl.json",
+            "result_sha256": "50d303153bb12bf8335dfc551979e582373d9c819815d043047597de77ab9d3c"
+          },
+          "new_qsv_execution": false
+        }
+      },
+      "confirmed_fips204_nonconformance": false,
+      "confirmed_implementation_bug": false,
+      "confirmed_security_vulnerability": false
+    },
+    {
+      "case_id": "QSV-MLDSA-WYCHEPROOF-87-0047",
+      "source_difference_id": "STAGE393-MLDSA-DIFF-007",
+      "parameter_set": "ML-DSA-87",
+      "operation": "sign",
+      "source_operation": "sign_noseed",
+      "expected_result": "reject",
+      "vector_identity": {
+        "repository": "C2SP/wycheproof",
+        "commit": "dac1dd4729fd1f8dd9e1e9f3dce51d783da6c166",
+        "path": "testvectors_v1/mldsa_87_sign_noseed_test.json",
+        "sha256": "bd4c997f1fb90d985dbcca9a5ab52cef1f5c22d2cc0ba332d8dbe68703a5b40d",
+        "group_index": 3,
+        "tc_id": 47
+      },
+      "classification": "semantic_difference",
+      "stage393_classification": "full_length_private_key_semantic_range_validation_difference",
+      "root_cause": "unknown",
+      "observations": {
+        "circl": {
+          "implementation": "circl",
+          "observed_result": "accept",
+          "expected_result": "reject",
+          "expectation_match": false,
+          "normalized_result_state": "unexpected_accept",
+          "observed_details": {
+            "matched": false,
+            "operation_succeeded": true,
+            "generated_signature_valid": true,
+            "public_key_binding_ok": true,
+            "runtime_error": false,
+            "reason": "signing unexpectedly succeeded for invalid vector"
+          },
+          "historical_result_provenance": {
+            "result_file": "results/mldsa_87_sign_noseed_test.json.circl.json",
+            "result_sha256": "3afe0cbd61e7500e9e04311332cc16f0a9e22d96d9a57d8b2914a4c3a4e86e95"
+          },
+          "new_qsv_execution": false
+        },
+        "openssl": {
+          "implementation": "openssl",
+          "observed_result": "reject",
+          "expected_result": "reject",
+          "expectation_match": true,
+          "normalized_result_state": "expected_reject",
+          "observed_details": {
+            "matched": true,
+            "key_setup_accepted": false,
+            "sign_success": false,
+            "generated_verify": false,
+            "reason": "invalid signing vector rejected"
+          },
+          "historical_result_provenance": {
+            "result_file": "results/mldsa_87_sign_noseed_test.json.openssl.json",
+            "result_sha256": "42c0aedc769de11f14767d7bc621720065b5cf2a46f5fa6f137165083fa7b0b8"
+          },
+          "new_qsv_execution": false
+        }
+      },
+      "confirmed_fips204_nonconformance": false,
+      "confirmed_implementation_bug": false,
+      "confirmed_security_vulnerability": false
+    },
+    {
+      "case_id": "QSV-MLDSA-WYCHEPROOF-87-0048",
+      "source_difference_id": "STAGE393-MLDSA-DIFF-008",
+      "parameter_set": "ML-DSA-87",
+      "operation": "sign",
+      "source_operation": "sign_noseed",
+      "expected_result": "reject",
+      "vector_identity": {
+        "repository": "C2SP/wycheproof",
+        "commit": "dac1dd4729fd1f8dd9e1e9f3dce51d783da6c166",
+        "path": "testvectors_v1/mldsa_87_sign_noseed_test.json",
+        "sha256": "bd4c997f1fb90d985dbcca9a5ab52cef1f5c22d2cc0ba332d8dbe68703a5b40d",
+        "group_index": 4,
+        "tc_id": 48
+      },
+      "classification": "semantic_difference",
+      "stage393_classification": "full_length_private_key_semantic_range_validation_difference",
+      "root_cause": "unknown",
+      "observations": {
+        "circl": {
+          "implementation": "circl",
+          "observed_result": "accept",
+          "expected_result": "reject",
+          "expectation_match": false,
+          "normalized_result_state": "unexpected_accept",
+          "observed_details": {
+            "matched": false,
+            "operation_succeeded": true,
+            "generated_signature_valid": true,
+            "public_key_binding_ok": true,
+            "runtime_error": false,
+            "reason": "signing unexpectedly succeeded for invalid vector"
+          },
+          "historical_result_provenance": {
+            "result_file": "results/mldsa_87_sign_noseed_test.json.circl.json",
+            "result_sha256": "3afe0cbd61e7500e9e04311332cc16f0a9e22d96d9a57d8b2914a4c3a4e86e95"
+          },
+          "new_qsv_execution": false
+        },
+        "openssl": {
+          "implementation": "openssl",
+          "observed_result": "reject",
+          "expected_result": "reject",
+          "expectation_match": true,
+          "normalized_result_state": "expected_reject",
+          "observed_details": {
+            "matched": true,
+            "key_setup_accepted": false,
+            "sign_success": false,
+            "generated_verify": false,
+            "reason": "invalid signing vector rejected"
+          },
+          "historical_result_provenance": {
+            "result_file": "results/mldsa_87_sign_noseed_test.json.openssl.json",
+            "result_sha256": "42c0aedc769de11f14767d7bc621720065b5cf2a46f5fa6f137165083fa7b0b8"
+          },
+          "new_qsv_execution": false
+        }
+      },
+      "confirmed_fips204_nonconformance": false,
+      "confirmed_implementation_bug": false,
+      "confirmed_security_vulnerability": false
+    },
+    {
+      "case_id": "QSV-MLDSA-WYCHEPROOF-87-0082",
+      "source_difference_id": "STAGE393-MLDSA-DIFF-009",
+      "parameter_set": "ML-DSA-87",
+      "operation": "sign",
+      "source_operation": "sign_seed",
+      "expected_result": "reject",
+      "vector_identity": {
+        "repository": "C2SP/wycheproof",
+        "commit": "dac1dd4729fd1f8dd9e1e9f3dce51d783da6c166",
+        "path": "testvectors_v1/mldsa_87_sign_seed_test.json",
+        "sha256": "e83c292318134faa6af777e86c619c4643e2705dba91dfa5adcd1fddfd4f40ce",
+        "group_index": 23,
+        "tc_id": 82
+      },
+      "classification": "semantic_difference",
+      "stage393_classification": "zero_length_private_seed_handling_difference",
+      "root_cause": "unknown",
+      "observations": {
+        "circl": {
+          "implementation": "circl",
+          "observed_result": "reject",
+          "expected_result": "reject",
+          "expectation_match": true,
+          "normalized_result_state": "expected_reject",
+          "observed_details": {
+            "matched": true,
+            "operation_succeeded": false,
+            "generated_signature_valid": false,
+            "public_key_binding_ok": false,
+            "runtime_error": false,
+            "reason": "seed length 0, want 32"
+          },
+          "historical_result_provenance": {
+            "result_file": "results/mldsa_87_sign_seed_test.json.circl.json",
+            "result_sha256": "0b88bd2a85ad82d7bc58d0e6e3f432af051db88d4e2c825c8bb11939e39fd282"
+          },
+          "new_qsv_execution": false
+        },
+        "openssl": {
+          "implementation": "openssl",
+          "observed_result": "accept",
+          "expected_result": "reject",
+          "expectation_match": false,
+          "normalized_result_state": "unexpected_accept",
+          "observed_details": {
+            "matched": false,
+            "key_setup_accepted": true,
+            "public_derivation_success": true,
+            "derived_public_match_vector": false,
+            "sign_success": true,
+            "generated_verify": true,
+            "verify_accepted": false,
+            "reason": "signing unexpectedly succeeded for invalid vector"
+          },
+          "historical_result_provenance": {
+            "result_file": "results/mldsa_87_sign_seed_test.json.openssl.json",
+            "result_sha256": "2e4548067d6bc70ce93afd847802ff338d5df701502ea36cb4d3ef40b8d1347e"
+          },
+          "new_qsv_execution": false
+        }
+      },
+      "confirmed_fips204_nonconformance": false,
+      "confirmed_implementation_bug": false,
+      "confirmed_security_vulnerability": false
+    }
+  ],
+  "summary": {
+    "case_count": 9,
+    "circl_historical_observation_count": 9,
+    "openssl_historical_observation_count": 9,
+    "circl_expectation_difference_count": 6,
+    "openssl_expectation_difference_count": 3,
+    "root_cause_classification_complete": false,
+    "root_cause_default": "unknown",
+    "confirmed_fips204_nonconformance": false,
+    "confirmed_implementation_bug": false,
+    "confirmed_security_vulnerability": false
+  },
+  "truth_boundaries": {
+    "historical_observation_is_new_qsv_execution": false,
+    "cross_implementation_difference_implies_fips204_nonconformance": false,
+    "cross_implementation_difference_implies_implementation_bug": false,
+    "cross_implementation_difference_implies_security_vulnerability": false,
+    "observed_behavior_establishes_root_cause": false
+  }
+}

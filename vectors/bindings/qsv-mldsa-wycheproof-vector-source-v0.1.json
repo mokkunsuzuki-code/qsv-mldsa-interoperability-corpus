@@ -1,0 +1,73 @@
+{
+  "schema": "qsv.mldsa.wycheproof-vector-source-binding.v0.1",
+  "version": "0.1",
+  "status": "historical_negative_vector_source_bound_no_qsv_execution",
+  "role": "append_only_negative_behavior_vector_source_authority",
+  "base_corpus_authority": {
+    "repository": "mokkunsuzuki-code/qsv-mldsa-interoperability-corpus",
+    "commit": "9147de5e27a2764a95d7ef296b24b8c5bf235286",
+    "tree": "ee64d8091cbe9b0b811b5310b1f58788142da70d"
+  },
+  "source_authority": {
+    "organization": "C2SP",
+    "repository": "C2SP/wycheproof",
+    "selected_commit": "dac1dd4729fd1f8dd9e1e9f3dce51d783da6c166",
+    "selected_tree": null,
+    "selected_tree_not_recorded_in_stage393_binding": true,
+    "vector_directory": "testvectors_v1",
+    "semantic_guide": "doc/mldsa.md",
+    "semantic_guide_git_blob": "cbda9e06abf3f2c43c1a50e11e0d05b2534faf68"
+  },
+  "selected_vector_surface": {
+    "file_count": 6,
+    "parameter_sets": [
+      "ML-DSA-44",
+      "ML-DSA-65",
+      "ML-DSA-87"
+    ],
+    "operations": [
+      "sign_noseed",
+      "sign_seed"
+    ],
+    "files": [
+      {
+        "path": "testvectors_v1/mldsa_44_sign_noseed_test.json",
+        "sha256": "ee55e18b1944db496b2539d3884dfacc04a96db21bcec239063df5e4cd1ee6cb"
+      },
+      {
+        "path": "testvectors_v1/mldsa_44_sign_seed_test.json",
+        "sha256": "b29b0dcca2e52c988e1b9c06f8b521889ffbaadfc6a9dbf52f0f0f8f4c5b6b92"
+      },
+      {
+        "path": "testvectors_v1/mldsa_65_sign_noseed_test.json",
+        "sha256": "8587a53e7e3ca20b006b661316b89c762acdecf3fa902746b01cbc09fe14130d"
+      },
+      {
+        "path": "testvectors_v1/mldsa_65_sign_seed_test.json",
+        "sha256": "d72e9c2f514c9f7490c33785ae0027d942ba2c45a9b8ebfc8fb1802b4913bf38"
+      },
+      {
+        "path": "testvectors_v1/mldsa_87_sign_noseed_test.json",
+        "sha256": "bd4c997f1fb90d985dbcca9a5ab52cef1f5c22d2cc0ba332d8dbe68703a5b40d"
+      },
+      {
+        "path": "testvectors_v1/mldsa_87_sign_seed_test.json",
+        "sha256": "e83c292318134faa6af777e86c619c4643e2705dba91dfa5adcd1fddfd4f40ce"
+      }
+    ]
+  },
+  "truth_boundaries": {
+    "source_snapshot_implies_cryptographic_correctness": false,
+    "vector_presence_implies_implementation_conformance": false,
+    "wycheproof_result_implies_fips204_nonconformance": false,
+    "cross_implementation_difference_implies_implementation_bug": false,
+    "cross_implementation_difference_implies_security_vulnerability": false
+  },
+  "execution_state": {
+    "wycheproof_vector_payload_copied_to_corpus": false,
+    "cryptographic_fixture_generation_performed": false,
+    "cryptographic_fixture_execution_performed": false,
+    "historical_stage393_execution_reexecuted": false,
+    "qsv_result_generated_from_new_crypto_execution": false
+  }
+}

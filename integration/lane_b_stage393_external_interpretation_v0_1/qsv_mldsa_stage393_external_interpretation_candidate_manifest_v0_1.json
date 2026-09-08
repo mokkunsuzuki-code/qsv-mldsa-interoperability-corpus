@@ -1,0 +1,118 @@
+{
+  "candidate_scope": {
+    "lane": "stage393_circl_ninecase_evidence_lane",
+    "oqs_lane_included": false,
+    "root_verifier_v0_2_created": false,
+    "unified_corpus_integration_performed": false
+  },
+  "evidence_summary": {
+    "circl_expectation_difference_count": 6,
+    "circl_runtime_acceptance_root_cause_fully_traced": false,
+    "circl_source_code_policy_reference_present": true,
+    "circl_test_policy_rationale_documented": true,
+    "confirmed_fips204_nonconformance": false,
+    "confirmed_implementation_bug": false,
+    "confirmed_security_vulnerability": false,
+    "external_interpretation_record_count": 1,
+    "formal_adjudication": false,
+    "formal_certification": false,
+    "openssl_expectation_difference_count": 3,
+    "openssl_project_primary_confirmation_present": false,
+    "qsv_endorsement_by_circl": false,
+    "qsv_endorsement_by_cloudflare": false,
+    "root_cause": "unknown",
+    "root_cause_classification_complete": false,
+    "stage393_ninecase_count": 9
+  },
+  "execution_boundary": {
+    "cryptographic_reexecution_performed": false,
+    "git_add_performed": false,
+    "local_commit_created": false,
+    "new_push_performed": false,
+    "new_qsv_cryptographic_execution": false,
+    "qsv_execute_crypto_enabled": false,
+    "workflow_dispatched": false
+  },
+  "external_interpretation_artifact": {
+    "path": "qsv_mldsa_stage393_circl_issue_691_external_interpretation_v0_1.json",
+    "sha256": "8fbd24c8253fca511f1fe12b94b85c92e8f23d9aeb7b46ff21e8b8fed9437d55",
+    "sidecar_path": "qsv_mldsa_stage393_circl_issue_691_external_interpretation_v0_1.json.sha256",
+    "sidecar_sha256": "e9d456bbf5e7b837e874a10310971961fbff4cecad56a49d1f1bb2329ff151f7"
+  },
+  "schema": "qsv.mldsa.stage393.external-interpretation-candidate-manifest.v0.1",
+  "source_qsv_authority": {
+    "repository_head": "9147de5e27a2764a95d7ef296b24b8c5bf235286",
+    "repository_tree": "ee64d8091cbe9b0b811b5310b1f58788142da70d",
+    "tracked_baseline_modified": false
+  },
+  "stage393_historical_authority": {
+    "head": "61809515b6db87123ea60b404d6db4e6751bcac2",
+    "modified": false,
+    "tree": "1ddb9e5d54b4de5e91a3e1b75c635b82213c0d17"
+  },
+  "stage393_static_candidate_reference": {
+    "file_count": 12,
+    "files": [
+      {
+        "path": "claims/qsv_mldsa_stage393_ninecase_historical_claim_table_v0_1.json",
+        "sha256": "521c9909f93290dae6ddd16b06f5a810f76e720b3a40fde1c090a09f9280e8bf"
+      },
+      {
+        "path": "claims/qsv_mldsa_stage393_ninecase_historical_claim_table_v0_1.json.sha256",
+        "sha256": "26926fdae4917dd1c4118a016732889ef6930b87443793151f73c4b5dd8d03b6"
+      },
+      {
+        "path": "profiles/qsv-mldsa-wycheproof-stage393-ninecase-negative-sign-profile-v0.1.json",
+        "sha256": "7ce3fffa2284ddd3076cfbeaf5d7e009fa3b02b4064738ecf1d8b1d0d4e49fbe"
+      },
+      {
+        "path": "profiles/qsv-mldsa-wycheproof-stage393-ninecase-negative-sign-profile-v0.1.json.sha256",
+        "sha256": "5a36bd03c954d37ce5e37677d8ceeefc521755cfba46e431015eb252ab48e7e8"
+      },
+      {
+        "path": "provenance/bindings/qsv-mldsa-stage393-triage-provenance-v0.1.json",
+        "sha256": "1375d4927dc3b2d9dbe3befb745c9c10191a45be09fb6be5169bcd03f7241c9a"
+      },
+      {
+        "path": "provenance/bindings/qsv-mldsa-stage393-triage-provenance-v0.1.json.sha256",
+        "sha256": "25a1d12aa5f0d103bc04eb357f64ce8ba207715be43d95d12cc77e80526061f1"
+      },
+      {
+        "path": "results/qsv_mldsa_stage393_ninecase_historical_observation_evidence_v0_1.json",
+        "sha256": "afdab2eed9329378a839d64e755435fa355147f9d0d17ddaff330e492c08ccb4"
+      },
+      {
+        "path": "results/qsv_mldsa_stage393_ninecase_historical_observation_evidence_v0_1.json.sha256",
+        "sha256": "90601fc1faa2138cb95a5cc52d0ca76d2aa4eb166d59e504838d56cfedd82a5c"
+      },
+      {
+        "path": "vectors/bindings/qsv-mldsa-wycheproof-vector-source-v0.1.json",
+        "sha256": "7e15181e7bce4b6b3b8748bcc4d53d8c9a6277a3ba6104f19adfe4b08aec2295"
+      },
+      {
+        "path": "vectors/bindings/qsv-mldsa-wycheproof-vector-source-v0.1.json.sha256",
+        "sha256": "917f0b9529957bf8984ccf9e23bf24aa8ff8636bfa0ff5900103506e93993c54"
+      },
+      {
+        "path": "verify_qsv_mldsa_stage393_ninecase_static_integration_v0_1.py",
+        "sha256": "5df9d8f2cf16aa5eb5e74b01a8972e1e39fb243d35d9d547179c88fd96719776"
+      },
+      {
+        "path": "verify_qsv_mldsa_stage393_ninecase_static_integration_v0_1.py.sha256",
+        "sha256": "ceb5211e1fe0e49c0f7123de1c62a80ba49c70bdf205630e929a28d8e1be208e"
+      }
+    ],
+    "files_copied_into_isolated_candidate": false,
+    "freeze_input_canonical_sha256": "dd89fd8ee3c124d7fcc314ca1db61ad9bccd6f1c32fa3201f521a6ac50412015",
+    "storage": "live_repository_untracked_reference_only"
+  },
+  "status": "isolated_candidate_pre_verification",
+  "truth_boundaries": {
+    "agreement_proves_correctness": false,
+    "circl_or_cloudflare_endorsement_claim_allowed": false,
+    "disagreement_proves_defect": false,
+    "external_interpretation_proves_specification_correctness": false,
+    "source_code_policy_reference_proves_runtime_root_cause": false
+  },
+  "version": "0.1"
+}

@@ -1,0 +1,1089 @@
+{
+  "schema": "qsv.mldsa.stage393-ninecase-historical-claim-table.v0.1",
+  "version": "0.1",
+  "status": "machine_readable_historical_claims_bound_runtime_contract_incomplete",
+  "role": "historical_observation_claim_table_not_new_runtime_execution",
+  "contract_binding": {
+    "path": "contracts/qsv-mldsa-interoperability-corpus-v0.1.json",
+    "sha256": "7f2e9903cee09136d1db497aa5bbeb205a0ba014dd5e761916d2d2c9c6a7f09c",
+    "claim_record_required_fields": [
+      "claim_id",
+      "fixture_id",
+      "implementation",
+      "implementation_lineage",
+      "exact_command",
+      "inputs",
+      "output",
+      "exit_status",
+      "artifact_hashes",
+      "environment"
+    ],
+    "historical_records_runtime_contract_complete": false,
+    "reason": "Frozen imported Stage393 evidence does not record all runtime claim fields and no missing values are reconstructed."
+  },
+  "source_bindings": {
+    "neutral_case_profile": {
+      "path": "profiles/qsv-mldsa-wycheproof-stage393-ninecase-negative-sign-profile-v0.1.json",
+      "sha256": "7ce3fffa2284ddd3076cfbeaf5d7e009fa3b02b4064738ecf1d8b1d0d4e49fbe"
+    },
+    "stage393_triage_provenance": {
+      "path": "provenance/bindings/qsv-mldsa-stage393-triage-provenance-v0.1.json",
+      "sha256": "1375d4927dc3b2d9dbe3befb745c9c10191a45be09fb6be5169bcd03f7241c9a"
+    },
+    "historical_observation_evidence": {
+      "path": "results/qsv_mldsa_stage393_ninecase_historical_observation_evidence_v0_1.json",
+      "sha256": "afdab2eed9329378a839d64e755435fa355147f9d0d17ddaff330e492c08ccb4"
+    }
+  },
+  "claim_boundary": {
+    "historical_observation_only": true,
+    "new_qsv_cryptographic_execution": false,
+    "qsv_fixture_instance_created": false,
+    "missing_runtime_metadata_reconstructed": false,
+    "raw_wycheproof_payload_copied": false,
+    "claims_runtime_contract_complete": false
+  },
+  "claims": [
+    {
+      "claim_id": "QSV-MLDSA-WYCHEPROOF-44-0052-HISTORICAL-CIRCL",
+      "fixture_id": null,
+      "implementation": "circl",
+      "implementation_lineage": {
+        "commit": "cfa7c70defd831ffb0792ab2af560bfef43d60ca",
+        "tree": "b3a50c3f1b7a5f8cfac0cce655ae7ea7900e9139"
+      },
+      "exact_command": null,
+      "inputs": null,
+      "output": {
+        "case_id": "QSV-MLDSA-WYCHEPROOF-44-0052",
+        "source_difference_id": "STAGE393-MLDSA-DIFF-001",
+        "expected_result": "reject",
+        "observed_result": "accept",
+        "expectation_match": false,
+        "normalized_result_state": "unexpected_accept",
+        "observed_details": {
+          "matched": false,
+          "operation_succeeded": true,
+          "generated_signature_valid": true,
+          "public_key_binding_ok": true,
+          "runtime_error": false,
+          "reason": "signing unexpectedly succeeded for invalid vector"
+        }
+      },
+      "exit_status": null,
+      "artifact_hashes": {
+        "vector_file_sha256": "ee55e18b1944db496b2539d3884dfacc04a96db21bcec239063df5e4cd1ee6cb",
+        "historical_result_file_sha256": "cb2d1605cdcd69a238ad7eea30b88aa7719217cf84befc28eb69dc108b737b62",
+        "historical_observation_evidence_sha256": "afdab2eed9329378a839d64e755435fa355147f9d0d17ddaff330e492c08ccb4"
+      },
+      "environment": null,
+      "case_id": "QSV-MLDSA-WYCHEPROOF-44-0052",
+      "source_difference_id": "STAGE393-MLDSA-DIFF-001",
+      "historical_result_file": "results/mldsa_44_sign_noseed_test.json.circl.json",
+      "claim_type": "imported_historical_observation_claim",
+      "new_qsv_execution": false,
+      "fixture_instance_created": false,
+      "runtime_contract_complete": false,
+      "contract_field_availability": {
+        "claim_id": "assigned_by_qsv_historical_claim_table",
+        "fixture_id": "not_applicable_no_qsv_fixture_instance_created",
+        "implementation": "recorded",
+        "implementation_lineage": "bound_by_stage393_provenance",
+        "exact_command": "not_recorded_in_imported_frozen_stage393_result",
+        "inputs": "not_reconstructed_raw_vector_payload_not_persisted",
+        "output": "recorded_in_bound_historical_observation_evidence",
+        "exit_status": "not_recorded_in_imported_frozen_stage393_result",
+        "artifact_hashes": "bound_from_vector_and_historical_result_provenance",
+        "environment": "not_recorded_in_imported_frozen_stage393_result"
+      },
+      "root_cause": "unknown",
+      "confirmed_fips204_nonconformance": false,
+      "confirmed_implementation_bug": false,
+      "confirmed_security_vulnerability": false
+    },
+    {
+      "claim_id": "QSV-MLDSA-WYCHEPROOF-44-0052-HISTORICAL-OPENSSL",
+      "fixture_id": null,
+      "implementation": "openssl",
+      "implementation_lineage": {
+        "commit": "aae016bfd52fcad2bc9657c2c782cfdf73b1ed5f",
+        "tree": "a8a306c000bc2426afd3264b2c41bc7223728475"
+      },
+      "exact_command": null,
+      "inputs": null,
+      "output": {
+        "case_id": "QSV-MLDSA-WYCHEPROOF-44-0052",
+        "source_difference_id": "STAGE393-MLDSA-DIFF-001",
+        "expected_result": "reject",
+        "observed_result": "reject",
+        "expectation_match": true,
+        "normalized_result_state": "expected_reject",
+        "observed_details": {
+          "matched": true,
+          "key_setup_accepted": false,
+          "sign_success": false,
+          "generated_verify": false,
+          "reason": "invalid signing vector rejected"
+        }
+      },
+      "exit_status": null,
+      "artifact_hashes": {
+        "vector_file_sha256": "ee55e18b1944db496b2539d3884dfacc04a96db21bcec239063df5e4cd1ee6cb",
+        "historical_result_file_sha256": "a78478f253e5a78d839b0235804c8563c137e290d3d19187121857899478d241",
+        "historical_observation_evidence_sha256": "afdab2eed9329378a839d64e755435fa355147f9d0d17ddaff330e492c08ccb4"
+      },
+      "environment": null,
+      "case_id": "QSV-MLDSA-WYCHEPROOF-44-0052",
+      "source_difference_id": "STAGE393-MLDSA-DIFF-001",
+      "historical_result_file": "results/mldsa_44_sign_noseed_test.json.openssl.json",
+      "claim_type": "imported_historical_observation_claim",
+      "new_qsv_execution": false,
+      "fixture_instance_created": false,
+      "runtime_contract_complete": false,
+      "contract_field_availability": {
+        "claim_id": "assigned_by_qsv_historical_claim_table",
+        "fixture_id": "not_applicable_no_qsv_fixture_instance_created",
+        "implementation": "recorded",
+        "implementation_lineage": "bound_by_stage393_provenance",
+        "exact_command": "not_recorded_in_imported_frozen_stage393_result",
+        "inputs": "not_reconstructed_raw_vector_payload_not_persisted",
+        "output": "recorded_in_bound_historical_observation_evidence",
+        "exit_status": "not_recorded_in_imported_frozen_stage393_result",
+        "artifact_hashes": "bound_from_vector_and_historical_result_provenance",
+        "environment": "not_recorded_in_imported_frozen_stage393_result"
+      },
+      "root_cause": "unknown",
+      "confirmed_fips204_nonconformance": false,
+      "confirmed_implementation_bug": false,
+      "confirmed_security_vulnerability": false
+    },
+    {
+      "claim_id": "QSV-MLDSA-WYCHEPROOF-44-0053-HISTORICAL-CIRCL",
+      "fixture_id": null,
+      "implementation": "circl",
+      "implementation_lineage": {
+        "commit": "cfa7c70defd831ffb0792ab2af560bfef43d60ca",
+        "tree": "b3a50c3f1b7a5f8cfac0cce655ae7ea7900e9139"
+      },
+      "exact_command": null,
+      "inputs": null,
+      "output": {
+        "case_id": "QSV-MLDSA-WYCHEPROOF-44-0053",
+        "source_difference_id": "STAGE393-MLDSA-DIFF-002",
+        "expected_result": "reject",
+        "observed_result": "accept",
+        "expectation_match": false,
+        "normalized_result_state": "unexpected_accept",
+        "observed_details": {
+          "matched": false,
+          "operation_succeeded": true,
+          "generated_signature_valid": true,
+          "public_key_binding_ok": true,
+          "runtime_error": false,
+          "reason": "signing unexpectedly succeeded for invalid vector"
+        }
+      },
+      "exit_status": null,
+      "artifact_hashes": {
+        "vector_file_sha256": "ee55e18b1944db496b2539d3884dfacc04a96db21bcec239063df5e4cd1ee6cb",
+        "historical_result_file_sha256": "cb2d1605cdcd69a238ad7eea30b88aa7719217cf84befc28eb69dc108b737b62",
+        "historical_observation_evidence_sha256": "afdab2eed9329378a839d64e755435fa355147f9d0d17ddaff330e492c08ccb4"
+      },
+      "environment": null,
+      "case_id": "QSV-MLDSA-WYCHEPROOF-44-0053",
+      "source_difference_id": "STAGE393-MLDSA-DIFF-002",
+      "historical_result_file": "results/mldsa_44_sign_noseed_test.json.circl.json",
+      "claim_type": "imported_historical_observation_claim",
+      "new_qsv_execution": false,
+      "fixture_instance_created": false,
+      "runtime_contract_complete": false,
+      "contract_field_availability": {
+        "claim_id": "assigned_by_qsv_historical_claim_table",
+        "fixture_id": "not_applicable_no_qsv_fixture_instance_created",
+        "implementation": "recorded",
+        "implementation_lineage": "bound_by_stage393_provenance",
+        "exact_command": "not_recorded_in_imported_frozen_stage393_result",
+        "inputs": "not_reconstructed_raw_vector_payload_not_persisted",
+        "output": "recorded_in_bound_historical_observation_evidence",
+        "exit_status": "not_recorded_in_imported_frozen_stage393_result",
+        "artifact_hashes": "bound_from_vector_and_historical_result_provenance",
+        "environment": "not_recorded_in_imported_frozen_stage393_result"
+      },
+      "root_cause": "unknown",
+      "confirmed_fips204_nonconformance": false,
+      "confirmed_implementation_bug": false,
+      "confirmed_security_vulnerability": false
+    },
+    {
+      "claim_id": "QSV-MLDSA-WYCHEPROOF-44-0053-HISTORICAL-OPENSSL",
+      "fixture_id": null,
+      "implementation": "openssl",
+      "implementation_lineage": {
+        "commit": "aae016bfd52fcad2bc9657c2c782cfdf73b1ed5f",
+        "tree": "a8a306c000bc2426afd3264b2c41bc7223728475"
+      },
+      "exact_command": null,
+      "inputs": null,
+      "output": {
+        "case_id": "QSV-MLDSA-WYCHEPROOF-44-0053",
+        "source_difference_id": "STAGE393-MLDSA-DIFF-002",
+        "expected_result": "reject",
+        "observed_result": "reject",
+        "expectation_match": true,
+        "normalized_result_state": "expected_reject",
+        "observed_details": {
+          "matched": true,
+          "key_setup_accepted": false,
+          "sign_success": false,
+          "generated_verify": false,
+          "reason": "invalid signing vector rejected"
+        }
+      },
+      "exit_status": null,
+      "artifact_hashes": {
+        "vector_file_sha256": "ee55e18b1944db496b2539d3884dfacc04a96db21bcec239063df5e4cd1ee6cb",
+        "historical_result_file_sha256": "a78478f253e5a78d839b0235804c8563c137e290d3d19187121857899478d241",
+        "historical_observation_evidence_sha256": "afdab2eed9329378a839d64e755435fa355147f9d0d17ddaff330e492c08ccb4"
+      },
+      "environment": null,
+      "case_id": "QSV-MLDSA-WYCHEPROOF-44-0053",
+      "source_difference_id": "STAGE393-MLDSA-DIFF-002",
+      "historical_result_file": "results/mldsa_44_sign_noseed_test.json.openssl.json",
+      "claim_type": "imported_historical_observation_claim",
+      "new_qsv_execution": false,
+      "fixture_instance_created": false,
+      "runtime_contract_complete": false,
+      "contract_field_availability": {
+        "claim_id": "assigned_by_qsv_historical_claim_table",
+        "fixture_id": "not_applicable_no_qsv_fixture_instance_created",
+        "implementation": "recorded",
+        "implementation_lineage": "bound_by_stage393_provenance",
+        "exact_command": "not_recorded_in_imported_frozen_stage393_result",
+        "inputs": "not_reconstructed_raw_vector_payload_not_persisted",
+        "output": "recorded_in_bound_historical_observation_evidence",
+        "exit_status": "not_recorded_in_imported_frozen_stage393_result",
+        "artifact_hashes": "bound_from_vector_and_historical_result_provenance",
+        "environment": "not_recorded_in_imported_frozen_stage393_result"
+      },
+      "root_cause": "unknown",
+      "confirmed_fips204_nonconformance": false,
+      "confirmed_implementation_bug": false,
+      "confirmed_security_vulnerability": false
+    },
+    {
+      "claim_id": "QSV-MLDSA-WYCHEPROOF-44-0084-HISTORICAL-CIRCL",
+      "fixture_id": null,
+      "implementation": "circl",
+      "implementation_lineage": {
+        "commit": "cfa7c70defd831ffb0792ab2af560bfef43d60ca",
+        "tree": "b3a50c3f1b7a5f8cfac0cce655ae7ea7900e9139"
+      },
+      "exact_command": null,
+      "inputs": null,
+      "output": {
+        "case_id": "QSV-MLDSA-WYCHEPROOF-44-0084",
+        "source_difference_id": "STAGE393-MLDSA-DIFF-003",
+        "expected_result": "reject",
+        "observed_result": "reject",
+        "expectation_match": true,
+        "normalized_result_state": "expected_reject",
+        "observed_details": {
+          "matched": true,
+          "operation_succeeded": false,
+          "generated_signature_valid": false,
+          "public_key_binding_ok": false,
+          "runtime_error": false,
+          "reason": "seed length 0, want 32"
+        }
+      },
+      "exit_status": null,
+      "artifact_hashes": {
+        "vector_file_sha256": "b29b0dcca2e52c988e1b9c06f8b521889ffbaadfc6a9dbf52f0f0f8f4c5b6b92",
+        "historical_result_file_sha256": "47acb726df5d3a82cf7f8c1d6d867bc1c2db33410f79a70815cd5a41972146b3",
+        "historical_observation_evidence_sha256": "afdab2eed9329378a839d64e755435fa355147f9d0d17ddaff330e492c08ccb4"
+      },
+      "environment": null,
+      "case_id": "QSV-MLDSA-WYCHEPROOF-44-0084",
+      "source_difference_id": "STAGE393-MLDSA-DIFF-003",
+      "historical_result_file": "results/mldsa_44_sign_seed_test.json.circl.json",
+      "claim_type": "imported_historical_observation_claim",
+      "new_qsv_execution": false,
+      "fixture_instance_created": false,
+      "runtime_contract_complete": false,
+      "contract_field_availability": {
+        "claim_id": "assigned_by_qsv_historical_claim_table",
+        "fixture_id": "not_applicable_no_qsv_fixture_instance_created",
+        "implementation": "recorded",
+        "implementation_lineage": "bound_by_stage393_provenance",
+        "exact_command": "not_recorded_in_imported_frozen_stage393_result",
+        "inputs": "not_reconstructed_raw_vector_payload_not_persisted",
+        "output": "recorded_in_bound_historical_observation_evidence",
+        "exit_status": "not_recorded_in_imported_frozen_stage393_result",
+        "artifact_hashes": "bound_from_vector_and_historical_result_provenance",
+        "environment": "not_recorded_in_imported_frozen_stage393_result"
+      },
+      "root_cause": "unknown",
+      "confirmed_fips204_nonconformance": false,
+      "confirmed_implementation_bug": false,
+      "confirmed_security_vulnerability": false
+    },
+    {
+      "claim_id": "QSV-MLDSA-WYCHEPROOF-44-0084-HISTORICAL-OPENSSL",
+      "fixture_id": null,
+      "implementation": "openssl",
+      "implementation_lineage": {
+        "commit": "aae016bfd52fcad2bc9657c2c782cfdf73b1ed5f",
+        "tree": "a8a306c000bc2426afd3264b2c41bc7223728475"
+      },
+      "exact_command": null,
+      "inputs": null,
+      "output": {
+        "case_id": "QSV-MLDSA-WYCHEPROOF-44-0084",
+        "source_difference_id": "STAGE393-MLDSA-DIFF-003",
+        "expected_result": "reject",
+        "observed_result": "accept",
+        "expectation_match": false,
+        "normalized_result_state": "unexpected_accept",
+        "observed_details": {
+          "matched": false,
+          "key_setup_accepted": true,
+          "public_derivation_success": true,
+          "derived_public_match_vector": false,
+          "sign_success": true,
+          "generated_verify": true,
+          "verify_accepted": false,
+          "reason": "signing unexpectedly succeeded for invalid vector"
+        }
+      },
+      "exit_status": null,
+      "artifact_hashes": {
+        "vector_file_sha256": "b29b0dcca2e52c988e1b9c06f8b521889ffbaadfc6a9dbf52f0f0f8f4c5b6b92",
+        "historical_result_file_sha256": "6816dec1b6cab818c45d69d8095ed4e20cd79122f29b2bd3fac3c66dd7a10fc6",
+        "historical_observation_evidence_sha256": "afdab2eed9329378a839d64e755435fa355147f9d0d17ddaff330e492c08ccb4"
+      },
+      "environment": null,
+      "case_id": "QSV-MLDSA-WYCHEPROOF-44-0084",
+      "source_difference_id": "STAGE393-MLDSA-DIFF-003",
+      "historical_result_file": "results/mldsa_44_sign_seed_test.json.openssl.json",
+      "claim_type": "imported_historical_observation_claim",
+      "new_qsv_execution": false,
+      "fixture_instance_created": false,
+      "runtime_contract_complete": false,
+      "contract_field_availability": {
+        "claim_id": "assigned_by_qsv_historical_claim_table",
+        "fixture_id": "not_applicable_no_qsv_fixture_instance_created",
+        "implementation": "recorded",
+        "implementation_lineage": "bound_by_stage393_provenance",
+        "exact_command": "not_recorded_in_imported_frozen_stage393_result",
+        "inputs": "not_reconstructed_raw_vector_payload_not_persisted",
+        "output": "recorded_in_bound_historical_observation_evidence",
+        "exit_status": "not_recorded_in_imported_frozen_stage393_result",
+        "artifact_hashes": "bound_from_vector_and_historical_result_provenance",
+        "environment": "not_recorded_in_imported_frozen_stage393_result"
+      },
+      "root_cause": "unknown",
+      "confirmed_fips204_nonconformance": false,
+      "confirmed_implementation_bug": false,
+      "confirmed_security_vulnerability": false
+    },
+    {
+      "claim_id": "QSV-MLDSA-WYCHEPROOF-65-0056-HISTORICAL-CIRCL",
+      "fixture_id": null,
+      "implementation": "circl",
+      "implementation_lineage": {
+        "commit": "cfa7c70defd831ffb0792ab2af560bfef43d60ca",
+        "tree": "b3a50c3f1b7a5f8cfac0cce655ae7ea7900e9139"
+      },
+      "exact_command": null,
+      "inputs": null,
+      "output": {
+        "case_id": "QSV-MLDSA-WYCHEPROOF-65-0056",
+        "source_difference_id": "STAGE393-MLDSA-DIFF-004",
+        "expected_result": "reject",
+        "observed_result": "accept",
+        "expectation_match": false,
+        "normalized_result_state": "unexpected_accept",
+        "observed_details": {
+          "matched": false,
+          "operation_succeeded": true,
+          "generated_signature_valid": true,
+          "public_key_binding_ok": true,
+          "runtime_error": false,
+          "reason": "signing unexpectedly succeeded for invalid vector"
+        }
+      },
+      "exit_status": null,
+      "artifact_hashes": {
+        "vector_file_sha256": "8587a53e7e3ca20b006b661316b89c762acdecf3fa902746b01cbc09fe14130d",
+        "historical_result_file_sha256": "dbe6f4dd39ac1bf9fc8c47710cce66c037fafe66573f3fc2d3f56f8ba61705d3",
+        "historical_observation_evidence_sha256": "afdab2eed9329378a839d64e755435fa355147f9d0d17ddaff330e492c08ccb4"
+      },
+      "environment": null,
+      "case_id": "QSV-MLDSA-WYCHEPROOF-65-0056",
+      "source_difference_id": "STAGE393-MLDSA-DIFF-004",
+      "historical_result_file": "results/mldsa_65_sign_noseed_test.json.circl.json",
+      "claim_type": "imported_historical_observation_claim",
+      "new_qsv_execution": false,
+      "fixture_instance_created": false,
+      "runtime_contract_complete": false,
+      "contract_field_availability": {
+        "claim_id": "assigned_by_qsv_historical_claim_table",
+        "fixture_id": "not_applicable_no_qsv_fixture_instance_created",
+        "implementation": "recorded",
+        "implementation_lineage": "bound_by_stage393_provenance",
+        "exact_command": "not_recorded_in_imported_frozen_stage393_result",
+        "inputs": "not_reconstructed_raw_vector_payload_not_persisted",
+        "output": "recorded_in_bound_historical_observation_evidence",
+        "exit_status": "not_recorded_in_imported_frozen_stage393_result",
+        "artifact_hashes": "bound_from_vector_and_historical_result_provenance",
+        "environment": "not_recorded_in_imported_frozen_stage393_result"
+      },
+      "root_cause": "unknown",
+      "confirmed_fips204_nonconformance": false,
+      "confirmed_implementation_bug": false,
+      "confirmed_security_vulnerability": false
+    },
+    {
+      "claim_id": "QSV-MLDSA-WYCHEPROOF-65-0056-HISTORICAL-OPENSSL",
+      "fixture_id": null,
+      "implementation": "openssl",
+      "implementation_lineage": {
+        "commit": "aae016bfd52fcad2bc9657c2c782cfdf73b1ed5f",
+        "tree": "a8a306c000bc2426afd3264b2c41bc7223728475"
+      },
+      "exact_command": null,
+      "inputs": null,
+      "output": {
+        "case_id": "QSV-MLDSA-WYCHEPROOF-65-0056",
+        "source_difference_id": "STAGE393-MLDSA-DIFF-004",
+        "expected_result": "reject",
+        "observed_result": "reject",
+        "expectation_match": true,
+        "normalized_result_state": "expected_reject",
+        "observed_details": {
+          "matched": true,
+          "key_setup_accepted": false,
+          "sign_success": false,
+          "generated_verify": false,
+          "reason": "invalid signing vector rejected"
+        }
+      },
+      "exit_status": null,
+      "artifact_hashes": {
+        "vector_file_sha256": "8587a53e7e3ca20b006b661316b89c762acdecf3fa902746b01cbc09fe14130d",
+        "historical_result_file_sha256": "3dd7206c4ddd3d11dbcfe0493efb809d26837af04bee5d4e74819fc6b7ef29cd",
+        "historical_observation_evidence_sha256": "afdab2eed9329378a839d64e755435fa355147f9d0d17ddaff330e492c08ccb4"
+      },
+      "environment": null,
+      "case_id": "QSV-MLDSA-WYCHEPROOF-65-0056",
+      "source_difference_id": "STAGE393-MLDSA-DIFF-004",
+      "historical_result_file": "results/mldsa_65_sign_noseed_test.json.openssl.json",
+      "claim_type": "imported_historical_observation_claim",
+      "new_qsv_execution": false,
+      "fixture_instance_created": false,
+      "runtime_contract_complete": false,
+      "contract_field_availability": {
+        "claim_id": "assigned_by_qsv_historical_claim_table",
+        "fixture_id": "not_applicable_no_qsv_fixture_instance_created",
+        "implementation": "recorded",
+        "implementation_lineage": "bound_by_stage393_provenance",
+        "exact_command": "not_recorded_in_imported_frozen_stage393_result",
+        "inputs": "not_reconstructed_raw_vector_payload_not_persisted",
+        "output": "recorded_in_bound_historical_observation_evidence",
+        "exit_status": "not_recorded_in_imported_frozen_stage393_result",
+        "artifact_hashes": "bound_from_vector_and_historical_result_provenance",
+        "environment": "not_recorded_in_imported_frozen_stage393_result"
+      },
+      "root_cause": "unknown",
+      "confirmed_fips204_nonconformance": false,
+      "confirmed_implementation_bug": false,
+      "confirmed_security_vulnerability": false
+    },
+    {
+      "claim_id": "QSV-MLDSA-WYCHEPROOF-65-0057-HISTORICAL-CIRCL",
+      "fixture_id": null,
+      "implementation": "circl",
+      "implementation_lineage": {
+        "commit": "cfa7c70defd831ffb0792ab2af560bfef43d60ca",
+        "tree": "b3a50c3f1b7a5f8cfac0cce655ae7ea7900e9139"
+      },
+      "exact_command": null,
+      "inputs": null,
+      "output": {
+        "case_id": "QSV-MLDSA-WYCHEPROOF-65-0057",
+        "source_difference_id": "STAGE393-MLDSA-DIFF-005",
+        "expected_result": "reject",
+        "observed_result": "accept",
+        "expectation_match": false,
+        "normalized_result_state": "unexpected_accept",
+        "observed_details": {
+          "matched": false,
+          "operation_succeeded": true,
+          "generated_signature_valid": true,
+          "public_key_binding_ok": true,
+          "runtime_error": false,
+          "reason": "signing unexpectedly succeeded for invalid vector"
+        }
+      },
+      "exit_status": null,
+      "artifact_hashes": {
+        "vector_file_sha256": "8587a53e7e3ca20b006b661316b89c762acdecf3fa902746b01cbc09fe14130d",
+        "historical_result_file_sha256": "dbe6f4dd39ac1bf9fc8c47710cce66c037fafe66573f3fc2d3f56f8ba61705d3",
+        "historical_observation_evidence_sha256": "afdab2eed9329378a839d64e755435fa355147f9d0d17ddaff330e492c08ccb4"
+      },
+      "environment": null,
+      "case_id": "QSV-MLDSA-WYCHEPROOF-65-0057",
+      "source_difference_id": "STAGE393-MLDSA-DIFF-005",
+      "historical_result_file": "results/mldsa_65_sign_noseed_test.json.circl.json",
+      "claim_type": "imported_historical_observation_claim",
+      "new_qsv_execution": false,
+      "fixture_instance_created": false,
+      "runtime_contract_complete": false,
+      "contract_field_availability": {
+        "claim_id": "assigned_by_qsv_historical_claim_table",
+        "fixture_id": "not_applicable_no_qsv_fixture_instance_created",
+        "implementation": "recorded",
+        "implementation_lineage": "bound_by_stage393_provenance",
+        "exact_command": "not_recorded_in_imported_frozen_stage393_result",
+        "inputs": "not_reconstructed_raw_vector_payload_not_persisted",
+        "output": "recorded_in_bound_historical_observation_evidence",
+        "exit_status": "not_recorded_in_imported_frozen_stage393_result",
+        "artifact_hashes": "bound_from_vector_and_historical_result_provenance",
+        "environment": "not_recorded_in_imported_frozen_stage393_result"
+      },
+      "root_cause": "unknown",
+      "confirmed_fips204_nonconformance": false,
+      "confirmed_implementation_bug": false,
+      "confirmed_security_vulnerability": false
+    },
+    {
+      "claim_id": "QSV-MLDSA-WYCHEPROOF-65-0057-HISTORICAL-OPENSSL",
+      "fixture_id": null,
+      "implementation": "openssl",
+      "implementation_lineage": {
+        "commit": "aae016bfd52fcad2bc9657c2c782cfdf73b1ed5f",
+        "tree": "a8a306c000bc2426afd3264b2c41bc7223728475"
+      },
+      "exact_command": null,
+      "inputs": null,
+      "output": {
+        "case_id": "QSV-MLDSA-WYCHEPROOF-65-0057",
+        "source_difference_id": "STAGE393-MLDSA-DIFF-005",
+        "expected_result": "reject",
+        "observed_result": "reject",
+        "expectation_match": true,
+        "normalized_result_state": "expected_reject",
+        "observed_details": {
+          "matched": true,
+          "key_setup_accepted": false,
+          "sign_success": false,
+          "generated_verify": false,
+          "reason": "invalid signing vector rejected"
+        }
+      },
+      "exit_status": null,
+      "artifact_hashes": {
+        "vector_file_sha256": "8587a53e7e3ca20b006b661316b89c762acdecf3fa902746b01cbc09fe14130d",
+        "historical_result_file_sha256": "3dd7206c4ddd3d11dbcfe0493efb809d26837af04bee5d4e74819fc6b7ef29cd",
+        "historical_observation_evidence_sha256": "afdab2eed9329378a839d64e755435fa355147f9d0d17ddaff330e492c08ccb4"
+      },
+      "environment": null,
+      "case_id": "QSV-MLDSA-WYCHEPROOF-65-0057",
+      "source_difference_id": "STAGE393-MLDSA-DIFF-005",
+      "historical_result_file": "results/mldsa_65_sign_noseed_test.json.openssl.json",
+      "claim_type": "imported_historical_observation_claim",
+      "new_qsv_execution": false,
+      "fixture_instance_created": false,
+      "runtime_contract_complete": false,
+      "contract_field_availability": {
+        "claim_id": "assigned_by_qsv_historical_claim_table",
+        "fixture_id": "not_applicable_no_qsv_fixture_instance_created",
+        "implementation": "recorded",
+        "implementation_lineage": "bound_by_stage393_provenance",
+        "exact_command": "not_recorded_in_imported_frozen_stage393_result",
+        "inputs": "not_reconstructed_raw_vector_payload_not_persisted",
+        "output": "recorded_in_bound_historical_observation_evidence",
+        "exit_status": "not_recorded_in_imported_frozen_stage393_result",
+        "artifact_hashes": "bound_from_vector_and_historical_result_provenance",
+        "environment": "not_recorded_in_imported_frozen_stage393_result"
+      },
+      "root_cause": "unknown",
+      "confirmed_fips204_nonconformance": false,
+      "confirmed_implementation_bug": false,
+      "confirmed_security_vulnerability": false
+    },
+    {
+      "claim_id": "QSV-MLDSA-WYCHEPROOF-65-0091-HISTORICAL-CIRCL",
+      "fixture_id": null,
+      "implementation": "circl",
+      "implementation_lineage": {
+        "commit": "cfa7c70defd831ffb0792ab2af560bfef43d60ca",
+        "tree": "b3a50c3f1b7a5f8cfac0cce655ae7ea7900e9139"
+      },
+      "exact_command": null,
+      "inputs": null,
+      "output": {
+        "case_id": "QSV-MLDSA-WYCHEPROOF-65-0091",
+        "source_difference_id": "STAGE393-MLDSA-DIFF-006",
+        "expected_result": "reject",
+        "observed_result": "reject",
+        "expectation_match": true,
+        "normalized_result_state": "expected_reject",
+        "observed_details": {
+          "matched": true,
+          "operation_succeeded": false,
+          "generated_signature_valid": false,
+          "public_key_binding_ok": false,
+          "runtime_error": false,
+          "reason": "seed length 0, want 32"
+        }
+      },
+      "exit_status": null,
+      "artifact_hashes": {
+        "vector_file_sha256": "d72e9c2f514c9f7490c33785ae0027d942ba2c45a9b8ebfc8fb1802b4913bf38",
+        "historical_result_file_sha256": "7e19896b9c3c844846c9f75d93773634692d5fcd5e71d35fe29fc6cf326db2d7",
+        "historical_observation_evidence_sha256": "afdab2eed9329378a839d64e755435fa355147f9d0d17ddaff330e492c08ccb4"
+      },
+      "environment": null,
+      "case_id": "QSV-MLDSA-WYCHEPROOF-65-0091",
+      "source_difference_id": "STAGE393-MLDSA-DIFF-006",
+      "historical_result_file": "results/mldsa_65_sign_seed_test.json.circl.json",
+      "claim_type": "imported_historical_observation_claim",
+      "new_qsv_execution": false,
+      "fixture_instance_created": false,
+      "runtime_contract_complete": false,
+      "contract_field_availability": {
+        "claim_id": "assigned_by_qsv_historical_claim_table",
+        "fixture_id": "not_applicable_no_qsv_fixture_instance_created",
+        "implementation": "recorded",
+        "implementation_lineage": "bound_by_stage393_provenance",
+        "exact_command": "not_recorded_in_imported_frozen_stage393_result",
+        "inputs": "not_reconstructed_raw_vector_payload_not_persisted",
+        "output": "recorded_in_bound_historical_observation_evidence",
+        "exit_status": "not_recorded_in_imported_frozen_stage393_result",
+        "artifact_hashes": "bound_from_vector_and_historical_result_provenance",
+        "environment": "not_recorded_in_imported_frozen_stage393_result"
+      },
+      "root_cause": "unknown",
+      "confirmed_fips204_nonconformance": false,
+      "confirmed_implementation_bug": false,
+      "confirmed_security_vulnerability": false
+    },
+    {
+      "claim_id": "QSV-MLDSA-WYCHEPROOF-65-0091-HISTORICAL-OPENSSL",
+      "fixture_id": null,
+      "implementation": "openssl",
+      "implementation_lineage": {
+        "commit": "aae016bfd52fcad2bc9657c2c782cfdf73b1ed5f",
+        "tree": "a8a306c000bc2426afd3264b2c41bc7223728475"
+      },
+      "exact_command": null,
+      "inputs": null,
+      "output": {
+        "case_id": "QSV-MLDSA-WYCHEPROOF-65-0091",
+        "source_difference_id": "STAGE393-MLDSA-DIFF-006",
+        "expected_result": "reject",
+        "observed_result": "accept",
+        "expectation_match": false,
+        "normalized_result_state": "unexpected_accept",
+        "observed_details": {
+          "matched": false,
+          "key_setup_accepted": true,
+          "public_derivation_success": true,
+          "derived_public_match_vector": false,
+          "sign_success": true,
+          "generated_verify": true,
+          "verify_accepted": false,
+          "reason": "signing unexpectedly succeeded for invalid vector"
+        }
+      },
+      "exit_status": null,
+      "artifact_hashes": {
+        "vector_file_sha256": "d72e9c2f514c9f7490c33785ae0027d942ba2c45a9b8ebfc8fb1802b4913bf38",
+        "historical_result_file_sha256": "50d303153bb12bf8335dfc551979e582373d9c819815d043047597de77ab9d3c",
+        "historical_observation_evidence_sha256": "afdab2eed9329378a839d64e755435fa355147f9d0d17ddaff330e492c08ccb4"
+      },
+      "environment": null,
+      "case_id": "QSV-MLDSA-WYCHEPROOF-65-0091",
+      "source_difference_id": "STAGE393-MLDSA-DIFF-006",
+      "historical_result_file": "results/mldsa_65_sign_seed_test.json.openssl.json",
+      "claim_type": "imported_historical_observation_claim",
+      "new_qsv_execution": false,
+      "fixture_instance_created": false,
+      "runtime_contract_complete": false,
+      "contract_field_availability": {
+        "claim_id": "assigned_by_qsv_historical_claim_table",
+        "fixture_id": "not_applicable_no_qsv_fixture_instance_created",
+        "implementation": "recorded",
+        "implementation_lineage": "bound_by_stage393_provenance",
+        "exact_command": "not_recorded_in_imported_frozen_stage393_result",
+        "inputs": "not_reconstructed_raw_vector_payload_not_persisted",
+        "output": "recorded_in_bound_historical_observation_evidence",
+        "exit_status": "not_recorded_in_imported_frozen_stage393_result",
+        "artifact_hashes": "bound_from_vector_and_historical_result_provenance",
+        "environment": "not_recorded_in_imported_frozen_stage393_result"
+      },
+      "root_cause": "unknown",
+      "confirmed_fips204_nonconformance": false,
+      "confirmed_implementation_bug": false,
+      "confirmed_security_vulnerability": false
+    },
+    {
+      "claim_id": "QSV-MLDSA-WYCHEPROOF-87-0047-HISTORICAL-CIRCL",
+      "fixture_id": null,
+      "implementation": "circl",
+      "implementation_lineage": {
+        "commit": "cfa7c70defd831ffb0792ab2af560bfef43d60ca",
+        "tree": "b3a50c3f1b7a5f8cfac0cce655ae7ea7900e9139"
+      },
+      "exact_command": null,
+      "inputs": null,
+      "output": {
+        "case_id": "QSV-MLDSA-WYCHEPROOF-87-0047",
+        "source_difference_id": "STAGE393-MLDSA-DIFF-007",
+        "expected_result": "reject",
+        "observed_result": "accept",
+        "expectation_match": false,
+        "normalized_result_state": "unexpected_accept",
+        "observed_details": {
+          "matched": false,
+          "operation_succeeded": true,
+          "generated_signature_valid": true,
+          "public_key_binding_ok": true,
+          "runtime_error": false,
+          "reason": "signing unexpectedly succeeded for invalid vector"
+        }
+      },
+      "exit_status": null,
+      "artifact_hashes": {
+        "vector_file_sha256": "bd4c997f1fb90d985dbcca9a5ab52cef1f5c22d2cc0ba332d8dbe68703a5b40d",
+        "historical_result_file_sha256": "3afe0cbd61e7500e9e04311332cc16f0a9e22d96d9a57d8b2914a4c3a4e86e95",
+        "historical_observation_evidence_sha256": "afdab2eed9329378a839d64e755435fa355147f9d0d17ddaff330e492c08ccb4"
+      },
+      "environment": null,
+      "case_id": "QSV-MLDSA-WYCHEPROOF-87-0047",
+      "source_difference_id": "STAGE393-MLDSA-DIFF-007",
+      "historical_result_file": "results/mldsa_87_sign_noseed_test.json.circl.json",
+      "claim_type": "imported_historical_observation_claim",
+      "new_qsv_execution": false,
+      "fixture_instance_created": false,
+      "runtime_contract_complete": false,
+      "contract_field_availability": {
+        "claim_id": "assigned_by_qsv_historical_claim_table",
+        "fixture_id": "not_applicable_no_qsv_fixture_instance_created",
+        "implementation": "recorded",
+        "implementation_lineage": "bound_by_stage393_provenance",
+        "exact_command": "not_recorded_in_imported_frozen_stage393_result",
+        "inputs": "not_reconstructed_raw_vector_payload_not_persisted",
+        "output": "recorded_in_bound_historical_observation_evidence",
+        "exit_status": "not_recorded_in_imported_frozen_stage393_result",
+        "artifact_hashes": "bound_from_vector_and_historical_result_provenance",
+        "environment": "not_recorded_in_imported_frozen_stage393_result"
+      },
+      "root_cause": "unknown",
+      "confirmed_fips204_nonconformance": false,
+      "confirmed_implementation_bug": false,
+      "confirmed_security_vulnerability": false
+    },
+    {
+      "claim_id": "QSV-MLDSA-WYCHEPROOF-87-0047-HISTORICAL-OPENSSL",
+      "fixture_id": null,
+      "implementation": "openssl",
+      "implementation_lineage": {
+        "commit": "aae016bfd52fcad2bc9657c2c782cfdf73b1ed5f",
+        "tree": "a8a306c000bc2426afd3264b2c41bc7223728475"
+      },
+      "exact_command": null,
+      "inputs": null,
+      "output": {
+        "case_id": "QSV-MLDSA-WYCHEPROOF-87-0047",
+        "source_difference_id": "STAGE393-MLDSA-DIFF-007",
+        "expected_result": "reject",
+        "observed_result": "reject",
+        "expectation_match": true,
+        "normalized_result_state": "expected_reject",
+        "observed_details": {
+          "matched": true,
+          "key_setup_accepted": false,
+          "sign_success": false,
+          "generated_verify": false,
+          "reason": "invalid signing vector rejected"
+        }
+      },
+      "exit_status": null,
+      "artifact_hashes": {
+        "vector_file_sha256": "bd4c997f1fb90d985dbcca9a5ab52cef1f5c22d2cc0ba332d8dbe68703a5b40d",
+        "historical_result_file_sha256": "42c0aedc769de11f14767d7bc621720065b5cf2a46f5fa6f137165083fa7b0b8",
+        "historical_observation_evidence_sha256": "afdab2eed9329378a839d64e755435fa355147f9d0d17ddaff330e492c08ccb4"
+      },
+      "environment": null,
+      "case_id": "QSV-MLDSA-WYCHEPROOF-87-0047",
+      "source_difference_id": "STAGE393-MLDSA-DIFF-007",
+      "historical_result_file": "results/mldsa_87_sign_noseed_test.json.openssl.json",
+      "claim_type": "imported_historical_observation_claim",
+      "new_qsv_execution": false,
+      "fixture_instance_created": false,
+      "runtime_contract_complete": false,
+      "contract_field_availability": {
+        "claim_id": "assigned_by_qsv_historical_claim_table",
+        "fixture_id": "not_applicable_no_qsv_fixture_instance_created",
+        "implementation": "recorded",
+        "implementation_lineage": "bound_by_stage393_provenance",
+        "exact_command": "not_recorded_in_imported_frozen_stage393_result",
+        "inputs": "not_reconstructed_raw_vector_payload_not_persisted",
+        "output": "recorded_in_bound_historical_observation_evidence",
+        "exit_status": "not_recorded_in_imported_frozen_stage393_result",
+        "artifact_hashes": "bound_from_vector_and_historical_result_provenance",
+        "environment": "not_recorded_in_imported_frozen_stage393_result"
+      },
+      "root_cause": "unknown",
+      "confirmed_fips204_nonconformance": false,
+      "confirmed_implementation_bug": false,
+      "confirmed_security_vulnerability": false
+    },
+    {
+      "claim_id": "QSV-MLDSA-WYCHEPROOF-87-0048-HISTORICAL-CIRCL",
+      "fixture_id": null,
+      "implementation": "circl",
+      "implementation_lineage": {
+        "commit": "cfa7c70defd831ffb0792ab2af560bfef43d60ca",
+        "tree": "b3a50c3f1b7a5f8cfac0cce655ae7ea7900e9139"
+      },
+      "exact_command": null,
+      "inputs": null,
+      "output": {
+        "case_id": "QSV-MLDSA-WYCHEPROOF-87-0048",
+        "source_difference_id": "STAGE393-MLDSA-DIFF-008",
+        "expected_result": "reject",
+        "observed_result": "accept",
+        "expectation_match": false,
+        "normalized_result_state": "unexpected_accept",
+        "observed_details": {
+          "matched": false,
+          "operation_succeeded": true,
+          "generated_signature_valid": true,
+          "public_key_binding_ok": true,
+          "runtime_error": false,
+          "reason": "signing unexpectedly succeeded for invalid vector"
+        }
+      },
+      "exit_status": null,
+      "artifact_hashes": {
+        "vector_file_sha256": "bd4c997f1fb90d985dbcca9a5ab52cef1f5c22d2cc0ba332d8dbe68703a5b40d",
+        "historical_result_file_sha256": "3afe0cbd61e7500e9e04311332cc16f0a9e22d96d9a57d8b2914a4c3a4e86e95",
+        "historical_observation_evidence_sha256": "afdab2eed9329378a839d64e755435fa355147f9d0d17ddaff330e492c08ccb4"
+      },
+      "environment": null,
+      "case_id": "QSV-MLDSA-WYCHEPROOF-87-0048",
+      "source_difference_id": "STAGE393-MLDSA-DIFF-008",
+      "historical_result_file": "results/mldsa_87_sign_noseed_test.json.circl.json",
+      "claim_type": "imported_historical_observation_claim",
+      "new_qsv_execution": false,
+      "fixture_instance_created": false,
+      "runtime_contract_complete": false,
+      "contract_field_availability": {
+        "claim_id": "assigned_by_qsv_historical_claim_table",
+        "fixture_id": "not_applicable_no_qsv_fixture_instance_created",
+        "implementation": "recorded",
+        "implementation_lineage": "bound_by_stage393_provenance",
+        "exact_command": "not_recorded_in_imported_frozen_stage393_result",
+        "inputs": "not_reconstructed_raw_vector_payload_not_persisted",
+        "output": "recorded_in_bound_historical_observation_evidence",
+        "exit_status": "not_recorded_in_imported_frozen_stage393_result",
+        "artifact_hashes": "bound_from_vector_and_historical_result_provenance",
+        "environment": "not_recorded_in_imported_frozen_stage393_result"
+      },
+      "root_cause": "unknown",
+      "confirmed_fips204_nonconformance": false,
+      "confirmed_implementation_bug": false,
+      "confirmed_security_vulnerability": false
+    },
+    {
+      "claim_id": "QSV-MLDSA-WYCHEPROOF-87-0048-HISTORICAL-OPENSSL",
+      "fixture_id": null,
+      "implementation": "openssl",
+      "implementation_lineage": {
+        "commit": "aae016bfd52fcad2bc9657c2c782cfdf73b1ed5f",
+        "tree": "a8a306c000bc2426afd3264b2c41bc7223728475"
+      },
+      "exact_command": null,
+      "inputs": null,
+      "output": {
+        "case_id": "QSV-MLDSA-WYCHEPROOF-87-0048",
+        "source_difference_id": "STAGE393-MLDSA-DIFF-008",
+        "expected_result": "reject",
+        "observed_result": "reject",
+        "expectation_match": true,
+        "normalized_result_state": "expected_reject",
+        "observed_details": {
+          "matched": true,
+          "key_setup_accepted": false,
+          "sign_success": false,
+          "generated_verify": false,
+          "reason": "invalid signing vector rejected"
+        }
+      },
+      "exit_status": null,
+      "artifact_hashes": {
+        "vector_file_sha256": "bd4c997f1fb90d985dbcca9a5ab52cef1f5c22d2cc0ba332d8dbe68703a5b40d",
+        "historical_result_file_sha256": "42c0aedc769de11f14767d7bc621720065b5cf2a46f5fa6f137165083fa7b0b8",
+        "historical_observation_evidence_sha256": "afdab2eed9329378a839d64e755435fa355147f9d0d17ddaff330e492c08ccb4"
+      },
+      "environment": null,
+      "case_id": "QSV-MLDSA-WYCHEPROOF-87-0048",
+      "source_difference_id": "STAGE393-MLDSA-DIFF-008",
+      "historical_result_file": "results/mldsa_87_sign_noseed_test.json.openssl.json",
+      "claim_type": "imported_historical_observation_claim",
+      "new_qsv_execution": false,
+      "fixture_instance_created": false,
+      "runtime_contract_complete": false,
+      "contract_field_availability": {
+        "claim_id": "assigned_by_qsv_historical_claim_table",
+        "fixture_id": "not_applicable_no_qsv_fixture_instance_created",
+        "implementation": "recorded",
+        "implementation_lineage": "bound_by_stage393_provenance",
+        "exact_command": "not_recorded_in_imported_frozen_stage393_result",
+        "inputs": "not_reconstructed_raw_vector_payload_not_persisted",
+        "output": "recorded_in_bound_historical_observation_evidence",
+        "exit_status": "not_recorded_in_imported_frozen_stage393_result",
+        "artifact_hashes": "bound_from_vector_and_historical_result_provenance",
+        "environment": "not_recorded_in_imported_frozen_stage393_result"
+      },
+      "root_cause": "unknown",
+      "confirmed_fips204_nonconformance": false,
+      "confirmed_implementation_bug": false,
+      "confirmed_security_vulnerability": false
+    },
+    {
+      "claim_id": "QSV-MLDSA-WYCHEPROOF-87-0082-HISTORICAL-CIRCL",
+      "fixture_id": null,
+      "implementation": "circl",
+      "implementation_lineage": {
+        "commit": "cfa7c70defd831ffb0792ab2af560bfef43d60ca",
+        "tree": "b3a50c3f1b7a5f8cfac0cce655ae7ea7900e9139"
+      },
+      "exact_command": null,
+      "inputs": null,
+      "output": {
+        "case_id": "QSV-MLDSA-WYCHEPROOF-87-0082",
+        "source_difference_id": "STAGE393-MLDSA-DIFF-009",
+        "expected_result": "reject",
+        "observed_result": "reject",
+        "expectation_match": true,
+        "normalized_result_state": "expected_reject",
+        "observed_details": {
+          "matched": true,
+          "operation_succeeded": false,
+          "generated_signature_valid": false,
+          "public_key_binding_ok": false,
+          "runtime_error": false,
+          "reason": "seed length 0, want 32"
+        }
+      },
+      "exit_status": null,
+      "artifact_hashes": {
+        "vector_file_sha256": "e83c292318134faa6af777e86c619c4643e2705dba91dfa5adcd1fddfd4f40ce",
+        "historical_result_file_sha256": "0b88bd2a85ad82d7bc58d0e6e3f432af051db88d4e2c825c8bb11939e39fd282",
+        "historical_observation_evidence_sha256": "afdab2eed9329378a839d64e755435fa355147f9d0d17ddaff330e492c08ccb4"
+      },
+      "environment": null,
+      "case_id": "QSV-MLDSA-WYCHEPROOF-87-0082",
+      "source_difference_id": "STAGE393-MLDSA-DIFF-009",
+      "historical_result_file": "results/mldsa_87_sign_seed_test.json.circl.json",
+      "claim_type": "imported_historical_observation_claim",
+      "new_qsv_execution": false,
+      "fixture_instance_created": false,
+      "runtime_contract_complete": false,
+      "contract_field_availability": {
+        "claim_id": "assigned_by_qsv_historical_claim_table",
+        "fixture_id": "not_applicable_no_qsv_fixture_instance_created",
+        "implementation": "recorded",
+        "implementation_lineage": "bound_by_stage393_provenance",
+        "exact_command": "not_recorded_in_imported_frozen_stage393_result",
+        "inputs": "not_reconstructed_raw_vector_payload_not_persisted",
+        "output": "recorded_in_bound_historical_observation_evidence",
+        "exit_status": "not_recorded_in_imported_frozen_stage393_result",
+        "artifact_hashes": "bound_from_vector_and_historical_result_provenance",
+        "environment": "not_recorded_in_imported_frozen_stage393_result"
+      },
+      "root_cause": "unknown",
+      "confirmed_fips204_nonconformance": false,
+      "confirmed_implementation_bug": false,
+      "confirmed_security_vulnerability": false
+    },
+    {
+      "claim_id": "QSV-MLDSA-WYCHEPROOF-87-0082-HISTORICAL-OPENSSL",
+      "fixture_id": null,
+      "implementation": "openssl",
+      "implementation_lineage": {
+        "commit": "aae016bfd52fcad2bc9657c2c782cfdf73b1ed5f",
+        "tree": "a8a306c000bc2426afd3264b2c41bc7223728475"
+      },
+      "exact_command": null,
+      "inputs": null,
+      "output": {
+        "case_id": "QSV-MLDSA-WYCHEPROOF-87-0082",
+        "source_difference_id": "STAGE393-MLDSA-DIFF-009",
+        "expected_result": "reject",
+        "observed_result": "accept",
+        "expectation_match": false,
+        "normalized_result_state": "unexpected_accept",
+        "observed_details": {
+          "matched": false,
+          "key_setup_accepted": true,
+          "public_derivation_success": true,
+          "derived_public_match_vector": false,
+          "sign_success": true,
+          "generated_verify": true,
+          "verify_accepted": false,
+          "reason": "signing unexpectedly succeeded for invalid vector"
+        }
+      },
+      "exit_status": null,
+      "artifact_hashes": {
+        "vector_file_sha256": "e83c292318134faa6af777e86c619c4643e2705dba91dfa5adcd1fddfd4f40ce",
+        "historical_result_file_sha256": "2e4548067d6bc70ce93afd847802ff338d5df701502ea36cb4d3ef40b8d1347e",
+        "historical_observation_evidence_sha256": "afdab2eed9329378a839d64e755435fa355147f9d0d17ddaff330e492c08ccb4"
+      },
+      "environment": null,
+      "case_id": "QSV-MLDSA-WYCHEPROOF-87-0082",
+      "source_difference_id": "STAGE393-MLDSA-DIFF-009",
+      "historical_result_file": "results/mldsa_87_sign_seed_test.json.openssl.json",
+      "claim_type": "imported_historical_observation_claim",
+      "new_qsv_execution": false,
+      "fixture_instance_created": false,
+      "runtime_contract_complete": false,
+      "contract_field_availability": {
+        "claim_id": "assigned_by_qsv_historical_claim_table",
+        "fixture_id": "not_applicable_no_qsv_fixture_instance_created",
+        "implementation": "recorded",
+        "implementation_lineage": "bound_by_stage393_provenance",
+        "exact_command": "not_recorded_in_imported_frozen_stage393_result",
+        "inputs": "not_reconstructed_raw_vector_payload_not_persisted",
+        "output": "recorded_in_bound_historical_observation_evidence",
+        "exit_status": "not_recorded_in_imported_frozen_stage393_result",
+        "artifact_hashes": "bound_from_vector_and_historical_result_provenance",
+        "environment": "not_recorded_in_imported_frozen_stage393_result"
+      },
+      "root_cause": "unknown",
+      "confirmed_fips204_nonconformance": false,
+      "confirmed_implementation_bug": false,
+      "confirmed_security_vulnerability": false
+    }
+  ],
+  "summary": {
+    "historical_claim_count": 18,
+    "unique_claim_id_count": 18,
+    "neutral_case_count": 9,
+    "circl_claim_count": 9,
+    "openssl_claim_count": 9,
+    "circl_expectation_difference_count": 6,
+    "openssl_expectation_difference_count": 3,
+    "runtime_contract_complete_claim_count": 0,
+    "root_cause_classification_complete": false,
+    "root_cause_default": "unknown",
+    "confirmed_fips204_nonconformance": false,
+    "confirmed_implementation_bug": false,
+    "confirmed_security_vulnerability": false
+  }
+}

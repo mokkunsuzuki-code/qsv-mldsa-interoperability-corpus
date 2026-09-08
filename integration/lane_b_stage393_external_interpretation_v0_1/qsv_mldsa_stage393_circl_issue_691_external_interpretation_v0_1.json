@@ -1,0 +1,183 @@
+{
+  "candidate_role": "isolated_stage393_lane_b_external_interpretation_candidate",
+  "case_linkage": [
+    {
+      "flags": [
+        "InvalidPrivateKey"
+      ],
+      "neutral_case_id": "QSV-MLDSA-WYCHEPROOF-44-0052",
+      "parameter_set": "ML-DSA-44",
+      "result": "invalid",
+      "source_fixture": "testvectors_v1/mldsa_44_sign_noseed_test.json",
+      "source_fixture_sha256": "ee55e18b1944db496b2539d3884dfacc04a96db21bcec239063df5e4cd1ee6cb",
+      "tcId": 52
+    },
+    {
+      "flags": [
+        "InvalidPrivateKey"
+      ],
+      "neutral_case_id": "QSV-MLDSA-WYCHEPROOF-44-0053",
+      "parameter_set": "ML-DSA-44",
+      "result": "invalid",
+      "source_fixture": "testvectors_v1/mldsa_44_sign_noseed_test.json",
+      "source_fixture_sha256": "ee55e18b1944db496b2539d3884dfacc04a96db21bcec239063df5e4cd1ee6cb",
+      "tcId": 53
+    },
+    {
+      "flags": [
+        "InvalidPrivateKey"
+      ],
+      "neutral_case_id": "QSV-MLDSA-WYCHEPROOF-65-0056",
+      "parameter_set": "ML-DSA-65",
+      "result": "invalid",
+      "source_fixture": "testvectors_v1/mldsa_65_sign_noseed_test.json",
+      "source_fixture_sha256": "8587a53e7e3ca20b006b661316b89c762acdecf3fa902746b01cbc09fe14130d",
+      "tcId": 56
+    },
+    {
+      "flags": [
+        "InvalidPrivateKey"
+      ],
+      "neutral_case_id": "QSV-MLDSA-WYCHEPROOF-65-0057",
+      "parameter_set": "ML-DSA-65",
+      "result": "invalid",
+      "source_fixture": "testvectors_v1/mldsa_65_sign_noseed_test.json",
+      "source_fixture_sha256": "8587a53e7e3ca20b006b661316b89c762acdecf3fa902746b01cbc09fe14130d",
+      "tcId": 57
+    },
+    {
+      "flags": [
+        "InvalidPrivateKey"
+      ],
+      "neutral_case_id": "QSV-MLDSA-WYCHEPROOF-87-0047",
+      "parameter_set": "ML-DSA-87",
+      "result": "invalid",
+      "source_fixture": "testvectors_v1/mldsa_87_sign_noseed_test.json",
+      "source_fixture_sha256": "bd4c997f1fb90d985dbcca9a5ab52cef1f5c22d2cc0ba332d8dbe68703a5b40d",
+      "tcId": 47
+    },
+    {
+      "flags": [
+        "InvalidPrivateKey"
+      ],
+      "neutral_case_id": "QSV-MLDSA-WYCHEPROOF-87-0048",
+      "parameter_set": "ML-DSA-87",
+      "result": "invalid",
+      "source_fixture": "testvectors_v1/mldsa_87_sign_noseed_test.json",
+      "source_fixture_sha256": "bd4c997f1fb90d985dbcca9a5ab52cef1f5c22d2cc0ba332d8dbe68703a5b40d",
+      "tcId": 48
+    }
+  ],
+  "evidence_type": "external_interpretation_with_source_code_policy_reference",
+  "execution_boundary": {
+    "cryptographic_reexecution_performed": false,
+    "git_add_performed": false,
+    "local_commit_created": false,
+    "missing_runtime_metadata_reconstructed": false,
+    "new_push_performed": false,
+    "new_qsv_cryptographic_execution": false,
+    "workflow_dispatched": false
+  },
+  "execution_revision_separation": {
+    "historical_execution_observation_modified": false,
+    "rationale_source_circl_commit": "352600b0a4b2380815cef55fc690c65049c7e56b",
+    "rationale_source_role": "later_source_actor_supplied_test_policy_reference",
+    "rationale_source_same_as_stage393_execution_commit": false,
+    "stage393_executed_source_contained_this_rationale_claim": false,
+    "stage393_execution_circl_commit": "cfa7c70defd831ffb0792ab2af560bfef43d60ca",
+    "stage393_execution_circl_tree": "b3a50c3f1b7a5f8cfac0cce655ae7ea7900e9139"
+  },
+  "external_interpretation": {
+    "formal_adjudication": false,
+    "interpretation_comment_id": 5570219154,
+    "source_actor": "bwesterb",
+    "source_actor_role_asserted": false,
+    "source_issue_number": 691,
+    "source_repository": "cloudflare/circl",
+    "statement_classification": "implementation_policy_interpretation",
+    "statement_exact": "These are deliberate choices of each implementation.",
+    "statement_interpretation": "deliberate_implementation_choice",
+    "statement_preserved_verbatim": true
+  },
+  "interpretation_boundary": {
+    "circl_proven_correct_claim_allowed": false,
+    "circl_runtime_acceptance_root_cause_fully_traced": false,
+    "circl_test_policy_rationale_documented": true,
+    "confirmed_fips204_nonconformance": false,
+    "confirmed_implementation_bug": false,
+    "confirmed_security_vulnerability": false,
+    "fips204_requires_acceptance_claim_allowed": false,
+    "fips204_requires_rejection_claim_allowed": false,
+    "formal_adjudication": false,
+    "formal_certification": false,
+    "qsv_endorsement_by_circl": false,
+    "qsv_endorsement_by_cloudflare": false,
+    "root_cause": "unknown",
+    "root_cause_classification_complete": false,
+    "technical_rationale_status": "test_policy_rationale_documented_runtime_root_cause_not_fully_traced",
+    "wycheproof_wrong_claim_allowed": false
+  },
+  "qsv_evidence_principles": {
+    "agreement_does_not_prove_correctness": true,
+    "disagreement_does_not_prove_defect": true,
+    "external_interpretation_automatically_establishes_specification_correctness": false,
+    "external_interpretation_is_evidence_of_source_actor_statement": true,
+    "maintainer_or_project_interpretation_is_formal_certification": false,
+    "observed_disagreement_is_evidence_of_observed_disagreement": true,
+    "source_code_policy_reference_automatically_establishes_runtime_root_cause": false,
+    "source_code_policy_reference_is_evidence_of_test_policy": true
+  },
+  "schema_version": "v0.1",
+  "scope_boundary": {
+    "circl_expectation_difference_count": 6,
+    "openssl_expectation_difference_count": 3,
+    "openssl_project_primary_confirmation_present": false,
+    "source_code_rationale_extended_to_openssl_side_cases": false,
+    "source_code_rationale_scope": "circl_side_six_stage393_expectation_difference_cases_only"
+  },
+  "source_code_rationale": {
+    "fixed_commit": "352600b0a4b2380815cef55fc690c65049c7e56b",
+    "fixed_file_digest_algorithm": "sha256",
+    "fixed_file_sha256": "fc1d7fd3ccb955be09d7a0545a300675f2cbd8673c7f90919b8add60f73bd1ac",
+    "fixed_function": "runSignGroup",
+    "fixed_git_blob_algorithm": "git_sha1",
+    "fixed_git_blob_sha": "0fcf450ef30cfc167775f1c938a20f2f027cf9ca",
+    "fixed_path": "sign/schemes/wycheproof_test.go",
+    "fixed_repository": "cloudflare/circl",
+    "inline_rationale_comment_exact_lines": [
+      "TODO The standards don't require rejecting private keys",
+      "with out of range s1/s2. Pending discussion on whether",
+      "we should reject them, we're skipping these testcases."
+    ],
+    "inline_rationale_comment_present": true,
+    "mutable_main_url_used_as_authority": false,
+    "policy_action": "skip",
+    "policy_control_flow": "continue",
+    "policy_flag": "InvalidPrivateKey",
+    "policy_scope": "wycheproof_sign_test_harness",
+    "reference_comment_body_exact": "[here](https://github.com/cloudflare/circl/blob/main/sign/schemes/wycheproof_test.go#L135-L137)",
+    "reference_comment_id": 5571477664,
+    "reference_original_url_uses_mutable_main": true,
+    "reference_was_provided_by_source_actor": true,
+    "runtime_acceptance_root_cause_fully_traced": false,
+    "test_policy_rationale_documented": true
+  },
+  "stage393_static_candidate_authority": {
+    "historical_claim_modified": false,
+    "historical_observation_modified": false,
+    "neutral_case_definition_modified": false,
+    "source_qsv_repository_head": "9147de5e27a2764a95d7ef296b24b8c5bf235286",
+    "source_qsv_repository_tree": "ee64d8091cbe9b0b811b5310b1f58788142da70d",
+    "stage393_candidate_file_count": 12,
+    "stage393_candidate_freeze_input_canonical_sha256": "dd89fd8ee3c124d7fcc314ca1db61ad9bccd6f1c32fa3201f521a6ac50412015"
+  },
+  "wycheproof_authority": {
+    "all_six_case_identities_resolved": true,
+    "all_six_cases_flagged_invalid_private_key": true,
+    "all_six_cases_match_referenced_skip_policy": true,
+    "all_six_results_invalid": true,
+    "circl_side_case_count": 6,
+    "commit": "dac1dd4729fd1f8dd9e1e9f3dce51d783da6c166",
+    "repository": "C2SP/wycheproof"
+  }
+}

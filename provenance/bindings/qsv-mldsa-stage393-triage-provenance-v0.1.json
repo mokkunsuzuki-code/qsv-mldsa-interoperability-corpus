@@ -1,0 +1,94 @@
+{
+  "schema": "qsv.mldsa.stage393-triage-provenance-binding.v0.1",
+  "version": "0.1",
+  "status": "historical_read_only_provenance_bound",
+  "role": "bind_closed_stage393_and_read_only_triage_to_qsv_ninecase_profile",
+  "qsv_target_baseline": {
+    "repository": "mokkunsuzuki-code/qsv-mldsa-interoperability-corpus",
+    "commit": "9147de5e27a2764a95d7ef296b24b8c5bf235286",
+    "tree": "ee64d8091cbe9b0b811b5310b1f58788142da70d"
+  },
+  "qsv_artifacts": {
+    "wycheproof_source_binding": {
+      "path": "vectors/bindings/qsv-mldsa-wycheproof-vector-source-v0.1.json",
+      "sha256": "7e15181e7bce4b6b3b8748bcc4d53d8c9a6277a3ba6104f19adfe4b08aec2295"
+    },
+    "ninecase_profile": {
+      "path": "profiles/qsv-mldsa-wycheproof-stage393-ninecase-negative-sign-profile-v0.1.json",
+      "sha256": "7ce3fffa2284ddd3076cfbeaf5d7e009fa3b02b4064738ecf1d8b1d0d4e49fbe"
+    }
+  },
+  "stage393_current_checkout": {
+    "branch": "main",
+    "head": "61809515b6db87123ea60b404d6db4e6751bcac2",
+    "tree": "1ddb9e5d54b4de5e91a3e1b75c635b82213c0d17",
+    "source_stage_closed": true,
+    "source_stage_modified": false
+  },
+  "stage393_historical_evidence": {
+    "qsp_head": "06c215016b0b2e056f0ffd46fbbc2aeae5452e37",
+    "result_adjudication_path": "development/stage393/stage393_full_1138_dual_diagnostic_evidence/stage393_full_1138_result_adjudication.json",
+    "result_adjudication_sha256": "c4f70d0456c4f566882e518c11092dce9ecd9ddbacc7314584d35995c2391fd7",
+    "freeze_hash_match_verified": true
+  },
+  "triage_read_only_artifacts": [
+    {
+      "path": "evidence/stage393_source_binding.json",
+      "sha256": "9b5ed3975b7bf519eeb03c185a92972b36f0af99b6a672904e88390ef73299de"
+    },
+    {
+      "path": "triage/stage393_mldsa_difference_index.json",
+      "sha256": "1ef96837de0cdca3a2e22d6d28c81a9107907725d1857026ff3f7c7aa82e3d71"
+    },
+    {
+      "path": "triage/stage393_mldsa_difference_summary.csv",
+      "sha256": "5f8ec97da9397ce10c69ef7e65b5ab845b2f76426377589177ef03d0020d1933"
+    },
+    {
+      "path": "triage/stage393_mldsa_difference_triage.md",
+      "sha256": "ae118baddef31658d39689261b968b6aa45aaf6a454ef56b5c536e6297727a31"
+    },
+    {
+      "path": "candidate/qsv_corpus_mapping_candidate.json",
+      "sha256": "30e8dea2ee1d8ac01537d1e0dc095228c573597af52c2d6f48b7ae50d3f742c7"
+    }
+  ],
+  "implementation_source_authority": {
+    "circl": {
+      "commit": "cfa7c70defd831ffb0792ab2af560bfef43d60ca",
+      "tree": "b3a50c3f1b7a5f8cfac0cce655ae7ea7900e9139"
+    },
+    "openssl": {
+      "commit": "aae016bfd52fcad2bc9657c2c782cfdf73b1ed5f",
+      "tree": "a8a306c000bc2426afd3264b2c41bc7223728475"
+    }
+  },
+  "historical_execution_summary": {
+    "wycheproof_vector_count": 1138,
+    "circl_execution_count": 1138,
+    "openssl_execution_count": 1138,
+    "total_cryptographic_execution_count": 2276,
+    "runtime_error_count": 0,
+    "skipped_vector_count": 0,
+    "unsupported_vector_count": 0,
+    "execution_integrity_verified": true,
+    "conformance_gate_satisfied": false,
+    "stage393_final_acceptance": false
+  },
+  "difference_summary": {
+    "difference_count": 9,
+    "circl_observed_difference_count": 6,
+    "openssl_observed_difference_count": 3,
+    "root_cause_classification_complete": false,
+    "root_cause_default": "unknown",
+    "confirmed_fips204_nonconformance": false,
+    "confirmed_implementation_bug": false,
+    "confirmed_security_vulnerability": false
+  },
+  "execution_boundary": {
+    "stage393_reexecuted": false,
+    "triage_reexecuted_crypto": false,
+    "qsv_cryptographic_execution_performed": false,
+    "historical_observation_is_new_qsv_execution": false
+  }
+}
