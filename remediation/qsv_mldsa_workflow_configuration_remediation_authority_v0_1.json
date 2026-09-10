@@ -1,0 +1,127 @@
+{
+  "active_workflow_set_after_remediation": {
+    "expected_active_workflow_count": 3,
+    "workflows": [
+      {
+        "path": ".github/workflows/qsv-mldsa-cross-platform-clean-environment-precheck-v0_1.yml",
+        "sha256": "3b488f00990c11a796faa7638d39b5aa12874c3e21c9459aa264c77d6315ea16",
+        "sidecar_sha256": "59aa85f6714da88735a7907c30024d40193973db07e3f9bd4dbcbd9ae4715ddc"
+      },
+      {
+        "path": ".github/workflows/qsv-mldsa-cross-platform-clean-environment-precheck-v0_3.yml",
+        "sha256": "f4197f42e2ed6a76c66b12d9f10c069b2d1ef5d7f3653d46a3b80858c858cdc0",
+        "sidecar_sha256": "596ed58fcf00c1a4c2f9d0424027fb4c210acc95e7f59a62ec7d62ee0c59057c"
+      },
+      {
+        "path": ".github/workflows/qsv-mldsa-linux-sixcase-explicit-crypto-execution-v0_1.yml",
+        "sha256": "123d31afd0e2eaa6deba5ab42a90b040c452d08f72eb61e23db4b3dc1c7c8c52",
+        "sidecar_sha256": "1b639eb1c35a6c67f66b3c3ab0e6641cd7d35f2d2994ba0563884b6d349c0eae"
+      }
+    ]
+  },
+  "authority_boundaries": {
+    "absolute_immutability_claim_allowed": false,
+    "circl_bug_confirmed": false,
+    "openssl_bug_confirmed": false,
+    "remediation_implies_complete_fips_204_conformance": false,
+    "remediation_implies_complete_sigver_coverage": false,
+    "remediation_implies_cryptographic_correctness": false,
+    "remediation_implies_fips_204_certification": false,
+    "remediation_implies_nist_validation": false,
+    "remediation_implies_third_party_independent_reproduction": false,
+    "root_v0_3_remains_frozen": true,
+    "security_vulnerability_absence_proven": false,
+    "system_wide_quantum_safe_claim_allowed": false
+  },
+  "authority_lifecycle": {
+    "created_before_active_v0_2_retirement": true,
+    "document_role": "final_state_declaration_subject_to_post_retirement_verification",
+    "effective_at_candidate_creation": false,
+    "effective_only_when_post_retirement_verifier_passes": true,
+    "pre_retirement_observation": {
+      "active_invalid_v0_2_present": true,
+      "historical_exact_copy_present": true,
+      "historical_exact_sidecar_copy_present": true
+    }
+  },
+  "decision": "historical_invalid_workflow_retired_from_active_actions",
+  "frozen_parent_authority": {
+    "commit": "05a0de455166bf2aa2f6696634d251339319066e",
+    "published_file_count": 90,
+    "repository": "mokkunsuzuki-code/qsv-mldsa-interoperability-corpus",
+    "root_v0_3_exact_fileset_sensitive": true,
+    "root_v0_3_finalization_authority_sha256": "1c9a3b57168f55696cce80a256180ee849b1766b71815389058d2d3096f99d11",
+    "root_v0_3_remains_authority_for_frozen_snapshot_only": true,
+    "tree": "2a0dba64a1dda7addfa3bde740809a294a3a7f16"
+  },
+  "historical_github_run_observation": {
+    "actual_job_execution_observed": false,
+    "artifact_count": 0,
+    "conclusion": "failure",
+    "cryptographic_execution_observed": false,
+    "event": "push",
+    "failure_classification": "workflow_configuration_or_parse_failure",
+    "github_internal_parser_mechanism_exactly_proven": false,
+    "head_sha": "05a0de455166bf2aa2f6696634d251339319066e",
+    "job_count": 0,
+    "run_id": 34433796283,
+    "status": "completed",
+    "workflow_id": 351977127,
+    "workflow_path": ".github/workflows/qsv-mldsa-cross-platform-clean-environment-precheck-v0_2.yml"
+  },
+  "historical_invalid_workflow": {
+    "historical_bytes_preserved_without_modification": true,
+    "historical_path": "historical/workflows/qsv-mldsa-cross-platform-clean-environment-precheck-v0_2.yml",
+    "historical_sidecar_bytes_preserved_without_rewrite": true,
+    "historical_sidecar_path": "historical/workflows/qsv-mldsa-cross-platform-clean-environment-precheck-v0_2.yml.sha256",
+    "introduction_commit": "970bf929f32a25ca0648fb01f5378bdbfa8eba55",
+    "misindented_env_key_count": 5,
+    "misindented_env_keys": [
+      "GO_LINUX_AMD64_ARCHIVE",
+      "GO_LINUX_AMD64_URL",
+      "GO_LINUX_AMD64_SHA256",
+      "PREVIOUS_FAILED_PRECHECK_RUN_ID",
+      "PREVIOUS_FAILED_PRECHECK_RUN_LOG_SHA256"
+    ],
+    "original_active_path": ".github/workflows/qsv-mldsa-cross-platform-clean-environment-precheck-v0_2.yml",
+    "original_active_sidecar_path": ".github/workflows/qsv-mldsa-cross-platform-clean-environment-precheck-v0_2.yml.sha256",
+    "psych_observation": {
+      "column": 10,
+      "exception_class": "Psych::SyntaxError",
+      "line": 51,
+      "problem": "mapping_values_are_not_allowed_in_this_context",
+      "psych_version": "3.1.0",
+      "role": "auxiliary_parser_specific_observation"
+    },
+    "sidecar_sha256": "8f7c07b069f486c75876de9eda7ace947a64ec22084204b1485179b79ca3ce9b",
+    "workflow_sha256": "0351a06ab03e2ff27669f00e30e5e7647bcd54af20c6e905ba2e607233e035b9",
+    "yaml_valid": false
+  },
+  "publication_time_audit": {
+    "expected_tracked_file_count": 94,
+    "persistent_repository_exact_file_count_requirement": false,
+    "persistent_repository_exact_fileset_requirement": false,
+    "tracked_file_count_is_publication_time_audit_value_only": true
+  },
+  "remediation_actions": {
+    "active_invalid_v0_2_retired": true,
+    "active_stub_created": false,
+    "cryptographic_execution_performed": false,
+    "historical_bytes_preserved": true,
+    "root_v0_3_modified": false,
+    "semantics": "final_state_assertions_effective_only_after_post_retirement_verifier_passes",
+    "v0_2_in_place_fix_performed": false,
+    "v0_3_modified": false,
+    "workflow_dispatch_performed": false
+  },
+  "repository": "mokkunsuzuki-code/qsv-mldsa-interoperability-corpus",
+  "schema": "qsv.mldsa.workflow-configuration-remediation-authority.v0.1",
+  "successor_workflow": {
+    "active_path": ".github/workflows/qsv-mldsa-cross-platform-clean-environment-precheck-v0_3.yml",
+    "corrected_successor_for_v0_2": true,
+    "introduction_commit": "30e72a48f528ad350daec65bbc74da44eabd87d6",
+    "workflow_sha256": "f4197f42e2ed6a76c66b12d9f10c069b2d1ef5d7f3653d46a3b80858c858cdc0",
+    "yaml_valid": true
+  },
+  "version": "0.1"
+}
