@@ -1,0 +1,380 @@
+{
+  "execution_scope": {
+    "algorithm": "ML-DSA",
+    "case_locators": [
+      {
+        "case_id": "ML-DSA-44-tg1-tc1",
+        "expected_valid": false,
+        "parameter_set": "ML-DSA-44",
+        "tc_id": 1,
+        "tg_id": 1
+      },
+      {
+        "case_id": "ML-DSA-44-tg1-tc3",
+        "expected_valid": true,
+        "parameter_set": "ML-DSA-44",
+        "tc_id": 3,
+        "tg_id": 1
+      },
+      {
+        "case_id": "ML-DSA-65-tg3-tc31",
+        "expected_valid": false,
+        "parameter_set": "ML-DSA-65",
+        "tc_id": 31,
+        "tg_id": 3
+      },
+      {
+        "case_id": "ML-DSA-65-tg3-tc33",
+        "expected_valid": true,
+        "parameter_set": "ML-DSA-65",
+        "tc_id": 33,
+        "tg_id": 3
+      },
+      {
+        "case_id": "ML-DSA-87-tg5-tc61",
+        "expected_valid": false,
+        "parameter_set": "ML-DSA-87",
+        "tc_id": 61,
+        "tg_id": 5
+      },
+      {
+        "case_id": "ML-DSA-87-tg5-tc63",
+        "expected_valid": true,
+        "parameter_set": "ML-DSA-87",
+        "tc_id": 63,
+        "tg_id": 5
+      }
+    ],
+    "expected_crypto_process_invocation_count": 12,
+    "expected_invalid_case_count": 3,
+    "expected_valid_case_count": 3,
+    "full_acvp_execution_in_scope": false,
+    "full_wycheproof_execution_in_scope": false,
+    "implementation_count": 2,
+    "implementations": [
+      "openssl",
+      "cloudflare-circl"
+    ],
+    "keygen_in_scope": false,
+    "operation": "sigVer",
+    "prehash_in_scope": false,
+    "process_model": "one_case_per_implementation_process_invocation",
+    "scope_expansion_allowed": false,
+    "selected_case_count": 6,
+    "siggen_in_scope": false
+  },
+  "existing_authority_bindings": {
+    "circl_harness_source": {
+      "path": "runtime/qsv_mldsa_circl_sigver_harness_v0_1.go",
+      "sha256": "f3c551821f4c31b8f7fd7242e66002c4aa1cc3dd0abb0c56710f3d0a91fc0fed"
+    },
+    "implementation_source_lineage": {
+      "path": "lineage/bindings/qsv-mldsa-implementation-source-lineage-v0.1.json",
+      "sha256": "bead53b3ca4f475ead06d5d1c5ba99cfd98ed69c5e59cec7e62d88723325c289"
+    },
+    "nist_acvp_source_binding": {
+      "path": "vectors/bindings/qsv-mldsa-nist-acvp-vector-source-v0.1.json",
+      "repository": "https://github.com/usnistgov/ACVP-Server.git",
+      "selected_commit": "975de31eb83d87039ec88934fdc47d8c312b892d",
+      "selected_tree": "a6b81add7faf8a8b647afcdc54268615decde9b5",
+      "sha256": "666cf0ca554fdcd91df3602ec37a74f4af36a905fe9549ae1c0a1030af6c0032"
+    },
+    "openssl_harness_source": {
+      "path": "runtime/qsv_mldsa_openssl_sigver_harness_v0_1.c",
+      "sha256": "0d5c2030409425115680d3140429918210fbc63c5f18bb0c08257314bd6e6240"
+    },
+    "prior_sixcase_workflow_source": {
+      "historical_runtime_exact_command_evidence": false,
+      "path": ".github/workflows/qsv-mldsa-linux-sixcase-explicit-crypto-execution-v0_1.yml",
+      "sha256": "123d31afd0e2eaa6deba5ab42a90b040c452d08f72eb61e23db4b3dc1c7c8c52"
+    },
+    "runtime_harness_contract": {
+      "path": "runtime/qsv_mldsa_runtime_harness_contract_v0_1.json",
+      "sha256": "6e3c5161c978ec4a045ad1c72ed491967ae66c1501d83aab660ffcde7cca307e"
+    },
+    "sixcase_extractor": {
+      "path": "runtime/qsv_mldsa_sixcase_extractor_v0_1.py",
+      "sha256": "0bdad8db61b008ce50e6c53a472d3e56d36cf8169318cb50474672d62e566679"
+    },
+    "sixcase_selection_profile": {
+      "path": "profiles/qsv-mldsa-nist-acvp-minimal-sigver-kat-profile-v0.1.json",
+      "sha256": "0807afb1b87b73d556ba43a07943f62313edb623d74c13024b83c7dfa132e98d"
+    }
+  },
+  "github_runtime_binding": {
+    "job_id_binding_status_if_unavailable": "post_run_binding_required",
+    "numeric_job_id_if_unavailable": null,
+    "numeric_job_id_runtime_value_may_be_guessed": false,
+    "post_run_numeric_job_id_binding_source": "authoritative_read_only_github_api_metadata",
+    "required_environment_fields": [
+      "GITHUB_RUN_ID",
+      "GITHUB_RUN_ATTEMPT",
+      "GITHUB_SHA",
+      "GITHUB_REF",
+      "GITHUB_REF_NAME",
+      "GITHUB_WORKFLOW",
+      "GITHUB_WORKFLOW_REF",
+      "GITHUB_JOB"
+    ]
+  },
+  "historical_finalization_reference_boundary": {
+    "classification": "later_remediation_declared_external_finalization_authority_reference",
+    "declared_by_path": "remediation/qsv_mldsa_workflow_configuration_remediation_authority_v0_1.json",
+    "declared_root_v0_3_finalization_authority_sha256": "1c9a3b57168f55696cce80a256180ee849b1766b71815389058d2d3096f99d11",
+    "declaring_authority_sha256": "e6435e94617416d0f5688b5345b733ba8933f5226c9e5e84725557dc60952011",
+    "direct_derivation_from_frozen_tree_proven": false,
+    "is_frozen_tree_file_sha256": false
+  },
+  "implementation_authorities": {
+    "circl": {
+      "implementation_id": "cloudflare-circl",
+      "implementation_version_identifier": "git:cfa7c70defd831ffb0792ab2af560bfef43d60ca",
+      "repository": "https://github.com/cloudflare/circl.git",
+      "semantic_release_version_asserted": false,
+      "source_authority_binding_path": "lineage/bindings/qsv-mldsa-implementation-source-lineage-v0.1.json",
+      "source_authority_binding_sha256": "bead53b3ca4f475ead06d5d1c5ba99cfd98ed69c5e59cec7e62d88723325c289",
+      "source_commit": "cfa7c70defd831ffb0792ab2af560bfef43d60ca",
+      "source_tree": "b3a50c3f1b7a5f8cfac0cce655ae7ea7900e9139"
+    },
+    "openssl": {
+      "absolute_build_provenance_claim_allowed": false,
+      "implementation_id": "openssl",
+      "repository": "https://github.com/openssl/openssl.git",
+      "runtime_version_required": "3.6.3",
+      "source_authority_binding_path": "lineage/bindings/qsv-mldsa-implementation-source-lineage-v0.1.json",
+      "source_authority_binding_sha256": "bead53b3ca4f475ead06d5d1c5ba99cfd98ed69c5e59cec7e62d88723325c289",
+      "source_commit": "aae016bfd52fcad2bc9657c2c782cfdf73b1ed5f",
+      "source_tree": "a8a306c000bc2426afd3264b2c41bc7223728475"
+    }
+  },
+  "input_artifact_policy": {
+    "identity_fields_required": [
+      "role",
+      "path",
+      "sha256"
+    ],
+    "private_key_input_allowed": false,
+    "public_metadata_may_contain_raw_input_bytes": false,
+    "required_roles_for_sigver": [
+      "public_key",
+      "message",
+      "context",
+      "signature"
+    ],
+    "secret_key_input_allowed": false,
+    "seed_input_allowed": false
+  },
+  "manual_execution_gate": {
+    "approval_phrase_expected": "EXECUTE_F7_SIXCASE",
+    "approval_phrase_input": "approval_phrase",
+    "approved_commit_sha_input": "approved_commit_sha",
+    "approved_ref": "refs/heads/main",
+    "automatic_trigger_allowed": false,
+    "crypto_execution_before_all_preflight_gates_pass": false,
+    "github_sha_must_equal_approved_commit_sha": true,
+    "phase_a_dispatch_allowed": false,
+    "trigger": "workflow_dispatch_only"
+  },
+  "offline_verification_modes": {
+    "post_run_metadata_only": {
+      "executable_binding": "runtime-captured resolved_executable_sha256 must equal the aggregate build observation harness sha256",
+      "external_fixture_manifest_required": true,
+      "fixture_manifest_is_metadata_only": true,
+      "harness_binary_publication_required": false,
+      "input_binding": "runtime-captured input artifact sha256 and byte_count must equal the uploaded fixture manifest case metadata",
+      "live_executable_file_rehash_required": false,
+      "live_input_file_rehash_required": false,
+      "metadata_only_publication": true,
+      "purpose": "Reverify the published metadata-only evidence after ephemeral input and harness files no longer exist.",
+      "raw_input_publication_required": false
+    },
+    "runtime_live_rehash": {
+      "external_fixture_manifest_required": true,
+      "harness_binary_publication_required": false,
+      "live_executable_file_rehash_required": true,
+      "live_input_file_rehash_required": true,
+      "purpose": "Verify runtime-captured metadata against live ephemeral input and executable bytes before runner cleanup.",
+      "raw_input_publication_required": false
+    }
+  },
+  "offline_verifier_fail_closed_requirements": {
+    "capture_launcher_sha256_mismatch": "FAIL",
+    "captured_at_execution_not_true": "FAIL",
+    "empty_exact_argv": "FAIL",
+    "empty_exact_command": "FAIL",
+    "exact_command_not_equal_to_runtime_shlex_join_exact_argv": "FAIL",
+    "input_artifact_sha256_mismatch": "FAIL",
+    "numeric_job_id_unbound": "NOT_FULLY_BOUND",
+    "reconstructed_after_execution_not_false": "FAIL",
+    "repository_commit_binding_mismatch": "FAIL",
+    "required_field_absence": "FAIL",
+    "shell_not_false": "FAIL",
+    "success_claim_with_nonzero_exit_code": "FAIL",
+    "unknown_state_promoted_to_pass": "PROHIBITED",
+    "workflow_sha256_mismatch": "FAIL"
+  },
+  "phase_a_boundaries": {
+    "actual_f7_runtime_evidence_created": false,
+    "acvp_to_neutral_mapper_created": false,
+    "f7_full_closure": false,
+    "fixture_schema_v0_2_created": false,
+    "historical_run_exact_command_backfilled": false,
+    "new_crypto_execution_performed": false,
+    "normalized_oqs_execution_evidence_created": false,
+    "normalized_result_adapter_created": false,
+    "openssl_triage_performed": false,
+    "oqs_reply_performed": false,
+    "readme_modified": false,
+    "ready_for_ogc_4": false,
+    "workflow_dispatch_performed": false,
+    "workflow_rerun_performed": false
+  },
+  "planned_phase_a_static_artifacts": {
+    "capture_launcher": {
+      "path": "runtime/qsv_mldsa_f7_exact_invocation_capture_v0_1.py",
+      "sha256_sidecar_required": true
+    },
+    "manual_workflow": {
+      "path": ".github/workflows/qsv-mldsa-f7-instrumented-sixcase-reproduction-v0_1.yml",
+      "sha256_sidecar_required": true
+    },
+    "offline_verifier": {
+      "path": "runtime/verify_qsv_mldsa_f7_exact_invocation_capture_v0_1.py",
+      "sha256_sidecar_required": true
+    },
+    "this_contract": {
+      "path": "contracts/qsv-mldsa-f7-exact-invocation-evidence-capture-contract-v0.1.json",
+      "sha256_sidecar_required": false,
+      "sidecar_policy_basis": "existing_contracts_directory_convention"
+    }
+  },
+  "prior_ogc_3_state": {
+    "existing_exact_command_proven": false,
+    "existing_exact_command_reconstructed": false,
+    "existing_job_id": 101927914418,
+    "existing_run_id": 34183766166,
+    "f7_full_closure_without_new_execution": false,
+    "historical_run_exact_command_must_not_be_backfilled": true,
+    "new_instrumented_execution_required": true,
+    "ogc_3_final_decision": "PATH_B",
+    "workflow_source_is_not_runtime_command_evidence": true
+  },
+  "public_material_boundary": {
+    "credential_publication": false,
+    "full_environment_publication": false,
+    "github_token_publication": false,
+    "metadata_only_publication": true,
+    "private_key_publication": false,
+    "raw_process_stderr_publication": false,
+    "raw_process_stdout_publication": false,
+    "raw_vector_payload_publication": false,
+    "secret_key_publication": false,
+    "seed_publication": false,
+    "stderr_digest_publication": true,
+    "stdout_digest_publication": true
+  },
+  "purpose": "Define fail-closed acquisition of exact runtime process invocations for a future first-party instrumented reproduction of the existing limited six-case ML-DSA signature-verification scope.",
+  "repository_authority": {
+    "frozen_root_v0_3_commit": "05a0de455166bf2aa2f6696634d251339319066e",
+    "frozen_root_v0_3_modified": false,
+    "frozen_root_v0_3_tree": "2a0dba64a1dda7addfa3bde740809a294a3a7f16",
+    "pre_implementation_main_commit": "cfe2bc7204595631ad1ebb6f41de64d82a7aa884",
+    "pre_implementation_main_tree": "3aa61297c061d1e7f0338446a71a892d37beb31b",
+    "repository": "mokkunsuzuki-code/qsv-mldsa-interoperability-corpus",
+    "root_v0_3_correction": false,
+    "separate_append_only_authority": true
+  },
+  "role": "f7_runtime_exact_invocation_primary_execution_evidence_contract",
+  "runtime_capture": {
+    "argv_for_execution_equals_argv_recorded_as_evidence": true,
+    "capture_boundary": "process_launch_boundary",
+    "capture_unit": "actual_child_process_invocation",
+    "captured_at_execution": true,
+    "exact_argv_normative": true,
+    "exact_command_derivation": "shlex.join(exact_argv)_at_runtime_before_process_launch",
+    "exact_command_normative": false,
+    "execution_environment_and_public_environment_metadata_separated": true,
+    "execution_environment_policy": "inherit_parent_environment_plus_explicit_allowlisted_overrides",
+    "full_environment_dump_allowed": false,
+    "inherited_parent_environment_published": false,
+    "metadata_only_publication": true,
+    "normative_representation": "exact_argv",
+    "post_execution_command_reconstruction_allowed": false,
+    "process_launcher": "python_subprocess_run",
+    "public_environment_capture_policy": "explicit_allowlist_only",
+    "raw_stderr_publication": false,
+    "raw_stdout_publication": false,
+    "reconstructed_after_execution": false,
+    "resolved_executable_path_required": true,
+    "resolved_executable_sha256_required": true,
+    "runtime_capture_method": "same_python_argv_object_recorded_and_passed_to_subprocess_run_shell_false",
+    "shell": false,
+    "shell_true_allowed": false,
+    "stderr_byte_count_required": true,
+    "stderr_sha256_required": true,
+    "stdout_byte_count_required": true,
+    "stdout_sha256_required": true
+  },
+  "runtime_evidence_record": {
+    "expected_record_count_for_successful_sixcase_run": 12,
+    "format_identifier": "qsv.mldsa.f7-runtime-invocation-evidence.v0.1",
+    "format_version": "0.1",
+    "one_record_per_actual_child_process_invocation": true,
+    "required_fields": [
+      "schema",
+      "format_version",
+      "invocation_id",
+      "implementation",
+      "implementation_version",
+      "implementation_source_authority",
+      "execution_scope",
+      "covered_case_ids",
+      "executable",
+      "resolved_executable_path",
+      "resolved_executable_sha256",
+      "exact_argv",
+      "exact_command",
+      "shell",
+      "cwd",
+      "allowlisted_environment",
+      "input_artifacts",
+      "workflow_identity",
+      "capture_launcher_identity",
+      "repository_commit",
+      "repository_tree",
+      "github",
+      "process_started",
+      "launch_error",
+      "exit_code",
+      "stdout_sha256",
+      "stdout_byte_count",
+      "stderr_sha256",
+      "stderr_byte_count",
+      "result_state",
+      "captured_at_execution",
+      "reconstructed_after_execution",
+      "runtime_capture_method",
+      "cryptographic_execution",
+      "metadata_only_publication"
+    ]
+  },
+  "schema": "qsv.mldsa.f7-exact-invocation-evidence-capture-contract.v0.1",
+  "semantic_boundaries": {
+    "absolute_immutability": false,
+    "agreement_is_proof_of_correctness": false,
+    "complete_fips_204_conformance": false,
+    "complete_sigver_coverage": false,
+    "disagreement_is_proof_of_bug": false,
+    "entire_system_quantum_safe": false,
+    "fips_204_certification": false,
+    "first_party_instrumented_reproduction_evidence": true,
+    "formal_security_proof": false,
+    "nist_validation": false,
+    "third_party_independent_reproduction": false,
+    "timestamp_is_proof_of_cryptographic_correctness": false,
+    "unknown_or_pending_is_verified": false,
+    "vulnerability_free": false
+  },
+  "status": "phase_a_capture_mechanism_preparation_no_crypto_execution",
+  "version": "0.1"
+}
