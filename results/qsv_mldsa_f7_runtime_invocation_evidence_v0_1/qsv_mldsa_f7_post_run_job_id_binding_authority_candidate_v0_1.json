@@ -1,0 +1,47 @@
+{
+  "actions_artifact_authority": {
+    "artifact_digest": "sha256:da7ff2fe3a096ad9cebf94342309a7330e8f17e1064016939a9f8dbd2030d690",
+    "artifact_id": 10395719659,
+    "artifact_name": "qsv-mldsa-f7-runtime-invocation-evidence-34968252038-1",
+    "artifact_source_run_id": 34968252038
+  },
+  "authorized_structural_changes": [
+    {
+      "from": null,
+      "path": "github.github_job_id_numeric",
+      "to": 104377847614
+    },
+    {
+      "from": "post_run_binding_required",
+      "path": "github.job_id_binding_status",
+      "to": "runtime_bound"
+    }
+  ],
+  "binding_scope": "numeric_github_job_id_post_run_binding_only",
+  "bound_successor_evidence_sha256": "0a5f8da64736deab407e76a35db40a5badff9018f1c1e8f5c49f1cfeba5d42b0",
+  "document_type": "f7_post_run_job_id_binding_provenance_candidate",
+  "exact_argv_modified": false,
+  "exact_command_modified": false,
+  "execution_results_modified": false,
+  "f7_full_closure": false,
+  "github_authority": {
+    "head_sha": "e7c2f85a6cdf49c39a42cccdd96ba6ab1a8da6cd",
+    "job_name": "f7-instrumented-six-case-crypto",
+    "numeric_job_id": 104377847614,
+    "repository_tree": "e97833bc5a06a49309a30f292dfdc84436668836",
+    "run_attempt": 1,
+    "run_id": 34968252038,
+    "workflow_sha256": "89841e7b818ac0e37ec322ae1972463270372275db40c49b0175830fd20e39fb"
+  },
+  "historical_run_exact_command_backfilled": false,
+  "input_hashes_modified": false,
+  "publication_status": "repository_external_prepublication_candidate",
+  "resolved_executable_modified": false,
+  "runtime_evidence_reconstructed": false,
+  "runtime_fixture_manifest_sha256": "4b424ea6a6281521f13dad3a63a043d71a891602a91d080913075d4548085665",
+  "source_runtime_evidence_sha256": "ef5919ee3533e2778b022449d111cd1dd1ff4442f36135adace31987ab915ec5",
+  "stderr_hashes_modified": false,
+  "stdout_hashes_modified": false,
+  "third_party_independent_reproduction": false,
+  "unauthorized_field_change_count": 0
+}
