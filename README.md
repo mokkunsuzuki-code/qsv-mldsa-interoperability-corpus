@@ -8,11 +8,25 @@ It is intended to turn ML-DSA interoperability and conformance claims into small
 
 ## Status
 
-**Design ready / cryptographic fixture execution pending.**
+**F7 six-case runtime invocation evidence is durably published, and a deterministic metadata-only normalized result layer is available.**
 
 Version 0.1 defines the corpus contract, fixture schema, provenance requirements, implementation-lineage model, fixture plan, and common runner interface.
 
-It does **not** yet publish generated private test keys, seeds, signatures, or completed cryptographic fixture results.
+The current F7 scope publishes metadata-only evidence for six selected NIST ACVP ML-DSA `sigVer` cases across OpenSSL and Cloudflare CIRCL. No private keys, secret keys, raw vector payloads, raw stdout, raw stderr, or harness binaries are published by the normalized result layer.
+
+## F7 normalized result
+
+The F7 normalized layer contains **12 implementation-level records**: six OpenSSL invocations and six Cloudflare CIRCL invocations over the same six selected cases.
+
+`observed_acceptance` is marked as **derived**, not directly captured. Its derivation is fail-closed and uses the pinned harness semantics, F7 exact runtime `argv`, the actual process exit status, and the SHA-256 commitment of the successful-path stdout. `expected_valid` is not unconditionally copied into `observed_acceptance`, and workflow success is not used as the observation.
+
+Normalization performs **no new cryptographic execution**.
+
+To independently regenerate and verify the normalized result from the published F7 evidence:
+
+`PYTHONDONTWRITEBYTECODE=1 python3 runtime/verify_qsv_mldsa_normalized_result_adapter_v0_1.py .`
+
+This remains first-party instrumented reproduction evidence. It is **not** third-party independent reproduction, NIST validation, FIPS 204 certification, proof of complete FIPS 204 conformance, proof of complete `sigVer` coverage, or proof of universal ML-DSA correctness.
 
 ## Normative methodology
 

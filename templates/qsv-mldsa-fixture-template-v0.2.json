@@ -1,0 +1,69 @@
+{
+  "artifact_hashes": {
+    "capture_launcher_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "resolved_executable_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "runtime_manifest_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "source_evidence_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "workflow_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "environment": {
+    "allowlisted": {
+      "QSV_EXECUTE_CRYPTO": "YES"
+    },
+    "inherited_parent_environment_published": false,
+    "public_environment_capture_policy": "explicit_allowlist_only"
+  },
+  "exact_command": "UNASSIGNED",
+  "exit_status": {
+    "code": 0,
+    "launch_error": null,
+    "process_started": false
+  },
+  "fixture_id": "UNASSIGNED",
+  "implementation": "openssl",
+  "inputs": {
+    "artifacts": {
+      "context": {
+        "byte_count": 0,
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "message": {
+        "byte_count": 0,
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "public_key": {
+        "byte_count": 0,
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "signature": {
+        "byte_count": 0,
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      }
+    },
+    "case": {
+      "case_id": "UNASSIGNED",
+      "parameter_set": "ML-DSA-65",
+      "source_expected_valid": false,
+      "tc_id": 0,
+      "tg_id": 0
+    }
+  },
+  "observed_acceptance": false,
+  "operation": "sigVer",
+  "output": {
+    "observation_derivation": {
+      "direct_runtime_actual_value_published": false,
+      "expected_valid_used_as_unconditional_observed_value": false,
+      "method": "pinned_harness_semantics_plus_exact_runtime_argv_plus_actual_exit_status_plus_stdout_sha256_commitment",
+      "observation_is_derived": true,
+      "pinned_harness_semantics_verified": true,
+      "stdout_commitment_verified": true,
+      "workflow_conclusion_used": false
+    },
+    "stderr_byte_count": 0,
+    "stderr_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "stdout_byte_count": 0,
+    "stdout_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "result_state": "blocked"
+}

@@ -1,0 +1,890 @@
+{
+  "material_boundary": {
+    "harness_binary_published": false,
+    "metadata_only": true,
+    "private_key_material_published": false,
+    "raw_stderr_published": false,
+    "raw_stdout_published": false,
+    "raw_vector_payload_published": false,
+    "secret_key_material_published": false
+  },
+  "normalization_authority": {
+    "adapter_path": "runtime/qsv_mldsa_normalized_result_adapter_v0_1.py",
+    "adapter_sha256": "5a9adeeb92eef28abd5f3d5a6be516f886c7f8b8b656dfbddfb83e66ed9655e8",
+    "direct_observed_acceptance_field_in_f7": false,
+    "fixture_id_derivation": "qsv-f7- + first24(sha256('qsv-f7-fixture-v0.2\\n' + runtime_manifest_sha256 + '\\n' + case_id + '\\n')))",
+    "new_cryptographic_execution_performed": false,
+    "observed_acceptance_derivation": "pinned_harness_semantics_plus_exact_runtime_argv_plus_actual_exit_status_plus_stdout_sha256_commitment",
+    "record_schema_path": "schemas/qsv-mldsa-fixture-v0.2.schema.json",
+    "record_schema_sha256": "f0cd1af2bc8487d8f35cf5831a1e0aa725411f839d940abd63fb3a7c111c4a48",
+    "runner_interface_path": "runners/qsv-mldsa-runner-interface-v0.1.json",
+    "runner_interface_sha256": "4a9334ed4ded02ed15a65129da18ac3c8daab8db137cbef78b8e0fcdf8dea0b8"
+  },
+  "records": [
+    {
+      "artifact_hashes": {
+        "capture_launcher_sha256": "ea0eed7026ba281b24831dfb0e0fe8d36d17a2c9df4781858927047a71f70645",
+        "resolved_executable_sha256": "b53ca61dd665f628770a2d2326e3b335ea35bc2a18f5dbfd2a23374064c230c0",
+        "runtime_manifest_sha256": "4b424ea6a6281521f13dad3a63a043d71a891602a91d080913075d4548085665",
+        "source_evidence_sha256": "0a5f8da64736deab407e76a35db40a5badff9018f1c1e8f5c49f1cfeba5d42b0",
+        "workflow_sha256": "89841e7b818ac0e37ec322ae1972463270372275db40c49b0175830fd20e39fb"
+      },
+      "environment": {
+        "allowlisted": {
+          "QSV_EXECUTE_CRYPTO": "YES"
+        },
+        "inherited_parent_environment_published": false,
+        "public_environment_capture_policy": "explicit_allowlist_only"
+      },
+      "exact_command": "/home/runner/work/_temp/qsv-linux-sixcase-explicit/qsv-circl-harness ML-DSA-44 /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-44-tg1-tc1/pk.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-44-tg1-tc1/message.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-44-tg1-tc1/context.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-44-tg1-tc1/signature.bin false",
+      "exit_status": {
+        "code": 0,
+        "launch_error": null,
+        "process_started": true
+      },
+      "fixture_id": "qsv-f7-9c8f81446b91d2602a4b0e31",
+      "implementation": "cloudflare-circl",
+      "inputs": {
+        "artifacts": {
+          "context": {
+            "byte_count": 171,
+            "sha256": "ebab6d72b1669f2840aa3919bcb16f189c0850ec6dbef8135bb32c2fa9b2ece6"
+          },
+          "message": {
+            "byte_count": 7318,
+            "sha256": "afd067d46533aa803cd54768159356ed10c52c5ca8ee3b3864fcfad42da5a068"
+          },
+          "public_key": {
+            "byte_count": 1312,
+            "sha256": "d873bf71ad16f2df7d0bc25c98bbd6790db4dad8aa07f17dc039ff53b17fc1b6"
+          },
+          "signature": {
+            "byte_count": 2420,
+            "sha256": "ce4d0b3f2ff67765209ddfc8e9de3a4e95ea68d6cc39047778b68814d5f6cd00"
+          }
+        },
+        "case": {
+          "case_id": "ML-DSA-44-tg1-tc1",
+          "parameter_set": "ML-DSA-44",
+          "source_expected_valid": false,
+          "tc_id": 1,
+          "tg_id": 1
+        }
+      },
+      "observed_acceptance": false,
+      "operation": "sigVer",
+      "output": {
+        "observation_derivation": {
+          "direct_runtime_actual_value_published": false,
+          "expected_valid_used_as_unconditional_observed_value": false,
+          "method": "pinned_harness_semantics_plus_exact_runtime_argv_plus_actual_exit_status_plus_stdout_sha256_commitment",
+          "observation_is_derived": true,
+          "pinned_harness_semantics_verified": true,
+          "stdout_commitment_verified": true,
+          "workflow_conclusion_used": false
+        },
+        "stderr_byte_count": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_byte_count": 80,
+        "stdout_sha256": "7e77dcedccf9345f1450abc4ce81e2da8e503f3aa621f4d9b140d19e4e4e4e1c"
+      },
+      "result_state": "expected_reject"
+    },
+    {
+      "artifact_hashes": {
+        "capture_launcher_sha256": "ea0eed7026ba281b24831dfb0e0fe8d36d17a2c9df4781858927047a71f70645",
+        "resolved_executable_sha256": "b53ca61dd665f628770a2d2326e3b335ea35bc2a18f5dbfd2a23374064c230c0",
+        "runtime_manifest_sha256": "4b424ea6a6281521f13dad3a63a043d71a891602a91d080913075d4548085665",
+        "source_evidence_sha256": "0a5f8da64736deab407e76a35db40a5badff9018f1c1e8f5c49f1cfeba5d42b0",
+        "workflow_sha256": "89841e7b818ac0e37ec322ae1972463270372275db40c49b0175830fd20e39fb"
+      },
+      "environment": {
+        "allowlisted": {
+          "QSV_EXECUTE_CRYPTO": "YES"
+        },
+        "inherited_parent_environment_published": false,
+        "public_environment_capture_policy": "explicit_allowlist_only"
+      },
+      "exact_command": "/home/runner/work/_temp/qsv-linux-sixcase-explicit/qsv-circl-harness ML-DSA-44 /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-44-tg1-tc3/pk.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-44-tg1-tc3/message.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-44-tg1-tc3/context.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-44-tg1-tc3/signature.bin true",
+      "exit_status": {
+        "code": 0,
+        "launch_error": null,
+        "process_started": true
+      },
+      "fixture_id": "qsv-f7-755a93be5b5057ae339d603f",
+      "implementation": "cloudflare-circl",
+      "inputs": {
+        "artifacts": {
+          "context": {
+            "byte_count": 31,
+            "sha256": "3f412935571e40893fec33dca6b6476e2b8018fdf7680b47f08a1c29bcfb10f7"
+          },
+          "message": {
+            "byte_count": 2473,
+            "sha256": "2fa292fde315d83f31cfde322018b3f1afc96a96f4bc61e3e438eb496e8d072e"
+          },
+          "public_key": {
+            "byte_count": 1312,
+            "sha256": "e42bfc3507777aee7aa0d317d78e15bd3763dc183945b35022b2ab1e6fe1c83b"
+          },
+          "signature": {
+            "byte_count": 2420,
+            "sha256": "7bcf860a958531a93fe18417ba9d50665ce6c0b6297f67d573ca08899919bc8e"
+          }
+        },
+        "case": {
+          "case_id": "ML-DSA-44-tg1-tc3",
+          "parameter_set": "ML-DSA-44",
+          "source_expected_valid": true,
+          "tc_id": 3,
+          "tg_id": 1
+        }
+      },
+      "observed_acceptance": true,
+      "operation": "sigVer",
+      "output": {
+        "observation_derivation": {
+          "direct_runtime_actual_value_published": false,
+          "expected_valid_used_as_unconditional_observed_value": false,
+          "method": "pinned_harness_semantics_plus_exact_runtime_argv_plus_actual_exit_status_plus_stdout_sha256_commitment",
+          "observation_is_derived": true,
+          "pinned_harness_semantics_verified": true,
+          "stdout_commitment_verified": true,
+          "workflow_conclusion_used": false
+        },
+        "stderr_byte_count": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_byte_count": 78,
+        "stdout_sha256": "df6946ff61eab547f9f321df034c290e2814e2a8bf28ef3c286e30a3afec2318"
+      },
+      "result_state": "pass"
+    },
+    {
+      "artifact_hashes": {
+        "capture_launcher_sha256": "ea0eed7026ba281b24831dfb0e0fe8d36d17a2c9df4781858927047a71f70645",
+        "resolved_executable_sha256": "b53ca61dd665f628770a2d2326e3b335ea35bc2a18f5dbfd2a23374064c230c0",
+        "runtime_manifest_sha256": "4b424ea6a6281521f13dad3a63a043d71a891602a91d080913075d4548085665",
+        "source_evidence_sha256": "0a5f8da64736deab407e76a35db40a5badff9018f1c1e8f5c49f1cfeba5d42b0",
+        "workflow_sha256": "89841e7b818ac0e37ec322ae1972463270372275db40c49b0175830fd20e39fb"
+      },
+      "environment": {
+        "allowlisted": {
+          "QSV_EXECUTE_CRYPTO": "YES"
+        },
+        "inherited_parent_environment_published": false,
+        "public_environment_capture_policy": "explicit_allowlist_only"
+      },
+      "exact_command": "/home/runner/work/_temp/qsv-linux-sixcase-explicit/qsv-circl-harness ML-DSA-65 /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-65-tg3-tc31/pk.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-65-tg3-tc31/message.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-65-tg3-tc31/context.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-65-tg3-tc31/signature.bin false",
+      "exit_status": {
+        "code": 0,
+        "launch_error": null,
+        "process_started": true
+      },
+      "fixture_id": "qsv-f7-9dcca20be6e0e6e764f720f9",
+      "implementation": "cloudflare-circl",
+      "inputs": {
+        "artifacts": {
+          "context": {
+            "byte_count": 13,
+            "sha256": "6d3691bf6aed51fd7966cad29768eac16ac51734b2cd11da4f3c8b98238abd7e"
+          },
+          "message": {
+            "byte_count": 3468,
+            "sha256": "0a5e13852a9376b1c83297e502c09664c35a4d1a13c7fd0f0feef90ae98834ed"
+          },
+          "public_key": {
+            "byte_count": 1952,
+            "sha256": "abb1fcf6f209eba69f6a2ce2d5510a6487584a36ca543783df5f338bd386c725"
+          },
+          "signature": {
+            "byte_count": 3309,
+            "sha256": "532646784cd450f22ad9c7a0f89f4651ac95eaaa9348b2812e6d6ba076d27df5"
+          }
+        },
+        "case": {
+          "case_id": "ML-DSA-65-tg3-tc31",
+          "parameter_set": "ML-DSA-65",
+          "source_expected_valid": false,
+          "tc_id": 31,
+          "tg_id": 3
+        }
+      },
+      "observed_acceptance": false,
+      "operation": "sigVer",
+      "output": {
+        "observation_derivation": {
+          "direct_runtime_actual_value_published": false,
+          "expected_valid_used_as_unconditional_observed_value": false,
+          "method": "pinned_harness_semantics_plus_exact_runtime_argv_plus_actual_exit_status_plus_stdout_sha256_commitment",
+          "observation_is_derived": true,
+          "pinned_harness_semantics_verified": true,
+          "stdout_commitment_verified": true,
+          "workflow_conclusion_used": false
+        },
+        "stderr_byte_count": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_byte_count": 80,
+        "stdout_sha256": "7e77dcedccf9345f1450abc4ce81e2da8e503f3aa621f4d9b140d19e4e4e4e1c"
+      },
+      "result_state": "expected_reject"
+    },
+    {
+      "artifact_hashes": {
+        "capture_launcher_sha256": "ea0eed7026ba281b24831dfb0e0fe8d36d17a2c9df4781858927047a71f70645",
+        "resolved_executable_sha256": "b53ca61dd665f628770a2d2326e3b335ea35bc2a18f5dbfd2a23374064c230c0",
+        "runtime_manifest_sha256": "4b424ea6a6281521f13dad3a63a043d71a891602a91d080913075d4548085665",
+        "source_evidence_sha256": "0a5f8da64736deab407e76a35db40a5badff9018f1c1e8f5c49f1cfeba5d42b0",
+        "workflow_sha256": "89841e7b818ac0e37ec322ae1972463270372275db40c49b0175830fd20e39fb"
+      },
+      "environment": {
+        "allowlisted": {
+          "QSV_EXECUTE_CRYPTO": "YES"
+        },
+        "inherited_parent_environment_published": false,
+        "public_environment_capture_policy": "explicit_allowlist_only"
+      },
+      "exact_command": "/home/runner/work/_temp/qsv-linux-sixcase-explicit/qsv-circl-harness ML-DSA-65 /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-65-tg3-tc33/pk.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-65-tg3-tc33/message.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-65-tg3-tc33/context.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-65-tg3-tc33/signature.bin true",
+      "exit_status": {
+        "code": 0,
+        "launch_error": null,
+        "process_started": true
+      },
+      "fixture_id": "qsv-f7-b5a24c79bd70dc7f7ce2d28d",
+      "implementation": "cloudflare-circl",
+      "inputs": {
+        "artifacts": {
+          "context": {
+            "byte_count": 142,
+            "sha256": "a9ce73821e80cdf934513ee95d4002924d5c06173ef1766b5e9672acf72330ba"
+          },
+          "message": {
+            "byte_count": 1481,
+            "sha256": "6923837e5fe3d3d73e22d92f0b244c1ff836abf21a2e9fc95610ece693f72664"
+          },
+          "public_key": {
+            "byte_count": 1952,
+            "sha256": "d190a6a6d0d8438b195f4d32e6ed1d236d10709ed6fbca47306efb5ada1468e1"
+          },
+          "signature": {
+            "byte_count": 3309,
+            "sha256": "57d8384ce083b170a117b13172b9b712cbd944ba349a1598ac5e69526786f9e8"
+          }
+        },
+        "case": {
+          "case_id": "ML-DSA-65-tg3-tc33",
+          "parameter_set": "ML-DSA-65",
+          "source_expected_valid": true,
+          "tc_id": 33,
+          "tg_id": 3
+        }
+      },
+      "observed_acceptance": true,
+      "operation": "sigVer",
+      "output": {
+        "observation_derivation": {
+          "direct_runtime_actual_value_published": false,
+          "expected_valid_used_as_unconditional_observed_value": false,
+          "method": "pinned_harness_semantics_plus_exact_runtime_argv_plus_actual_exit_status_plus_stdout_sha256_commitment",
+          "observation_is_derived": true,
+          "pinned_harness_semantics_verified": true,
+          "stdout_commitment_verified": true,
+          "workflow_conclusion_used": false
+        },
+        "stderr_byte_count": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_byte_count": 78,
+        "stdout_sha256": "df6946ff61eab547f9f321df034c290e2814e2a8bf28ef3c286e30a3afec2318"
+      },
+      "result_state": "pass"
+    },
+    {
+      "artifact_hashes": {
+        "capture_launcher_sha256": "ea0eed7026ba281b24831dfb0e0fe8d36d17a2c9df4781858927047a71f70645",
+        "resolved_executable_sha256": "b53ca61dd665f628770a2d2326e3b335ea35bc2a18f5dbfd2a23374064c230c0",
+        "runtime_manifest_sha256": "4b424ea6a6281521f13dad3a63a043d71a891602a91d080913075d4548085665",
+        "source_evidence_sha256": "0a5f8da64736deab407e76a35db40a5badff9018f1c1e8f5c49f1cfeba5d42b0",
+        "workflow_sha256": "89841e7b818ac0e37ec322ae1972463270372275db40c49b0175830fd20e39fb"
+      },
+      "environment": {
+        "allowlisted": {
+          "QSV_EXECUTE_CRYPTO": "YES"
+        },
+        "inherited_parent_environment_published": false,
+        "public_environment_capture_policy": "explicit_allowlist_only"
+      },
+      "exact_command": "/home/runner/work/_temp/qsv-linux-sixcase-explicit/qsv-circl-harness ML-DSA-87 /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-87-tg5-tc61/pk.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-87-tg5-tc61/message.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-87-tg5-tc61/context.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-87-tg5-tc61/signature.bin false",
+      "exit_status": {
+        "code": 0,
+        "launch_error": null,
+        "process_started": true
+      },
+      "fixture_id": "qsv-f7-45cf424f52ab85b7a712022f",
+      "implementation": "cloudflare-circl",
+      "inputs": {
+        "artifacts": {
+          "context": {
+            "byte_count": 76,
+            "sha256": "bab8e7896a9a572f0fade3259129c46175e9597ee2b3118b7d828a1ae8276102"
+          },
+          "message": {
+            "byte_count": 3155,
+            "sha256": "1efb0f11075c0f8ff304c971798aecb267a736a15888d724022016322e468690"
+          },
+          "public_key": {
+            "byte_count": 2592,
+            "sha256": "49737f398d16e6d8deeb883ab18b16af438c8422caef4e6438078340b82ba7c1"
+          },
+          "signature": {
+            "byte_count": 4627,
+            "sha256": "67c69ccfce57dd2ad5f282d7635d3ca2cc414c009011161e98c29faad62bb60d"
+          }
+        },
+        "case": {
+          "case_id": "ML-DSA-87-tg5-tc61",
+          "parameter_set": "ML-DSA-87",
+          "source_expected_valid": false,
+          "tc_id": 61,
+          "tg_id": 5
+        }
+      },
+      "observed_acceptance": false,
+      "operation": "sigVer",
+      "output": {
+        "observation_derivation": {
+          "direct_runtime_actual_value_published": false,
+          "expected_valid_used_as_unconditional_observed_value": false,
+          "method": "pinned_harness_semantics_plus_exact_runtime_argv_plus_actual_exit_status_plus_stdout_sha256_commitment",
+          "observation_is_derived": true,
+          "pinned_harness_semantics_verified": true,
+          "stdout_commitment_verified": true,
+          "workflow_conclusion_used": false
+        },
+        "stderr_byte_count": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_byte_count": 80,
+        "stdout_sha256": "7e77dcedccf9345f1450abc4ce81e2da8e503f3aa621f4d9b140d19e4e4e4e1c"
+      },
+      "result_state": "expected_reject"
+    },
+    {
+      "artifact_hashes": {
+        "capture_launcher_sha256": "ea0eed7026ba281b24831dfb0e0fe8d36d17a2c9df4781858927047a71f70645",
+        "resolved_executable_sha256": "b53ca61dd665f628770a2d2326e3b335ea35bc2a18f5dbfd2a23374064c230c0",
+        "runtime_manifest_sha256": "4b424ea6a6281521f13dad3a63a043d71a891602a91d080913075d4548085665",
+        "source_evidence_sha256": "0a5f8da64736deab407e76a35db40a5badff9018f1c1e8f5c49f1cfeba5d42b0",
+        "workflow_sha256": "89841e7b818ac0e37ec322ae1972463270372275db40c49b0175830fd20e39fb"
+      },
+      "environment": {
+        "allowlisted": {
+          "QSV_EXECUTE_CRYPTO": "YES"
+        },
+        "inherited_parent_environment_published": false,
+        "public_environment_capture_policy": "explicit_allowlist_only"
+      },
+      "exact_command": "/home/runner/work/_temp/qsv-linux-sixcase-explicit/qsv-circl-harness ML-DSA-87 /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-87-tg5-tc63/pk.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-87-tg5-tc63/message.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-87-tg5-tc63/context.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-87-tg5-tc63/signature.bin true",
+      "exit_status": {
+        "code": 0,
+        "launch_error": null,
+        "process_started": true
+      },
+      "fixture_id": "qsv-f7-7d12abc7be36148ec5bf08db",
+      "implementation": "cloudflare-circl",
+      "inputs": {
+        "artifacts": {
+          "context": {
+            "byte_count": 93,
+            "sha256": "7cd43bb067957379cfc885f868a790a1ea8a4bbdffd618f936efb8ba45d06f58"
+          },
+          "message": {
+            "byte_count": 7147,
+            "sha256": "c5901466c7cdb54de386119722f02fbc28d05fce6954c32c4aa5cb3bab29c82d"
+          },
+          "public_key": {
+            "byte_count": 2592,
+            "sha256": "e28f1de67cda68b593cf8e1eccb6daf42de204121c76b500d4dca13cde67cc27"
+          },
+          "signature": {
+            "byte_count": 4627,
+            "sha256": "36470abfed8e6e135f5af9aa2c8e8c7b4f5f49b2d964cdb3e29c16eddb650df0"
+          }
+        },
+        "case": {
+          "case_id": "ML-DSA-87-tg5-tc63",
+          "parameter_set": "ML-DSA-87",
+          "source_expected_valid": true,
+          "tc_id": 63,
+          "tg_id": 5
+        }
+      },
+      "observed_acceptance": true,
+      "operation": "sigVer",
+      "output": {
+        "observation_derivation": {
+          "direct_runtime_actual_value_published": false,
+          "expected_valid_used_as_unconditional_observed_value": false,
+          "method": "pinned_harness_semantics_plus_exact_runtime_argv_plus_actual_exit_status_plus_stdout_sha256_commitment",
+          "observation_is_derived": true,
+          "pinned_harness_semantics_verified": true,
+          "stdout_commitment_verified": true,
+          "workflow_conclusion_used": false
+        },
+        "stderr_byte_count": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_byte_count": 78,
+        "stdout_sha256": "df6946ff61eab547f9f321df034c290e2814e2a8bf28ef3c286e30a3afec2318"
+      },
+      "result_state": "pass"
+    },
+    {
+      "artifact_hashes": {
+        "capture_launcher_sha256": "ea0eed7026ba281b24831dfb0e0fe8d36d17a2c9df4781858927047a71f70645",
+        "resolved_executable_sha256": "07978755211bffcfe57f28ce6354292245a3a0af08d247c617c3f36378aa6b93",
+        "runtime_manifest_sha256": "4b424ea6a6281521f13dad3a63a043d71a891602a91d080913075d4548085665",
+        "source_evidence_sha256": "0a5f8da64736deab407e76a35db40a5badff9018f1c1e8f5c49f1cfeba5d42b0",
+        "workflow_sha256": "89841e7b818ac0e37ec322ae1972463270372275db40c49b0175830fd20e39fb"
+      },
+      "environment": {
+        "allowlisted": {
+          "QSV_EXECUTE_CRYPTO": "YES"
+        },
+        "inherited_parent_environment_published": false,
+        "public_environment_capture_policy": "explicit_allowlist_only"
+      },
+      "exact_command": "/home/runner/work/_temp/qsv-linux-sixcase-explicit/qsv-openssl-harness ML-DSA-44 /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-44-tg1-tc1/pk.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-44-tg1-tc1/message.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-44-tg1-tc1/context.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-44-tg1-tc1/signature.bin false",
+      "exit_status": {
+        "code": 0,
+        "launch_error": null,
+        "process_started": true
+      },
+      "fixture_id": "qsv-f7-9c8f81446b91d2602a4b0e31",
+      "implementation": "openssl",
+      "inputs": {
+        "artifacts": {
+          "context": {
+            "byte_count": 171,
+            "sha256": "ebab6d72b1669f2840aa3919bcb16f189c0850ec6dbef8135bb32c2fa9b2ece6"
+          },
+          "message": {
+            "byte_count": 7318,
+            "sha256": "afd067d46533aa803cd54768159356ed10c52c5ca8ee3b3864fcfad42da5a068"
+          },
+          "public_key": {
+            "byte_count": 1312,
+            "sha256": "d873bf71ad16f2df7d0bc25c98bbd6790db4dad8aa07f17dc039ff53b17fc1b6"
+          },
+          "signature": {
+            "byte_count": 2420,
+            "sha256": "ce4d0b3f2ff67765209ddfc8e9de3a4e95ea68d6cc39047778b68814d5f6cd00"
+          }
+        },
+        "case": {
+          "case_id": "ML-DSA-44-tg1-tc1",
+          "parameter_set": "ML-DSA-44",
+          "source_expected_valid": false,
+          "tc_id": 1,
+          "tg_id": 1
+        }
+      },
+      "observed_acceptance": false,
+      "operation": "sigVer",
+      "output": {
+        "observation_derivation": {
+          "direct_runtime_actual_value_published": false,
+          "expected_valid_used_as_unconditional_observed_value": false,
+          "method": "pinned_harness_semantics_plus_exact_runtime_argv_plus_actual_exit_status_plus_stdout_sha256_commitment",
+          "observation_is_derived": true,
+          "pinned_harness_semantics_verified": true,
+          "stdout_commitment_verified": true,
+          "workflow_conclusion_used": false
+        },
+        "stderr_byte_count": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_byte_count": 86,
+        "stdout_sha256": "93638cf7e41fc39b66c86776ea58a41733c4a3fe8dbedad1d2c4d31f5ea71958"
+      },
+      "result_state": "expected_reject"
+    },
+    {
+      "artifact_hashes": {
+        "capture_launcher_sha256": "ea0eed7026ba281b24831dfb0e0fe8d36d17a2c9df4781858927047a71f70645",
+        "resolved_executable_sha256": "07978755211bffcfe57f28ce6354292245a3a0af08d247c617c3f36378aa6b93",
+        "runtime_manifest_sha256": "4b424ea6a6281521f13dad3a63a043d71a891602a91d080913075d4548085665",
+        "source_evidence_sha256": "0a5f8da64736deab407e76a35db40a5badff9018f1c1e8f5c49f1cfeba5d42b0",
+        "workflow_sha256": "89841e7b818ac0e37ec322ae1972463270372275db40c49b0175830fd20e39fb"
+      },
+      "environment": {
+        "allowlisted": {
+          "QSV_EXECUTE_CRYPTO": "YES"
+        },
+        "inherited_parent_environment_published": false,
+        "public_environment_capture_policy": "explicit_allowlist_only"
+      },
+      "exact_command": "/home/runner/work/_temp/qsv-linux-sixcase-explicit/qsv-openssl-harness ML-DSA-44 /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-44-tg1-tc3/pk.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-44-tg1-tc3/message.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-44-tg1-tc3/context.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-44-tg1-tc3/signature.bin true",
+      "exit_status": {
+        "code": 0,
+        "launch_error": null,
+        "process_started": true
+      },
+      "fixture_id": "qsv-f7-755a93be5b5057ae339d603f",
+      "implementation": "openssl",
+      "inputs": {
+        "artifacts": {
+          "context": {
+            "byte_count": 31,
+            "sha256": "3f412935571e40893fec33dca6b6476e2b8018fdf7680b47f08a1c29bcfb10f7"
+          },
+          "message": {
+            "byte_count": 2473,
+            "sha256": "2fa292fde315d83f31cfde322018b3f1afc96a96f4bc61e3e438eb496e8d072e"
+          },
+          "public_key": {
+            "byte_count": 1312,
+            "sha256": "e42bfc3507777aee7aa0d317d78e15bd3763dc183945b35022b2ab1e6fe1c83b"
+          },
+          "signature": {
+            "byte_count": 2420,
+            "sha256": "7bcf860a958531a93fe18417ba9d50665ce6c0b6297f67d573ca08899919bc8e"
+          }
+        },
+        "case": {
+          "case_id": "ML-DSA-44-tg1-tc3",
+          "parameter_set": "ML-DSA-44",
+          "source_expected_valid": true,
+          "tc_id": 3,
+          "tg_id": 1
+        }
+      },
+      "observed_acceptance": true,
+      "operation": "sigVer",
+      "output": {
+        "observation_derivation": {
+          "direct_runtime_actual_value_published": false,
+          "expected_valid_used_as_unconditional_observed_value": false,
+          "method": "pinned_harness_semantics_plus_exact_runtime_argv_plus_actual_exit_status_plus_stdout_sha256_commitment",
+          "observation_is_derived": true,
+          "pinned_harness_semantics_verified": true,
+          "stdout_commitment_verified": true,
+          "workflow_conclusion_used": false
+        },
+        "stderr_byte_count": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_byte_count": 84,
+        "stdout_sha256": "c59e06a59e328821d93694c9f9d4fabca54623af8da767d54b2bb4e31ab9b13b"
+      },
+      "result_state": "pass"
+    },
+    {
+      "artifact_hashes": {
+        "capture_launcher_sha256": "ea0eed7026ba281b24831dfb0e0fe8d36d17a2c9df4781858927047a71f70645",
+        "resolved_executable_sha256": "07978755211bffcfe57f28ce6354292245a3a0af08d247c617c3f36378aa6b93",
+        "runtime_manifest_sha256": "4b424ea6a6281521f13dad3a63a043d71a891602a91d080913075d4548085665",
+        "source_evidence_sha256": "0a5f8da64736deab407e76a35db40a5badff9018f1c1e8f5c49f1cfeba5d42b0",
+        "workflow_sha256": "89841e7b818ac0e37ec322ae1972463270372275db40c49b0175830fd20e39fb"
+      },
+      "environment": {
+        "allowlisted": {
+          "QSV_EXECUTE_CRYPTO": "YES"
+        },
+        "inherited_parent_environment_published": false,
+        "public_environment_capture_policy": "explicit_allowlist_only"
+      },
+      "exact_command": "/home/runner/work/_temp/qsv-linux-sixcase-explicit/qsv-openssl-harness ML-DSA-65 /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-65-tg3-tc31/pk.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-65-tg3-tc31/message.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-65-tg3-tc31/context.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-65-tg3-tc31/signature.bin false",
+      "exit_status": {
+        "code": 0,
+        "launch_error": null,
+        "process_started": true
+      },
+      "fixture_id": "qsv-f7-9dcca20be6e0e6e764f720f9",
+      "implementation": "openssl",
+      "inputs": {
+        "artifacts": {
+          "context": {
+            "byte_count": 13,
+            "sha256": "6d3691bf6aed51fd7966cad29768eac16ac51734b2cd11da4f3c8b98238abd7e"
+          },
+          "message": {
+            "byte_count": 3468,
+            "sha256": "0a5e13852a9376b1c83297e502c09664c35a4d1a13c7fd0f0feef90ae98834ed"
+          },
+          "public_key": {
+            "byte_count": 1952,
+            "sha256": "abb1fcf6f209eba69f6a2ce2d5510a6487584a36ca543783df5f338bd386c725"
+          },
+          "signature": {
+            "byte_count": 3309,
+            "sha256": "532646784cd450f22ad9c7a0f89f4651ac95eaaa9348b2812e6d6ba076d27df5"
+          }
+        },
+        "case": {
+          "case_id": "ML-DSA-65-tg3-tc31",
+          "parameter_set": "ML-DSA-65",
+          "source_expected_valid": false,
+          "tc_id": 31,
+          "tg_id": 3
+        }
+      },
+      "observed_acceptance": false,
+      "operation": "sigVer",
+      "output": {
+        "observation_derivation": {
+          "direct_runtime_actual_value_published": false,
+          "expected_valid_used_as_unconditional_observed_value": false,
+          "method": "pinned_harness_semantics_plus_exact_runtime_argv_plus_actual_exit_status_plus_stdout_sha256_commitment",
+          "observation_is_derived": true,
+          "pinned_harness_semantics_verified": true,
+          "stdout_commitment_verified": true,
+          "workflow_conclusion_used": false
+        },
+        "stderr_byte_count": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_byte_count": 86,
+        "stdout_sha256": "93638cf7e41fc39b66c86776ea58a41733c4a3fe8dbedad1d2c4d31f5ea71958"
+      },
+      "result_state": "expected_reject"
+    },
+    {
+      "artifact_hashes": {
+        "capture_launcher_sha256": "ea0eed7026ba281b24831dfb0e0fe8d36d17a2c9df4781858927047a71f70645",
+        "resolved_executable_sha256": "07978755211bffcfe57f28ce6354292245a3a0af08d247c617c3f36378aa6b93",
+        "runtime_manifest_sha256": "4b424ea6a6281521f13dad3a63a043d71a891602a91d080913075d4548085665",
+        "source_evidence_sha256": "0a5f8da64736deab407e76a35db40a5badff9018f1c1e8f5c49f1cfeba5d42b0",
+        "workflow_sha256": "89841e7b818ac0e37ec322ae1972463270372275db40c49b0175830fd20e39fb"
+      },
+      "environment": {
+        "allowlisted": {
+          "QSV_EXECUTE_CRYPTO": "YES"
+        },
+        "inherited_parent_environment_published": false,
+        "public_environment_capture_policy": "explicit_allowlist_only"
+      },
+      "exact_command": "/home/runner/work/_temp/qsv-linux-sixcase-explicit/qsv-openssl-harness ML-DSA-65 /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-65-tg3-tc33/pk.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-65-tg3-tc33/message.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-65-tg3-tc33/context.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-65-tg3-tc33/signature.bin true",
+      "exit_status": {
+        "code": 0,
+        "launch_error": null,
+        "process_started": true
+      },
+      "fixture_id": "qsv-f7-b5a24c79bd70dc7f7ce2d28d",
+      "implementation": "openssl",
+      "inputs": {
+        "artifacts": {
+          "context": {
+            "byte_count": 142,
+            "sha256": "a9ce73821e80cdf934513ee95d4002924d5c06173ef1766b5e9672acf72330ba"
+          },
+          "message": {
+            "byte_count": 1481,
+            "sha256": "6923837e5fe3d3d73e22d92f0b244c1ff836abf21a2e9fc95610ece693f72664"
+          },
+          "public_key": {
+            "byte_count": 1952,
+            "sha256": "d190a6a6d0d8438b195f4d32e6ed1d236d10709ed6fbca47306efb5ada1468e1"
+          },
+          "signature": {
+            "byte_count": 3309,
+            "sha256": "57d8384ce083b170a117b13172b9b712cbd944ba349a1598ac5e69526786f9e8"
+          }
+        },
+        "case": {
+          "case_id": "ML-DSA-65-tg3-tc33",
+          "parameter_set": "ML-DSA-65",
+          "source_expected_valid": true,
+          "tc_id": 33,
+          "tg_id": 3
+        }
+      },
+      "observed_acceptance": true,
+      "operation": "sigVer",
+      "output": {
+        "observation_derivation": {
+          "direct_runtime_actual_value_published": false,
+          "expected_valid_used_as_unconditional_observed_value": false,
+          "method": "pinned_harness_semantics_plus_exact_runtime_argv_plus_actual_exit_status_plus_stdout_sha256_commitment",
+          "observation_is_derived": true,
+          "pinned_harness_semantics_verified": true,
+          "stdout_commitment_verified": true,
+          "workflow_conclusion_used": false
+        },
+        "stderr_byte_count": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_byte_count": 84,
+        "stdout_sha256": "c59e06a59e328821d93694c9f9d4fabca54623af8da767d54b2bb4e31ab9b13b"
+      },
+      "result_state": "pass"
+    },
+    {
+      "artifact_hashes": {
+        "capture_launcher_sha256": "ea0eed7026ba281b24831dfb0e0fe8d36d17a2c9df4781858927047a71f70645",
+        "resolved_executable_sha256": "07978755211bffcfe57f28ce6354292245a3a0af08d247c617c3f36378aa6b93",
+        "runtime_manifest_sha256": "4b424ea6a6281521f13dad3a63a043d71a891602a91d080913075d4548085665",
+        "source_evidence_sha256": "0a5f8da64736deab407e76a35db40a5badff9018f1c1e8f5c49f1cfeba5d42b0",
+        "workflow_sha256": "89841e7b818ac0e37ec322ae1972463270372275db40c49b0175830fd20e39fb"
+      },
+      "environment": {
+        "allowlisted": {
+          "QSV_EXECUTE_CRYPTO": "YES"
+        },
+        "inherited_parent_environment_published": false,
+        "public_environment_capture_policy": "explicit_allowlist_only"
+      },
+      "exact_command": "/home/runner/work/_temp/qsv-linux-sixcase-explicit/qsv-openssl-harness ML-DSA-87 /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-87-tg5-tc61/pk.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-87-tg5-tc61/message.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-87-tg5-tc61/context.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-87-tg5-tc61/signature.bin false",
+      "exit_status": {
+        "code": 0,
+        "launch_error": null,
+        "process_started": true
+      },
+      "fixture_id": "qsv-f7-45cf424f52ab85b7a712022f",
+      "implementation": "openssl",
+      "inputs": {
+        "artifacts": {
+          "context": {
+            "byte_count": 76,
+            "sha256": "bab8e7896a9a572f0fade3259129c46175e9597ee2b3118b7d828a1ae8276102"
+          },
+          "message": {
+            "byte_count": 3155,
+            "sha256": "1efb0f11075c0f8ff304c971798aecb267a736a15888d724022016322e468690"
+          },
+          "public_key": {
+            "byte_count": 2592,
+            "sha256": "49737f398d16e6d8deeb883ab18b16af438c8422caef4e6438078340b82ba7c1"
+          },
+          "signature": {
+            "byte_count": 4627,
+            "sha256": "67c69ccfce57dd2ad5f282d7635d3ca2cc414c009011161e98c29faad62bb60d"
+          }
+        },
+        "case": {
+          "case_id": "ML-DSA-87-tg5-tc61",
+          "parameter_set": "ML-DSA-87",
+          "source_expected_valid": false,
+          "tc_id": 61,
+          "tg_id": 5
+        }
+      },
+      "observed_acceptance": false,
+      "operation": "sigVer",
+      "output": {
+        "observation_derivation": {
+          "direct_runtime_actual_value_published": false,
+          "expected_valid_used_as_unconditional_observed_value": false,
+          "method": "pinned_harness_semantics_plus_exact_runtime_argv_plus_actual_exit_status_plus_stdout_sha256_commitment",
+          "observation_is_derived": true,
+          "pinned_harness_semantics_verified": true,
+          "stdout_commitment_verified": true,
+          "workflow_conclusion_used": false
+        },
+        "stderr_byte_count": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_byte_count": 86,
+        "stdout_sha256": "93638cf7e41fc39b66c86776ea58a41733c4a3fe8dbedad1d2c4d31f5ea71958"
+      },
+      "result_state": "expected_reject"
+    },
+    {
+      "artifact_hashes": {
+        "capture_launcher_sha256": "ea0eed7026ba281b24831dfb0e0fe8d36d17a2c9df4781858927047a71f70645",
+        "resolved_executable_sha256": "07978755211bffcfe57f28ce6354292245a3a0af08d247c617c3f36378aa6b93",
+        "runtime_manifest_sha256": "4b424ea6a6281521f13dad3a63a043d71a891602a91d080913075d4548085665",
+        "source_evidence_sha256": "0a5f8da64736deab407e76a35db40a5badff9018f1c1e8f5c49f1cfeba5d42b0",
+        "workflow_sha256": "89841e7b818ac0e37ec322ae1972463270372275db40c49b0175830fd20e39fb"
+      },
+      "environment": {
+        "allowlisted": {
+          "QSV_EXECUTE_CRYPTO": "YES"
+        },
+        "inherited_parent_environment_published": false,
+        "public_environment_capture_policy": "explicit_allowlist_only"
+      },
+      "exact_command": "/home/runner/work/_temp/qsv-linux-sixcase-explicit/qsv-openssl-harness ML-DSA-87 /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-87-tg5-tc63/pk.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-87-tg5-tc63/message.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-87-tg5-tc63/context.bin /home/runner/work/_temp/qsv-linux-sixcase-explicit/runtime-sixcase-payload/ML-DSA-87-tg5-tc63/signature.bin true",
+      "exit_status": {
+        "code": 0,
+        "launch_error": null,
+        "process_started": true
+      },
+      "fixture_id": "qsv-f7-7d12abc7be36148ec5bf08db",
+      "implementation": "openssl",
+      "inputs": {
+        "artifacts": {
+          "context": {
+            "byte_count": 93,
+            "sha256": "7cd43bb067957379cfc885f868a790a1ea8a4bbdffd618f936efb8ba45d06f58"
+          },
+          "message": {
+            "byte_count": 7147,
+            "sha256": "c5901466c7cdb54de386119722f02fbc28d05fce6954c32c4aa5cb3bab29c82d"
+          },
+          "public_key": {
+            "byte_count": 2592,
+            "sha256": "e28f1de67cda68b593cf8e1eccb6daf42de204121c76b500d4dca13cde67cc27"
+          },
+          "signature": {
+            "byte_count": 4627,
+            "sha256": "36470abfed8e6e135f5af9aa2c8e8c7b4f5f49b2d964cdb3e29c16eddb650df0"
+          }
+        },
+        "case": {
+          "case_id": "ML-DSA-87-tg5-tc63",
+          "parameter_set": "ML-DSA-87",
+          "source_expected_valid": true,
+          "tc_id": 63,
+          "tg_id": 5
+        }
+      },
+      "observed_acceptance": true,
+      "operation": "sigVer",
+      "output": {
+        "observation_derivation": {
+          "direct_runtime_actual_value_published": false,
+          "expected_valid_used_as_unconditional_observed_value": false,
+          "method": "pinned_harness_semantics_plus_exact_runtime_argv_plus_actual_exit_status_plus_stdout_sha256_commitment",
+          "observation_is_derived": true,
+          "pinned_harness_semantics_verified": true,
+          "stdout_commitment_verified": true,
+          "workflow_conclusion_used": false
+        },
+        "stderr_byte_count": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_byte_count": 84,
+        "stdout_sha256": "c59e06a59e328821d93694c9f9d4fabca54623af8da767d54b2bb4e31ab9b13b"
+      },
+      "result_state": "pass"
+    }
+  ],
+  "schema": "qsv.mldsa.f7-normalized-result-evidence.v0.1",
+  "source_authority": {
+    "bound_runtime_evidence_path": "results/qsv_mldsa_f7_runtime_invocation_evidence_v0_1/qsv_mldsa_f7_runtime_invocation_evidence_v0_1.job-bound.json",
+    "bound_runtime_evidence_sha256": "0a5f8da64736deab407e76a35db40a5badff9018f1c1e8f5c49f1cfeba5d42b0",
+    "execution_commit": "e7c2f85a6cdf49c39a42cccdd96ba6ab1a8da6cd",
+    "execution_tree": "e97833bc5a06a49309a30f292dfdc84436668836",
+    "github_job_id_numeric": 104377847614,
+    "github_run_attempt": "1",
+    "github_run_id": "34968252038",
+    "public_evidence_commit": "dfb1bc5849340d791b60a29f531952e6a0707e2d",
+    "runtime_manifest_path": "results/qsv_mldsa_f7_runtime_invocation_evidence_v0_1/runtime-sixcase-manifest.json",
+    "runtime_manifest_sha256": "4b424ea6a6281521f13dad3a63a043d71a891602a91d080913075d4548085665"
+  },
+  "summary": {
+    "decision": "f7_normalized_result_evidence_derived_and_verified",
+    "error_count": 0,
+    "implementation_count": 2,
+    "observed_acceptance_false_count": 6,
+    "observed_acceptance_true_count": 6,
+    "record_count": 12,
+    "result_state_expected_reject_count": 6,
+    "result_state_pass_count": 6,
+    "selected_case_count": 6,
+    "unexpected_accept_count": 0,
+    "unexpected_reject_count": 0
+  },
+  "truth_boundaries": {
+    "historical_run_exact_command_backfilled": false,
+    "result_implies_complete_fips_204_conformance": false,
+    "result_implies_complete_sigver_coverage": false,
+    "result_implies_fips_204_certification": false,
+    "result_implies_nist_validation": false,
+    "result_implies_universal_mldsa_correctness": false,
+    "result_proves_security_vulnerability_absence": false,
+    "result_proves_system_wide_quantum_safety": false,
+    "third_party_independent_reproduction": false
+  }
+}

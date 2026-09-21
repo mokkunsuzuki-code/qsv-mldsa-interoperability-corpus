@@ -1,0 +1,332 @@
+{
+  "$id": "urn:qsv:mldsa:normalized-result-record:0.2",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_hashes": {
+      "additionalProperties": false,
+      "properties": {
+        "capture_launcher_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "resolved_executable_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "runtime_manifest_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "source_evidence_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "workflow_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "resolved_executable_sha256",
+        "workflow_sha256",
+        "capture_launcher_sha256",
+        "runtime_manifest_sha256",
+        "source_evidence_sha256"
+      ],
+      "type": "object"
+    },
+    "environment": {
+      "additionalProperties": false,
+      "properties": {
+        "allowlisted": {
+          "additionalProperties": false,
+          "properties": {
+            "QSV_EXECUTE_CRYPTO": {
+              "const": "YES"
+            }
+          },
+          "required": [
+            "QSV_EXECUTE_CRYPTO"
+          ],
+          "type": "object"
+        },
+        "inherited_parent_environment_published": {
+          "const": false
+        },
+        "public_environment_capture_policy": {
+          "const": "explicit_allowlist_only"
+        }
+      },
+      "required": [
+        "allowlisted",
+        "inherited_parent_environment_published",
+        "public_environment_capture_policy"
+      ],
+      "type": "object"
+    },
+    "exact_command": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "exit_status": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "launch_error": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "process_started": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "code",
+        "process_started",
+        "launch_error"
+      ],
+      "type": "object"
+    },
+    "fixture_id": {
+      "pattern": "^(UNASSIGNED|qsv-f7-[0-9a-f]{24})$",
+      "type": "string"
+    },
+    "implementation": {
+      "enum": [
+        "cloudflare-circl",
+        "openssl"
+      ]
+    },
+    "inputs": {
+      "additionalProperties": false,
+      "properties": {
+        "artifacts": {
+          "additionalProperties": false,
+          "properties": {
+            "context": {
+              "additionalProperties": false,
+              "properties": {
+                "byte_count": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "sha256": {
+                  "pattern": "^[0-9a-f]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "sha256",
+                "byte_count"
+              ],
+              "type": "object"
+            },
+            "message": {
+              "additionalProperties": false,
+              "properties": {
+                "byte_count": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "sha256": {
+                  "pattern": "^[0-9a-f]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "sha256",
+                "byte_count"
+              ],
+              "type": "object"
+            },
+            "public_key": {
+              "additionalProperties": false,
+              "properties": {
+                "byte_count": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "sha256": {
+                  "pattern": "^[0-9a-f]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "sha256",
+                "byte_count"
+              ],
+              "type": "object"
+            },
+            "signature": {
+              "additionalProperties": false,
+              "properties": {
+                "byte_count": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "sha256": {
+                  "pattern": "^[0-9a-f]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "sha256",
+                "byte_count"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "public_key",
+            "message",
+            "context",
+            "signature"
+          ],
+          "type": "object"
+        },
+        "case": {
+          "additionalProperties": false,
+          "properties": {
+            "case_id": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "parameter_set": {
+              "enum": [
+                "ML-DSA-44",
+                "ML-DSA-65",
+                "ML-DSA-87"
+              ]
+            },
+            "source_expected_valid": {
+              "type": "boolean"
+            },
+            "tc_id": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "tg_id": {
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "case_id",
+            "parameter_set",
+            "tg_id",
+            "tc_id",
+            "source_expected_valid"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "case",
+        "artifacts"
+      ],
+      "type": "object"
+    },
+    "observed_acceptance": {
+      "type": "boolean"
+    },
+    "operation": {
+      "const": "sigVer"
+    },
+    "output": {
+      "additionalProperties": false,
+      "properties": {
+        "observation_derivation": {
+          "additionalProperties": false,
+          "properties": {
+            "direct_runtime_actual_value_published": {
+              "const": false
+            },
+            "expected_valid_used_as_unconditional_observed_value": {
+              "const": false
+            },
+            "method": {
+              "const": "pinned_harness_semantics_plus_exact_runtime_argv_plus_actual_exit_status_plus_stdout_sha256_commitment"
+            },
+            "observation_is_derived": {
+              "const": true
+            },
+            "pinned_harness_semantics_verified": {
+              "const": true
+            },
+            "stdout_commitment_verified": {
+              "const": true
+            },
+            "workflow_conclusion_used": {
+              "const": false
+            }
+          },
+          "required": [
+            "method",
+            "observation_is_derived",
+            "direct_runtime_actual_value_published",
+            "pinned_harness_semantics_verified",
+            "stdout_commitment_verified",
+            "expected_valid_used_as_unconditional_observed_value",
+            "workflow_conclusion_used"
+          ],
+          "type": "object"
+        },
+        "stderr_byte_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "stderr_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "stdout_byte_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "stdout_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "stdout_sha256",
+        "stdout_byte_count",
+        "stderr_sha256",
+        "stderr_byte_count",
+        "observation_derivation"
+      ],
+      "type": "object"
+    },
+    "result_state": {
+      "enum": [
+        "pass",
+        "expected_reject",
+        "unexpected_accept",
+        "unexpected_reject",
+        "unsupported",
+        "error",
+        "blocked"
+      ]
+    }
+  },
+  "required": [
+    "fixture_id",
+    "implementation",
+    "operation",
+    "result_state",
+    "observed_acceptance",
+    "exact_command",
+    "inputs",
+    "output",
+    "exit_status",
+    "artifact_hashes",
+    "environment"
+  ],
+  "title": "QSV ML-DSA normalized runner result record v0.2",
+  "type": "object"
+}
