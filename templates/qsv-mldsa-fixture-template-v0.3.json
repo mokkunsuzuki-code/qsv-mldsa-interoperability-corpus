@@ -1,0 +1,72 @@
+{
+  "algorithm": "ML-DSA",
+  "artifacts": {
+    "private_test_key": null,
+    "public_key": {
+      "byte_count": 0,
+      "encoding": "hex",
+      "external_reference": "REPLACE_WITH_SOURCE_REFERENCE",
+      "sha256": "REPLACE_WITH_SHA256",
+      "value": null
+    },
+    "signature": null
+  },
+  "consumer": null,
+  "context": {
+    "byte_count": 0,
+    "encoding": "hex",
+    "external_reference": "REPLACE_WITH_SOURCE_REFERENCE",
+    "sha256": "REPLACE_WITH_SHA256",
+    "value": null
+  },
+  "dimension": "known_answer_conformance",
+  "expected_outcome": "accept",
+  "fixture_id": "REPLACE_WITH_DETERMINISTIC_FIXTURE_ID",
+  "message": {
+    "byte_count": 0,
+    "encoding": "hex",
+    "external_reference": "REPLACE_WITH_SOURCE_REFERENCE",
+    "sha256": "REPLACE_WITH_SHA256",
+    "value": null
+  },
+  "neutral_fixture_sha256": "REPLACE_WITH_SHA256",
+  "operation": "verify",
+  "parameter_set": "ML-DSA-44",
+  "producer": {
+    "commit": "REPLACE_WITH_PINNED_COMMIT",
+    "project": "REPLACE_WITH_SOURCE_PROJECT",
+    "repository": "REPLACE_WITH_SOURCE_REPOSITORY",
+    "tree": null,
+    "tree_status": "not_recorded_historical"
+  },
+  "provenance": {
+    "generation": {
+      "mode": "deterministic_metadata_only_mapping",
+      "new_crypto_execution": false,
+      "tool": "REPLACE_WITH_GENERATOR"
+    },
+    "source_specific": {}
+  },
+  "publication_classification": "public_non_secret_metadata_only",
+  "randomness_mode": "not_applicable",
+  "schema": "qsv.mldsa.fixture.v0.3",
+  "source_binding": {
+    "canonicalization": {
+      "case_source_hash_profile": "QSV-MLDSA-SOURCE-CASE-V1",
+      "contract_path": "contracts/qsv-mldsa-neutral-fixture-canonicalization-contract-v0.1.json",
+      "contract_sha256": "REPLACE_WITH_SHA256",
+      "neutral_fixture_hash_profile": "QSV-MLDSA-NEUTRAL-FIXTURE-V1"
+    },
+    "case_identity": {
+      "coordinates": {},
+      "primary": "REPLACE_WITH_SOURCE_CASE_IDENTITY"
+    },
+    "case_source_sha256": "REPLACE_WITH_SHA256",
+    "source_commit": "REPLACE_WITH_PINNED_COMMIT",
+    "source_family": "nist_acvp",
+    "source_files": [],
+    "source_repository": "REPLACE_WITH_SOURCE_REPOSITORY",
+    "source_tree": null,
+    "source_tree_status": "not_recorded_historical"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "case_source_hash": {
+    "algorithm": "SHA-256",
+    "descriptor_fields": [
+      "source_family",
+      "source_repository",
+      "source_commit",
+      "source_tree",
+      "source_files",
+      "case_identity",
+      "expected_outcome",
+      "artifact_commitments"
+    ],
+    "domain": "QSV-MLDSA-SOURCE-CASE-V1",
+    "domain_separator": "NUL",
+    "encoding": "UTF-8",
+    "ensure_ascii": false,
+    "is_raw_source_bytes_hash": false,
+    "json_separators": [
+      ",",
+      ":"
+    ],
+    "json_sort_keys": true,
+    "serialization": "JSON",
+    "target": "canonical_source_case_descriptor"
+  },
+  "neutral_fixture_hash": {
+    "algorithm": "SHA-256",
+    "domain": "QSV-MLDSA-NEUTRAL-FIXTURE-V1",
+    "domain_separator": "NUL",
+    "encoding": "UTF-8",
+    "ensure_ascii": false,
+    "excluded_fields": [
+      "neutral_fixture_sha256"
+    ],
+    "json_separators": [
+      ",",
+      ":"
+    ],
+    "json_sort_keys": true,
+    "self_referential_hash_allowed": false,
+    "serialization": "JSON",
+    "target": "canonical_neutral_fixture_without_self_hash"
+  },
+  "schema": "qsv.mldsa.neutral-fixture-canonicalization-contract.v0.1",
+  "source_binding": {
+    "case_source_sha256_is_distinct_from_source_file_sha256": true,
+    "case_source_sha256_is_distinct_from_neutral_fixture_sha256": true,
+    "source_files": {
+      "acvp_required_roles": [
+        "prompt",
+        "expected_results"
+      ],
+      "minimum_count": 1,
+      "required_fields": [
+        "role",
+        "path",
+        "sha256"
+      ],
+      "wycheproof_required_roles": [
+        "vector"
+      ]
+    }
+  },
+  "version": "0.1"
+}

@@ -1,0 +1,102 @@
+{
+  "algorithm": "ML-DSA",
+  "artifacts": {
+    "private_test_key": {
+      "byte_count": 2560,
+      "encoding": "hex",
+      "external_reference": "wycheproof:testvectors_v1/mldsa_44_sign_noseed_test.json#testGroups[3]/privateKey",
+      "sha256": "6e1f07d674a226d91be900bb87efc2fc1f2f0287972f8db017639946554ea2b1",
+      "value": null
+    },
+    "public_key": {
+      "byte_count": 1312,
+      "encoding": "hex",
+      "external_reference": "wycheproof:testvectors_v1/mldsa_44_sign_noseed_test.json#testGroups[3]/publicKey",
+      "sha256": "7f930df03f48c66734a8380e4a499229fdc94405b9f769d7d185aa74dfc2e0d6",
+      "value": null
+    },
+    "signature": {
+      "byte_count": 0,
+      "encoding": "hex",
+      "external_reference": "wycheproof:testvectors_v1/mldsa_44_sign_noseed_test.json#testGroups[3]/tests[tcId=52]/sig",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "value": null
+    }
+  },
+  "consumer": null,
+  "context": {
+    "byte_count": 0,
+    "encoding": "hex",
+    "external_reference": "wycheproof:testvectors_v1/mldsa_44_sign_noseed_test.json#testGroups[3]/tests[tcId=52]/context",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "value": null
+  },
+  "dimension": "negative_behavior",
+  "expected_outcome": "reject",
+  "fixture_id": "QSV-MLDSA-WYCHEPROOF-44-0052-V0.3",
+  "message": {
+    "byte_count": 11,
+    "encoding": "hex",
+    "external_reference": "wycheproof:testvectors_v1/mldsa_44_sign_noseed_test.json#testGroups[3]/tests[tcId=52]/msg",
+    "sha256": "64ec88ca00b268e5ba1a35678a1b5316d212f4f366b2477232534a8aeca37f3c",
+    "value": null
+  },
+  "neutral_fixture_sha256": "526a39b4f055b7d4ae82374ee907cbda564310724abc713e57f5d168476a0b04",
+  "operation": "sign",
+  "parameter_set": "ML-DSA-44",
+  "producer": {
+    "commit": "dac1dd4729fd1f8dd9e1e9f3dce51d783da6c166",
+    "project": "C2SP Wycheproof",
+    "repository": "C2SP/wycheproof",
+    "tree": null,
+    "tree_status": "not_recorded_historical"
+  },
+  "provenance": {
+    "generation": {
+      "mode": "deterministic_wycheproof_metadata_derivation",
+      "new_crypto_execution": false,
+      "tool": "runtime/verify_qsv_mldsa_neutral_fixture_gap_closure_v0_1.py"
+    },
+    "source_specific": {
+      "comment": "private key with s1 vector out of range",
+      "flag": "InvalidPrivateKey",
+      "group_index": 3,
+      "lane": "message_context_deterministic_zero_rnd",
+      "source_binding": "vectors/bindings/qsv-mldsa-wycheproof-vector-source-v0.1.json",
+      "source_operation": "sign_noseed",
+      "source_profile": "profiles/qsv-mldsa-wycheproof-stage393-ninecase-negative-sign-profile-v0.1.json",
+      "tc_id": 52
+    }
+  },
+  "publication_classification": "public_non_secret_metadata_only",
+  "randomness_mode": "deterministic",
+  "schema": "qsv.mldsa.fixture.v0.3",
+  "source_binding": {
+    "canonicalization": {
+      "case_source_hash_profile": "QSV-MLDSA-SOURCE-CASE-V1",
+      "contract_path": "contracts/qsv-mldsa-neutral-fixture-canonicalization-contract-v0.1.json",
+      "contract_sha256": "74be71c4332f389c03c6032251f6b2df94a1b4b6aff8a7216dd6d5651f0b9e4e",
+      "neutral_fixture_hash_profile": "QSV-MLDSA-NEUTRAL-FIXTURE-V1"
+    },
+    "case_identity": {
+      "coordinates": {
+        "group_index": 3,
+        "tc_id": 52
+      },
+      "primary": "QSV-MLDSA-WYCHEPROOF-44-0052"
+    },
+    "case_source_sha256": "822f331b0426ba8741514c98f0f63ec501c78180b64da700af8fae4afd9e197d",
+    "source_commit": "dac1dd4729fd1f8dd9e1e9f3dce51d783da6c166",
+    "source_family": "wycheproof",
+    "source_files": [
+      {
+        "path": "testvectors_v1/mldsa_44_sign_noseed_test.json",
+        "role": "vector",
+        "sha256": "ee55e18b1944db496b2539d3884dfacc04a96db21bcec239063df5e4cd1ee6cb"
+      }
+    ],
+    "source_repository": "C2SP/wycheproof",
+    "source_tree": null,
+    "source_tree_status": "not_recorded_historical"
+  }
+}

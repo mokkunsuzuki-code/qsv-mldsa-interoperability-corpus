@@ -8,7 +8,7 @@ It is intended to turn ML-DSA interoperability and conformance claims into small
 
 ## Status
 
-**F7 six-case runtime invocation evidence is durably published, and a deterministic metadata-only normalized result layer is available.**
+**F7 six-case runtime invocation evidence is durably published, a deterministic metadata-only normalized result layer is available, and the append-only neutral fixture v0.3 gap-closure layer is locally defined.**
 
 Version 0.1 defines the corpus contract, fixture schema, provenance requirements, implementation-lineage model, fixture plan, and common runner interface.
 
@@ -27,6 +27,35 @@ To independently regenerate and verify the normalized result from the published 
 `PYTHONDONTWRITEBYTECODE=1 python3 runtime/verify_qsv_mldsa_normalized_result_adapter_v0_1.py .`
 
 This remains first-party instrumented reproduction evidence. It is **not** third-party independent reproduction, NIST validation, FIPS 204 certification, proof of complete FIPS 204 conformance, proof of complete `sigVer` coverage, or proof of universal ML-DSA correctness.
+
+## Neutral fixture v0.3
+
+The append-only neutral fixture v0.3 layer provides an implementation-neutral fixture envelope without rewriting the existing v0.2 normalized-result authority.
+
+It includes:
+
+- a machine-readable `urn:qsv:mldsa:fixture:0.3` JSON Schema;
+- a deterministic offline NIST ACVP `prompt.json` + `expectedResults.json` to neutral-fixture mapper;
+- one NIST ACVP positive `sigVer` canonical example;
+- one NIST ACVP negative `sigVer` canonical example;
+- one Wycheproof negative signing canonical example; and
+- explicit source-case and neutral-fixture canonicalization rules.
+
+All three canonical examples are metadata-only. Raw vector payloads, raw private test keys, raw secret material, and raw private seeds are not copied into the canonical example files.
+
+`case_source_sha256` is **not** a hash of raw source-file bytes. It is a domain-separated SHA-256 commitment over the canonical source-case descriptor, including pinned source-file hashes, source-case identity, expected outcome, and artifact commitments. The actual upstream source-file SHA-256 values remain separately recorded in `source_binding.source_files[]`.
+
+`neutral_fixture_sha256` is a separate domain-separated SHA-256 commitment over the canonical neutral fixture with the self-hash field excluded.
+
+The ACVP mapper performs metadata transformation only. It performs **no new ML-DSA cryptographic execution**.
+
+Public metadata-only verification can be run with:
+
+`PYTHONDONTWRITEBYTECODE=1 python3 runtime/verify_qsv_mldsa_neutral_fixture_gap_closure_v0_1.py --root .`
+
+Full source regeneration additionally requires locally supplied bytes from the exact pinned NIST ACVP and Wycheproof commits. The verifier itself performs no network fetch.
+
+This layer does **not** imply NIST validation, FIPS 204 certification, complete FIPS 204 conformance, universal ML-DSA correctness, third-party independent reproduction, or security-vulnerability absence.
 
 ## Normative methodology
 

@@ -1,0 +1,100 @@
+{
+  "algorithm": "ML-DSA",
+  "artifacts": {
+    "private_test_key": null,
+    "public_key": {
+      "byte_count": 1312,
+      "encoding": "hex",
+      "external_reference": "nist-acvp:gen-val/json-files/ML-DSA-sigVer-FIPS204/prompt.json#tgId=1/tcId=1/pk",
+      "sha256": "d873bf71ad16f2df7d0bc25c98bbd6790db4dad8aa07f17dc039ff53b17fc1b6",
+      "value": null
+    },
+    "signature": {
+      "byte_count": 2420,
+      "encoding": "hex",
+      "external_reference": "nist-acvp:gen-val/json-files/ML-DSA-sigVer-FIPS204/prompt.json#tgId=1/tcId=1/signature",
+      "sha256": "ce4d0b3f2ff67765209ddfc8e9de3a4e95ea68d6cc39047778b68814d5f6cd00",
+      "value": null
+    }
+  },
+  "consumer": null,
+  "context": {
+    "byte_count": 171,
+    "encoding": "hex",
+    "external_reference": "nist-acvp:gen-val/json-files/ML-DSA-sigVer-FIPS204/prompt.json#tgId=1/tcId=1/context",
+    "sha256": "ebab6d72b1669f2840aa3919bcb16f189c0850ec6dbef8135bb32c2fa9b2ece6",
+    "value": null
+  },
+  "dimension": "known_answer_conformance",
+  "expected_outcome": "reject",
+  "fixture_id": "QSV-MLDSA-ACVP-44-TG1-TC1-V0.3",
+  "message": {
+    "byte_count": 7318,
+    "encoding": "hex",
+    "external_reference": "nist-acvp:gen-val/json-files/ML-DSA-sigVer-FIPS204/prompt.json#tgId=1/tcId=1/message",
+    "sha256": "afd067d46533aa803cd54768159356ed10c52c5ca8ee3b3864fcfad42da5a068",
+    "value": null
+  },
+  "neutral_fixture_sha256": "d81c8e7c1d42eccbdf5f9ce114cd88cf8c694f251e1761a17f1676f3bda594c4",
+  "operation": "verify",
+  "parameter_set": "ML-DSA-44",
+  "producer": {
+    "commit": "975de31eb83d87039ec88934fdc47d8c312b892d",
+    "project": "NIST ACVP-Server",
+    "repository": "https://github.com/usnistgov/ACVP-Server.git",
+    "tree": "a6b81add7faf8a8b647afcdc54268615decde9b5",
+    "tree_status": "recorded"
+  },
+  "provenance": {
+    "generation": {
+      "mode": "deterministic_offline_metadata_mapping",
+      "new_crypto_execution": false,
+      "tool": "runtime/qsv_mldsa_acvp_to_neutral_fixture_mapper_v0_1.py"
+    },
+    "source_specific": {
+      "pre_hash": "pure",
+      "signature_interface": "external",
+      "source_binding": "vectors/bindings/qsv-mldsa-nist-acvp-vector-source-v0.1.json",
+      "source_profile": "profiles/qsv-mldsa-nist-acvp-minimal-sigver-kat-profile-v0.1.json",
+      "tc_id": 1,
+      "test_type": "AFT",
+      "tg_id": 1
+    }
+  },
+  "publication_classification": "public_non_secret_metadata_only",
+  "randomness_mode": "not_applicable",
+  "schema": "qsv.mldsa.fixture.v0.3",
+  "source_binding": {
+    "canonicalization": {
+      "case_source_hash_profile": "QSV-MLDSA-SOURCE-CASE-V1",
+      "contract_path": "contracts/qsv-mldsa-neutral-fixture-canonicalization-contract-v0.1.json",
+      "contract_sha256": "74be71c4332f389c03c6032251f6b2df94a1b4b6aff8a7216dd6d5651f0b9e4e",
+      "neutral_fixture_hash_profile": "QSV-MLDSA-NEUTRAL-FIXTURE-V1"
+    },
+    "case_identity": {
+      "coordinates": {
+        "tc_id": 1,
+        "tg_id": 1
+      },
+      "primary": "tg1-tc1"
+    },
+    "case_source_sha256": "9e83e32491073b7d9ace5fd427f3886809524a7b6ebd7cf0760e1481ac3c0bb2",
+    "source_commit": "975de31eb83d87039ec88934fdc47d8c312b892d",
+    "source_family": "nist_acvp",
+    "source_files": [
+      {
+        "path": "gen-val/json-files/ML-DSA-sigVer-FIPS204/prompt.json",
+        "role": "prompt",
+        "sha256": "e2cba4589389756fa0bea1a7e6837138bf0a81f9d14234c9ee8f6d33caa1654e"
+      },
+      {
+        "path": "gen-val/json-files/ML-DSA-sigVer-FIPS204/expectedResults.json",
+        "role": "expected_results",
+        "sha256": "e1d84ef1b2f35196278ab0b0ed6a46ec62cc03d2dfa92c564199e1999bfb8ea6"
+      }
+    ],
+    "source_repository": "https://github.com/usnistgov/ACVP-Server.git",
+    "source_tree": "a6b81add7faf8a8b647afcdc54268615decde9b5",
+    "source_tree_status": "recorded"
+  }
+}
