@@ -8,7 +8,7 @@ It is intended to turn ML-DSA interoperability and conformance claims into small
 
 ## Status
 
-**F7 six-case runtime invocation evidence is durably published, a deterministic metadata-only normalized result layer is available, and the append-only neutral fixture v0.3 gap-closure layer is locally defined.**
+**F7 six-case runtime invocation evidence is durably published, a deterministic metadata-only normalized result layer is available, and the append-only neutral fixture v0.3 gap-closure layer is publicly available in this repository.**
 
 Version 0.1 defines the corpus contract, fixture schema, provenance requirements, implementation-lineage model, fixture plan, and common runner interface.
 
