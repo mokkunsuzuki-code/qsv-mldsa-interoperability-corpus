@@ -1,0 +1,21 @@
+# QSV ER-1 Reviewer Result Reply Template
+
+Result: MATCH / MISMATCH / BLOCKED / AMBIGUOUS
+
+Checked commit:
+
+Checked tree: (optional)
+
+Verifier exit code:
+
+Verifier output:
+
+Optional note:
+
+Optional environment:
+- OS:
+- Architecture:
+- Git version:
+- Python version:
+
+No personal identity, hostname, IP address, account information, token, credential, or full environment dump is required.

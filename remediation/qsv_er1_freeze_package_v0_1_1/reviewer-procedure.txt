@@ -1,0 +1,156 @@
+# QSV ER-1 Reviewer Procedure v0.1-final
+
+Purpose: reproduce one published QSV evidence-chain transformation from a pinned public Git snapshot and check whether the regenerated normalized artifact matches the published artifact byte-for-byte.
+
+This does **not** rerun ML-DSA, OpenSSL, CIRCL, or GitHub Actions. It is not a request for endorsement, and it is not a proof of verifier correctness or cryptographic correctness.
+
+## Prerequisites
+
+- `git`
+- `python3`
+- a POSIX-like shell
+
+No `pip install`, virtual environment, OpenSSL build, Go build, or CIRCL build is required.
+
+## Pinned authority
+
+Repository:
+
+`https://github.com/mokkunsuzuki-code/qsv-mldsa-interoperability-corpus.git`
+
+Commit:
+
+`d49dee4bac243684666d502173c6e11dbef91298`
+
+Tree:
+
+`e480a638b655de4e9c3b1712f1895e7943994129`
+
+Use this exact snapshot even if `main` has moved.
+
+## Procedure
+
+Run this block from a location where you are comfortable creating a temporary clone:
+
+```sh
+(
+  set -u
+
+  unset QSV_EXECUTE_CRYPTO
+
+  REPO_URL="https://github.com/mokkunsuzuki-code/qsv-mldsa-interoperability-corpus.git"
+  EXPECTED_HEAD="d49dee4bac243684666d502173c6e11dbef91298"
+  EXPECTED_TREE="e480a638b655de4e9c3b1712f1895e7943994129"
+
+  if ! command -v git >/dev/null 2>&1; then
+    printf '%s\n' "ER1_PROCEDURE_STATUS=BLOCKED"
+    printf '%s\n' "REASON=git_not_available"
+    exit 20
+  fi
+
+  if ! command -v python3 >/dev/null 2>&1; then
+    printf '%s\n' "ER1_PROCEDURE_STATUS=BLOCKED"
+    printf '%s\n' "REASON=python3_not_available"
+    exit 20
+  fi
+
+  WORKDIR="$(mktemp -d "${TMPDIR:-/tmp}/qsv-er1.XXXXXX")" || {
+    printf '%s\n' "ER1_PROCEDURE_STATUS=BLOCKED"
+    printf '%s\n' "REASON=temporary_directory_creation_failed"
+    exit 20
+  }
+
+  REPO_DIR="$WORKDIR/repo"
+
+  if ! git clone "$REPO_URL" "$REPO_DIR"; then
+    printf '%s\n' "ER1_PROCEDURE_STATUS=BLOCKED"
+    printf '%s\n' "REASON=clone_failed"
+    exit 20
+  fi
+
+  cd "$REPO_DIR" || {
+    printf '%s\n' "ER1_PROCEDURE_STATUS=BLOCKED"
+    printf '%s\n' "REASON=cannot_enter_clone"
+    exit 20
+  }
+
+  if ! git checkout --detach "$EXPECTED_HEAD"; then
+    printf '%s\n' "ER1_PROCEDURE_STATUS=BLOCKED"
+    printf '%s\n' "REASON=pinned_commit_checkout_failed"
+    exit 20
+  fi
+
+  HEAD="$(git rev-parse HEAD)" || {
+    printf '%s\n' "ER1_PROCEDURE_STATUS=BLOCKED"
+    printf '%s\n' "REASON=head_identity_unavailable"
+    exit 20
+  }
+
+  TREE="$(git rev-parse 'HEAD^{tree}')" || {
+    printf '%s\n' "ER1_PROCEDURE_STATUS=BLOCKED"
+    printf '%s\n' "REASON=tree_identity_unavailable"
+    exit 20
+  }
+
+  printf 'HEAD=%s\n' "$HEAD"
+  printf 'TREE=%s\n' "$TREE"
+
+  if [ "$HEAD" != "$EXPECTED_HEAD" ] || [ "$TREE" != "$EXPECTED_TREE" ]; then
+    printf '%s\n' "ER1_PROCEDURE_STATUS=MISMATCH"
+    printf '%s\n' "REASON=pinned_snapshot_identity_mismatch"
+    exit 21
+  fi
+
+  PYTHONDONTWRITEBYTECODE=1 \
+  python3 \
+    runtime/verify_qsv_mldsa_normalized_result_adapter_v0_1.py \
+    .
+
+  VERIFIER_RC=$?
+  printf 'VERIFIER_EXIT_CODE=%s\n' "$VERIFIER_RC"
+
+  exit "$VERIFIER_RC"
+)
+```
+
+The block runs in a subshell, so its variables and shell-option changes do not remain in your parent shell.
+
+After the clone and checkout, the verifier path itself is local and does not require network access.
+
+## Expected MATCH result
+
+For `MATCH`, the snapshot identity must equal the pinned commit/tree, `VERIFIER_EXIT_CODE=0`, and the verifier output must include all of these exact lines:
+
+```text
+QSV_MLDSA_NORMALIZED_RESULT_VERIFIER=PASS
+NORMALIZED_RESULT_RECORD_COUNT=12
+OBSERVED_ACCEPTANCE_TRUE_COUNT=6
+OBSERVED_ACCEPTANCE_FALSE_COUNT=6
+RESULT_STATE_PASS_COUNT=6
+RESULT_STATE_EXPECTED_REJECT_COUNT=6
+DETERMINISTIC_REGENERATION_BYTE_IDENTICAL=YES
+OBSERVED_ACCEPTANCE_MARKED_DERIVED=YES
+EXPECTED_VALID_DIRECT_COPY=NO
+WORKFLOW_SUCCESS_AS_OBSERVED_ACCEPTANCE=NO
+RAW_VECTOR_PAYLOAD_PRESENT=NO
+RAW_STDOUT_PRESENT=NO
+RAW_STDERR_PRESENT=NO
+PRIVATE_KEY_MATERIAL_PRESENT=NO
+THIRD_PARTY_INDEPENDENT_REPRODUCTION=false
+NEW_CRYPTO_EXECUTION_PERFORMED=NO
+```
+
+`DETERMINISTIC_REGENERATION_BYTE_IDENTICAL=YES` means the normalized artifact regenerated from the pinned published inputs with the published adapter/verifier is byte-for-byte identical to the published normalized artifact. It does not establish that the underlying cryptography is correct.
+
+`THIRD_PARTY_INDEPENDENT_REPRODUCTION=false` is expected. It describes the provenance boundary of the existing published normalized evidence. Your ER-1 run is a separate external reproduction of the evidence-chain transformation; it is not an independent cryptographic execution.
+
+## How to classify your result
+
+- `MATCH` — the pinned snapshot matched, the verifier exited `0`, and all expected markers above were present.
+- `MISMATCH` — the expected pinned object was obtained but its HEAD/tree identity differed, or the verifier ran and its result materially differed from the expected output/byte-identical result.
+- `BLOCKED` — you could not reach a verification conclusion because acquisition, checkout, required tools, Python execution, or another prerequisite prevented it.
+- `AMBIGUOUS` — the instructions or result semantics were not clear enough for you to classify the run confidently.
+
+Please do not troubleshoot the project on my behalf. If the procedure fails, is blocked, or is unclear, that result is useful as-is.
+
+A short reply using the result template is enough.

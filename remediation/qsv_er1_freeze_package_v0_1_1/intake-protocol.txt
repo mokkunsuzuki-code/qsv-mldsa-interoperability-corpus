@@ -1,0 +1,185 @@
+# QSV ER-1 External Result Intake & Preservation Protocol v0.1
+
+Purpose: preserve an external ER-1 result before interpretation, adjudication, editing, or publication.
+
+Mandatory sequence:
+
+`RECEIVE → PRESERVE → HASH → CLASSIFY → INTERPRET → PUBLICATION DECISION`
+
+Never use:
+
+`RECEIVE → INTERPRET → EDIT → PRESERVE`
+
+## 1. Receive
+
+Record the communication channel and receipt time.
+
+Do not infer consent, endorsement, identity, affiliation, or publication permission from the fact that a reply was received.
+
+## 2. Preserve the primary evidence first
+
+Before rewriting, summarizing, normalizing, or quoting the result, preserve the highest-fidelity original representation available from the communication channel.
+
+For an email or message, preserve as available:
+
+- subject;
+- message body as received;
+- sender identifier as received;
+- received timestamp;
+- attachments, if any.
+
+Do not require or publicly expose full mail-routing headers, credentials, tokens, IP addresses, or unrelated personal data.
+
+If exact transport-level raw bytes are not available from the communication system, preserve the highest-fidelity exported/original representation available and record its format. Do not describe reconstructed text as transport-level raw bytes.
+
+## 3. Hash preserved evidence
+
+Compute SHA-256 over the exact preserved evidence bytes before any display normalization or editing.
+
+Record:
+
+`RAW_EVIDENCE_SHA256=<actual hash>`
+
+If attachments exist, preserve and hash them separately.
+
+A normalized internal intake record, if created, receives its own separate hash:
+
+`NORMALIZED_INTERNAL_RECORD_SHA256=<actual hash>`
+
+Never substitute the normalized-record hash for the raw-evidence hash.
+
+## 4. Bind the frozen procedure and snapshot
+
+Every intake record must bind:
+
+- procedure version: `v0.1-final`;
+- frozen procedure SHA-256;
+- pinned commit: `d49dee4bac243684666d502173c6e11dbef91298`;
+- pinned tree: `e480a638b655de4e9c3b1712f1895e7943994129`.
+
+Do not silently move the result to a newer `main` commit.
+
+## 5. Preserve the reviewer-reported result
+
+Store the reviewer's original result separately:
+
+`REVIEWER_REPORTED_CLASSIFICATION=MATCH|MISMATCH|BLOCKED|AMBIGUOUS|UNKNOWN`
+
+Do not overwrite it during QSV adjudication.
+
+Then, and only then, apply the frozen classification protocol and record:
+
+`QSV_ADJUDICATED_CLASSIFICATION=MATCH|MISMATCH|BLOCKED|AMBIGUOUS|UNKNOWN`
+
+If the two values differ:
+
+`CLASSIFICATION_DISAGREEMENT=YES`
+
+Otherwise:
+
+`CLASSIFICATION_DISAGREEMENT=NO`
+
+Any disagreement requires an interpretation note; it does not authorize deletion or alteration of the original reviewer result.
+
+## 6. Minimal internal intake record
+
+Record at least:
+
+```text
+protocol_version=qsv-er1-external-result-intake-v0.1
+reviewer_identifier_policy=privacy_minimal
+received_at=
+communication_channel=
+reviewer_reported_classification=
+checked_commit=
+checked_tree=
+verifier_exit_code=
+verifier_output_preservation_status=
+optional_environment_information=
+procedure_version=v0.1-final
+procedure_sha256=
+raw_evidence_format=
+raw_message_preserved=
+raw_evidence_sha256=
+attachments_present=
+attachments_preserved=
+reviewer_result_publication_permission=
+reviewer_name_publication_permission=
+reviewer_affiliation_publication_permission=
+raw_message_publication_permission=
+qsv_adjudicated_classification=
+classification_disagreement=
+interpretation_notes=
+public_claim_authorized=NO
+```
+
+Do not invent missing values. Use `UNKNOWN` where evidence is unavailable.
+
+## 7. Publication-permission gate
+
+Treat these permissions separately:
+
+- `RESULT_PUBLICATION_PERMISSION`
+- `NAME_PUBLICATION_PERMISSION`
+- `AFFILIATION_PUBLICATION_PERMISSION`
+- `RAW_MESSAGE_PUBLICATION_PERMISSION`
+
+A reply does not imply permission.
+
+Without explicit permission, the corresponding field remains `UNKNOWN` or `NO`.
+
+Private preservation and public publication are separate decisions.
+
+## 8. Preservation gate before any public claim
+
+`PUBLIC_RESULT_PUBLICATION_READY=YES` is allowed only if all of the following are established:
+
+```text
+RAW_RESULT_PRESERVED=YES
+RAW_RESULT_SHA256_FIXED=YES
+PROCEDURE_VERSION_BOUND=YES
+PROCEDURE_SHA256_BOUND=YES
+PINNED_COMMIT_BOUND=YES
+REVIEWER_REPORTED_CLASSIFICATION_PRESERVED=YES
+QSV_ADJUDICATION_SEPARATE=YES
+PUBLICATION_PERMISSION_RECORDED=YES
+CLAIM_BOUNDARY_AUDITED=YES
+```
+
+If any required condition is missing or unknown:
+
+`PUBLIC_RESULT_PUBLICATION_READY=NO`
+
+## 9. Claim boundary
+
+Even after an external `MATCH`, the strongest general statement supported by ER-1 is:
+
+“An independent external reviewer reproduced the published QSV evidence-chain transformation from the pinned public repository snapshot and obtained the same normalized artifact byte-for-byte.”
+
+This statement may identify the reviewer only if the relevant identity/publication permissions permit it.
+
+An ER-1 MATCH does not establish:
+
+- NIST validation;
+- FIPS 204 certification;
+- complete FIPS 204 conformance;
+- complete sigVer coverage;
+- universal ML-DSA correctness;
+- vulnerability absence;
+- system-wide quantum safety;
+- independent cryptographic execution reproduction;
+- formal correctness of the verifier;
+- organizational endorsement.
+
+The existing published `THIRD_PARTY_INDEPENDENT_REPRODUCTION=false` truth-boundary field is not rewritten. ER-1 creates separate external reproduction evidence about the published evidence-chain transformation.
+
+## 10. No silent repair
+
+If the result is MISMATCH, BLOCKED, or AMBIGUOUS:
+
+1. preserve the original attempt unchanged;
+2. do not edit the frozen v0.1-final procedure and relabel the same attempt;
+3. if remediation is later justified, create a separately identified attempt and, if procedure text changes, a new explicit procedure version such as `v0.1.1` or `v0.2`;
+4. retain the first result as evidence.
+
+Only after preservation, classification, adjudication, permission recording, and claim-boundary review may QSV consider public documentation changes.

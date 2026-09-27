@@ -1,0 +1,70 @@
+# QSV ER-1 Result Classification Protocol v0.1
+
+This classification protocol is frozen before any external ER-1 result is received.
+
+The reviewer-reported classification and QSV's later adjudication are separate evidence fields. QSV must preserve the reviewer's original classification exactly and must never overwrite it.
+
+## MATCH
+
+Classify as `MATCH` only when all of the following are established:
+
+1. the checked HEAD equals `d49dee4bac243684666d502173c6e11dbef91298`;
+2. the checked tree equals `e480a638b655de4e9c3b1712f1895e7943994129`;
+3. the verifier actually ran;
+4. `VERIFIER_EXIT_CODE=0`;
+5. `QSV_MLDSA_NORMALIZED_RESULT_VERIFIER=PASS` is present;
+6. `DETERMINISTIC_REGENERATION_BYTE_IDENTICAL=YES` is present; and
+7. every other expected count and truth-boundary marker listed in the frozen reviewer procedure is present exactly.
+
+A MATCH establishes external reproduction of the specified published evidence-chain transformation only.
+
+## MISMATCH
+
+Classify as `MISMATCH` when the relevant public material was obtained and a substantive observed value differs from the frozen expectation.
+
+This includes either of these cases:
+
+- the expected pinned object was obtained, but the observed HEAD or tree differs from the frozen expected value; or
+- the verifier reached a meaningful verification attempt but returned a non-zero result, omitted a required expected marker, reported a different count/truth-boundary value, or did not report byte-identical regeneration.
+
+Do not reinterpret a MISMATCH as MATCH after seeing the result.
+
+## BLOCKED
+
+Classify as `BLOCKED` when no meaningful verification conclusion can be reached because a prerequisite or acquisition/execution barrier prevents the procedure from reaching the required verification result.
+
+Examples include:
+
+- public clone failure;
+- the expected pinned commit cannot be obtained;
+- checkout cannot be completed;
+- `git` or `python3` is unavailable;
+- Python cannot start the verifier;
+- required published material is unavailable to the procedure;
+- an environment incompatibility prevents a meaningful verifier result.
+
+If the expected pinned object is obtained but its identity itself differs from the frozen HEAD/tree values, classify that as `MISMATCH`, not BLOCKED.
+
+## AMBIGUOUS
+
+Classify as `AMBIGUOUS` when the reviewer cannot assign MATCH, MISMATCH, or BLOCKED with confidence because the instructions, expected result, classification rule, or result semantics are themselves unclear.
+
+Do not treat AMBIGUOUS as reviewer error.
+
+## Preservation and adjudication
+
+Always preserve:
+
+`REVIEWER_REPORTED_CLASSIFICATION=<original reviewer value>`
+
+QSV may later record:
+
+`QSV_ADJUDICATED_CLASSIFICATION=<QSV interpretation>`
+
+If they differ, preserve both and set:
+
+`CLASSIFICATION_DISAGREEMENT=YES`
+
+The original reviewer classification must remain unchanged.
+
+MATCH, MISMATCH, BLOCKED, and AMBIGUOUS are all valid external evidence outcomes. None may be discarded merely because it is unfavorable.

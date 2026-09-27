@@ -1,0 +1,18 @@
+QSV ER-1 evidence-chain reproduction procedure
+
+Hi,
+
+Thanks. The frozen ER-1 procedure follows below this note.
+
+It checks one narrow result: whether the published normalized artifact can be deterministically regenerated from the pinned public Git snapshot and reproduced byte-for-byte.
+
+It does not rerun ML-DSA, OpenSSL, or CIRCL, and it is not a request for endorsement.
+
+Please run the procedure as written. If it is blocked, produces a mismatch, or anything is unclear, there is no need to troubleshoot the project on my behalf — that result is useful as-is.
+
+A short reply with MATCH / MISMATCH / BLOCKED / AMBIGUOUS, the checked commit, verifier exit code, and verifier output is enough. Optional environment details are welcome but not required.
+
+I will not publish or quote your result, name, or affiliation without separate permission.
+
+Best,
+Motohiro Suzuki
