@@ -1,0 +1,178 @@
+{
+  "acceptance_record": {
+    "canonical_serialization": {
+      "encoding": "UTF-8",
+      "ensure_ascii": false,
+      "separators": [
+        ",",
+        ":"
+      ],
+      "serialization": "JSON",
+      "sort_keys": true,
+      "trailing_newline": false
+    },
+    "regeneration_fields": [
+      "performed",
+      "comparison_mode",
+      "run1_equals_run2",
+      "regenerated_fixture_match"
+    ],
+    "source_authority_fields": [
+      "source_family",
+      "repository",
+      "commit",
+      "tree",
+      "tree_status"
+    ],
+    "source_file_fields": [
+      "role",
+      "path",
+      "expected_sha256",
+      "observed_sha256",
+      "verification_status"
+    ]
+  },
+  "claim_boundary": {
+    "complete_fips_204_conformance": false,
+    "complete_sigver_coverage": false,
+    "fips_204_certification": false,
+    "full_f7_source_bound_coverage": false,
+    "implementation_independence_proven": false,
+    "independent_cryptographic_execution_reproduction": false,
+    "mldsa_correctness_proven": false,
+    "nist_validation": false,
+    "oqs_organizational_endorsement": false,
+    "system_wide_quantum_safety": false,
+    "universal_mldsa_correctness": false,
+    "vulnerability_absence": false
+  },
+  "comparison_policies": {
+    "nist_acvp": {
+      "deterministic_double_regeneration_required": true,
+      "mode": "byte_identical_serialized_file_bytes"
+    },
+    "wycheproof": {
+      "deterministic_double_regeneration_required": true,
+      "mode": "canonical_json_identical"
+    }
+  },
+  "covered_fixtures": [
+    {
+      "case_identity": {
+        "coordinates": {
+          "tc_id": 3,
+          "tg_id": 1
+        },
+        "primary": "tg1-tc3"
+      },
+      "path": "examples/qsv-mldsa-acvp-positive-canonical-v0.3.json",
+      "sha256": "18a3aa5087e48de31afaa7e717f81c9fa9e0fd4dfe29b659bae8aa9da763ef97",
+      "source_family": "nist_acvp"
+    },
+    {
+      "case_identity": {
+        "coordinates": {
+          "tc_id": 1,
+          "tg_id": 1
+        },
+        "primary": "tg1-tc1"
+      },
+      "path": "examples/qsv-mldsa-acvp-negative-canonical-v0.3.json",
+      "sha256": "11c9d28a211d1545bd0ba9b83da4ce101fb6be0bcf815063d7af905962825602",
+      "source_family": "nist_acvp"
+    },
+    {
+      "case_identity": {
+        "coordinates": {
+          "group_index": 3,
+          "tc_id": 52
+        },
+        "primary": "QSV-MLDSA-WYCHEPROOF-44-0052"
+      },
+      "path": "examples/qsv-mldsa-wycheproof-negative-canonical-v0.3.json",
+      "sha256": "070c70c45a44f4d5f3edf5edcef344936d7cdaf699d4f7c71676231ac4d4fd19",
+      "source_family": "wycheproof"
+    }
+  ],
+  "determinism": {
+    "absolute_source_path_in_canonical_record": false,
+    "hostname_in_canonical_record": false,
+    "random_uuid_in_canonical_record": false,
+    "timestamp_in_canonical_record": false
+  },
+  "historical_evidence": {
+    "retroactive_pass_upgrade_allowed": false,
+    "status_when_source_bound_record_absent": "NOT_ESTABLISHED"
+  },
+  "pass_conditions": [
+    "SOURCE_BOUND_VERIFICATION_REQUESTED=YES",
+    "FIXTURE_METADATA_VALIDATION=PASS",
+    "REQUIRED_SOURCE_SET_COMPLETE=YES",
+    "SOURCE_AUTHORITY_MATCH=YES",
+    "SOURCE_FILE_DIGESTS_MATCH=YES",
+    "CASE_IDENTITY_MATCH=YES",
+    "SOURCE_REGENERATION_PERFORMED=YES",
+    "COMPARISON_POLICY_VALID=YES",
+    "REGENERATED_FIXTURE_MATCH=YES"
+  ],
+  "schema": "qsv.mldsa.source-bound-acceptance-contract.v0.1",
+  "scope": {
+    "case_scoped": true,
+    "fixture_scoped": true,
+    "full_f7_source_bound_coverage": false,
+    "global_f7_source_bound_acceptance": false,
+    "mldsa_65_87_fixture_coverage_expansion": false
+  },
+  "source_authorities": {
+    "nist_acvp": {
+      "commit": "975de31eb83d87039ec88934fdc47d8c312b892d",
+      "repository": "https://github.com/usnistgov/ACVP-Server.git",
+      "required_source_files": [
+        {
+          "path": "gen-val/json-files/ML-DSA-sigVer-FIPS204/prompt.json",
+          "role": "prompt",
+          "sha256": "e2cba4589389756fa0bea1a7e6837138bf0a81f9d14234c9ee8f6d33caa1654e"
+        },
+        {
+          "path": "gen-val/json-files/ML-DSA-sigVer-FIPS204/expectedResults.json",
+          "role": "expected_results",
+          "sha256": "e1d84ef1b2f35196278ab0b0ed6a46ec62cc03d2dfa92c564199e1999bfb8ea6"
+        }
+      ],
+      "tree": "a6b81add7faf8a8b647afcdc54268615decde9b5",
+      "tree_status": "recorded"
+    },
+    "wycheproof": {
+      "commit": "dac1dd4729fd1f8dd9e1e9f3dce51d783da6c166",
+      "repository": "C2SP/wycheproof",
+      "required_source_files": [
+        {
+          "path": "testvectors_v1/mldsa_44_sign_noseed_test.json",
+          "role": "vector",
+          "sha256": "ee55e18b1944db496b2539d3884dfacc04a96db21bcec239063df5e4cd1ee6cb"
+        }
+      ],
+      "tree": null,
+      "tree_status": "not_recorded_historical"
+    }
+  },
+  "source_input_policy": {
+    "caller_supplies_local_paths": true,
+    "partial_source_set_reason": "REQUIRED_SOURCE_SET_INCOMPLETE",
+    "partial_source_set_state": "BLOCKED",
+    "raw_pinned_source_bytes_copied_to_corpus": false,
+    "verifier_network_fetch": false
+  },
+  "verification_attempt_states": [
+    "PASS",
+    "FAIL",
+    "BLOCKED"
+  ],
+  "verification_request": {
+    "false_is_not_blocked": true,
+    "false_is_not_fail": true,
+    "field": "source_bound_verification_requested",
+    "metadata_only_when_false": true
+  },
+  "version": "0.1"
+}

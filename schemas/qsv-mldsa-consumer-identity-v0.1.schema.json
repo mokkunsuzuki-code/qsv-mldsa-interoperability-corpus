@@ -1,0 +1,210 @@
+{
+  "$id": "urn:qsv:mldsa:consumer-identity:0.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "consumer": {
+      "additionalProperties": false,
+      "properties": {
+        "adapter_identity": {
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "schema_version": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "path",
+            "sha256",
+            "schema_version"
+          ],
+          "type": "object"
+        },
+        "identity_basis": {
+          "enum": [
+            "runtime_version",
+            "source_commit",
+            "runtime_version_and_source_commit"
+          ]
+        },
+        "implementation_id": {
+          "pattern": "^[a-z0-9][a-z0-9._-]*$",
+          "type": "string"
+        },
+        "lineage": {
+          "additionalProperties": false,
+          "properties": {
+            "binding_path": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "binding_sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "equivalence_class": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "implementation_id": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "implementation_id",
+            "binding_path",
+            "binding_sha256",
+            "equivalence_class"
+          ],
+          "type": "object"
+        },
+        "repository": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "runtime_identity": {
+          "additionalProperties": false,
+          "properties": {
+            "executable_sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "version": {
+              "minLength": 1,
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "version",
+            "executable_sha256"
+          ],
+          "type": "object"
+        },
+        "source_identity": {
+          "additionalProperties": false,
+          "anyOf": [
+            {
+              "properties": {
+                "version": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "version"
+              ]
+            },
+            {
+              "properties": {
+                "commit": {
+                  "pattern": "^[0-9a-f]{40}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "commit"
+              ]
+            }
+          ],
+          "properties": {
+            "commit": {
+              "pattern": "^[0-9a-f]{40}$",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "tree": {
+              "pattern": "^[0-9a-f]{40}$",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "version": {
+              "minLength": 1,
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "version",
+            "commit",
+            "tree"
+          ],
+          "type": "object"
+        },
+        "source_to_runtime_binding": {
+          "additionalProperties": false,
+          "properties": {
+            "evidence_path": {
+              "minLength": 1,
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "evidence_sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "status": {
+              "enum": [
+                "proven",
+                "incomplete",
+                "not_established"
+              ]
+            }
+          },
+          "required": [
+            "status",
+            "evidence_path",
+            "evidence_sha256"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "implementation_id",
+        "repository",
+        "runtime_identity",
+        "source_identity",
+        "identity_basis",
+        "source_to_runtime_binding",
+        "lineage",
+        "adapter_identity"
+      ],
+      "type": "object"
+    },
+    "schema": {
+      "const": "qsv.mldsa.consumer-identity.v0.1"
+    }
+  },
+  "required": [
+    "schema",
+    "consumer"
+  ],
+  "title": "QSV ML-DSA structured consumer identity v0.1",
+  "type": "object"
+}

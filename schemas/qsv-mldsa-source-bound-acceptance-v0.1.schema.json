@@ -1,0 +1,319 @@
+{
+  "$id": "urn:qsv:mldsa:source-bound-acceptance:0.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "source_bound_verification_requested": {
+            "const": false
+          }
+        },
+        "required": [
+          "source_bound_verification_requested"
+        ]
+      },
+      "then": {
+        "properties": {
+          "reason_code": {
+            "const": "NOT_REQUESTED"
+          },
+          "regeneration": {
+            "properties": {
+              "comparison_mode": {
+                "const": null
+              },
+              "performed": {
+                "const": false
+              },
+              "regenerated_fixture_match": {
+                "const": null
+              },
+              "run1_equals_run2": {
+                "const": null
+              }
+            }
+          },
+          "source_bound_verification_state": {
+            "const": null
+          },
+          "source_files": {
+            "items": {
+              "properties": {
+                "observed_sha256": {
+                  "const": null
+                },
+                "verification_status": {
+                  "const": "NOT_VERIFIED"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "source_bound_verification_state": {
+            "const": "PASS"
+          }
+        },
+        "required": [
+          "source_bound_verification_state"
+        ]
+      },
+      "then": {
+        "properties": {
+          "fixture_metadata_validation": {
+            "const": "PASS"
+          },
+          "reason_code": {
+            "const": "PASS"
+          },
+          "regeneration": {
+            "properties": {
+              "performed": {
+                "const": true
+              },
+              "regenerated_fixture_match": {
+                "const": true
+              },
+              "run1_equals_run2": {
+                "const": true
+              }
+            }
+          },
+          "source_bound_verification_requested": {
+            "const": true
+          },
+          "source_files": {
+            "items": {
+              "properties": {
+                "verification_status": {
+                  "const": "MATCH"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "case_identity": {
+      "additionalProperties": false,
+      "properties": {
+        "coordinates": {
+          "type": "object"
+        },
+        "primary": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "primary",
+        "coordinates"
+      ],
+      "type": "object"
+    },
+    "case_scoped": {
+      "const": true
+    },
+    "fixture_metadata_validation": {
+      "enum": [
+        "PASS",
+        "FAIL"
+      ]
+    },
+    "fixture_scoped": {
+      "const": true
+    },
+    "published_fixture": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "reason_code": {
+      "enum": [
+        "NOT_REQUESTED",
+        "PASS",
+        "REQUIRED_SOURCE_SET_INCOMPLETE",
+        "SOURCE_INPUTS_SUPPLIED_WITHOUT_REQUEST",
+        "SOURCE_INACCESSIBLE",
+        "SOURCE_FILE_DIGEST_MISMATCH",
+        "SOURCE_AUTHORITY_MISMATCH",
+        "CASE_IDENTITY_MISMATCH",
+        "REGENERATION_EXECUTION_FAILURE",
+        "REGENERATION_NONDETERMINISTIC",
+        "REGENERATED_FIXTURE_MISMATCH",
+        "SOURCE_FAMILY_COMPARISON_POLICY_MISMATCH",
+        "FIXTURE_METADATA_VALIDATION_FAILED",
+        "PREREQUISITE_UNAVAILABLE"
+      ]
+    },
+    "regeneration": {
+      "additionalProperties": false,
+      "properties": {
+        "comparison_mode": {
+          "enum": [
+            "byte_identical_serialized_file_bytes",
+            "canonical_json_identical",
+            null
+          ]
+        },
+        "performed": {
+          "type": "boolean"
+        },
+        "regenerated_fixture_match": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "run1_equals_run2": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "performed",
+        "comparison_mode",
+        "run1_equals_run2",
+        "regenerated_fixture_match"
+      ],
+      "type": "object"
+    },
+    "schema": {
+      "const": "qsv.mldsa.source-bound-acceptance.v0.1"
+    },
+    "source_authority": {
+      "additionalProperties": false,
+      "properties": {
+        "commit": {
+          "pattern": "^[0-9a-f]{40}$",
+          "type": "string"
+        },
+        "repository": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_family": {
+          "enum": [
+            "nist_acvp",
+            "wycheproof"
+          ]
+        },
+        "tree": {
+          "pattern": "^[0-9a-f]{40}$",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tree_status": {
+          "enum": [
+            "recorded",
+            "not_recorded_historical"
+          ]
+        }
+      },
+      "required": [
+        "source_family",
+        "repository",
+        "commit",
+        "tree",
+        "tree_status"
+      ],
+      "type": "object"
+    },
+    "source_bound_verification_requested": {
+      "type": "boolean"
+    },
+    "source_bound_verification_state": {
+      "enum": [
+        "PASS",
+        "FAIL",
+        "BLOCKED",
+        null
+      ]
+    },
+    "source_files": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "expected_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "observed_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "path": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "role": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "verification_status": {
+            "enum": [
+              "MATCH",
+              "MISMATCH",
+              "MISSING",
+              "NOT_VERIFIED"
+            ]
+          }
+        },
+        "required": [
+          "role",
+          "path",
+          "expected_sha256",
+          "observed_sha256",
+          "verification_status"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema",
+    "case_scoped",
+    "fixture_scoped",
+    "source_bound_verification_requested",
+    "fixture_metadata_validation",
+    "source_authority",
+    "source_files",
+    "case_identity",
+    "regeneration",
+    "published_fixture",
+    "source_bound_verification_state",
+    "reason_code"
+  ],
+  "title": "QSV ML-DSA source-bound acceptance record v0.1",
+  "type": "object"
+}
