@@ -1,0 +1,238 @@
+{
+  "acceptance_record": {
+    "aggregate_pass_requires_all_six_case_pass": true,
+    "aggregate_states": [
+      "PASS",
+      "FAIL",
+      "NOT_COMPLETE"
+    ],
+    "aggregate_summary_count": 1,
+    "case_record_count": 6,
+    "case_record_reference_binding": [
+      "path",
+      "sha256"
+    ],
+    "case_scoped_partial_truth_preserved": true,
+    "case_states": [
+      "PASS",
+      "FAIL",
+      "BLOCKED"
+    ],
+    "record_kinds": [
+      "case_acceptance",
+      "aggregate_summary"
+    ],
+    "schema_path": "schemas/qsv-mldsa-source-bound-acceptance-v0.2.schema.json"
+  },
+  "aggregate_semantics": {
+    "aggregate_result_overwrites_case_record_state": false,
+    "fail_condition": "ANY_CASE_STATE_FAIL_OR_CASE_RECORD_BINDING_IDENTITY_INTEGRITY_FAILURE",
+    "not_complete_condition": "NO_FAIL_BUT_ANY_REQUIRED_CASE_BLOCKED_NOT_REQUESTED_OR_MISSING",
+    "pass_condition": "EXACT_SIX_UNIQUE_EXPECTED_CASE_RECORDS_AND_ALL_SIX_STATE_PASS"
+  },
+  "authority_relationship": {
+    "replaces_predecessor": false,
+    "semantic_relationship": "extends_without_modifying",
+    "supersedes_predecessor": false,
+    "type": "APPEND_ONLY_VERSIONED_EXTENSION_AUTHORITY"
+  },
+  "case_pass_conditions": [
+    "SOURCE_BOUND_VERIFICATION_REQUESTED=YES",
+    "FIXTURE_METADATA_VALIDATION=PASS",
+    "REQUIRED_SOURCE_SET_COMPLETE=YES",
+    "SOURCE_AUTHORITY_MATCH=YES",
+    "SOURCE_FILE_DIGESTS_MATCH=YES",
+    "CASE_IDENTITY_MATCH=YES",
+    "SOURCE_REGENERATION_PERFORMED=YES",
+    "COMPARISON_POLICY_VALID=YES",
+    "REGENERATED_FIXTURE_MATCH=YES"
+  ],
+  "claim_boundary": {
+    "complete_acvp_coverage": false,
+    "complete_fips_204_conformance": false,
+    "fips_204_certification": false,
+    "full_f7_source_bound_coverage": false,
+    "implementation_independence_proven": false,
+    "independent_cryptographic_execution_reproduction": false,
+    "mldsa_correctness_proven": false,
+    "nist_validation": false,
+    "oqs_organizational_endorsement": false,
+    "system_wide_quantum_safety": false,
+    "universal_mldsa_correctness": false,
+    "vulnerability_absence": false
+  },
+  "comparison_policies": {
+    "nist_acvp": {
+      "deterministic_double_regeneration_required": true,
+      "mode": "byte_identical_serialized_file_bytes"
+    }
+  },
+  "coverage_manifest": {
+    "implies_crypto_correctness": false,
+    "implies_fips_204_certification": false,
+    "implies_nist_validation": false,
+    "implies_source_bound_acceptance": false,
+    "meaning": "published_neutral_fixture_authority_for_exact_six_selected_f7_acvp_cases",
+    "path": "manifest/qsv-mldsa-f7-sixcase-neutral-fixture-coverage-v0.1-manifest.json",
+    "required": true
+  },
+  "covered_fixtures": [
+    {
+      "case_identity": {
+        "coordinates": {
+          "tc_id": 1,
+          "tg_id": 1
+        },
+        "primary": "tg1-tc1"
+      },
+      "expected_valid": false,
+      "parameter_set": "ML-DSA-44",
+      "path": "examples/qsv-mldsa-acvp-negative-canonical-v0.3.json",
+      "sha256": "11c9d28a211d1545bd0ba9b83da4ce101fb6be0bcf815063d7af905962825602",
+      "source_family": "nist_acvp"
+    },
+    {
+      "case_identity": {
+        "coordinates": {
+          "tc_id": 3,
+          "tg_id": 1
+        },
+        "primary": "tg1-tc3"
+      },
+      "expected_valid": true,
+      "parameter_set": "ML-DSA-44",
+      "path": "examples/qsv-mldsa-acvp-positive-canonical-v0.3.json",
+      "sha256": "18a3aa5087e48de31afaa7e717f81c9fa9e0fd4dfe29b659bae8aa9da763ef97",
+      "source_family": "nist_acvp"
+    },
+    {
+      "case_identity": {
+        "coordinates": {
+          "tc_id": 31,
+          "tg_id": 3
+        },
+        "primary": "tg3-tc31"
+      },
+      "expected_valid": false,
+      "parameter_set": "ML-DSA-65",
+      "path": "examples/qsv-mldsa-acvp-65-tg3-tc31-negative-canonical-v0.3.json",
+      "sha256": "968f6d11bf5ad693671488f44db87b7f31889f96f285e5a6c842785f23abdfc4",
+      "source_family": "nist_acvp"
+    },
+    {
+      "case_identity": {
+        "coordinates": {
+          "tc_id": 33,
+          "tg_id": 3
+        },
+        "primary": "tg3-tc33"
+      },
+      "expected_valid": true,
+      "parameter_set": "ML-DSA-65",
+      "path": "examples/qsv-mldsa-acvp-65-tg3-tc33-positive-canonical-v0.3.json",
+      "sha256": "82e84f15ca3b737a6bf61637e96dfbbcc45f89fa363c52fea31f381799ebeb29",
+      "source_family": "nist_acvp"
+    },
+    {
+      "case_identity": {
+        "coordinates": {
+          "tc_id": 61,
+          "tg_id": 5
+        },
+        "primary": "tg5-tc61"
+      },
+      "expected_valid": false,
+      "parameter_set": "ML-DSA-87",
+      "path": "examples/qsv-mldsa-acvp-87-tg5-tc61-negative-canonical-v0.3.json",
+      "sha256": "f9d90e36ee0b7ee2e3120f9ff308b35e43a379f869f567cd5cfd1d2c1099ecfa",
+      "source_family": "nist_acvp"
+    },
+    {
+      "case_identity": {
+        "coordinates": {
+          "tc_id": 63,
+          "tg_id": 5
+        },
+        "primary": "tg5-tc63"
+      },
+      "expected_valid": true,
+      "parameter_set": "ML-DSA-87",
+      "path": "examples/qsv-mldsa-acvp-87-tg5-tc63-positive-canonical-v0.3.json",
+      "sha256": "dce6dbf10856ab31010f40010eea6abad5837643b306b95e2d4fd21d941e4471",
+      "source_family": "nist_acvp"
+    }
+  ],
+  "determinism": {
+    "absolute_source_path_in_canonical_record": false,
+    "hostname_in_canonical_record": false,
+    "random_uuid_in_canonical_record": false,
+    "timestamp_in_canonical_record": false
+  },
+  "historical_evidence": {
+    "old_sb1_new_fixture_rejection_must_remain": true,
+    "predecessor_original_scope_remains_valid": true,
+    "retroactive_pass_upgrade_allowed": false
+  },
+  "predecessor": {
+    "contract_path": "contracts/qsv-mldsa-source-bound-acceptance-contract-v0.1.json",
+    "contract_sha256": "b0f29bf4f5c7d607dca2f32c1c5716ba87a93c5658bf367793b8a7ed7d02b5f5",
+    "public_commit": "bbc2f9ef6002fb55143d86dfcdb7fbbecf86462c",
+    "public_tree": "6e79deb9e3eae3b2fbf6e7c156a1f33d694283fe",
+    "relationship": "extends_without_modifying"
+  },
+  "publication_semantics": {
+    "contract_publication_implies_acceptance_execution": false,
+    "contract_publication_implies_acceptance_pass": false,
+    "coverage_manifest_publication_implies_acceptance_pass": false
+  },
+  "schema": "qsv.mldsa.source-bound-acceptance-contract.v0.2",
+  "scope": {
+    "aggregate_summary_supported": true,
+    "case_scoped": true,
+    "exact_f7_acvp_case_count": 6,
+    "full_f7_source_bound_coverage": false,
+    "global_f7_source_bound_acceptance": false,
+    "wycheproof_included_in_f7_successor_scope": false
+  },
+  "source_authorities": {
+    "nist_acvp": {
+      "commit": "975de31eb83d87039ec88934fdc47d8c312b892d",
+      "repository": "https://github.com/usnistgov/ACVP-Server.git",
+      "required_source_files": [
+        {
+          "path": "gen-val/json-files/ML-DSA-sigVer-FIPS204/prompt.json",
+          "role": "prompt",
+          "sha256": "e2cba4589389756fa0bea1a7e6837138bf0a81f9d14234c9ee8f6d33caa1654e"
+        },
+        {
+          "path": "gen-val/json-files/ML-DSA-sigVer-FIPS204/expectedResults.json",
+          "role": "expected_results",
+          "sha256": "e1d84ef1b2f35196278ab0b0ed6a46ec62cc03d2dfa92c564199e1999bfb8ea6"
+        }
+      ],
+      "tree": "a6b81add7faf8a8b647afcdc54268615decde9b5",
+      "tree_status": "recorded"
+    }
+  },
+  "source_input_policy": {
+    "caller_supplies_local_paths": true,
+    "partial_source_set_reason": "REQUIRED_SOURCE_SET_INCOMPLETE",
+    "partial_source_set_state": "BLOCKED",
+    "raw_pinned_source_bytes_copied_to_corpus": false,
+    "verifier_network_fetch": false
+  },
+  "verification_request": {
+    "false_is_not_blocked": true,
+    "false_is_not_fail": true,
+    "field": "source_bound_verification_requested",
+    "metadata_only_when_false": true
+  },
+  "verifier": {
+    "architecture": "standalone_self_contained_v0.2",
+    "caller_supplies_local_source_paths": true,
+    "network_fetch": false,
+    "new_crypto_execution_required": false,
+    "path": "runtime/verify_qsv_mldsa_source_bound_acceptance_v0_2.py"
+  },
+  "version": "0.2"
+}

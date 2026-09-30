@@ -1,0 +1,1203 @@
+{
+  "$defs": {
+    "aggregate_summary": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "aggregate_state": {
+                "const": "PASS"
+              }
+            },
+            "required": [
+              "aggregate_state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "aggregate_reason_code": {
+                "const": "PASS"
+              },
+              "case_record_references": {
+                "prefixItems": [
+                  {
+                    "properties": {
+                      "record_path": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "record_sha256": {
+                        "$ref": "#/$defs/sha256"
+                      },
+                      "state": {
+                        "const": "PASS"
+                      }
+                    }
+                  },
+                  {
+                    "properties": {
+                      "record_path": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "record_sha256": {
+                        "$ref": "#/$defs/sha256"
+                      },
+                      "state": {
+                        "const": "PASS"
+                      }
+                    }
+                  },
+                  {
+                    "properties": {
+                      "record_path": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "record_sha256": {
+                        "$ref": "#/$defs/sha256"
+                      },
+                      "state": {
+                        "const": "PASS"
+                      }
+                    }
+                  },
+                  {
+                    "properties": {
+                      "record_path": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "record_sha256": {
+                        "$ref": "#/$defs/sha256"
+                      },
+                      "state": {
+                        "const": "PASS"
+                      }
+                    }
+                  },
+                  {
+                    "properties": {
+                      "record_path": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "record_sha256": {
+                        "$ref": "#/$defs/sha256"
+                      },
+                      "state": {
+                        "const": "PASS"
+                      }
+                    }
+                  },
+                  {
+                    "properties": {
+                      "record_path": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "record_sha256": {
+                        "$ref": "#/$defs/sha256"
+                      },
+                      "state": {
+                        "const": "PASS"
+                      }
+                    }
+                  }
+                ]
+              },
+              "global_f7_source_bound_acceptance": {
+                "const": true
+              },
+              "source_bound_acceptance_complete": {
+                "const": true
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "aggregate_state": {
+                "const": "FAIL"
+              }
+            },
+            "required": [
+              "aggregate_state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "aggregate_reason_code": {
+                "enum": [
+                  "CASE_FAILURE",
+                  "CASE_RECORD_BINDING_FAILURE",
+                  "CASE_IDENTITY_INTEGRITY_FAILURE"
+                ]
+              },
+              "global_f7_source_bound_acceptance": {
+                "const": false
+              },
+              "source_bound_acceptance_complete": {
+                "const": false
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "aggregate_state": {
+                "const": "NOT_COMPLETE"
+              }
+            },
+            "required": [
+              "aggregate_state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "aggregate_reason_code": {
+                "const": "NOT_COMPLETE"
+              },
+              "global_f7_source_bound_acceptance": {
+                "const": false
+              },
+              "source_bound_acceptance_complete": {
+                "const": false
+              }
+            }
+          }
+        }
+      ],
+      "properties": {
+        "aggregate_reason_code": {
+          "enum": [
+            "PASS",
+            "CASE_FAILURE",
+            "CASE_RECORD_BINDING_FAILURE",
+            "CASE_IDENTITY_INTEGRITY_FAILURE",
+            "NOT_COMPLETE"
+          ]
+        },
+        "aggregate_scoped": {
+          "const": true
+        },
+        "aggregate_state": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT_COMPLETE"
+          ]
+        },
+        "authority_binding": {
+          "const": {
+            "contract_path": "contracts/qsv-mldsa-source-bound-acceptance-contract-v0.2.json",
+            "contract_sha256": "3b3b844c364cc338f4e6c9cf24281cf850ff6a5bf6e051c34d3b6472e8909da3"
+          }
+        },
+        "case_record_references": {
+          "items": false,
+          "maxItems": 6,
+          "minItems": 6,
+          "prefixItems": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "case_identity": {
+                  "const": {
+                    "coordinates": {
+                      "tc_id": 1,
+                      "tg_id": 1
+                    },
+                    "expected_valid": false,
+                    "parameter_set": "ML-DSA-44",
+                    "primary": "tg1-tc1"
+                  }
+                },
+                "record_path": {
+                  "minLength": 1,
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "record_sha256": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/sha256"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "state": {
+                  "enum": [
+                    "PASS",
+                    "FAIL",
+                    "BLOCKED",
+                    "NOT_REQUESTED",
+                    "MISSING"
+                  ]
+                }
+              },
+              "required": [
+                "case_identity",
+                "record_path",
+                "record_sha256",
+                "state"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "case_identity": {
+                  "const": {
+                    "coordinates": {
+                      "tc_id": 3,
+                      "tg_id": 1
+                    },
+                    "expected_valid": true,
+                    "parameter_set": "ML-DSA-44",
+                    "primary": "tg1-tc3"
+                  }
+                },
+                "record_path": {
+                  "minLength": 1,
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "record_sha256": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/sha256"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "state": {
+                  "enum": [
+                    "PASS",
+                    "FAIL",
+                    "BLOCKED",
+                    "NOT_REQUESTED",
+                    "MISSING"
+                  ]
+                }
+              },
+              "required": [
+                "case_identity",
+                "record_path",
+                "record_sha256",
+                "state"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "case_identity": {
+                  "const": {
+                    "coordinates": {
+                      "tc_id": 31,
+                      "tg_id": 3
+                    },
+                    "expected_valid": false,
+                    "parameter_set": "ML-DSA-65",
+                    "primary": "tg3-tc31"
+                  }
+                },
+                "record_path": {
+                  "minLength": 1,
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "record_sha256": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/sha256"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "state": {
+                  "enum": [
+                    "PASS",
+                    "FAIL",
+                    "BLOCKED",
+                    "NOT_REQUESTED",
+                    "MISSING"
+                  ]
+                }
+              },
+              "required": [
+                "case_identity",
+                "record_path",
+                "record_sha256",
+                "state"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "case_identity": {
+                  "const": {
+                    "coordinates": {
+                      "tc_id": 33,
+                      "tg_id": 3
+                    },
+                    "expected_valid": true,
+                    "parameter_set": "ML-DSA-65",
+                    "primary": "tg3-tc33"
+                  }
+                },
+                "record_path": {
+                  "minLength": 1,
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "record_sha256": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/sha256"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "state": {
+                  "enum": [
+                    "PASS",
+                    "FAIL",
+                    "BLOCKED",
+                    "NOT_REQUESTED",
+                    "MISSING"
+                  ]
+                }
+              },
+              "required": [
+                "case_identity",
+                "record_path",
+                "record_sha256",
+                "state"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "case_identity": {
+                  "const": {
+                    "coordinates": {
+                      "tc_id": 61,
+                      "tg_id": 5
+                    },
+                    "expected_valid": false,
+                    "parameter_set": "ML-DSA-87",
+                    "primary": "tg5-tc61"
+                  }
+                },
+                "record_path": {
+                  "minLength": 1,
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "record_sha256": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/sha256"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "state": {
+                  "enum": [
+                    "PASS",
+                    "FAIL",
+                    "BLOCKED",
+                    "NOT_REQUESTED",
+                    "MISSING"
+                  ]
+                }
+              },
+              "required": [
+                "case_identity",
+                "record_path",
+                "record_sha256",
+                "state"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "case_identity": {
+                  "const": {
+                    "coordinates": {
+                      "tc_id": 63,
+                      "tg_id": 5
+                    },
+                    "expected_valid": true,
+                    "parameter_set": "ML-DSA-87",
+                    "primary": "tg5-tc63"
+                  }
+                },
+                "record_path": {
+                  "minLength": 1,
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "record_sha256": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/sha256"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "state": {
+                  "enum": [
+                    "PASS",
+                    "FAIL",
+                    "BLOCKED",
+                    "NOT_REQUESTED",
+                    "MISSING"
+                  ]
+                }
+              },
+              "required": [
+                "case_identity",
+                "record_path",
+                "record_sha256",
+                "state"
+              ],
+              "type": "object"
+            }
+          ],
+          "type": "array"
+        },
+        "case_scoped": {
+          "const": false
+        },
+        "claim_boundary": {
+          "const": {
+            "complete_acvp_coverage": false,
+            "complete_fips_204_conformance": false,
+            "fips_204_certification": false,
+            "implementation_independence_proven": false,
+            "mldsa_implementation_correctness": false,
+            "nist_validation": false
+          }
+        },
+        "coverage_manifest_binding": {
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "const": "manifest/qsv-mldsa-f7-sixcase-neutral-fixture-coverage-v0.1-manifest.json"
+            },
+            "sha256": {
+              "$ref": "#/$defs/sha256"
+            }
+          },
+          "required": [
+            "path",
+            "sha256"
+          ],
+          "type": "object"
+        },
+        "execution_boundary": {
+          "const": {
+            "network_fetch_performed": false,
+            "new_crypto_execution_performed": false
+          }
+        },
+        "expected_case_count": {
+          "const": 6
+        },
+        "fixture_scoped": {
+          "const": false
+        },
+        "global_f7_source_bound_acceptance": {
+          "type": "boolean"
+        },
+        "record_kind": {
+          "const": "aggregate_summary"
+        },
+        "schema": {
+          "const": "qsv.mldsa.source-bound-acceptance.v0.2"
+        },
+        "source_bound_acceptance_complete": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "schema",
+        "record_kind",
+        "authority_binding",
+        "case_scoped",
+        "fixture_scoped",
+        "aggregate_scoped",
+        "expected_case_count",
+        "case_record_references",
+        "aggregate_state",
+        "aggregate_reason_code",
+        "global_f7_source_bound_acceptance",
+        "source_bound_acceptance_complete",
+        "coverage_manifest_binding",
+        "execution_boundary",
+        "claim_boundary"
+      ],
+      "type": "object"
+    },
+    "case_acceptance": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "oneOf": [
+            {
+              "properties": {
+                "case_identity": {
+                  "const": {
+                    "coordinates": {
+                      "tc_id": 1,
+                      "tg_id": 1
+                    },
+                    "expected_valid": false,
+                    "parameter_set": "ML-DSA-44",
+                    "primary": "tg1-tc1"
+                  }
+                },
+                "published_fixture": {
+                  "const": {
+                    "path": "examples/qsv-mldsa-acvp-negative-canonical-v0.3.json",
+                    "sha256": "11c9d28a211d1545bd0ba9b83da4ce101fb6be0bcf815063d7af905962825602"
+                  }
+                }
+              },
+              "required": [
+                "case_identity",
+                "published_fixture"
+              ]
+            },
+            {
+              "properties": {
+                "case_identity": {
+                  "const": {
+                    "coordinates": {
+                      "tc_id": 3,
+                      "tg_id": 1
+                    },
+                    "expected_valid": true,
+                    "parameter_set": "ML-DSA-44",
+                    "primary": "tg1-tc3"
+                  }
+                },
+                "published_fixture": {
+                  "const": {
+                    "path": "examples/qsv-mldsa-acvp-positive-canonical-v0.3.json",
+                    "sha256": "18a3aa5087e48de31afaa7e717f81c9fa9e0fd4dfe29b659bae8aa9da763ef97"
+                  }
+                }
+              },
+              "required": [
+                "case_identity",
+                "published_fixture"
+              ]
+            },
+            {
+              "properties": {
+                "case_identity": {
+                  "const": {
+                    "coordinates": {
+                      "tc_id": 31,
+                      "tg_id": 3
+                    },
+                    "expected_valid": false,
+                    "parameter_set": "ML-DSA-65",
+                    "primary": "tg3-tc31"
+                  }
+                },
+                "published_fixture": {
+                  "const": {
+                    "path": "examples/qsv-mldsa-acvp-65-tg3-tc31-negative-canonical-v0.3.json",
+                    "sha256": "968f6d11bf5ad693671488f44db87b7f31889f96f285e5a6c842785f23abdfc4"
+                  }
+                }
+              },
+              "required": [
+                "case_identity",
+                "published_fixture"
+              ]
+            },
+            {
+              "properties": {
+                "case_identity": {
+                  "const": {
+                    "coordinates": {
+                      "tc_id": 33,
+                      "tg_id": 3
+                    },
+                    "expected_valid": true,
+                    "parameter_set": "ML-DSA-65",
+                    "primary": "tg3-tc33"
+                  }
+                },
+                "published_fixture": {
+                  "const": {
+                    "path": "examples/qsv-mldsa-acvp-65-tg3-tc33-positive-canonical-v0.3.json",
+                    "sha256": "82e84f15ca3b737a6bf61637e96dfbbcc45f89fa363c52fea31f381799ebeb29"
+                  }
+                }
+              },
+              "required": [
+                "case_identity",
+                "published_fixture"
+              ]
+            },
+            {
+              "properties": {
+                "case_identity": {
+                  "const": {
+                    "coordinates": {
+                      "tc_id": 61,
+                      "tg_id": 5
+                    },
+                    "expected_valid": false,
+                    "parameter_set": "ML-DSA-87",
+                    "primary": "tg5-tc61"
+                  }
+                },
+                "published_fixture": {
+                  "const": {
+                    "path": "examples/qsv-mldsa-acvp-87-tg5-tc61-negative-canonical-v0.3.json",
+                    "sha256": "f9d90e36ee0b7ee2e3120f9ff308b35e43a379f869f567cd5cfd1d2c1099ecfa"
+                  }
+                }
+              },
+              "required": [
+                "case_identity",
+                "published_fixture"
+              ]
+            },
+            {
+              "properties": {
+                "case_identity": {
+                  "const": {
+                    "coordinates": {
+                      "tc_id": 63,
+                      "tg_id": 5
+                    },
+                    "expected_valid": true,
+                    "parameter_set": "ML-DSA-87",
+                    "primary": "tg5-tc63"
+                  }
+                },
+                "published_fixture": {
+                  "const": {
+                    "path": "examples/qsv-mldsa-acvp-87-tg5-tc63-positive-canonical-v0.3.json",
+                    "sha256": "dce6dbf10856ab31010f40010eea6abad5837643b306b95e2d4fd21d941e4471"
+                  }
+                }
+              },
+              "required": [
+                "case_identity",
+                "published_fixture"
+              ]
+            }
+          ]
+        },
+        {
+          "if": {
+            "properties": {
+              "source_bound_verification_requested": {
+                "const": false
+              }
+            },
+            "required": [
+              "source_bound_verification_requested"
+            ]
+          },
+          "then": {
+            "properties": {
+              "reason_code": {
+                "const": "NOT_REQUESTED"
+              },
+              "regeneration": {
+                "properties": {
+                  "comparison_mode": {
+                    "const": null
+                  },
+                  "performed": {
+                    "const": false
+                  },
+                  "regenerated_fixture_match": {
+                    "const": null
+                  },
+                  "run1_equals_run2": {
+                    "const": null
+                  }
+                }
+              },
+              "source_bound_verification_state": {
+                "const": null
+              },
+              "source_files": {
+                "items": {
+                  "properties": {
+                    "observed_sha256": {
+                      "const": null
+                    },
+                    "verification_status": {
+                      "const": "NOT_VERIFIED"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "source_bound_verification_requested": {
+                "const": true
+              }
+            },
+            "required": [
+              "source_bound_verification_requested"
+            ]
+          },
+          "then": {
+            "properties": {
+              "source_bound_verification_state": {
+                "enum": [
+                  "PASS",
+                  "FAIL",
+                  "BLOCKED"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "source_bound_verification_state": {
+                "const": "PASS"
+              }
+            },
+            "required": [
+              "source_bound_verification_state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "fixture_metadata_validation": {
+                "const": "PASS"
+              },
+              "reason_code": {
+                "const": "PASS"
+              },
+              "regeneration": {
+                "properties": {
+                  "comparison_mode": {
+                    "const": "byte_identical_serialized_file_bytes"
+                  },
+                  "performed": {
+                    "const": true
+                  },
+                  "regenerated_fixture_match": {
+                    "const": true
+                  },
+                  "run1_equals_run2": {
+                    "const": true
+                  }
+                }
+              },
+              "source_bound_verification_requested": {
+                "const": true
+              },
+              "source_files": {
+                "items": {
+                  "properties": {
+                    "verification_status": {
+                      "const": "MATCH"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "properties": {
+        "authority_binding": {
+          "const": {
+            "contract_path": "contracts/qsv-mldsa-source-bound-acceptance-contract-v0.2.json",
+            "contract_sha256": "3b3b844c364cc338f4e6c9cf24281cf850ff6a5bf6e051c34d3b6472e8909da3"
+          }
+        },
+        "case_identity": {
+          "enum": [
+            {
+              "coordinates": {
+                "tc_id": 1,
+                "tg_id": 1
+              },
+              "expected_valid": false,
+              "parameter_set": "ML-DSA-44",
+              "primary": "tg1-tc1"
+            },
+            {
+              "coordinates": {
+                "tc_id": 3,
+                "tg_id": 1
+              },
+              "expected_valid": true,
+              "parameter_set": "ML-DSA-44",
+              "primary": "tg1-tc3"
+            },
+            {
+              "coordinates": {
+                "tc_id": 31,
+                "tg_id": 3
+              },
+              "expected_valid": false,
+              "parameter_set": "ML-DSA-65",
+              "primary": "tg3-tc31"
+            },
+            {
+              "coordinates": {
+                "tc_id": 33,
+                "tg_id": 3
+              },
+              "expected_valid": true,
+              "parameter_set": "ML-DSA-65",
+              "primary": "tg3-tc33"
+            },
+            {
+              "coordinates": {
+                "tc_id": 61,
+                "tg_id": 5
+              },
+              "expected_valid": false,
+              "parameter_set": "ML-DSA-87",
+              "primary": "tg5-tc61"
+            },
+            {
+              "coordinates": {
+                "tc_id": 63,
+                "tg_id": 5
+              },
+              "expected_valid": true,
+              "parameter_set": "ML-DSA-87",
+              "primary": "tg5-tc63"
+            }
+          ]
+        },
+        "case_scoped": {
+          "const": true
+        },
+        "claim_boundary": {
+          "const": {
+            "complete_acvp_coverage": false,
+            "complete_fips_204_conformance": false,
+            "fips_204_certification": false,
+            "implementation_independence_proven": false,
+            "mldsa_implementation_correctness": false,
+            "nist_validation": false
+          }
+        },
+        "execution_boundary": {
+          "const": {
+            "network_fetch_performed": false,
+            "new_crypto_execution_performed": false
+          }
+        },
+        "fixture_metadata_validation": {
+          "enum": [
+            "PASS",
+            "FAIL"
+          ]
+        },
+        "fixture_scoped": {
+          "const": true
+        },
+        "published_fixture": {
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "sha256": {
+              "$ref": "#/$defs/sha256"
+            }
+          },
+          "required": [
+            "path",
+            "sha256"
+          ],
+          "type": "object"
+        },
+        "reason_code": {
+          "enum": [
+            "NOT_REQUESTED",
+            "PASS",
+            "REQUIRED_SOURCE_SET_INCOMPLETE",
+            "SOURCE_INPUTS_SUPPLIED_WITHOUT_REQUEST",
+            "SOURCE_INACCESSIBLE",
+            "SOURCE_FILE_DIGEST_MISMATCH",
+            "SOURCE_AUTHORITY_MISMATCH",
+            "CASE_IDENTITY_MISMATCH",
+            "REGENERATION_EXECUTION_FAILURE",
+            "REGENERATION_NONDETERMINISTIC",
+            "REGENERATED_FIXTURE_MISMATCH",
+            "SOURCE_FAMILY_COMPARISON_POLICY_MISMATCH",
+            "FIXTURE_METADATA_VALIDATION_FAILED",
+            "PREREQUISITE_UNAVAILABLE",
+            "AUTHORITY_BINDING_MISMATCH",
+            "FIXTURE_NOT_COVERED_BY_SUCCESSOR"
+          ]
+        },
+        "record_kind": {
+          "const": "case_acceptance"
+        },
+        "regeneration": {
+          "additionalProperties": false,
+          "properties": {
+            "comparison_mode": {
+              "enum": [
+                "byte_identical_serialized_file_bytes",
+                null
+              ]
+            },
+            "performed": {
+              "type": "boolean"
+            },
+            "regenerated_fixture_match": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "run1_equals_run2": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "performed",
+            "comparison_mode",
+            "run1_equals_run2",
+            "regenerated_fixture_match"
+          ],
+          "type": "object"
+        },
+        "schema": {
+          "const": "qsv.mldsa.source-bound-acceptance.v0.2"
+        },
+        "source_authority": {
+          "const": {
+            "commit": "975de31eb83d87039ec88934fdc47d8c312b892d",
+            "repository": "https://github.com/usnistgov/ACVP-Server.git",
+            "source_family": "nist_acvp",
+            "tree": "a6b81add7faf8a8b647afcdc54268615decde9b5",
+            "tree_status": "recorded"
+          }
+        },
+        "source_bound_verification_requested": {
+          "type": "boolean"
+        },
+        "source_bound_verification_state": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "BLOCKED",
+            null
+          ]
+        },
+        "source_files": {
+          "allOf": [
+            {
+              "contains": {
+                "properties": {
+                  "role": {
+                    "const": "prompt"
+                  }
+                },
+                "required": [
+                  "role"
+                ]
+              },
+              "maxContains": 1,
+              "minContains": 1
+            },
+            {
+              "contains": {
+                "properties": {
+                  "role": {
+                    "const": "expected_results"
+                  }
+                },
+                "required": [
+                  "role"
+                ]
+              },
+              "maxContains": 1,
+              "minContains": 1
+            }
+          ],
+          "items": {
+            "oneOf": [
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "expected_sha256": {
+                    "const": "e2cba4589389756fa0bea1a7e6837138bf0a81f9d14234c9ee8f6d33caa1654e"
+                  },
+                  "observed_sha256": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/sha256"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "path": {
+                    "const": "gen-val/json-files/ML-DSA-sigVer-FIPS204/prompt.json"
+                  },
+                  "role": {
+                    "const": "prompt"
+                  },
+                  "verification_status": {
+                    "enum": [
+                      "MATCH",
+                      "MISMATCH",
+                      "MISSING",
+                      "NOT_VERIFIED"
+                    ]
+                  }
+                },
+                "required": [
+                  "role",
+                  "path",
+                  "expected_sha256",
+                  "observed_sha256",
+                  "verification_status"
+                ],
+                "type": "object"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "expected_sha256": {
+                    "const": "e1d84ef1b2f35196278ab0b0ed6a46ec62cc03d2dfa92c564199e1999bfb8ea6"
+                  },
+                  "observed_sha256": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/sha256"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "path": {
+                    "const": "gen-val/json-files/ML-DSA-sigVer-FIPS204/expectedResults.json"
+                  },
+                  "role": {
+                    "const": "expected_results"
+                  },
+                  "verification_status": {
+                    "enum": [
+                      "MATCH",
+                      "MISMATCH",
+                      "MISSING",
+                      "NOT_VERIFIED"
+                    ]
+                  }
+                },
+                "required": [
+                  "role",
+                  "path",
+                  "expected_sha256",
+                  "observed_sha256",
+                  "verification_status"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "schema",
+        "record_kind",
+        "authority_binding",
+        "case_scoped",
+        "fixture_scoped",
+        "source_bound_verification_requested",
+        "fixture_metadata_validation",
+        "source_authority",
+        "source_files",
+        "case_identity",
+        "regeneration",
+        "published_fixture",
+        "source_bound_verification_state",
+        "reason_code",
+        "execution_boundary",
+        "claim_boundary"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "$id": "urn:qsv:mldsa:source-bound-acceptance:0.2",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Fail-closed schema for future case-scoped source-bound acceptance records and aggregate six-case summaries. Schema publication does not constitute acceptance execution.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/case_acceptance"
+    },
+    {
+      "$ref": "#/$defs/aggregate_summary"
+    }
+  ],
+  "title": "QSV ML-DSA source-bound acceptance record v0.2"
+}

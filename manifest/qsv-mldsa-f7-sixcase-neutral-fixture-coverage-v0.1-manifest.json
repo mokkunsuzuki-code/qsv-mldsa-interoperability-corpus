@@ -1,0 +1,96 @@
+{
+  "authority_binding": {
+    "contract_path": "contracts/qsv-mldsa-source-bound-acceptance-contract-v0.2.json",
+    "contract_sha256": "3b3b844c364cc338f4e6c9cf24281cf850ff6a5bf6e051c34d3b6472e8909da3"
+  },
+  "cases": [
+    {
+      "case_identity": {
+        "coordinates": {
+          "tc_id": 1,
+          "tg_id": 1
+        },
+        "primary": "tg1-tc1"
+      },
+      "expected_valid": false,
+      "fixture_path": "examples/qsv-mldsa-acvp-negative-canonical-v0.3.json",
+      "fixture_sha256": "11c9d28a211d1545bd0ba9b83da4ce101fb6be0bcf815063d7af905962825602",
+      "parameter_set": "ML-DSA-44"
+    },
+    {
+      "case_identity": {
+        "coordinates": {
+          "tc_id": 3,
+          "tg_id": 1
+        },
+        "primary": "tg1-tc3"
+      },
+      "expected_valid": true,
+      "fixture_path": "examples/qsv-mldsa-acvp-positive-canonical-v0.3.json",
+      "fixture_sha256": "18a3aa5087e48de31afaa7e717f81c9fa9e0fd4dfe29b659bae8aa9da763ef97",
+      "parameter_set": "ML-DSA-44"
+    },
+    {
+      "case_identity": {
+        "coordinates": {
+          "tc_id": 31,
+          "tg_id": 3
+        },
+        "primary": "tg3-tc31"
+      },
+      "expected_valid": false,
+      "fixture_path": "examples/qsv-mldsa-acvp-65-tg3-tc31-negative-canonical-v0.3.json",
+      "fixture_sha256": "968f6d11bf5ad693671488f44db87b7f31889f96f285e5a6c842785f23abdfc4",
+      "parameter_set": "ML-DSA-65"
+    },
+    {
+      "case_identity": {
+        "coordinates": {
+          "tc_id": 33,
+          "tg_id": 3
+        },
+        "primary": "tg3-tc33"
+      },
+      "expected_valid": true,
+      "fixture_path": "examples/qsv-mldsa-acvp-65-tg3-tc33-positive-canonical-v0.3.json",
+      "fixture_sha256": "82e84f15ca3b737a6bf61637e96dfbbcc45f89fa363c52fea31f381799ebeb29",
+      "parameter_set": "ML-DSA-65"
+    },
+    {
+      "case_identity": {
+        "coordinates": {
+          "tc_id": 61,
+          "tg_id": 5
+        },
+        "primary": "tg5-tc61"
+      },
+      "expected_valid": false,
+      "fixture_path": "examples/qsv-mldsa-acvp-87-tg5-tc61-negative-canonical-v0.3.json",
+      "fixture_sha256": "f9d90e36ee0b7ee2e3120f9ff308b35e43a379f869f567cd5cfd1d2c1099ecfa",
+      "parameter_set": "ML-DSA-87"
+    },
+    {
+      "case_identity": {
+        "coordinates": {
+          "tc_id": 63,
+          "tg_id": 5
+        },
+        "primary": "tg5-tc63"
+      },
+      "expected_valid": true,
+      "fixture_path": "examples/qsv-mldsa-acvp-87-tg5-tc63-positive-canonical-v0.3.json",
+      "fixture_sha256": "dce6dbf10856ab31010f40010eea6abad5837643b306b95e2d4fd21d941e4471",
+      "parameter_set": "ML-DSA-87"
+    }
+  ],
+  "meaning": "published_neutral_fixture_authority_exists_for_exact_six_selected_f7_acvp_cases",
+  "schema": "qsv.mldsa.f7-sixcase-neutral-fixture-coverage-manifest.v0.1",
+  "semantics": {
+    "crypto_correctness": false,
+    "fips_certification": false,
+    "nist_validation": false,
+    "published_neutral_fixture_authority": true,
+    "source_bound_acceptance": false
+  },
+  "version": "0.1"
+}
