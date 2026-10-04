@@ -1,0 +1,128 @@
+{
+  "aggregate_summary": {
+    "case_record_reference_policy": "path_plus_sha256_observed_after_execution",
+    "path": "results/qsv_mldsa_f7_source_bound_acceptance_evidence_v0_1/qsv_mldsa_f7_source_bound_acceptance_aggregate_summary_v0_1.json",
+    "record_kind": "aggregate_summary"
+  },
+  "authority_role": "DEDICATED_APPEND_ONLY_EVIDENCE_PATH_AUTHORITY_MANIFEST",
+  "bound_authorities": {
+    "coverage_manifest": {
+      "path": "manifest/qsv-mldsa-f7-sixcase-neutral-fixture-coverage-v0.1-manifest.json",
+      "sha256": "1d88dbc902e5ed568b06fd9e8e001fc61afb3c8b514e70e540db289a47b9b23a"
+    },
+    "source_bound_acceptance_contract": {
+      "path": "contracts/qsv-mldsa-source-bound-acceptance-contract-v0.2.json",
+      "sha256": "3b3b844c364cc338f4e6c9cf24281cf850ff6a5bf6e051c34d3b6472e8909da3"
+    },
+    "source_bound_acceptance_schema": {
+      "path": "schemas/qsv-mldsa-source-bound-acceptance-v0.2.schema.json",
+      "sha256": "37c2e0e88dc54f4eb5b0e00972d05f4fb42a2c8524fd0b863fe0adc745d1c606"
+    },
+    "source_bound_acceptance_verifier": {
+      "path": "runtime/verify_qsv_mldsa_source_bound_acceptance_v0_2.py",
+      "sha256": "c780b246475868f41c928e00f8dbe25a0c429e664a1d24c9b6aaf404fb4aecd7"
+    }
+  },
+  "case_records": [
+    {
+      "expected_valid": false,
+      "parameter_set": "ML-DSA-44",
+      "path": "results/qsv_mldsa_f7_source_bound_acceptance_evidence_v0_1/qsv_mldsa_f7_source_bound_acceptance_case_mldsa44_tg1_tc1_v0_1.json",
+      "record_kind": "case_acceptance",
+      "tc_id": 1,
+      "tg_id": 1
+    },
+    {
+      "expected_valid": true,
+      "parameter_set": "ML-DSA-44",
+      "path": "results/qsv_mldsa_f7_source_bound_acceptance_evidence_v0_1/qsv_mldsa_f7_source_bound_acceptance_case_mldsa44_tg1_tc3_v0_1.json",
+      "record_kind": "case_acceptance",
+      "tc_id": 3,
+      "tg_id": 1
+    },
+    {
+      "expected_valid": false,
+      "parameter_set": "ML-DSA-65",
+      "path": "results/qsv_mldsa_f7_source_bound_acceptance_evidence_v0_1/qsv_mldsa_f7_source_bound_acceptance_case_mldsa65_tg3_tc31_v0_1.json",
+      "record_kind": "case_acceptance",
+      "tc_id": 31,
+      "tg_id": 3
+    },
+    {
+      "expected_valid": true,
+      "parameter_set": "ML-DSA-65",
+      "path": "results/qsv_mldsa_f7_source_bound_acceptance_evidence_v0_1/qsv_mldsa_f7_source_bound_acceptance_case_mldsa65_tg3_tc33_v0_1.json",
+      "record_kind": "case_acceptance",
+      "tc_id": 33,
+      "tg_id": 3
+    },
+    {
+      "expected_valid": false,
+      "parameter_set": "ML-DSA-87",
+      "path": "results/qsv_mldsa_f7_source_bound_acceptance_evidence_v0_1/qsv_mldsa_f7_source_bound_acceptance_case_mldsa87_tg5_tc61_v0_1.json",
+      "record_kind": "case_acceptance",
+      "tc_id": 61,
+      "tg_id": 5
+    },
+    {
+      "expected_valid": true,
+      "parameter_set": "ML-DSA-87",
+      "path": "results/qsv_mldsa_f7_source_bound_acceptance_evidence_v0_1/qsv_mldsa_f7_source_bound_acceptance_case_mldsa87_tg5_tc63_v0_1.json",
+      "record_kind": "case_acceptance",
+      "tc_id": 63,
+      "tg_id": 5
+    }
+  ],
+  "implementation_file_impact": {
+    "may_create": [],
+    "may_modify": [],
+    "must_create": [
+      "manifest/qsv-mldsa-f7-source-bound-acceptance-evidence-path-authority-v0.1-manifest.json",
+      "manifest/qsv-mldsa-f7-source-bound-acceptance-evidence-path-authority-v0.1-manifest.json.sha256",
+      "runtime/verify_qsv_mldsa_f7_source_bound_acceptance_evidence_path_authority_v0_1.py",
+      "runtime/verify_qsv_mldsa_f7_source_bound_acceptance_evidence_path_authority_v0_1.py.sha256"
+    ],
+    "must_modify": [],
+    "must_not_modify_predecessor_tracked_path_count": 160
+  },
+  "path_policy": {
+    "aggregate_binds_case_record_paths": true,
+    "aggregate_binds_case_record_sha256": true,
+    "digest_dependency_acyclic": true,
+    "digest_dependency_direction": "PUBLIC_PATH_AUTHORITY_TO_CASE_RECORDS_TO_AGGREGATE_SUMMARY",
+    "exact_path_enumeration_required": true,
+    "future_evidence_digest_predeclared": false,
+    "future_result_predeclared": false,
+    "no_extra_path_authority": true,
+    "path_authority_must_be_public_before_acceptance_execution": true,
+    "repository_relative_normalized_posix": true,
+    "result_independent": true
+  },
+  "predecessor_public_authority": {
+    "commit": "075f4616eb86f4331ca403f0382c5c1e957a3275",
+    "tree": "1bbe87847471d5af308475daebd86fe01d9e7139"
+  },
+  "publication_semantics": {
+    "path_authority_publication_implies_acceptance_execution": false,
+    "path_authority_publication_implies_acceptance_pass": false,
+    "path_authority_publication_implies_evidence_publication": false
+  },
+  "record_model": {
+    "aggregate_summary_count": 1,
+    "case_record_count": 6,
+    "future_evidence_publication_file_count": 14,
+    "total_semantic_record_count": 7
+  },
+  "relationship_to_v0_2": "APPEND_ONLY_EVIDENCE_PATH_AUTHORITY_EXTENSION",
+  "schema": "qsv.mldsa.f7.source-bound-acceptance-evidence-path-authority.v0.1",
+  "semantic_relationship": "extends_without_modifying",
+  "sidecar_policy": {
+    "aggregate_summary_sidecar_required": true,
+    "case_record_sidecar_required": true,
+    "hash_algorithm": "SHA-256",
+    "path_authority_sidecar_required": true,
+    "path_authority_verifier_sidecar_required": true,
+    "sidecar_format": "SHA256_TWO_SPACES_REPOSITORY_RELATIVE_PATH_LF"
+  },
+  "version": "0.1"
+}
