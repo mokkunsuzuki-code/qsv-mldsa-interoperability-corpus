@@ -1,0 +1,136 @@
+{
+  "authority_role": "PREDECESSOR_BOUND_CONSUMER_ENVIRONMENT_BINDING_AUTHORITY",
+  "bound_existing_authorities": {
+    "acceptance_evidence_path_authority": {
+      "path": "manifest/qsv-mldsa-f7-source-bound-acceptance-evidence-path-authority-v0.1-manifest.json",
+      "sha256": "0a6c5ba367a37a1e3bbb4ab65804577abb7f0b6c6a126e949c7431010bfa5bc3"
+    },
+    "consumer_schema": {
+      "path": "schemas/qsv-mldsa-consumer-identity-v0.1.schema.json",
+      "sha256": "061324daf9db8cba868d3d863316c3a108dfc581f8cbf570d0cf062ef62c9ef3"
+    },
+    "exact_invocation_launcher": {
+      "path": "runtime/run_qsv_mldsa_f7_source_bound_acceptance_with_python_authority_v0_1.py",
+      "sha256": "803f526abd3a00f163118cd54831aba2b2924de17bfab473410c99b274734fc7"
+    },
+    "normalized_result_adapter": {
+      "path": "runtime/qsv_mldsa_normalized_result_adapter_v0_1.py",
+      "sha256": "5a9adeeb92eef28abd5f3d5a6be516f886c7f8b8b656dfbddfb83e66ed9655e8"
+    },
+    "normalized_result_evidence": {
+      "path": "results/qsv_mldsa_f7_normalized_result_evidence_v0_1/qsv_mldsa_f7_normalized_result_evidence_v0_1.json",
+      "sha256": "fa549e10ec79e0de4f79c516a7eacc5ed937de0a6defde7769efea3dd57e2335"
+    },
+    "prospective_python_execution_authority": {
+      "path": "contracts/qsv-mldsa-f7-prospective-python-execution-authority-v0.1.json",
+      "sha256": "56747f65425912c0dc776e35645e779dc2c88c7728826fd7d802adb443731056"
+    },
+    "prospective_python_execution_authority_capture_controller": {
+      "path": "runtime/capture_qsv_mldsa_f7_prospective_python_execution_authority_v0_1.py",
+      "sha256": "dde403229c7ccc9a67770910050398d3eb2df73a24643721369ec770d7b18047"
+    },
+    "runtime_invocation_evidence": {
+      "path": "results/qsv_mldsa_f7_runtime_invocation_evidence_v0_1/qsv_mldsa_f7_runtime_invocation_evidence_v0_1.job-bound.json",
+      "sha256": "0a5f8da64736deab407e76a35db40a5badff9018f1c1e8f5c49f1cfeba5d42b0"
+    },
+    "six_case_coverage_manifest": {
+      "path": "manifest/qsv-mldsa-f7-sixcase-neutral-fixture-coverage-v0.1-manifest.json",
+      "sha256": "1d88dbc902e5ed568b06fd9e8e001fc61afb3c8b514e70e540db289a47b9b23a"
+    },
+    "source_bound_acceptance_contract": {
+      "path": "contracts/qsv-mldsa-source-bound-acceptance-contract-v0.2.json",
+      "sha256": "3b3b844c364cc338f4e6c9cf24281cf850ff6a5bf6e051c34d3b6472e8909da3"
+    },
+    "source_bound_acceptance_schema": {
+      "path": "schemas/qsv-mldsa-source-bound-acceptance-v0.2.schema.json",
+      "sha256": "37c2e0e88dc54f4eb5b0e00972d05f4fb42a2c8524fd0b863fe0adc745d1c606"
+    },
+    "source_bound_acceptance_verifier": {
+      "path": "runtime/verify_qsv_mldsa_source_bound_acceptance_v0_2.py",
+      "sha256": "c780b246475868f41c928e00f8dbe25a0c429e664a1d24c9b6aaf404fb4aecd7"
+    },
+    "source_lineage_binding": {
+      "path": "lineage/bindings/qsv-mldsa-implementation-source-lineage-v0.1.json",
+      "sha256": "bead53b3ca4f475ead06d5d1c5ba99cfd98ed69c5e59cec7e62d88723325c289"
+    }
+  },
+  "consumer_authorities": [
+    {
+      "implementation_id": "openssl",
+      "path": "manifest/qsv-mldsa-f7-consumer-identity-openssl-v0.1.json",
+      "sha256": "20a5adb3b789051fafcb65423ec7219a25ae6462574bd29245de598d9b39889d",
+      "source_to_runtime_status": "incomplete"
+    },
+    {
+      "implementation_id": "cloudflare-circl",
+      "path": "manifest/qsv-mldsa-f7-consumer-identity-cloudflare-circl-v0.1.json",
+      "sha256": "45e418dc68a065eac6381639efc7764ce99ff86ebd1e4f4b6f2795526c76295d",
+      "source_to_runtime_status": "incomplete"
+    }
+  ],
+  "execution_environment_authority": {
+    "path": "contracts/qsv-mldsa-f7-source-bound-execution-environment-authority-v0.1.json",
+    "sha256": "cba9a668bb0218e1702179d040603968d634d9a1406e1bc7cefba3b8d86e22b2"
+  },
+  "execution_scope": {
+    "algorithm": "ML-DSA",
+    "consumer_cardinality": "ONE_CONSUMER_PER_IMPLEMENTATION",
+    "historical_process_invocation_count": 12,
+    "implementation_count": 2,
+    "operation": "sigVer",
+    "required_consumers": [
+      "openssl",
+      "cloudflare-circl"
+    ],
+    "selected_case_count": 6,
+    "silent_scope_reduction_allowed": false
+  },
+  "existing_output_path_authority": {
+    "path": "manifest/qsv-mldsa-f7-source-bound-acceptance-evidence-path-authority-v0.1-manifest.json",
+    "reusable": true,
+    "sha256": "0a6c5ba367a37a1e3bbb4ab65804577abb7f0b6c6a126e949c7431010bfa5bc3"
+  },
+  "predecessor_public_authority": {
+    "commit": "00f0d3cfbc6f6fef2e9eb3cec450dbe9af76497a",
+    "tree": "b7603a2cc969ca171b3f43425b33f6d6f413ce25"
+  },
+  "publication_semantics": {
+    "binding_authority_implies_crypto_execution": false,
+    "binding_authority_implies_source_bound_acceptance_execution": false,
+    "binding_authority_implies_source_bound_acceptance_pass": false
+  },
+  "relationship_to_v0_2": "SUPPLEMENTAL_PRE_EXECUTION_GATE",
+  "result_independence": {
+    "consumer_authority_result_independent": true,
+    "dependency_acyclic": true,
+    "environment_authority_result_independent": true,
+    "future_evidence_hash_precommitment": false
+  },
+  "schema": "qsv.mldsa.f7.consumer-environment-binding-authority.v0.1",
+  "semantic_relationship": "extends_without_modifying",
+  "source_acquisition_policy": {
+    "commit": "975de31eb83d87039ec88934fdc47d8c312b892d",
+    "expected_results": {
+      "path": "gen-val/json-files/ML-DSA-sigVer-FIPS204/expectedResults.json",
+      "sha256": "e1d84ef1b2f35196278ab0b0ed6a46ec62cc03d2dfa92c564199e1999bfb8ea6"
+    },
+    "github_api_required": false,
+    "latest_branch_substitution_allowed": false,
+    "latest_tag_substitution_allowed": false,
+    "method": "CANONICAL_GIT_EXACT_COMMIT_FETCH_IN_EPHEMERAL_EXTERNAL_AUDIT_REPOSITORY",
+    "prompt": {
+      "path": "gen-val/json-files/ML-DSA-sigVer-FIPS204/prompt.json",
+      "sha256": "e2cba4589389756fa0bea1a7e6837138bf0a81f9d14234c9ee8f6d33caa1654e"
+    },
+    "repository": "https://github.com/usnistgov/ACVP-Server.git",
+    "tree": "a6b81add7faf8a8b647afcdc54268615decde9b5",
+    "unbound_mirror_allowed": false,
+    "unproven_local_cache_allowed": false
+  },
+  "supplemental_verifier": {
+    "digest_predeclared": false,
+    "path": "runtime/verify_qsv_mldsa_f7_consumer_environment_binding_authority_v0_1.py",
+    "sidecar_path": "runtime/verify_qsv_mldsa_f7_consumer_environment_binding_authority_v0_1.py.sha256"
+  },
+  "version": "0.1"
+}

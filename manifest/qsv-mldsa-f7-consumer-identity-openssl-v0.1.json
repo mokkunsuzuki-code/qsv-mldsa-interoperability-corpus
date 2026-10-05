@@ -1,0 +1,33 @@
+{
+  "consumer": {
+    "adapter_identity": {
+      "path": "runtime/qsv_mldsa_normalized_result_adapter_v0_1.py",
+      "schema_version": "0.1",
+      "sha256": "5a9adeeb92eef28abd5f3d5a6be516f886c7f8b8b656dfbddfb83e66ed9655e8"
+    },
+    "identity_basis": "runtime_version_and_source_commit",
+    "implementation_id": "openssl",
+    "lineage": {
+      "binding_path": "lineage/bindings/qsv-mldsa-implementation-source-lineage-v0.1.json",
+      "binding_sha256": "bead53b3ca4f475ead06d5d1c5ba99cfd98ed69c5e59cec7e62d88723325c289",
+      "equivalence_class": "historical-f7-openssl-v0.1",
+      "implementation_id": "openssl"
+    },
+    "repository": "https://github.com/openssl/openssl.git",
+    "runtime_identity": {
+      "executable_sha256": "07978755211bffcfe57f28ce6354292245a3a0af08d247c617c3f36378aa6b93",
+      "version": "3.6.3"
+    },
+    "source_identity": {
+      "commit": "aae016bfd52fcad2bc9657c2c782cfdf73b1ed5f",
+      "tree": "a8a306c000bc2426afd3264b2c41bc7223728475",
+      "version": "3.6.3"
+    },
+    "source_to_runtime_binding": {
+      "evidence_path": "lineage/bindings/qsv-mldsa-implementation-source-lineage-v0.1.json",
+      "evidence_sha256": "bead53b3ca4f475ead06d5d1c5ba99cfd98ed69c5e59cec7e62d88723325c289",
+      "status": "incomplete"
+    }
+  },
+  "schema": "qsv.mldsa.consumer-identity.v0.1"
+}

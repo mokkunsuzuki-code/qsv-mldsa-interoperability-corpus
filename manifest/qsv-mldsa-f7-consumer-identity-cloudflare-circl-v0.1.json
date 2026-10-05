@@ -1,0 +1,33 @@
+{
+  "consumer": {
+    "adapter_identity": {
+      "path": "runtime/qsv_mldsa_normalized_result_adapter_v0_1.py",
+      "schema_version": "0.1",
+      "sha256": "5a9adeeb92eef28abd5f3d5a6be516f886c7f8b8b656dfbddfb83e66ed9655e8"
+    },
+    "identity_basis": "runtime_version_and_source_commit",
+    "implementation_id": "cloudflare-circl",
+    "lineage": {
+      "binding_path": "lineage/bindings/qsv-mldsa-implementation-source-lineage-v0.1.json",
+      "binding_sha256": "bead53b3ca4f475ead06d5d1c5ba99cfd98ed69c5e59cec7e62d88723325c289",
+      "equivalence_class": "historical-f7-cloudflare-circl-v0.1",
+      "implementation_id": "cloudflare-circl"
+    },
+    "repository": "https://github.com/cloudflare/circl.git",
+    "runtime_identity": {
+      "executable_sha256": "b53ca61dd665f628770a2d2326e3b335ea35bc2a18f5dbfd2a23374064c230c0",
+      "version": "git:cfa7c70defd831ffb0792ab2af560bfef43d60ca"
+    },
+    "source_identity": {
+      "commit": "cfa7c70defd831ffb0792ab2af560bfef43d60ca",
+      "tree": "b3a50c3f1b7a5f8cfac0cce655ae7ea7900e9139",
+      "version": null
+    },
+    "source_to_runtime_binding": {
+      "evidence_path": "lineage/bindings/qsv-mldsa-implementation-source-lineage-v0.1.json",
+      "evidence_sha256": "bead53b3ca4f475ead06d5d1c5ba99cfd98ed69c5e59cec7e62d88723325c289",
+      "status": "incomplete"
+    }
+  },
+  "schema": "qsv.mldsa.consumer-identity.v0.1"
+}

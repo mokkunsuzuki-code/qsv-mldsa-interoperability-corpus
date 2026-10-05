@@ -1,0 +1,86 @@
+{
+  "captured": {
+    "candidate": {
+      "implementation_cross_check": "PASS",
+      "invocation_path": "/Users/motohiro/.pyenv/versions/3.10.14/bin/python3.10",
+      "invocation_path_is_symlink": false,
+      "platform_python_implementation": "CPython",
+      "platform_python_version": "3.10.14",
+      "resolved_executable_mode": "0755",
+      "resolved_executable_path": "/Users/motohiro/.pyenv/versions/3.10.14/bin/python3.10",
+      "resolved_executable_regular_file": true,
+      "resolved_executable_sha256": "094f3e91845a17d403c59b020b877e3845b205cbb431e50032cce346e04d8e6a",
+      "resolved_executable_size": 33816,
+      "symlink_target_if_any": null,
+      "sys_executable_realpath": "/Users/motohiro/.pyenv/versions/3.10.14/bin/python3.10",
+      "sys_implementation_name": "cpython",
+      "version_cross_check": "PASS",
+      "version_info": [
+        3,
+        10,
+        14
+      ]
+    },
+    "environment": {
+      "recorded": {
+        "LANG": "C.UTF-8",
+        "LC_ALL": null,
+        "PYTHONHASHSEED": null,
+        "PYTHONWARNINGS": null,
+        "TZ": null
+      },
+      "required": {
+        "PYTHONDONTWRITEBYTECODE": "MUST_BE_FIXED_TO_1",
+        "PYTHONHOME": "MUST_BE_ABSENT",
+        "PYTHONINSPECT": "MUST_BE_ABSENT",
+        "PYTHONPATH": "MUST_BE_ABSENT",
+        "PYTHONSTARTUP": "MUST_BE_ABSENT",
+        "QSV_EXECUTE_CRYPTO": "MUST_BE_ABSENT"
+      }
+    },
+    "repository": {
+      "predecessor_commit": "00f0d3cfbc6f6fef2e9eb3cec450dbe9af76497a",
+      "predecessor_parent": "075f4616eb86f4331ca403f0382c5c1e957a3275",
+      "predecessor_tree": "b7603a2cc969ca171b3f43425b33f6d6f413ce25",
+      "repository_root": "/Users/motohiro/Desktop/test/qsv-mldsa-interoperability-corpus-development"
+    }
+  },
+  "execution_boundary": {
+    "crypto_execution_authorized": false,
+    "network_required_for_authority_capture": false,
+    "network_required_for_authority_verification": false,
+    "source_bound_acceptance_authorized": false,
+    "source_regeneration_authorized": false
+  },
+  "historical_claim_boundary": {
+    "historical_runtime_fact_equals_future_execution_requirement": false,
+    "public_historical_python_implementation_authority": "UNRESOLVED",
+    "public_historical_python_version_evidence": "Python 3.12.3",
+    "retroactive_cpython_claim_allowed": false
+  },
+  "historical_f7_implementation_claimed": false,
+  "non_guarantees": {
+    "executable_sha256_is_complete_runtime_provenance": false,
+    "full_python_build_provenance_proven": false,
+    "global_path_portability_claimed": false,
+    "historical_f7_python_implementation_resolved": false,
+    "local_interpreter_persistence_guaranteed": false,
+    "python_source_to_runtime_provenance_proven": false
+  },
+  "prospective": true,
+  "retroactive_claim": false,
+  "role": "PROSPECTIVE_PRE_EXECUTION_PYTHON_EXECUTION_AUTHORITY",
+  "schema_version": "0.1",
+  "selection_policy": {
+    "classification": "PROSPECTIVE_NORMATIVE_PROJECT_POLICY",
+    "global_python_interpreter_minimum_claimed": false,
+    "historical_f7_runtime_match_used_as_selection_authority": false,
+    "name": "MINIMUM_SUFFICIENT_EXECUTION_BASELINE",
+    "premature_artifact_match_used_as_selection_authority": false,
+    "project_declared_minimum_feature_baseline": "PYTHON_3_10_COMPATIBLE",
+    "proven_global_minimum_python_version": false,
+    "purpose": "MINIMIZE_UNNECESSARY_RUNTIME_VERSION_ASSUMPTIONS",
+    "selection_domain": "EVALUATED_LOCAL_DIRECT_INTERPRETER_CANDIDATE_SET"
+  },
+  "subject": "EXPLICIT_CANDIDATE_INTERPRETER_RUNTIME_IDENTITY_AND_RESOLVED_EXECUTABLE_IDENTITY_FOR_FUTURE_SB2R_ACCEPTANCE"
+}

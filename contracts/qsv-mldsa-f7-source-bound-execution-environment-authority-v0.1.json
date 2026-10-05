@@ -1,0 +1,94 @@
+{
+  "acceptance_components": {
+    "mapper": {
+      "path": "runtime/qsv_mldsa_acvp_to_neutral_fixture_mapper_v0_1.py",
+      "sha256": "e5b3b5a7ad061b29e09b14e9dbb9d777e542ed0db98230776e5878a00a18e094"
+    },
+    "verifier": {
+      "path": "runtime/verify_qsv_mldsa_source_bound_acceptance_v0_2.py",
+      "sha256": "c780b246475868f41c928e00f8dbe25a0c429e664a1d24c9b6aaf404fb4aecd7"
+    }
+  },
+  "authority_role": "SOURCE_BOUND_EXECUTION_ENVIRONMENT_AUTHORITY",
+  "environment_policy": {
+    "mapper_injected": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "must_be_absent": [
+      "QSV_EXECUTE_CRYPTO"
+    ],
+    "other_inherited_variables_normative": false,
+    "secret_dependency_count": 0
+  },
+  "execution_semantics": {
+    "acceptance_computation_network_required": false,
+    "cpu_arch_authority_required": false,
+    "os_authority_required": false,
+    "subprocess_shell": false,
+    "working_directory": "QSV_REPOSITORY_ROOT_AT_PUBLISHED_AUTHORITY",
+    "working_directory_required": true
+  },
+  "predecessor_public_authority": {
+    "commit": "00f0d3cfbc6f6fef2e9eb3cec450dbe9af76497a",
+    "tree": "b7603a2cc969ca171b3f43425b33f6d6f413ce25"
+  },
+  "publication_semantics": {
+    "environment_authority_implies_acceptance_execution": false,
+    "environment_authority_implies_acceptance_pass": false,
+    "environment_authority_implies_crypto_execution": false
+  },
+  "python_authority": {
+    "authority_model": "BOUND_PROSPECTIVE_PYTHON_EXECUTION_AUTHORITY",
+    "authority_path": "contracts/qsv-mldsa-f7-prospective-python-execution-authority-v0.1.json",
+    "authority_sha256": "56747f65425912c0dc776e35645e779dc2c88c7728826fd7d802adb443731056",
+    "claim_boundary": {
+      "environment_authority_independently_proves_python_identity": false,
+      "prospective_authority_binding_is_historical_fact": false,
+      "prospective_candidate_identity_applies_to_future_sb2r_execution_only": true
+    },
+    "historical_f7_boundary": {
+      "historical_f7_implementation_claimed": false,
+      "historical_f7_python_version_rewritten": false,
+      "historical_runtime_fact_equals_future_execution_requirement": false,
+      "public_historical_python_implementation_authority": "UNRESOLVED",
+      "public_historical_python_version_evidence": "Python 3.12.3",
+      "retroactive_cpython_claim_allowed": false
+    },
+    "project_declared_minimum_feature_baseline": "PYTHON_3_10_COMPATIBLE",
+    "required_authority_role": "PROSPECTIVE_PRE_EXECUTION_PYTHON_EXECUTION_AUTHORITY",
+    "required_historical_f7_implementation_claimed": false,
+    "required_prospective": true,
+    "required_retroactive_claim": false,
+    "selection_policy": "MINIMUM_SUFFICIENT_EXECUTION_BASELINE"
+  },
+  "python_dependencies": {
+    "repository_local": [
+      {
+        "path": "runtime/qsv_mldsa_acvp_to_neutral_fixture_mapper_v0_1.py",
+        "sha256": "e5b3b5a7ad061b29e09b14e9dbb9d777e542ed0db98230776e5878a00a18e094"
+      }
+    ],
+    "stdlib": [
+      "argparse",
+      "copy",
+      "hashlib",
+      "json",
+      "os",
+      "pathlib",
+      "re",
+      "subprocess",
+      "sys",
+      "tempfile"
+    ],
+    "third_party": []
+  },
+  "schema": "qsv.mldsa.f7.source-bound-execution-environment-authority.v0.1",
+  "semantic_relationship": "extends_without_modifying",
+  "source_acquisition_separation": {
+    "acquisition_external_to_acceptance_computation": true,
+    "api_rate_limit_dependent": false,
+    "github_api_required": false,
+    "selected_method": "CANONICAL_GIT_EXACT_COMMIT_FETCH_IN_EPHEMERAL_EXTERNAL_AUDIT_REPOSITORY"
+  },
+  "version": "0.1"
+}
