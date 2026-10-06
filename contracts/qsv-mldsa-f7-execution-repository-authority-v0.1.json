@@ -1,0 +1,75 @@
+{
+  "authority_role": "SOURCE_BOUND_EXECUTION_REPOSITORY_AUTHORITY",
+  "binding_manifest": {
+    "path": "manifest/qsv-mldsa-f7-consumer-environment-binding-authority-v0.1-manifest.json",
+    "sha256": "0c11378155fb948ef86d9f2b8bae1719e99c8fb5d719ab5dab4e6f20dab81b42"
+  },
+  "control_repository": {
+    "commit": "3ecc0137965a93847180efb2f02eb5d1ea80af1b",
+    "repository": "https://github.com/mokkunsuzuki-code/qsv-mldsa-interoperability-corpus.git",
+    "tree": "cbe6b1fa23b4e1855a6313f2bc2c46037220cf0b"
+  },
+  "execution_environment_authority": {
+    "path": "contracts/qsv-mldsa-f7-source-bound-execution-environment-authority-v0.1.json",
+    "sha256": "cba9a668bb0218e1702179d040603968d634d9a1406e1bc7cefba3b8d86e22b2"
+  },
+  "execution_semantics": {
+    "acceptance_verifier_network_access_required": false,
+    "control_target_separate_physical_clones_required": true,
+    "launcher_network_access_required": false,
+    "new_crypto_execution_required": false,
+    "output_overwrite_allowed": false,
+    "qsv_execute_crypto_must_be_absent": true,
+    "r2_containing_commit_embedded": false,
+    "r2_publication_commit_supplied_externally": true,
+    "seven_output_absence_required": true,
+    "target_pre_execution_clean_required": true
+  },
+  "historical_claim_boundary": {
+    "prospective_python_applies_to_future_sb2r_only": true,
+    "public_historical_python_implementation_authority": "UNRESOLVED",
+    "public_historical_python_version_evidence": "Python 3.12.3",
+    "retroactive_cpython_claim_allowed": false,
+    "source_to_runtime_provenance_completed": false
+  },
+  "launcher": {
+    "path": "runtime/run_qsv_mldsa_f7_source_bound_acceptance_with_python_authority_v0_2.py",
+    "sha256": "ad5693767b8168d8e5b95b10e177ed643d06c8b3f26824c0e2cce2ce22cd2add"
+  },
+  "path_authority": {
+    "path": "manifest/qsv-mldsa-f7-source-bound-acceptance-evidence-path-authority-v0.1-manifest.json",
+    "sha256": "0a6c5ba367a37a1e3bbb4ab65804577abb7f0b6c6a126e949c7431010bfa5bc3"
+  },
+  "prospective_python_authority": {
+    "path": "contracts/qsv-mldsa-f7-prospective-python-execution-authority-v0.1.json",
+    "sha256": "56747f65425912c0dc776e35645e779dc2c88c7728826fd7d802adb443731056"
+  },
+  "publication_semantics": {
+    "authority_publication_implies_acceptance_execution": false,
+    "authority_publication_implies_acceptance_pass": false,
+    "authority_publication_implies_crypto_execution": false
+  },
+  "schema": "qsv.mldsa.f7.execution-repository-authority.v0.1",
+  "selected_scope_authority": {
+    "path": "manifest/qsv-mldsa-f7-sixcase-neutral-fixture-coverage-v0.1-manifest.json",
+    "sha256": "1d88dbc902e5ed568b06fd9e8e001fc61afb3c8b514e70e540db289a47b9b23a"
+  },
+  "source_bound_acceptance_contract": {
+    "path": "contracts/qsv-mldsa-source-bound-acceptance-contract-v0.2.json",
+    "sha256": "3b3b844c364cc338f4e6c9cf24281cf850ff6a5bf6e051c34d3b6472e8909da3"
+  },
+  "source_bound_acceptance_verifier": {
+    "path": "runtime/verify_qsv_mldsa_source_bound_acceptance_v0_2.py",
+    "sha256": "c780b246475868f41c928e00f8dbe25a0c429e664a1d24c9b6aaf404fb4aecd7"
+  },
+  "supplemental_verifier": {
+    "path": "runtime/verify_qsv_mldsa_f7_consumer_environment_binding_authority_v0_1.py",
+    "sha256": "aeac2acc608f2f0959cdd978c0cd05c1a62857e9478568b33aa1f607443975c8"
+  },
+  "target_repository": {
+    "commit": "b491ba797df6175bcc197d28104b62623dde171f",
+    "repository": "https://github.com/mokkunsuzuki-code/qsv-mldsa-interoperability-corpus.git",
+    "tree": "8b684e0a4d2d9194bffae44036e50aac4c3e741b"
+  },
+  "version": "0.1"
+}
