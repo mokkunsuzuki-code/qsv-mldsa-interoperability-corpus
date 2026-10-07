@@ -1,0 +1,478 @@
+{
+  "$defs": {
+    "binding": {
+      "additionalProperties": false,
+      "properties": {
+        "case_identity": {
+          "$ref": "#/$defs/case_identity"
+        },
+        "consumer_authority": {
+          "$ref": "#/$defs/path_hash"
+        },
+        "consumer_snapshot": {
+          "$ref": "#/$defs/consumer_snapshot"
+        },
+        "implementation_id": {
+          "enum": [
+            "openssl",
+            "cloudflare-circl"
+          ]
+        },
+        "normalized_record": {
+          "$ref": "#/$defs/normalized_record"
+        },
+        "source_bound_case": {
+          "$ref": "#/$defs/source_bound_case"
+        }
+      },
+      "required": [
+        "implementation_id",
+        "case_identity",
+        "normalized_record",
+        "consumer_authority",
+        "consumer_snapshot",
+        "source_bound_case"
+      ],
+      "type": "object"
+    },
+    "case_identity": {
+      "additionalProperties": false,
+      "properties": {
+        "case_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "expected_valid": {
+          "type": "boolean"
+        },
+        "parameter_set": {
+          "enum": [
+            "ML-DSA-44",
+            "ML-DSA-65",
+            "ML-DSA-87"
+          ]
+        },
+        "tc_id": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "tg_id": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "case_id",
+        "parameter_set",
+        "tg_id",
+        "tc_id",
+        "expected_valid"
+      ],
+      "type": "object"
+    },
+    "consumer_authority_entry": {
+      "additionalProperties": false,
+      "properties": {
+        "implementation_id": {
+          "enum": [
+            "openssl",
+            "cloudflare-circl"
+          ]
+        },
+        "path": {
+          "$ref": "#/$defs/repo_path"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "source_to_runtime_status": {
+          "enum": [
+            "proven",
+            "incomplete",
+            "not_established"
+          ]
+        }
+      },
+      "required": [
+        "implementation_id",
+        "path",
+        "sha256",
+        "source_to_runtime_status"
+      ],
+      "type": "object"
+    },
+    "consumer_snapshot": {
+      "additionalProperties": false,
+      "properties": {
+        "adapter_identity": {
+          "type": "object"
+        },
+        "lineage": {
+          "type": "object"
+        },
+        "repository": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "runtime_identity": {
+          "type": "object"
+        },
+        "source_identity": {
+          "type": "object"
+        },
+        "source_to_runtime_binding": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "repository",
+        "source_identity",
+        "runtime_identity",
+        "source_to_runtime_binding",
+        "lineage",
+        "adapter_identity"
+      ],
+      "type": "object"
+    },
+    "git_sha1": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "normalized_record": {
+      "additionalProperties": false,
+      "properties": {
+        "canonical_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "observed_acceptance": {
+          "type": "boolean"
+        },
+        "resolved_executable_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "result_state": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "selector": {
+          "$ref": "#/$defs/selector"
+        }
+      },
+      "required": [
+        "selector",
+        "canonical_sha256",
+        "result_state",
+        "observed_acceptance",
+        "resolved_executable_sha256"
+      ],
+      "type": "object"
+    },
+    "path_hash": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/repo_path"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "repo_path": {
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*//)[A-Za-z0-9._/-]+$",
+      "type": "string"
+    },
+    "selector": {
+      "additionalProperties": false,
+      "properties": {
+        "case_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "expected_valid": {
+          "type": "boolean"
+        },
+        "implementation_id": {
+          "enum": [
+            "openssl",
+            "cloudflare-circl"
+          ]
+        },
+        "parameter_set": {
+          "enum": [
+            "ML-DSA-44",
+            "ML-DSA-65",
+            "ML-DSA-87"
+          ]
+        },
+        "tc_id": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "tg_id": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "implementation_id",
+        "case_id",
+        "parameter_set",
+        "tg_id",
+        "tc_id",
+        "expected_valid"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "source_bound_case": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/repo_path"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "state": {
+          "const": "PASS"
+        }
+      },
+      "required": [
+        "path",
+        "sha256",
+        "state"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:qsv:mldsa:normalized-result-source-binding:0.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "authority_model": {
+      "const": "MODEL_C_EXTERNAL_HASH_BOUND_BINDING_AUTHORITY"
+    },
+    "authority_version": {
+      "const": "0.1"
+    },
+    "bindings": {
+      "items": {
+        "$ref": "#/$defs/binding"
+      },
+      "maxItems": 12,
+      "minItems": 12,
+      "type": "array"
+    },
+    "claim_boundary": {
+      "additionalProperties": false,
+      "properties": {
+        "adapter_wiring_implemented": {
+          "const": false
+        },
+        "complete_acvp_coverage": {
+          "const": false
+        },
+        "fips_204_certification": {
+          "const": false
+        },
+        "full_f7_source_bound_coverage": {
+          "const": false
+        },
+        "historical_normalized_result_rewritten": {
+          "const": false
+        },
+        "new_crypto_execution_performed": {
+          "const": false
+        },
+        "nist_validation": {
+          "const": false
+        },
+        "public_seven_record_evidence_verified": {
+          "const": true
+        },
+        "selected_six_case_source_bound_acceptance_complete": {
+          "const": true
+        },
+        "source_to_runtime_provenance_complete": {
+          "const": false
+        },
+        "third_party_independent_crypto_reproduction": {
+          "const": false
+        },
+        "universal_mldsa_correctness": {
+          "const": false
+        }
+      },
+      "required": [
+        "selected_six_case_source_bound_acceptance_complete",
+        "public_seven_record_evidence_verified",
+        "full_f7_source_bound_coverage",
+        "complete_acvp_coverage",
+        "source_to_runtime_provenance_complete",
+        "nist_validation",
+        "fips_204_certification",
+        "universal_mldsa_correctness",
+        "third_party_independent_crypto_reproduction",
+        "historical_normalized_result_rewritten",
+        "adapter_wiring_implemented",
+        "new_crypto_execution_performed"
+      ],
+      "type": "object"
+    },
+    "consumer_authorities": {
+      "items": {
+        "$ref": "#/$defs/consumer_authority_entry"
+      },
+      "maxItems": 2,
+      "minItems": 2,
+      "type": "array"
+    },
+    "contract_binding": {
+      "$ref": "#/$defs/path_hash"
+    },
+    "historical_normalized_result": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/repo_path"
+        },
+        "record_count": {
+          "const": 12
+        },
+        "schema": {
+          "const": "qsv.mldsa.f7-normalized-result-evidence.v0.1"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "path",
+        "sha256",
+        "schema",
+        "record_count"
+      ],
+      "type": "object"
+    },
+    "historical_runtime_evidence": {
+      "$ref": "#/$defs/path_hash"
+    },
+    "public_source_bound_evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "aggregate_path": {
+          "$ref": "#/$defs/repo_path"
+        },
+        "aggregate_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "commit": {
+          "$ref": "#/$defs/git_sha1"
+        },
+        "selected_case_count": {
+          "const": 6
+        },
+        "seven_record_digest_manifest_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "tree": {
+          "$ref": "#/$defs/git_sha1"
+        }
+      },
+      "required": [
+        "commit",
+        "tree",
+        "aggregate_path",
+        "aggregate_sha256",
+        "seven_record_digest_manifest_sha256",
+        "selected_case_count"
+      ],
+      "type": "object"
+    },
+    "schema": {
+      "const": "qsv.mldsa.normalized-result-source-binding.v0.1"
+    },
+    "schema_binding": {
+      "$ref": "#/$defs/path_hash"
+    },
+    "summary": {
+      "additionalProperties": false,
+      "properties": {
+        "binding_count": {
+          "const": 12
+        },
+        "construction_semantics": {
+          "const": "append_only_external_hash_binding"
+        },
+        "implementation_count": {
+          "const": 2
+        },
+        "normalized_record_count": {
+          "const": 12
+        },
+        "requirement_e_status": {
+          "const": "PARTIAL"
+        },
+        "selected_case_count": {
+          "const": 6
+        },
+        "source_bound_case_count": {
+          "const": 6
+        },
+        "source_to_runtime_incomplete_consumer_count": {
+          "const": 2
+        },
+        "source_to_runtime_proven_consumer_count": {
+          "const": 0
+        }
+      },
+      "required": [
+        "normalized_record_count",
+        "implementation_count",
+        "selected_case_count",
+        "binding_count",
+        "source_bound_case_count",
+        "source_to_runtime_proven_consumer_count",
+        "source_to_runtime_incomplete_consumer_count",
+        "requirement_e_status",
+        "construction_semantics"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema",
+    "authority_version",
+    "authority_model",
+    "schema_binding",
+    "contract_binding",
+    "historical_normalized_result",
+    "historical_runtime_evidence",
+    "public_source_bound_evidence",
+    "consumer_authorities",
+    "bindings",
+    "summary",
+    "claim_boundary"
+  ],
+  "title": "QSV ML-DSA normalized-result source-binding authority v0.1",
+  "type": "object",
+  "x-qsv-enforcement": {
+    "closed_binding_objects": true,
+    "closed_reference_objects": true,
+    "closed_top_level": true,
+    "expected_malformed_input_traceback_count": 0,
+    "repo_relative_path_policy_required": true,
+    "runtime_model": "MODEL_S2_STDLIB_EXPLICIT_EXACT_VALIDATION",
+    "three_layer_trust_model_required": true
+  }
+}
