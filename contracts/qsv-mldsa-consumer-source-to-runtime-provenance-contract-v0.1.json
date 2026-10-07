@@ -1,0 +1,509 @@
+{
+  "authority_role": "SUCCESSOR_PROVENANCE_SEMANTIC_CONTRACT",
+  "claim_boundary": {
+    "adapter_wiring_implemented_by_this_successor": false,
+    "complete_environment_provenance_claim_allowed": false,
+    "fips_204_certification_claim_allowed": false,
+    "full_f7_expansion_in_scope": false,
+    "historical_artifact_rewrite_allowed": false,
+    "independent_rebuild_claim_allowed": false,
+    "new_crypto_execution_required_for_this_successor": false,
+    "nist_validation_claim_allowed": false,
+    "reproducible_build_claim_allowed": false,
+    "retroactive_provenance_upgrade_allowed": false,
+    "third_party_independent_crypto_reproduction_claim_allowed": false,
+    "universal_mldsa_correctness_claim_allowed": false
+  },
+  "construction_semantics": "APPEND_ONLY_EXTERNAL_HASH_BOUND_HISTORICAL_BUILD_EVENT_PROVENANCE",
+  "consumer_requirements": {
+    "historical_predecessor_consumer_status_required": "incomplete",
+    "partial_production_adapter_wiring_allowed": false,
+    "required_implementations": [
+      "openssl",
+      "cloudflare-circl"
+    ],
+    "required_level_for_each": "LEVEL_3_BUILD_EVENT_EVIDENCED"
+  },
+  "historical_execution_authority": {
+    "github_job_id": 104377847614,
+    "github_run_attempt": 1,
+    "github_run_id": 34968252038,
+    "implementation_count": 2,
+    "process_invocation_count": 12,
+    "qsv_repository_commit": "e7c2f85a6cdf49c39a42cccdd96ba6ab1a8da6cd",
+    "qsv_repository_tree": "e97833bc5a06a49309a30f292dfdc84436668836",
+    "selected_case_count": 6
+  },
+  "minimum_sufficient_successor_claim": {
+    "claim": "The selected-six historical F7 runtime executable identity is bound to the exact source authority through a first-party historical build-event evidence chain.",
+    "does_not_claim_complete_environment_provenance": true,
+    "does_not_claim_independent_rebuild": true,
+    "does_not_claim_reproducible_build": true,
+    "required_level": "LEVEL_3_BUILD_EVENT_EVIDENCED"
+  },
+  "negative_test_matrix": [
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N01",
+      "mutation": "wrong implementation_id",
+      "trust_boundary": "implementation_identity"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N02",
+      "mutation": "OpenSSL/CIRCL authority substitution",
+      "trust_boundary": "implementation_identity"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N03",
+      "mutation": "wrong OpenSSL repository",
+      "trust_boundary": "source_authority"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N04",
+      "mutation": "wrong OpenSSL source commit",
+      "trust_boundary": "source_authority"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N05",
+      "mutation": "wrong OpenSSL source tree",
+      "trust_boundary": "source_authority"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N06",
+      "mutation": "wrong OpenSSL runtime SHA-256",
+      "trust_boundary": "runtime_authority"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N07",
+      "mutation": "wrong OpenSSL workflow SHA-256",
+      "trust_boundary": "build_event"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N08",
+      "mutation": "wrong OpenSSL build-output SHA-256",
+      "trust_boundary": "build_event"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N09",
+      "mutation": "wrong CIRCL repository",
+      "trust_boundary": "source_authority"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N10",
+      "mutation": "wrong CIRCL source commit",
+      "trust_boundary": "source_authority"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N11",
+      "mutation": "wrong CIRCL source tree",
+      "trust_boundary": "source_authority"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N12",
+      "mutation": "wrong Go archive/toolchain authority",
+      "trust_boundary": "toolchain"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N13",
+      "mutation": "wrong go.mod SHA-256",
+      "trust_boundary": "build_input"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N14",
+      "mutation": "wrong go.sum SHA-256",
+      "trust_boundary": "build_input"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N15",
+      "mutation": "wrong CIRCL runtime SHA-256",
+      "trust_boundary": "runtime_authority"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N16",
+      "mutation": "wrong CIRCL workflow SHA-256",
+      "trust_boundary": "build_event"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N17",
+      "mutation": "wrong build recipe identity",
+      "trust_boundary": "build_recipe"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N18",
+      "mutation": "missing build authority",
+      "trust_boundary": "build_event"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N19",
+      "mutation": "missing consumer authority",
+      "trust_boundary": "consumer_authority"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N20",
+      "mutation": "wrong consumer authority SHA-256",
+      "trust_boundary": "consumer_authority"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N21",
+      "mutation": "wrong lineage path",
+      "trust_boundary": "lineage"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N22",
+      "mutation": "wrong lineage SHA-256",
+      "trust_boundary": "lineage"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N23",
+      "mutation": "wrong adapter path",
+      "trust_boundary": "adapter"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N24",
+      "mutation": "wrong adapter SHA-256",
+      "trust_boundary": "adapter"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N25",
+      "mutation": "normalized consumer mismatch",
+      "trust_boundary": "normalized_binding"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N26",
+      "mutation": "runtime evidence SHA-256 mismatch",
+      "trust_boundary": "runtime_evidence"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N27",
+      "mutation": "absolute repository authority path",
+      "trust_boundary": "path_policy"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N28",
+      "mutation": "parent traversal path",
+      "trust_boundary": "path_policy"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N29",
+      "mutation": "symlink substitution",
+      "trust_boundary": "filesystem"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N30",
+      "mutation": "Git object/filesystem byte mismatch",
+      "trust_boundary": "three_layer_trust"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N31",
+      "mutation": "historical artifact mutation",
+      "trust_boundary": "historical_immutability"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N32",
+      "mutation": "historical/prospective identity conflation",
+      "trust_boundary": "history_boundary"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N33",
+      "mutation": "containing commit self-reference",
+      "trust_boundary": "authority_dag"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N34",
+      "mutation": "unknown provenance level",
+      "trust_boundary": "provenance_level"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N35",
+      "mutation": "claim stronger than provenance level",
+      "trust_boundary": "claim_boundary"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N36",
+      "mutation": "PARTIAL represented as complete",
+      "trust_boundary": "claim_boundary"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N37",
+      "mutation": "unknown field",
+      "trust_boundary": "schema"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N38",
+      "mutation": "missing required field",
+      "trust_boundary": "schema"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N39",
+      "mutation": "invalid digest or object-id shape",
+      "trust_boundary": "schema"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N40",
+      "mutation": "mutable branch used as authority",
+      "trust_boundary": "authority_identity"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N41",
+      "mutation": "guessed future tree",
+      "trust_boundary": "authority_dag"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N42",
+      "mutation": "missing provenance status",
+      "trust_boundary": "schema"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N43",
+      "mutation": "malformed JSON",
+      "trust_boundary": "parser"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N44",
+      "mutation": "schema-valid cross-field mismatch",
+      "trust_boundary": "semantic"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N45",
+      "mutation": "duplicate implementation record",
+      "trust_boundary": "aggregate"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N46",
+      "mutation": "aggregate missing one consumer",
+      "trust_boundary": "aggregate"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N47",
+      "mutation": "build harness SHA differs from runtime SHA",
+      "trust_boundary": "build_runtime_edge"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N48",
+      "mutation": "wrong historical run/job binding",
+      "trust_boundary": "historical_authority"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N49",
+      "mutation": "source identity differs from invocation evidence",
+      "trust_boundary": "source_runtime_edge"
+    },
+    {
+      "expected": "CONTROLLED_REJECT",
+      "id": "N50",
+      "mutation": "PASS with required build edge absent",
+      "trust_boundary": "fail_closed"
+    }
+  ],
+  "positive_test_matrix": [
+    {
+      "condition": "OpenSSL exact historical Level-3 record",
+      "expected": "PASS",
+      "id": "P01"
+    },
+    {
+      "condition": "CIRCL exact historical Level-3 record",
+      "expected": "PASS",
+      "id": "P02"
+    },
+    {
+      "condition": "Two-consumer aggregate complete",
+      "expected": "PASS",
+      "id": "P03"
+    },
+    {
+      "condition": "OpenSSL predecessor consumer remains incomplete and unmodified",
+      "expected": "PASS",
+      "id": "P04"
+    },
+    {
+      "condition": "CIRCL predecessor consumer remains incomplete and unmodified",
+      "expected": "PASS",
+      "id": "P05"
+    },
+    {
+      "condition": "OpenSSL six normalized bindings match predecessor authority",
+      "expected": "PASS",
+      "id": "P06"
+    },
+    {
+      "condition": "CIRCL six normalized bindings match predecessor authority",
+      "expected": "PASS",
+      "id": "P07"
+    },
+    {
+      "condition": "Historical and prospective runtime identities remain logically separate",
+      "expected": "PASS",
+      "id": "P08"
+    }
+  ],
+  "predecessor_public_authority": {
+    "commit": "7fbf5c84a01a3f51da38bb680b4133922ae4ff4b",
+    "parent": "b0fbf40d3a20a68e1242d3674f3a794c625484d4",
+    "repository": "mokkunsuzuki-code/qsv-mldsa-interoperability-corpus",
+    "subject": "Add SB-2R normalized-result source-binding authority v0.1",
+    "tree": "15a46eddfee496e29e7cf8ffc91bcf7c203441c1"
+  },
+  "provenance_levels": [
+    {
+      "level": "LEVEL_0_UNBOUND",
+      "meaning": "No source-to-runtime relationship established"
+    },
+    {
+      "level": "LEVEL_1_DECLARED",
+      "meaning": "Source/runtime identity declared without derivation evidence"
+    },
+    {
+      "level": "LEVEL_2_HASH_BOUND_RUNTIME",
+      "meaning": "Exact source authority and runtime digest are hash-bound but build derivation is incomplete"
+    },
+    {
+      "level": "LEVEL_3_BUILD_EVENT_EVIDENCED",
+      "meaning": "Historical exact source, build recipe, build observations, produced artifact digest and historical runtime digest are mutually bound"
+    },
+    {
+      "level": "LEVEL_4_REPRODUCIBLE_BUILD_VERIFIED",
+      "meaning": "Independent rebuild additionally satisfies a defined reproducibility rule"
+    }
+  ],
+  "repository_trust_model": {
+    "absolute_repository_paths_allowed": false,
+    "base_commit": "7fbf5c84a01a3f51da38bb680b4133922ae4ff4b",
+    "historical_artifact_rewrite_allowed": false,
+    "model": "BASE_HEAD_FILESYSTEM_THREE_LAYER",
+    "parent_traversal_allowed": false,
+    "symlink_substitution_allowed": false
+  },
+  "required_evidence_bindings": {
+    "adapter": {
+      "path": "runtime/qsv_mldsa_normalized_result_adapter_v0_1.py",
+      "sha256": "5a9adeeb92eef28abd5f3d5a6be516f886c7f8b8b656dfbddfb83e66ed9655e8"
+    },
+    "circl_consumer": {
+      "path": "manifest/qsv-mldsa-f7-consumer-identity-cloudflare-circl-v0.1.json",
+      "sha256": "45e418dc68a065eac6381639efc7764ce99ff86ebd1e4f4b6f2795526c76295d"
+    },
+    "lineage": {
+      "path": "lineage/bindings/qsv-mldsa-implementation-source-lineage-v0.1.json",
+      "sha256": "bead53b3ca4f475ead06d5d1c5ba99cfd98ed69c5e59cec7e62d88723325c289"
+    },
+    "normalized_result_evidence": {
+      "path": "results/qsv_mldsa_f7_normalized_result_evidence_v0_1/qsv_mldsa_f7_normalized_result_evidence_v0_1.json",
+      "sha256": "fa549e10ec79e0de4f79c516a7eacc5ed937de0a6defde7769efea3dd57e2335"
+    },
+    "normalized_result_source_binding": {
+      "path": "manifest/qsv-mldsa-f7-normalized-result-source-binding-v0.1-manifest.json",
+      "sha256": "32620fc0d957c93f78913fd60eb2441ca1201e15121bf0bda5ceda72e88451cd"
+    },
+    "openssl_consumer": {
+      "path": "manifest/qsv-mldsa-f7-consumer-identity-openssl-v0.1.json",
+      "sha256": "20a5adb3b789051fafcb65423ec7219a25ae6462574bd29245de598d9b39889d"
+    },
+    "runtime_invocation_evidence": {
+      "path": "results/qsv_mldsa_f7_runtime_invocation_evidence_v0_1/qsv_mldsa_f7_runtime_invocation_evidence_v0_1.job-bound.json",
+      "sha256": "0a5f8da64736deab407e76a35db40a5badff9018f1c1e8f5c49f1cfeba5d42b0"
+    },
+    "workflow": {
+      "path": ".github/workflows/qsv-mldsa-f7-instrumented-sixcase-reproduction-v0_1.yml",
+      "sha256": "89841e7b818ac0e37ec322ae1972463270372275db40c49b0175830fd20e39fb"
+    }
+  },
+  "schema": "qsv.mldsa.consumer-source-to-runtime-provenance-contract.v0.1",
+  "schema_enforcement": {
+    "model": "MODEL_S2_STDLIB_EXPLICIT_EXACT_VALIDATION",
+    "schema_path": "schemas/qsv-mldsa-consumer-source-to-runtime-provenance-v0.1.schema.json",
+    "schema_sha256": "67c780b21b8698c089ceceba475ea004dbe72edeeea0b905e98c6b627960b2ec",
+    "unknown_fields_allowed": false
+  },
+  "test_targets": {
+    "negative_test_count": 50,
+    "positive_test_count": 8,
+    "uncontrolled_traceback_target": 0,
+    "unexpected_accept_target": 0
+  },
+  "version": "0.1",
+  "workflow_recipe_requirements": {
+    "cloudflare-circl": {
+      "required_tokens": [
+        "CIRCL_COMMIT: \"cfa7c70defd831ffb0792ab2af560bfef43d60ca\"",
+        "CIRCL_TREE: \"b3a50c3f1b7a5f8cfac0cce655ae7ea7900e9139\"",
+        "GO_VERSION_REQUIRED: \"1.26.5\"",
+        "GO_LINUX_AMD64_SHA256: \"5c2c3b16caefa1d968a94c1daca04a7ca301a496d9b086e17ad77bb81393f053\"",
+        "export GOTOOLCHAIN=local",
+        "go build \\",
+        "-mod=readonly \\",
+        "-trimpath \\",
+        "CIRCL_GO_MOD_SUM_UNCHANGED=PASS",
+        "\"CIRCL_HARNESS_BINARY_SHA256=${CIRCL_HARNESS_BINARY_SHA}\""
+      ]
+    },
+    "openssl": {
+      "required_tokens": [
+        "OPENSSL_COMMIT: \"aae016bfd52fcad2bc9657c2c782cfdf73b1ed5f\"",
+        "OPENSSL_TREE: \"a8a306c000bc2426afd3264b2c41bc7223728475\"",
+        "./Configure \\",
+        "linux-x86_64 \\",
+        "no-shared \\",
+        "make -j2",
+        "make install_sw",
+        "cc \\",
+        "-std=c11 \\",
+        "-Wall \\",
+        "-Wextra \\",
+        "-Werror \\",
+        "\"${LIBCRYPTO}\" \\",
+        "-ldl \\",
+        "-pthread \\",
+        "\"OPENSSL_HARNESS_BINARY_SHA256=${OPENSSL_HARNESS_BINARY_SHA}\""
+      ]
+    }
+  }
+}

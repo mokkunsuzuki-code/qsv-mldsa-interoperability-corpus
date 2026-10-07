@@ -1,0 +1,529 @@
+{
+  "$defs": {
+    "consumer": {
+      "additionalProperties": false,
+      "properties": {
+        "consumer_authority": {
+          "$ref": "#/$defs/path_hash"
+        },
+        "historical_build_event": {
+          "$ref": "#/$defs/historical_build_event"
+        },
+        "implementation_id": {
+          "enum": [
+            "openssl",
+            "cloudflare-circl"
+          ]
+        },
+        "normalized_result_bindings": {
+          "items": {
+            "$ref": "#/$defs/normalized_binding"
+          },
+          "maxItems": 6,
+          "minItems": 6,
+          "type": "array"
+        },
+        "runtime_identity": {
+          "$ref": "#/$defs/runtime_identity"
+        },
+        "source_identity": {
+          "$ref": "#/$defs/source_identity"
+        },
+        "source_to_runtime_provenance": {
+          "$ref": "#/$defs/source_to_runtime_provenance"
+        }
+      },
+      "required": [
+        "implementation_id",
+        "consumer_authority",
+        "source_identity",
+        "historical_build_event",
+        "runtime_identity",
+        "normalized_result_bindings",
+        "source_to_runtime_provenance"
+      ],
+      "type": "object"
+    },
+    "git_oid": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "historical_build_event": {
+      "additionalProperties": false,
+      "properties": {
+        "build_recipe_identity": {
+          "enum": [
+            "OPENSSL_CONFIGURE_LINUX_X86_64_NO_SHARED_MAKE_J2_INSTALL_SW_CC_STATIC_LIBCRYPTO",
+            "CIRCL_EXACT_SOURCE_GO_BUILD_MOD_READONLY_TRIMPATH_GOTOOLCHAIN_LOCAL"
+          ]
+        },
+        "github_job_id": {
+          "const": 104377847614
+        },
+        "github_run_attempt": {
+          "const": 1
+        },
+        "github_run_id": {
+          "const": 34968252038
+        },
+        "model": {
+          "const": "FIRST_PARTY_HISTORICAL_GITHUB_ACTIONS_BUILD_EVENT"
+        },
+        "produced_artifacts": {
+          "$ref": "#/$defs/produced_artifacts"
+        },
+        "source_checkout_exact": {
+          "const": true
+        },
+        "toolchain_evidence": {
+          "$ref": "#/$defs/toolchain_evidence"
+        },
+        "workflow": {
+          "$ref": "#/$defs/path_hash"
+        }
+      },
+      "required": [
+        "model",
+        "github_run_id",
+        "github_job_id",
+        "github_run_attempt",
+        "workflow",
+        "source_checkout_exact",
+        "build_recipe_identity",
+        "toolchain_evidence",
+        "produced_artifacts"
+      ],
+      "type": "object"
+    },
+    "normalized_binding": {
+      "additionalProperties": false,
+      "properties": {
+        "canonical_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "case_id": {
+          "type": "string"
+        },
+        "source_bound_case_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "case_id",
+        "canonical_sha256",
+        "source_bound_case_sha256"
+      ],
+      "type": "object"
+    },
+    "path_hash": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "minLength": 1,
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$",
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "predecessor": {
+      "additionalProperties": false,
+      "properties": {
+        "commit": {
+          "$ref": "#/$defs/git_oid"
+        },
+        "parent": {
+          "$ref": "#/$defs/git_oid"
+        },
+        "repository": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "tree": {
+          "$ref": "#/$defs/git_oid"
+        }
+      },
+      "required": [
+        "repository",
+        "commit",
+        "tree",
+        "parent",
+        "subject"
+      ],
+      "type": "object"
+    },
+    "produced_artifacts": {
+      "additionalProperties": false,
+      "properties": {
+        "openssl_built_binary_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "openssl_built_libcrypto_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "runtime_executable_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "runtime_executable_sha256"
+      ],
+      "type": "object"
+    },
+    "runtime_identity": {
+      "additionalProperties": false,
+      "properties": {
+        "executable_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "historical_invocation_count": {
+          "const": 6
+        },
+        "invocation_ids": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 6,
+          "minItems": 6,
+          "type": "array"
+        },
+        "runtime_evidence": {
+          "$ref": "#/$defs/path_hash"
+        }
+      },
+      "required": [
+        "runtime_evidence",
+        "executable_sha256",
+        "historical_invocation_count",
+        "invocation_ids"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "source_identity": {
+      "additionalProperties": false,
+      "properties": {
+        "commit": {
+          "$ref": "#/$defs/git_oid"
+        },
+        "repository": {
+          "type": "string"
+        },
+        "tree": {
+          "$ref": "#/$defs/git_oid"
+        },
+        "version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "repository",
+        "commit",
+        "tree",
+        "version"
+      ],
+      "type": "object"
+    },
+    "source_to_runtime_provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "complete_environment_provenance": {
+          "const": false
+        },
+        "historical_and_prospective_runtime_identity_separate": {
+          "const": true
+        },
+        "independent_rebuild_proven": {
+          "const": false
+        },
+        "level": {
+          "const": "LEVEL_3_BUILD_EVENT_EVIDENCED"
+        },
+        "predecessor_consumer_status": {
+          "const": "incomplete"
+        },
+        "reproducible_build_proven": {
+          "const": false
+        },
+        "scope": {
+          "const": "SELECTED_SIX_CASE_F7_HISTORICAL_EXECUTION"
+        },
+        "status": {
+          "const": "HISTORICAL_BUILD_EVENT_EVIDENCED"
+        }
+      },
+      "required": [
+        "level",
+        "status",
+        "scope",
+        "predecessor_consumer_status",
+        "historical_and_prospective_runtime_identity_separate",
+        "reproducible_build_proven",
+        "independent_rebuild_proven",
+        "complete_environment_provenance"
+      ],
+      "type": "object"
+    },
+    "toolchain_evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "compiler_exact_version_repository_hash_bound": {
+          "const": false
+        },
+        "complete_parent_environment_published": {
+          "const": false
+        },
+        "go_archive_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "go_mod_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "go_mod_sum_unchanged_after_build": {
+          "const": true
+        },
+        "go_sum_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "go_toolchain_policy": {
+          "const": "local"
+        },
+        "go_version": {
+          "type": "string"
+        },
+        "runner_arch": {
+          "type": "string"
+        },
+        "runner_os": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "PARTIAL",
+            "PINNED_GO_ARCHIVE_PARTIAL_ENVIRONMENT"
+          ]
+        }
+      },
+      "required": [
+        "status",
+        "complete_parent_environment_published"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://qsv.example/schemas/qsv-mldsa-consumer-source-to-runtime-provenance-v0.1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "authority_role": {
+      "const": "APPEND_ONLY_HISTORICAL_BUILD_EVENT_PROVENANCE_AUTHORITY"
+    },
+    "claim_boundary": {
+      "additionalProperties": false,
+      "properties": {
+        "adapter_wiring_implemented": {
+          "const": false
+        },
+        "complete_acvp_coverage": {
+          "const": false
+        },
+        "complete_environment_provenance": {
+          "const": false
+        },
+        "fips_204_certification": {
+          "const": false
+        },
+        "full_f7_source_bound_coverage": {
+          "const": false
+        },
+        "historical_consumer_manifests_rewritten": {
+          "const": false
+        },
+        "historical_runtime_evidence_rewritten": {
+          "const": false
+        },
+        "independent_reproducible_build_proven": {
+          "const": false
+        },
+        "new_crypto_execution_performed": {
+          "const": false
+        },
+        "nist_validation": {
+          "const": false
+        },
+        "reproducible_build_proven": {
+          "const": false
+        },
+        "third_party_independent_crypto_reproduction": {
+          "const": false
+        },
+        "universal_mldsa_correctness": {
+          "const": false
+        }
+      },
+      "required": [
+        "historical_consumer_manifests_rewritten",
+        "historical_runtime_evidence_rewritten",
+        "adapter_wiring_implemented",
+        "full_f7_source_bound_coverage",
+        "new_crypto_execution_performed",
+        "reproducible_build_proven",
+        "independent_reproducible_build_proven",
+        "complete_environment_provenance",
+        "nist_validation",
+        "fips_204_certification",
+        "complete_acvp_coverage",
+        "universal_mldsa_correctness",
+        "third_party_independent_crypto_reproduction"
+      ],
+      "type": "object"
+    },
+    "consumers": {
+      "items": {
+        "$ref": "#/$defs/consumer"
+      },
+      "maxItems": 2,
+      "minItems": 2,
+      "type": "array"
+    },
+    "contract_binding": {
+      "$ref": "#/$defs/path_hash"
+    },
+    "evidence_bindings": {
+      "additionalProperties": {
+        "$ref": "#/$defs/path_hash"
+      },
+      "required": [
+        "workflow",
+        "runtime_invocation_evidence",
+        "openssl_consumer",
+        "circl_consumer",
+        "lineage",
+        "adapter",
+        "normalized_result_evidence",
+        "normalized_result_source_binding"
+      ],
+      "type": "object"
+    },
+    "predecessor_public_authority": {
+      "$ref": "#/$defs/predecessor"
+    },
+    "provenance_model": {
+      "additionalProperties": false,
+      "properties": {
+        "historical_and_prospective_runtime_identity_separate": {
+          "const": true
+        },
+        "minimum_for_adapter_wiring": {
+          "const": "LEVEL_3_BUILD_EVENT_EVIDENCED"
+        },
+        "retroactive_provenance_upgrade_allowed": {
+          "const": false
+        }
+      },
+      "required": [
+        "minimum_for_adapter_wiring",
+        "historical_and_prospective_runtime_identity_separate",
+        "retroactive_provenance_upgrade_allowed"
+      ],
+      "type": "object"
+    },
+    "schema": {
+      "const": "qsv.mldsa.consumer-source-to-runtime-provenance.v0.1"
+    },
+    "schema_binding": {
+      "$ref": "#/$defs/path_hash"
+    },
+    "scope": {
+      "additionalProperties": false,
+      "properties": {
+        "algorithm": {
+          "const": "ML-DSA"
+        },
+        "full_f7_source_bound_coverage": {
+          "const": false
+        },
+        "implementation_count": {
+          "const": 2
+        },
+        "operation": {
+          "const": "sigVer"
+        },
+        "selected_case_count": {
+          "const": 6
+        }
+      },
+      "required": [
+        "algorithm",
+        "operation",
+        "selected_case_count",
+        "implementation_count",
+        "full_f7_source_bound_coverage"
+      ],
+      "type": "object"
+    },
+    "summary": {
+      "additionalProperties": false,
+      "properties": {
+        "adapter_wiring_prerequisite_satisfied_if_authority_verifies": {
+          "const": true
+        },
+        "consumer_count": {
+          "const": 2
+        },
+        "level_3_consumer_count": {
+          "const": 2
+        },
+        "normalized_binding_count": {
+          "const": 12
+        },
+        "requirement_e_status": {
+          "const": "COMPLETE_AT_LEVEL_3_DEFINED_SIX_CASE_SCOPE"
+        }
+      },
+      "required": [
+        "consumer_count",
+        "level_3_consumer_count",
+        "normalized_binding_count",
+        "requirement_e_status",
+        "adapter_wiring_prerequisite_satisfied_if_authority_verifies"
+      ],
+      "type": "object"
+    },
+    "version": {
+      "const": "0.1"
+    }
+  },
+  "required": [
+    "schema",
+    "version",
+    "authority_role",
+    "predecessor_public_authority",
+    "scope",
+    "provenance_model",
+    "schema_binding",
+    "contract_binding",
+    "evidence_bindings",
+    "consumers",
+    "summary",
+    "claim_boundary"
+  ],
+  "title": "QSV ML-DSA Consumer Source-to-Runtime Provenance v0.1",
+  "type": "object"
+}

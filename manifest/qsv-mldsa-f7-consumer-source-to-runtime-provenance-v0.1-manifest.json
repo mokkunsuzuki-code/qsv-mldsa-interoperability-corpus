@@ -1,0 +1,281 @@
+{
+  "authority_role": "APPEND_ONLY_HISTORICAL_BUILD_EVENT_PROVENANCE_AUTHORITY",
+  "claim_boundary": {
+    "adapter_wiring_implemented": false,
+    "complete_acvp_coverage": false,
+    "complete_environment_provenance": false,
+    "fips_204_certification": false,
+    "full_f7_source_bound_coverage": false,
+    "historical_consumer_manifests_rewritten": false,
+    "historical_runtime_evidence_rewritten": false,
+    "independent_reproducible_build_proven": false,
+    "new_crypto_execution_performed": false,
+    "nist_validation": false,
+    "reproducible_build_proven": false,
+    "third_party_independent_crypto_reproduction": false,
+    "universal_mldsa_correctness": false
+  },
+  "consumers": [
+    {
+      "consumer_authority": {
+        "path": "manifest/qsv-mldsa-f7-consumer-identity-cloudflare-circl-v0.1.json",
+        "sha256": "45e418dc68a065eac6381639efc7764ce99ff86ebd1e4f4b6f2795526c76295d"
+      },
+      "historical_build_event": {
+        "build_recipe_identity": "CIRCL_EXACT_SOURCE_GO_BUILD_MOD_READONLY_TRIMPATH_GOTOOLCHAIN_LOCAL",
+        "github_job_id": 104377847614,
+        "github_run_attempt": 1,
+        "github_run_id": 34968252038,
+        "model": "FIRST_PARTY_HISTORICAL_GITHUB_ACTIONS_BUILD_EVENT",
+        "produced_artifacts": {
+          "runtime_executable_sha256": "b53ca61dd665f628770a2d2326e3b335ea35bc2a18f5dbfd2a23374064c230c0"
+        },
+        "source_checkout_exact": true,
+        "toolchain_evidence": {
+          "complete_parent_environment_published": false,
+          "go_archive_sha256": "5c2c3b16caefa1d968a94c1daca04a7ca301a496d9b086e17ad77bb81393f053",
+          "go_mod_sha256": "79b9daccc7f033377bcbc70524418d999a1677849924d7b5e488e646c4cf00d7",
+          "go_mod_sum_unchanged_after_build": true,
+          "go_sum_sha256": "3d75d69d3b553e9aa69e1278de681b8dc55c28c6e4233bb398c5b7373c3abd0a",
+          "go_toolchain_policy": "local",
+          "go_version": "go1.26.5",
+          "status": "PINNED_GO_ARCHIVE_PARTIAL_ENVIRONMENT"
+        },
+        "workflow": {
+          "path": ".github/workflows/qsv-mldsa-f7-instrumented-sixcase-reproduction-v0_1.yml",
+          "sha256": "89841e7b818ac0e37ec322ae1972463270372275db40c49b0175830fd20e39fb"
+        }
+      },
+      "implementation_id": "cloudflare-circl",
+      "normalized_result_bindings": [
+        {
+          "canonical_sha256": "7ba8ab255e82531b34bbc7da2c4835a8acfa2bee72db40178c4e64beee2560bc",
+          "case_id": "ML-DSA-44-tg1-tc1",
+          "source_bound_case_sha256": "b0f8d9025b5db0f167398a120e66f719c2a4e67cdb5785a8f23961f4e39dc967"
+        },
+        {
+          "canonical_sha256": "e96b9961e523626a5eaef8f84a8fcecb9cc7e16e1c3f6c7e9deb37d2a78b161b",
+          "case_id": "ML-DSA-44-tg1-tc3",
+          "source_bound_case_sha256": "a6e9f8537b07e126f1046a99670ff025e30f65364f23a21ad5f4ad083abd1ed9"
+        },
+        {
+          "canonical_sha256": "2bc8a8ea8d83c464d42ef5395878b7a1cb1c9b277e82ac02b4b756c3a2c87439",
+          "case_id": "ML-DSA-65-tg3-tc31",
+          "source_bound_case_sha256": "dd528a48ccb29a1fc384fd2c192b687ee3398aeda29f9e5c93f9a4755977586e"
+        },
+        {
+          "canonical_sha256": "5f3e4cdf8cd4b7cc83f7074d6fcd0f2367ca38bbe5a723bded927046f102c518",
+          "case_id": "ML-DSA-65-tg3-tc33",
+          "source_bound_case_sha256": "630fdc79bbb4b6998f1334a06e958220e7834c785450cc6ed3cc84af9972d66a"
+        },
+        {
+          "canonical_sha256": "744eb206378f175e6db557c2e858c5402a29e126bd754728229b5f4918c4b1cc",
+          "case_id": "ML-DSA-87-tg5-tc61",
+          "source_bound_case_sha256": "14eea9161ddb939281a90617e9dc78c90d973db29114441a51763ade82ebe7d8"
+        },
+        {
+          "canonical_sha256": "c3b185e19d9d594a610111bdae7487dfb81db2af3aab0a051a1da024171cdf31",
+          "case_id": "ML-DSA-87-tg5-tc63",
+          "source_bound_case_sha256": "8fa64e78b48933dfbdf4eb3e6447d96f997f3910563d5e0adf4f6b28a051c55b"
+        }
+      ],
+      "runtime_identity": {
+        "executable_sha256": "b53ca61dd665f628770a2d2326e3b335ea35bc2a18f5dbfd2a23374064c230c0",
+        "historical_invocation_count": 6,
+        "invocation_ids": [
+          "cloudflare-circl-ML-DSA-44-tg1-tc1",
+          "cloudflare-circl-ML-DSA-44-tg1-tc3",
+          "cloudflare-circl-ML-DSA-65-tg3-tc31",
+          "cloudflare-circl-ML-DSA-65-tg3-tc33",
+          "cloudflare-circl-ML-DSA-87-tg5-tc61",
+          "cloudflare-circl-ML-DSA-87-tg5-tc63"
+        ],
+        "runtime_evidence": {
+          "path": "results/qsv_mldsa_f7_runtime_invocation_evidence_v0_1/qsv_mldsa_f7_runtime_invocation_evidence_v0_1.job-bound.json",
+          "sha256": "0a5f8da64736deab407e76a35db40a5badff9018f1c1e8f5c49f1cfeba5d42b0"
+        }
+      },
+      "source_identity": {
+        "commit": "cfa7c70defd831ffb0792ab2af560bfef43d60ca",
+        "repository": "https://github.com/cloudflare/circl.git",
+        "tree": "b3a50c3f1b7a5f8cfac0cce655ae7ea7900e9139",
+        "version": null
+      },
+      "source_to_runtime_provenance": {
+        "complete_environment_provenance": false,
+        "historical_and_prospective_runtime_identity_separate": true,
+        "independent_rebuild_proven": false,
+        "level": "LEVEL_3_BUILD_EVENT_EVIDENCED",
+        "predecessor_consumer_status": "incomplete",
+        "reproducible_build_proven": false,
+        "scope": "SELECTED_SIX_CASE_F7_HISTORICAL_EXECUTION",
+        "status": "HISTORICAL_BUILD_EVENT_EVIDENCED"
+      }
+    },
+    {
+      "consumer_authority": {
+        "path": "manifest/qsv-mldsa-f7-consumer-identity-openssl-v0.1.json",
+        "sha256": "20a5adb3b789051fafcb65423ec7219a25ae6462574bd29245de598d9b39889d"
+      },
+      "historical_build_event": {
+        "build_recipe_identity": "OPENSSL_CONFIGURE_LINUX_X86_64_NO_SHARED_MAKE_J2_INSTALL_SW_CC_STATIC_LIBCRYPTO",
+        "github_job_id": 104377847614,
+        "github_run_attempt": 1,
+        "github_run_id": 34968252038,
+        "model": "FIRST_PARTY_HISTORICAL_GITHUB_ACTIONS_BUILD_EVENT",
+        "produced_artifacts": {
+          "openssl_built_binary_sha256": "15e2531a6cc982ba7c6d08f1cea086d4f8a132566519a5efefa1e256ea4aad6d",
+          "openssl_built_libcrypto_sha256": "e1694ccaacbd51548a0f1a135d27d67acb642338b4b175d3276a1d1e8f7495a6",
+          "runtime_executable_sha256": "07978755211bffcfe57f28ce6354292245a3a0af08d247c617c3f36378aa6b93"
+        },
+        "source_checkout_exact": true,
+        "toolchain_evidence": {
+          "compiler_exact_version_repository_hash_bound": false,
+          "complete_parent_environment_published": false,
+          "runner_arch": "X64",
+          "runner_os": "Linux",
+          "status": "PARTIAL"
+        },
+        "workflow": {
+          "path": ".github/workflows/qsv-mldsa-f7-instrumented-sixcase-reproduction-v0_1.yml",
+          "sha256": "89841e7b818ac0e37ec322ae1972463270372275db40c49b0175830fd20e39fb"
+        }
+      },
+      "implementation_id": "openssl",
+      "normalized_result_bindings": [
+        {
+          "canonical_sha256": "920c71cbcf752c1b954536d2a1e2b1a331e41a97c5d00f42146dfb4ae528ac30",
+          "case_id": "ML-DSA-44-tg1-tc1",
+          "source_bound_case_sha256": "b0f8d9025b5db0f167398a120e66f719c2a4e67cdb5785a8f23961f4e39dc967"
+        },
+        {
+          "canonical_sha256": "ad02caf24df1fca8705e7c0778576c513d798112f120b14d0efa4ab7e3cf5328",
+          "case_id": "ML-DSA-44-tg1-tc3",
+          "source_bound_case_sha256": "a6e9f8537b07e126f1046a99670ff025e30f65364f23a21ad5f4ad083abd1ed9"
+        },
+        {
+          "canonical_sha256": "fb0eb7f91d05046834d4a198fbeb1203526f1cbd693d8eb541740888538b3dec",
+          "case_id": "ML-DSA-65-tg3-tc31",
+          "source_bound_case_sha256": "dd528a48ccb29a1fc384fd2c192b687ee3398aeda29f9e5c93f9a4755977586e"
+        },
+        {
+          "canonical_sha256": "b3f376ef0714e675563353e583f79e345baf37d856fed72a18b39ce1fbe1ef6b",
+          "case_id": "ML-DSA-65-tg3-tc33",
+          "source_bound_case_sha256": "630fdc79bbb4b6998f1334a06e958220e7834c785450cc6ed3cc84af9972d66a"
+        },
+        {
+          "canonical_sha256": "ef8ee9baf79cd01f559d2699cb4f557709cb8148d41f738fb0ad1cd0f28475ba",
+          "case_id": "ML-DSA-87-tg5-tc61",
+          "source_bound_case_sha256": "14eea9161ddb939281a90617e9dc78c90d973db29114441a51763ade82ebe7d8"
+        },
+        {
+          "canonical_sha256": "5c52ebbaf4da1bb2e6b7a5712d005a41188c26706e95113fdb71b5a1013f0448",
+          "case_id": "ML-DSA-87-tg5-tc63",
+          "source_bound_case_sha256": "8fa64e78b48933dfbdf4eb3e6447d96f997f3910563d5e0adf4f6b28a051c55b"
+        }
+      ],
+      "runtime_identity": {
+        "executable_sha256": "07978755211bffcfe57f28ce6354292245a3a0af08d247c617c3f36378aa6b93",
+        "historical_invocation_count": 6,
+        "invocation_ids": [
+          "openssl-ML-DSA-44-tg1-tc1",
+          "openssl-ML-DSA-44-tg1-tc3",
+          "openssl-ML-DSA-65-tg3-tc31",
+          "openssl-ML-DSA-65-tg3-tc33",
+          "openssl-ML-DSA-87-tg5-tc61",
+          "openssl-ML-DSA-87-tg5-tc63"
+        ],
+        "runtime_evidence": {
+          "path": "results/qsv_mldsa_f7_runtime_invocation_evidence_v0_1/qsv_mldsa_f7_runtime_invocation_evidence_v0_1.job-bound.json",
+          "sha256": "0a5f8da64736deab407e76a35db40a5badff9018f1c1e8f5c49f1cfeba5d42b0"
+        }
+      },
+      "source_identity": {
+        "commit": "aae016bfd52fcad2bc9657c2c782cfdf73b1ed5f",
+        "repository": "https://github.com/openssl/openssl.git",
+        "tree": "a8a306c000bc2426afd3264b2c41bc7223728475",
+        "version": "3.6.3"
+      },
+      "source_to_runtime_provenance": {
+        "complete_environment_provenance": false,
+        "historical_and_prospective_runtime_identity_separate": true,
+        "independent_rebuild_proven": false,
+        "level": "LEVEL_3_BUILD_EVENT_EVIDENCED",
+        "predecessor_consumer_status": "incomplete",
+        "reproducible_build_proven": false,
+        "scope": "SELECTED_SIX_CASE_F7_HISTORICAL_EXECUTION",
+        "status": "HISTORICAL_BUILD_EVENT_EVIDENCED"
+      }
+    }
+  ],
+  "contract_binding": {
+    "path": "contracts/qsv-mldsa-consumer-source-to-runtime-provenance-contract-v0.1.json",
+    "sha256": "cd80518cb0bcb2452e659fe5d3e6c1a038c657b527c5f39ae549ccb797399a16"
+  },
+  "evidence_bindings": {
+    "adapter": {
+      "path": "runtime/qsv_mldsa_normalized_result_adapter_v0_1.py",
+      "sha256": "5a9adeeb92eef28abd5f3d5a6be516f886c7f8b8b656dfbddfb83e66ed9655e8"
+    },
+    "circl_consumer": {
+      "path": "manifest/qsv-mldsa-f7-consumer-identity-cloudflare-circl-v0.1.json",
+      "sha256": "45e418dc68a065eac6381639efc7764ce99ff86ebd1e4f4b6f2795526c76295d"
+    },
+    "lineage": {
+      "path": "lineage/bindings/qsv-mldsa-implementation-source-lineage-v0.1.json",
+      "sha256": "bead53b3ca4f475ead06d5d1c5ba99cfd98ed69c5e59cec7e62d88723325c289"
+    },
+    "normalized_result_evidence": {
+      "path": "results/qsv_mldsa_f7_normalized_result_evidence_v0_1/qsv_mldsa_f7_normalized_result_evidence_v0_1.json",
+      "sha256": "fa549e10ec79e0de4f79c516a7eacc5ed937de0a6defde7769efea3dd57e2335"
+    },
+    "normalized_result_source_binding": {
+      "path": "manifest/qsv-mldsa-f7-normalized-result-source-binding-v0.1-manifest.json",
+      "sha256": "32620fc0d957c93f78913fd60eb2441ca1201e15121bf0bda5ceda72e88451cd"
+    },
+    "openssl_consumer": {
+      "path": "manifest/qsv-mldsa-f7-consumer-identity-openssl-v0.1.json",
+      "sha256": "20a5adb3b789051fafcb65423ec7219a25ae6462574bd29245de598d9b39889d"
+    },
+    "runtime_invocation_evidence": {
+      "path": "results/qsv_mldsa_f7_runtime_invocation_evidence_v0_1/qsv_mldsa_f7_runtime_invocation_evidence_v0_1.job-bound.json",
+      "sha256": "0a5f8da64736deab407e76a35db40a5badff9018f1c1e8f5c49f1cfeba5d42b0"
+    },
+    "workflow": {
+      "path": ".github/workflows/qsv-mldsa-f7-instrumented-sixcase-reproduction-v0_1.yml",
+      "sha256": "89841e7b818ac0e37ec322ae1972463270372275db40c49b0175830fd20e39fb"
+    }
+  },
+  "predecessor_public_authority": {
+    "commit": "7fbf5c84a01a3f51da38bb680b4133922ae4ff4b",
+    "parent": "b0fbf40d3a20a68e1242d3674f3a794c625484d4",
+    "repository": "mokkunsuzuki-code/qsv-mldsa-interoperability-corpus",
+    "subject": "Add SB-2R normalized-result source-binding authority v0.1",
+    "tree": "15a46eddfee496e29e7cf8ffc91bcf7c203441c1"
+  },
+  "provenance_model": {
+    "historical_and_prospective_runtime_identity_separate": true,
+    "minimum_for_adapter_wiring": "LEVEL_3_BUILD_EVENT_EVIDENCED",
+    "retroactive_provenance_upgrade_allowed": false
+  },
+  "schema": "qsv.mldsa.consumer-source-to-runtime-provenance.v0.1",
+  "schema_binding": {
+    "path": "schemas/qsv-mldsa-consumer-source-to-runtime-provenance-v0.1.schema.json",
+    "sha256": "67c780b21b8698c089ceceba475ea004dbe72edeeea0b905e98c6b627960b2ec"
+  },
+  "scope": {
+    "algorithm": "ML-DSA",
+    "full_f7_source_bound_coverage": false,
+    "implementation_count": 2,
+    "operation": "sigVer",
+    "selected_case_count": 6
+  },
+  "summary": {
+    "adapter_wiring_prerequisite_satisfied_if_authority_verifies": true,
+    "consumer_count": 2,
+    "level_3_consumer_count": 2,
+    "normalized_binding_count": 12,
+    "requirement_e_status": "COMPLETE_AT_LEVEL_3_DEFINED_SIX_CASE_SCOPE"
+  },
+  "version": "0.1"
+}
