@@ -150,3 +150,93 @@ This repository does not itself establish:
 ## License
 
 MIT
+
+## Proposed one-case source-bound acceptance v0.2 (not merged)
+
+The neutral fixture v0.3 schema and verifier remain unchanged. The historical
+metadata-only default that reports `SOURCE_REGENERATION_PERFORMED=NO` is not a
+source-bound PASS. The separate proposed `source_bound` path requires a fresh
+pinned A03 gate, A04 regeneration twice from original NIST Raw, exact published
+fixture byte matching, and both actual consumed source-file SHA-256 values in
+each accepted normalized evidence record. The consumer has exactly 11 bound
+identity fields; historical source-to-runtime provenance remains `incomplete`.
+
+Only OpenSSL / ML-DSA-44 / NIST sigVer `tgId=1`, `tcId=1`,
+`expected_valid=false` is within scope. Evidence-record acceptance does **not**
+mean that an ML-DSA signature was accepted. The historical three-source
+Wycheproof mode and original R2 adapter have not been retroactively repaired.
+
+The **migrated v0.1** adapter (21,742 bytes; SHA-256
+`d1e51068bbadbae4d1214f6e9f0c9df35f8c9ea934fa5028fd63cd1a5dfcbe59`)
+has one local, unattested fixed-case Positive ACCEPT + N01 REJECT experiment,
+with read-only evidence postflight (`PASS_LOCAL_UNATTESTED`). This is not
+third-party independent reproduction or official acceptance.
+
+The **v0.2** adapter in
+`runtime/qsv_mldsa_source_bound_gate_first_adapter_v0_2.py` was run in a
+fresh, explicitly authorized **fixed one-case local E2E** on **2026-11-09 JST**
+(`PASS_LOCAL_UNATTESTED`). The external Supervisor recorded one launch, exit
+code 0, no timeout, and no retry. The original NIST Raw inputs passed the
+current A03 source gate (`PREACCEPTANCE_PASS`); the Target observed two A04
+regenerations and **one accepted normalized evidence record**. The previously
+saved one-byte N01 mutation was rejected with
+`PINNED_SOURCE_DIGEST_MISMATCH` before construction, yielding **zero accepted
+negative results**. The positive record contains the current source-gate
+status, two consumed NIST Raw SHA-256 digests, and eleven consumer bindings.
+These findings cover only OpenSSL / ML-DSA-44 / `tgId=1` / `tcId=1` /
+`expected_valid=false`, not universal ACVP/Wycheproof support.
+
+This is a local unattested observation, **not** third-party independent
+reproduction, NIST validation, cryptographic certification, or official
+acceptance. A positive accepted *evidence record* does not mean the signature
+is valid. Call counts for A03/A04/constructor are **Target-self-observed**,
+not external function-level witnessing. The full A03 Envelope was not saved
+as an independently rehashable Raw file. The local Supervisor and four saved
+execution Evidence files are **not in this public source patch**; standalone
+public reproduction of the private CORE-bound workflow is `NOT_ESTABLISHED`.
+
+The ordinary discoverable v0.2 tests contain synthetic schema/source checks
+only and cannot launch real P01/N01 via an environment variable. The private `_accept_lane` function is created
+inside `run_one_shot` only after fixed CORE, module source pins and schemas
+have been read and checked; no public lane API accepts caller-supplied A03,
+policy, validator, gate status, or origin as a verified authority. Arbitrary
+hostile Python in-process callers or modified `sys.modules` / `sys.path` are
+**UNSUPPORTED_PUBLIC_CALLER_API**, not an attested trust boundary.
+
+The negative `NEGATIVE_RECEIPT_PREPARED` event is a logical event recorded
+**before** physical file persistence, not a claim of an O_EXCL save. Only a
+separate read-only postflight of the saved Raw file can substantiate storage.
+No additional timestamping or circular Trace→Receipt digest dependency is
+implied. The local run recorded 11 ordered Trace events. The prepared event
+is not proof of persistence; a separate read-only saved-Raw postflight
+confirmed the persisted evidence files.
+
+The v0.2 CLI does not authorize itself: `--run-one-shot` requires separate,
+explicit authorization, a frozen source/input environment, a one-time fixed
+argv/output root and external Supervisor, followed by independent Raw readback.
+Do not use general `pytest`/`unittest` to launch real P01/N01. Real testing
+is not part of this proposed source patch.
+
+The SHA-pinned v0.2 Python source contains older build-stage words such as
+`SOURCE-ONLY` and `UNEXECUTED` in its docstring or CLI help. They describe the
+source-only drafting stage **before** the later fresh experiment. These Source
+bytes are intentionally frozen to preserve the Adapter SHA-256 bound to the
+accepted local evidence. This README records the later verified local status.
+Changing those Python strings requires a new Source pin and a separate
+decision about runtime evidence for the changed Source.
+
+The original v0.3 `verify_fixture()` metadata-only default can report
+`SOURCE_REGENERATION_PERFORMED=NO`: such a PASS is **not** source-bound
+acceptance. That historical three-source/Wycheproof default has not been
+remediated; the original R2 Adapter E2E remains `NOT_VERIFIED`, historical
+complete Source-to-Runtime Provenance remains `INCOMPLETE`, and Official
+Acceptance remains `NOT_GRANTED`. Arbitrary hostile in-process Python callers
+are outside the supported public API.
+
+The program depends on a separately obtained, privately held SHA-pinned CORE
+evidence archive. This public source patch contains no NIST Raw, ISO, private
+CORE ZIP, saved Evidence/Receipts, private absolute paths, or Runtime binary.
+CORE redistribution, privacy/internal-path review, recipient/channel approval
+and any external release are still unresolved. The proposed nine-file source
+patch has **not** modified GitHub. This work does not prove universal ML-DSA
+correctness, complete FIPS 204 conformance, or third-party reproduction.
