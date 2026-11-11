@@ -1,0 +1,260 @@
+{
+  "$id": "urn:qsv:mldsa:source-bound:accepted-evidence:0.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "acceptance_mode": {
+      "const": "source_bound"
+    },
+    "claim_boundary": {
+      "additionalProperties": false,
+      "properties": {
+        "historical_source_to_runtime_provenance": {
+          "const": "INCOMPLETE"
+        },
+        "official_acceptance": {
+          "const": false
+        },
+        "signature_crypto_acceptance_not_implied": {
+          "const": true
+        },
+        "third_party_attestation": {
+          "const": false
+        }
+      },
+      "required": [
+        "historical_source_to_runtime_provenance",
+        "third_party_attestation",
+        "official_acceptance",
+        "signature_crypto_acceptance_not_implied"
+      ],
+      "type": "object"
+    },
+    "consumer": {
+      "additionalProperties": false,
+      "properties": {
+        "historical_adapter_sha256": {
+          "const": "5a9adeeb92eef28abd5f3d5a6be516f886c7f8b8b656dfbddfb83e66ed9655e8"
+        },
+        "historical_provenance_class": {
+          "const": "CARRIED_FORWARD_NOT_INDEPENDENTLY_REPRODUCED"
+        },
+        "historical_runtime_executable_sha256": {
+          "const": "07978755211bffcfe57f28ce6354292245a3a0af08d247c617c3f36378aa6b93"
+        },
+        "historical_source_to_runtime_status": {
+          "const": "incomplete"
+        },
+        "implementation_id": {
+          "const": "openssl"
+        },
+        "lineage_sha256": {
+          "const": "bead53b3ca4f475ead06d5d1c5ba99cfd98ed69c5e59cec7e62d88723325c289"
+        },
+        "new_adapter_identity_class": {
+          "const": "LOCAL_SELF_OBSERVED_UNATTESTED"
+        },
+        "new_adapter_raw_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "repository": {
+          "const": "https://github.com/openssl/openssl.git"
+        },
+        "source_commit": {
+          "const": "aae016bfd52fcad2bc9657c2c782cfdf73b1ed5f"
+        },
+        "source_tree": {
+          "const": "a8a306c000bc2426afd3264b2c41bc7223728475"
+        }
+      },
+      "required": [
+        "implementation_id",
+        "repository",
+        "source_commit",
+        "source_tree",
+        "lineage_sha256",
+        "historical_adapter_sha256",
+        "historical_runtime_executable_sha256",
+        "historical_source_to_runtime_status",
+        "historical_provenance_class",
+        "new_adapter_raw_sha256",
+        "new_adapter_identity_class"
+      ],
+      "type": "object"
+    },
+    "historical_case": {
+      "additionalProperties": false,
+      "properties": {
+        "canonical_record_sha256": {
+          "const": "920c71cbcf752c1b954536d2a1e2b1a331e41a97c5d00f42146dfb4ae528ac30"
+        },
+        "case_id": {
+          "const": "ML-DSA-44-tg1-tc1"
+        },
+        "new_sigver_executed": {
+          "const": false
+        },
+        "observed_acceptance": {
+          "const": false
+        },
+        "result_state": {
+          "const": "expected_reject"
+        }
+      },
+      "required": [
+        "case_id",
+        "canonical_record_sha256",
+        "result_state",
+        "observed_acceptance",
+        "new_sigver_executed"
+      ],
+      "type": "object"
+    },
+    "normalized_result_source_binding": {
+      "additionalProperties": false,
+      "properties": {
+        "expected_results_raw_sha256": {
+          "const": "e1d84ef1b2f35196278ab0b0ed6a46ec62cc03d2dfa92c564199e1999bfb8ea6"
+        },
+        "gate_status": {
+          "const": "PREACCEPTANCE_PASS"
+        },
+        "prompt_raw_sha256": {
+          "const": "e2cba4589389756fa0bea1a7e6837138bf0a81f9d14234c9ee8f6d33caa1654e"
+        },
+        "source_regeneration_performed": {
+          "const": true
+        }
+      },
+      "required": [
+        "gate_status",
+        "source_regeneration_performed",
+        "prompt_raw_sha256",
+        "expected_results_raw_sha256"
+      ],
+      "type": "object"
+    },
+    "schema": {
+      "const": "qsv.mldsa.source-bound.accepted-evidence.v0.1"
+    },
+    "selectors": {
+      "const": {
+        "case_id": "ML-DSA-44-tg1-tc1",
+        "expected_valid": false,
+        "implementation_id": "openssl",
+        "parameter_set": "ML-DSA-44",
+        "tc_id": 1,
+        "tg_id": 1
+      }
+    },
+    "source_files": {
+      "additionalProperties": false,
+      "properties": {
+        "expected_results": {
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "const": "gen-val/json-files/ML-DSA-sigVer-FIPS204/expectedResults.json"
+            },
+            "raw_sha256": {
+              "const": "e1d84ef1b2f35196278ab0b0ed6a46ec62cc03d2dfa92c564199e1999bfb8ea6"
+            },
+            "role": {
+              "const": "expected_results"
+            }
+          },
+          "required": [
+            "role",
+            "path",
+            "raw_sha256"
+          ],
+          "type": "object"
+        },
+        "prompt": {
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "const": "gen-val/json-files/ML-DSA-sigVer-FIPS204/prompt.json"
+            },
+            "raw_sha256": {
+              "const": "e2cba4589389756fa0bea1a7e6837138bf0a81f9d14234c9ee8f6d33caa1654e"
+            },
+            "role": {
+              "const": "prompt"
+            }
+          },
+          "required": [
+            "role",
+            "path",
+            "raw_sha256"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "prompt",
+        "expected_results"
+      ],
+      "type": "object"
+    },
+    "source_gate": {
+      "additionalProperties": false,
+      "properties": {
+        "a03_module_sha256": {
+          "const": "8800ddc0779f2f31c15ec167c4e3fbc37afc6502bf2d8687665aa31872ecc0c5"
+        },
+        "a04_regenerations_target_observed": {
+          "const": 2
+        },
+        "cached_r1_gate_used": {
+          "const": false
+        },
+        "current_a03_envelope_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "observation_class": {
+          "const": "LOCAL_UNATTESTED"
+        },
+        "published_fixture_byte_match": {
+          "const": true
+        },
+        "same_verified_bytes_consumed": {
+          "const": true
+        },
+        "source_regeneration_performed": {
+          "const": true
+        },
+        "status": {
+          "const": "PREACCEPTANCE_PASS"
+        }
+      },
+      "required": [
+        "status",
+        "source_regeneration_performed",
+        "same_verified_bytes_consumed",
+        "published_fixture_byte_match",
+        "a03_module_sha256",
+        "a04_regenerations_target_observed",
+        "current_a03_envelope_sha256",
+        "cached_r1_gate_used",
+        "observation_class"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema",
+    "acceptance_mode",
+    "selectors",
+    "source_gate",
+    "source_files",
+    "normalized_result_source_binding",
+    "historical_case",
+    "consumer",
+    "claim_boundary"
+  ],
+  "title": "QSV one-case append-only gate-first source-bound normalized evidence v0.1",
+  "type": "object"
+}

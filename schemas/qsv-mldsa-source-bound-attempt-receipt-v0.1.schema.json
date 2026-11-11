@@ -1,0 +1,134 @@
+{
+  "$id": "urn:qsv:mldsa:source-bound:attempt-receipt:0.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "additionalProperties": false,
+      "properties": {
+        "a03_calls_target_observed": {
+          "const": 1
+        },
+        "a04_calls_target_observed": {
+          "const": 0
+        },
+        "accepted_result_count": {
+          "const": 0
+        },
+        "constructor_calls_target_observed": {
+          "const": 0
+        },
+        "exception_class": {
+          "const": "PreacceptanceBlocked"
+        },
+        "expected_results_raw_sha256": {
+          "const": "e1d84ef1b2f35196278ab0b0ed6a46ec62cc03d2dfa92c564199e1999bfb8ea6"
+        },
+        "lane": {
+          "const": "NEGATIVE_N01"
+        },
+        "prompt_raw_sha256": {
+          "const": "7707e41bd24dccbab58b474c2124bf0daf6eb7c9aae842933a0aafba70f3fc93"
+        },
+        "reason": {
+          "const": "PINNED_SOURCE_DIGEST_MISMATCH"
+        },
+        "record_type": {
+          "const": "NEGATIVE_REJECTION"
+        },
+        "schema": {
+          "const": "qsv.mldsa.source-bound.attempt-receipt.v0.1"
+        },
+        "status": {
+          "const": "REJECT"
+        }
+      },
+      "required": [
+        "schema",
+        "record_type",
+        "lane",
+        "status",
+        "exception_class",
+        "reason",
+        "prompt_raw_sha256",
+        "expected_results_raw_sha256",
+        "accepted_result_count",
+        "constructor_calls_target_observed",
+        "a03_calls_target_observed",
+        "a04_calls_target_observed"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "a03_calls_target_observed": {
+          "const": 2
+        },
+        "a04_calls_target_observed": {
+          "const": 2
+        },
+        "accepted_negative_results": {
+          "const": 0
+        },
+        "accepted_positive_results": {
+          "const": 1
+        },
+        "constructor_calls_target_observed": {
+          "const": 1
+        },
+        "historical_source_to_runtime_provenance": {
+          "const": "INCOMPLETE"
+        },
+        "lane": {
+          "const": "TWO_LANE"
+        },
+        "negative_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "official_acceptance": {
+          "const": false
+        },
+        "positive_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "record_type": {
+          "const": "FINAL"
+        },
+        "schema": {
+          "const": "qsv.mldsa.source-bound.attempt-receipt.v0.1"
+        },
+        "status": {
+          "const": "PASS_LOCAL_UNATTESTED"
+        },
+        "third_party_attestation": {
+          "const": false
+        },
+        "trace_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema",
+        "record_type",
+        "lane",
+        "status",
+        "positive_sha256",
+        "negative_sha256",
+        "trace_sha256",
+        "accepted_positive_results",
+        "accepted_negative_results",
+        "constructor_calls_target_observed",
+        "a03_calls_target_observed",
+        "a04_calls_target_observed",
+        "historical_source_to_runtime_provenance",
+        "third_party_attestation",
+        "official_acceptance"
+      ],
+      "type": "object"
+    }
+  ],
+  "title": "QSV append-only selected one-case two-lane receipt v0.1"
+}
